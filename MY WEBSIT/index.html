@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY WEBSITE | Mohamed Alaa</title>
+  <link rel="icon" href="icons mohamed.png" type="image/png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        }
+        
+        body { 
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); 
+            color: #fff; 
+            min-height: 100vh; 
+            overflow-x: hidden; 
+            position: relative; 
+        }
+        
+        body::before { 
+            content: ""; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.1) 0%, transparent 20%), 
+                        radial-gradient(circle at 90% 80%, rgba(247, 37, 133, 0.1) 0%, transparent 20%); 
+            z-index: -1; 
+        }
+
+        /* شريط التنقل */
+        .nav-container { 
+            background: rgba(22, 1, 1, 0.95); 
+            padding: 15px 0; 
+            position: fixed; 
+            top: 0; 
+            width: 100%;
+            z-index: 1000; 
+            backdrop-filter: blur(10px); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+        
+        .nav-content { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 20px; 
+        }
+        
+        .nav-logo { 
+            font-size: 1.8rem; 
+            font-weight: 700; 
+            background: linear-gradient(45deg, #4361ee, #3a0ca3); 
+            -webkit-background-clip: text; 
+            background-clip: text; 
+            color: transparent; 
+            text-decoration: none; 
+        }
+        
+        .nav-links { 
+            display: flex; 
+            gap: 25px; 
+        }
+        
+        .nav-link { 
+            color: #e0e1dd; 
+            text-decoration: none; 
+            font-weight: 500; 
+            padding: 8px 15px; 
+            border-radius: 5px; 
+            transition: all 0.3s ease; 
+        }
+        
+        .nav-link:hover, .nav-link.active { 
+            background: rgba(67, 97, 238, 0.2); 
+            color: #4cc9f0; 
+        }
+
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            margin-top: 80px;
+        }
+        
+        header { 
+            text-align: center; 
+            padding: 30px 0; 
+            margin-bottom: 30px; 
+            animation: fadeIn 1s ease; 
+        }
+        
+        .logo { 
+            font-size: 2.5rem; 
+            font-weight: 700; 
+            margin-bottom: 10px; 
+            background: linear-gradient(45deg, #4361ee, #3a0ca3); 
+            -webkit-background-clip: text; 
+            background-clip: text; 
+            color: transparent; 
+            display: inline-block; 
+        }
+        
+        .subtitle { 
+            font-size: 1.2rem; 
+            max-width: 800px; 
+            margin: 0 auto 20px; 
+            line-height: 1.6; 
+            color: #e0e1dd; 
+        }
+
+        /* مسار التطوير */
+        .path-container {
+            margin: 40px 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .learning-path {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .path-item {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .path-item.completed {
+            border-color: #4caf50;
+            background: rgba(39, 174, 96, 0.1);
+        }
+        
+        .path-item.locked {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .path-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .path-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .completed .path-icon {
+            background: linear-gradient(45deg, #4caf50, #2e7d32);
+        }
+        
+        .path-content {
+            flex: 1;
+        }
+        
+        .path-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #4cc9f0;
+        }
+        
+        .completed .path-title {
+            color: #4caf50;
+        }
+        
+        .path-description {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #e0e1dd;
+        }
+        
+        .path-resources {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .resource {
+            background: rgba(76, 201, 240, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: #e0e1dd;
+            border: 1px solid rgba(76, 201, 240, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .resource:hover {
+            background: rgba(76, 201, 240, 0.3);
+            transform: translateY(-2px);
+            color: #4cc9f0;
+        }
+
+        /* زر الانتقال إلى الصفحة */
+        .go-to-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .go-to-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+        }
+        
+        .complete-btn {
+            background: linear-gradient(45deg, #4caf50, #2e7d32);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .complete-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        .completed .complete-btn {
+            display: none;
+        }
+        
+        .status-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #4caf50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: none;
+        }
+        
+        .completed .status-badge {
+            display: block;
+        }
+
+        /* الإحصائيات */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 60px 0;
+        }
+        
+        .stat-card {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin: 0 auto 20px;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4cc9f0;
+            margin-bottom: 10px;
+        }
+        
+        .stat-title {
+            color: #e0e1dd;
+            font-size: 1rem;
+        }
+
+        /* التوقيتات */
+        .timeline-container {
+            margin: 60px 0;
+        }
+        
+        .time-estimates {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .time-card {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .time-title {
+            font-size: 1.1rem;
+            color: #4cc9f0;
+            margin-bottom: 10px;
+        }
+        
+        .time-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        
+        .time-note {
+            font-size: 0.9rem;
+            color: #e0e1dd;
+        }
+
+        /* أزرار التحميل */
+        .download-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 40px 0;
+        }
+        
+        .download-btn {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.4);
+        }
+
+        /* زر العودة للأعلى */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: none;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.4);
+        }
+
+        /* قسم الأسئلة الشائعة */
+        .faq-container {
+            margin: 60px 0;
+        }
+        
+        .faq-item {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #4cc9f0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: #e0e1dd;
+            line-height: 1.6;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 20px 20px;
+        }
+        
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        
+        /* شريط التقدم */
+        .progress-container {
+            margin: 40px 0;
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .progress-title {
+            font-size: 1.5rem;
+            color: #4cc9f0;
+        }
+        
+        .reset-progress {
+            background: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .reset-progress:hover {
+            background: rgba(244, 67, 54, 0.3);
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #4caf50, #2e7d32);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+        
+        .progress-text {
+            text-align: center;
+            color: #e0e1dd;
+            font-size: 0.9rem;
+        }
+
+        footer { 
+            text-align: center; 
+            padding: 30px 0; 
+            margin-top: 40px; 
+            border-top: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+        
+        .social-icons { 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            margin: 20px 0; 
+        }
+        
+        .social-icon { 
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%; 
+            background: rgba(255, 255, 255, 0.1); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.5rem; 
+            transition: all 0.3s ease; 
+            text-decoration: none; 
+            color: #fff; 
+        }
+        
+        .social-icon:hover { 
+            background: #4361ee; 
+            transform: translateY(-5px); 
+            color: #fff; 
+        }
+        
+        .copyright { 
+            color: #e0e1dd; 
+            font-size: 0.9rem; 
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; } 
+            to { opacity: 1; } 
+        }
+
+        /* استجابة الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .nav-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .path-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .download-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .faq-question {
+                font-size: 1rem;
+                padding: 15px;
+            }
+            
+            .path-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .progress-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <div class="nav-container">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">MY WEBSITE</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">الصفحة الرئيسية</a>
+                <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
+                <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
+                <a href="#contact" class="nav-link">اتصل بنا</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">مسار التطور التقني</div>
+            <h1>خطة تطوير المهارات التقنية خطوة بخطوة</h1>
+            <p class="subtitle">مسار تعليمي شامل يبدأ من أساسيات الحاسوب حتى الاحتراف البرمجي. اتبع هذه الخطوات لتطوير مهاراتك التقنية وبناء مشاريع عملية.</p>
+        </header>
+        
+        <!-- شريط التقدم -->
+        <div class="progress-container">
+            <div class="progress-header">
+                <h2 class="progress-title">تقدمك في المسار التعليمي</h2>
+                <button class="reset-progress" onclick="resetProgress()">
+                    <i class="fas fa-redo"></i> إعادة تعيين التقدم
+                </button>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">0% مكتمل</div>
+        </div>
+        
+        <!-- مسار البرمجة -->
+        <div id="programming-path" class="path-container">
+            <h2 class="section-title">مسار التطور البرمجي</h2>
+            
+            <div class="learning-path">
+                <!-- المرحلة الجديدة: ما قبل البرمجة -->
+                <div class="path-item" data-step="1">
+                    <span class="status-badge">مكتمل</span>
+                    <div class="path-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <div class="path-content">
+                        <h3 class="path-title">أساسيات الحاسوب</h3>
+                        <p class="path-description">هذه المرحلة أضعها بين يديك كمدخل آمن لعالم التقنية. سأرشدك فيها خطوة بخطوة لفهم أساسيات الحاسوب، بدءاً من نظام التشغيل وكيفية إدارة الملفات، مروراً بأساسيات الإنترنت، ووصولاً إلى إتقان مهارات الكتابة باللمس. إنها البوابة الحقيقية قبل الانطلاق نحو البرمجة.</p>
+                        <a href="Computer_basics.html" class="go-to-btn">
+                            <i class="fas fa-arrow-right"></i> ابدأ رحلتك في أساسيات الحاسوب
+                        </a>
+                        <div class="path-resources">
+                            <a href="https://edu.gcfglobal.org/ar/" class="resource" target="_blank">GCFGlobal</a>
+                            <a href="https://www.microsoft.com/ar-sa/digitalliteracy" class="resource" target="_blank">Microsoft Digital Literacy</a>
+                            <a href="https://www.typingclub.com/" class="resource" target="_blank">TypingClub</a>
+                            <a href="https://www.edraak.org/" class="resource" target="_blank">إدراك</a>
+                        </div>
+                        <button class="complete-btn" onclick="completeStep(1)">تم الإكمال</button>
+                    </div>
+                </div>
+                
+                <!-- الخطوة 1 -->
+                <div class="path-item" data-step="2">
+                    <span class="status-badge">مكتمل</span>
+                    <div class="path-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="path-content">
+                        <h3 class="path-title">أساسيات البرمجة</h3>
+                        <p class="path-description">ابدأ بتعلم المفاهيم الأساسية للبرمجة مثل المتغيرات، الشروط، الحلقات، الدوال وهياكل البيانات الأساسية. اختر لغة برمجية لتبدأ بها مثل Python أو JavaScript.</p>
+                        <div class="path-resources">
+                            <a href="https://www.freecodecamp.org/" class="resource" target="_blank">freeCodeCamp</a>
+                            <a href="https://www.codecademy.com/" class="resource" target="_blank">Codecademy</a>
+                            <a href="https://www.w3schools.com/" class="resource" target="_blank">W3Schools</a>
+                        </div>
+                        <button class="complete-btn" onclick="completeStep(2)">تم الإكمال</button>
+                    </div>
+                </div>
+                
+                <!-- الخطوة 2 -->
+                <div class="path-item" data-step="3">
+                    <span class="status-badge">مكتمل</span>
+                    <div class="path-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="path-content">
+                        <h3 class="path-title">تطوير الويب</h3>
+                        <p class="path-description">تعلم أساسيات تطوير الويب: HTML لبنية الصفحة، CSS للتنسيق والتزيين، JavaScript لإضافة التفاعل. ثم انتقل إلى تعلم إطار عمل مثل React أو Vue.js.</p>
+                        <div class="path-resources">
+                            <a href="https://developer.mozilla.org/" class="resource" target="_blank">MDN Web Docs</a>
+                            <a href="https://frontendmasters.com/" class="resource" target="_blank">Frontend Masters</a>
+                            <a href="https://www.theodinproject.com/" class="resource" target="_blank">The Odin Project</a>
+                        </div>
+                        <button class="complete-btn" onclick="completeStep(3)">تم الإكمال</button>
+                    </div>
+                </div>
+                
+                <!-- الخطوة 3 -->
+                <div class="path-item" data-step="4">
+                    <span class="status-badge">مكتمل</span>
+                    <div class="path-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="path-content">
+                        <h3 class="path-title">قواعد البيانات</h3>
+                        <p class="path-description">افهم كيفية تخزين البيانات واسترجاعها باستخدام قواعد البيانات. تعلم SQL للتعامل مع قواعد البيانات العلائقية، وNoSQL للقواعد غير العلائقية مثل MongoDB.</p>
+                        <div class="path-resources">
+                            <a href="https://sqlzoo.net/" class="resource" target="_blank">SQLZoo</a>
+                            <a href="https://university.mongodb.com/" class="resource" target="_blank">MongoDB University</a>
+                            <a href="https://www.postgresqltutorial.com/" class="resource" target="_blank">PostgreSQL Tutorial</a>
+                        </div>
+                        <button class="complete-btn" onclick="completeStep(4)">تم الإكمال</button>
+                    </div>
+                </div>
+                
+                <!-- الخطوة 4 -->
+                <div class="path-item" data-step="5">
+                    <span class="status-badge">مكتمل</span>
+                    <div class="path-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="path-content">
+                        <h3 class="path-title">تحليل البيانات</h3>
+                        <p class="path-description">تعلّم معالجة البيانات وتحليلها باستخدام مكتبات مثل Pandas وNumPy في Python. اكتشف كيفية استخراج الرؤى من البيانات وتقديمها بشكل مرئي باستخدام Matplotlib وSeaborn.</p>
+                        <div class="path-resources">
+                            <a href="https://www.kaggle.com/" class="resource" target="_blank">Kaggle</a>
+                            <a href="https://www.datacamp.com/" class="resource" target="_blank">DataCamp</a>
+                            <a href="https://towardsdatascience.com/" class="resource" target="_blank">Towards Data Science</a>
+                        </div>
+                        <button class="complete-btn" onclick="completeStep(5)">تم الإكمال</button>
+                    </div>
+                </div>
+                
+                <!-- الخطوة 5 -->
+                <div class="path-item" data-step="6">
+                    <span class="status-badge">مكتمل</span>
+                    <div class="path-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="path-content">
+                        <h3 class="path-title">مشاريع عملية</h3>
+                        <p class="path-description">طبق ما تعلمته في مشاريع حقيقية. ابدأ بمشاريع صغيرة ثم تدرج إلى مشاريع أكثر تعقيداً. أنشئ محفظة أعمال (Portfolio) تعرض مهاراتك وإنجازاتك.</p>
+                        <div class="path-resources">
+                            <a href="https://github.com/" class="resource" target="_blank">GitHub</a>
+                            <a href="https://devchallenges.io/" class="resource" target="_blank">DevChallenges</a>
+                            <a href="https://www.frontendmentor.io/" class="resource" target="_blank">Frontend Mentor</a>
+                            <a href="https://github.com/muham-ed/skills-github-pages" class="resource" target="_blank">مشروع GitHub الخاص بي</a>
+                        </div>
+                        <button class="complete-btn" onclick="completeStep(6)">تم الإكمال</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-number">6-12 شهر</div>
+                <div class="stat-title">المدة المتوقعة للإتقان البرمجي</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="stat-number">6 مراحل</div>
+                <div class="stat-title">مراحل التعلم البرمجي</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="stat-number">25+ مشروع</div>
+                <div class="stat-title">مشاريع عملية مقترحة</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="stat-number">95%</div>
+                <div class="stat-title">معدل النجاح للطلاب الملتزمين</div>
+            </div>
+        </div>
+        
+        <div class="timeline-container">
+            <h2 class="section-title">التوقيتات المقترحة لكل مرحلة برمجية</h2>
+            
+            <div class="time-estimates">
+                <div class="time-card">
+                    <div class="time-title">أساسيات الحاسوب</div>
+                    <div class="time-value">2-4 أسابيع</div>
+                    <div class="time-note">حسب الخبرة السابقة</div>
+                </div>
+                
+                <div class="time-card">
+                    <div class="time-title">أساسيات البرمجة</div>
+                    <div class="time-value">4-8 أسابيع</div>
+                    <div class="time-note">حسب الخلفية السابقة</div>
+                </div>
+                
+                <div class="time-card">
+                    <div class="time-title">تطوير الويب</div>
+                    <div class="time-value">8-12 أسبوع</div>
+                    <div class="time-note">للإتقان المتوسط</div>
+                </div>
+                
+                <div class="time-card">
+                    <div class="time-title">قواعد البيانات</div>
+                    <div class="time-value">4-6 أسابيع</div>
+                    <div class="time-note">للإتقان الأساسي</div>
+                </div>
+                
+                <div class="time-card">
+                    <div class="time-title">تحليل البيانات</div>
+                    <div class="time-value">6-10 أسابيع</div>
+                    <div class="time-note">للإتقان المتوسط</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- قسم الأسئلة الشائعة الجديد -->
+        <div class="faq-container">
+            <h2 class="section-title">الأسئلة الشائعة</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>كم من الوقت أحتاج لتعلم البرمجة؟</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>تعلم البرمجة عملية مستمرة، ولكن يمكنك الوصول إلى مستوى جيد في غضون 6-12 شهراً من الدراسة المنتظمة. المدة تعتمد على عدة عوامل مثل الوقت الذي تخصصه يومياً، خلفيتك السابقة، وجودة المصادر التعليمية التي تستخدمها.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>ما هي أفضل لغة برمجة للبدء؟</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Python تعتبر من أفضل اللغات للمبتدئين بسبب بساطة تركيبها وتعدد استخداماتها. JavaScript أيضاً خيار ممتاز إذا كنت مهتماً بتطوير الويب. اختر اللغة التي تناسب أهدافك ومجال اهتمامك.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>هل أحتاج إلى شهادة جامعية لأصبح مبرمجاً؟</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>لا، لا تحتاج بالضرورة إلى شهادة جامعية. العديد من المبرمجين الناجحين هم самоучки. الأهم هو بناء مهارات قوية وإنشاء مشاريع عملية تظهر قدراتك. ومع ذلك، الشهادة جامعية قد تفتح لك أبواباً إضافية في سوق العمل.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>كيف أبدأ في بناء محفظة أعمال؟</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>ابدأ بمشاريع صغيرة وبسيطة، ثم تدرج إلى مشاريع أكثر تعقيداً. يمكنك البدء بمشاريع من مواقع مثل Frontend Mentor و DevChallenges. احرص على نشر مشاريعك على GitHub وكتابة توثيق جيد لها. لا تنس إنشاء موقع شخصي يعرض مشاريعك ومهاراتك.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="download-buttons">
+            <a href="#" class="download-btn">
+                <i class="fas fa-file-pdf"></i> تحميل خطة التعلم (PDF)
+            </a>
+            <a href="#" class="download-btn">
+                <i class="fas fa-calendar-alt"></i> جدول التعلم الأسبوعي
+            </a>
+            <a href="https://github.com/muham-ed/skills-github-pages" class="download-btn" target="_blank">
+                <i class="fab fa-github"></i> مشروع GitHub الخاص بي
+            </a>
+            <a href="https://www.linkedin.com/in/mohamed-ala-a-2b333533a" class="download-btn" target="_blank">
+                <i class="fab fa-linkedin"></i> ملفي على LinkedIn
+            </a>
+            <a href="https://www.youtube.com/channel/UCS5vFLuP5h1NTgvHiM2oJHQ" class="download-btn" target="_blank">
+                <i class="fab fa-youtube"></i> قناتي على YouTube
+            </a>
+            <a href="https://www.instagram.com/mohamedabotasa/" class="download-btn" target="_blank">
+                <i class="fab fa-instagram"></i> حسابي على Instagram
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61550839582471&locale=ar_AR" class="download-btn" target="_blank">
+                <i class="fab fa-facebook"></i> صفحتي على Facebook
+            </a>
+            <a href="https://wa.me/201060828627" class="download-btn" target="_blank" style="background: linear-gradient(45deg, #25D366, #128C7E);">
+                <i class="fab fa-whatsapp"></i> التواصل عبر واتساب
+            </a>
+            <a href="Microsoft_Office.html" class="download-btn" style="background: linear-gradient(45deg, #4caf50, #2e7d32);">
+                <i class="fas fa-arrow-right"></i> الانتقال إلى صفحة Microsoft Office
+            </a>
+        </div>
+    </div>
+    
+    <footer id="contact">
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/mohamed-ala-a-2b333533a" class="social-icon" target="_blank">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/muham-ed/skills-github-pages" class="social-icon" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.youtube.com/channel/UCS5vFLuP5h1NTgvHiM2oJHQ" class="social-icon" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.instagram.com/mohamedabotasa/" class="social-icon" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61550839582471&locale=ar_AR" class="social-icon" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://wa.me/201060828627" class="social-icon" target="_blank" style="background: linear-gradient(45deg, #25D366, #128C7E);">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="mailto:mohamedalaaaldinabotasa@gmail.com" class="social-icon">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+        <p class="copyright">© 2025 مسار التطور البرمجي | تم التصميم بواسطة Mohamed Alaa</p>
+    </footer>
+
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // إضافة تأثيرات للعناصر عند التمرير
+        document.addEventListener('DOMContentLoaded', function() {
+            const pathItems = document.querySelectorAll('.path-item');
+            
+            // إضافة تأثيرات للأيقونات
+            const icons = document.querySelectorAll('.path-icon');
+            icons.forEach(icon => {
+                icon.addEventListener('mouseenter', () => {
+                    icon.style.transform = 'scale(1.1)';
+                    icon.style.boxShadow = '0 10px 25px rgba(67, 97, 238, 0.6)';
+                });
+                
+                icon.addEventListener('mouseleave', () => {
+                    icon.style.transform = 'scale(1)';
+                    icon.style.boxShadow = '0 5px 15px rgba(67, 97, 238, 0.4)';
+                });
+            });
+            
+            // تأثيرات للبطاقات عند التمرير
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            pathItems.forEach(item => {
+                item.style.opacity = "0";
+                item.style.transform = "translateY(20px)";
+                item.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+                observer.observe(item);
+            });
+            
+            // تأثيرات للبطاقات الإحصائية
+            const statCards = document.querySelectorAll('.stat-card');
+            statCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // إظهار وإخفاء زر العودة للأعلى
+            window.addEventListener('scroll', function() {
+                var backToTopButton = document.getElementById('backToTop');
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+            
+            // التمرير إلى الأعلى عند النقر على الزر
+            document.getElementById('backToTop').addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // التنقل بين الأقسام - إصلاح المشكلة
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // إذا كان الرابط يشير إلى قسم في الصفحة الحالية
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        
+                        // إزالة النشط من جميع الروابط
+                        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                        
+                        // إضافة النشط للرابط الحالي
+                        this.classList.add('active');
+                        
+                        // الانتقال للقسم المطلوب
+                        const targetId = this.getAttribute('href').substring(1);
+                        const targetSection = document.getElementById(targetId);
+                        
+                        if (targetSection) {
+                            window.scrollTo({
+                                top: targetSection.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                    // إذا كان الرابط يشير إلى صفحة أخرى، لن نمنع السلوك الافتراضي
+                });
+            });
+            
+            // الأسئلة الشائعة - تفعيل فتح وإغلاق الإجابات
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // تحميل التقدم المحفوظ عند بدء التحميل
+            loadProgress();
+        });
+        
+        // نظام تتبع التقدم
+        function loadProgress() {
+            const completedSteps = JSON.parse(localStorage.getItem('completedSteps')) || [];
+            const totalSteps = document.querySelectorAll('.path-item').length;
+            let completedCount = 0;
+            
+            document.querySelectorAll('.path-item').forEach(item => {
+                const step = parseInt(item.getAttribute('data-step'));
+                
+                if (completedSteps.includes(step)) {
+                    item.classList.add('completed');
+                    completedCount++;
+                    
+                    // إلغاء قفل الخطوة التالية
+                    const nextStep = step + 1;
+                    const nextItem = document.querySelector(`.path-item[data-step="${nextStep}"]`);
+                    if (nextItem) {
+                        nextItem.classList.remove('locked');
+                    }
+                } else {
+                    // قفل الخطوة إذا لم تكتمل الخطوة السابقة
+                    const prevStep = step - 1;
+                    if (prevStep > 0 && !completedSteps.includes(prevStep)) {
+                        item.classList.add('locked');
+                    }
+                }
+            });
+            
+            // تحديث شريط التقدم
+            const progressPercentage = Math.round((completedCount / totalSteps) * 100);
+            document.getElementById('progressFill').style.width = `${progressPercentage}%`;
+            document.getElementById('progressText').textContent = `${progressPercentage}% مكتمل`;
+        }
+        
+        function completeStep(step) {
+            let completedSteps = JSON.parse(localStorage.getItem('completedSteps')) || [];
+            
+            if (!completedSteps.includes(step)) {
+                completedSteps.push(step);
+                localStorage.setItem('completedSteps', JSON.stringify(completedSteps));
+                
+                // تحديث الواجهة
+                const completedItem = document.querySelector(`.path-item[data-step="${step}"]`);
+                completedItem.classList.add('completed');
+                
+                // فتح الخطوة التالية
+                const nextStep = step + 1;
+                const nextItem = document.querySelector(`.path-item[data-step="${nextStep}"]`);
+                if (nextItem) {
+                    nextItem.classList.remove('locked');
+                }
+                
+                // تحديث شريط التقدم
+                loadProgress();
+                
+                // عرض رسالة تأكيد
+                alert(`تهانينا! لقد أكملت المرحلة ${step}. يمكنك الآن الانتقال إلى المرحلة التالية.`);
+            }
+        }
+        
+        function resetProgress() {
+            if (confirm('هل أنت متأكد أنك تريد إعادة تعيين تقدمك؟ سيتم حذف جميع بيانات التقدم.')) {
+                localStorage.removeItem('completedSteps');
+                
+                // إعادة تعيين الواجهة
+                document.querySelectorAll('.path-item').forEach(item => {
+                    item.classList.remove('completed');
+                    const step = parseInt(item.getAttribute('data-step'));
+                    if (step > 1) {
+                        item.classList.add('locked');
+                    }
+                });
+                
+                // إعادة تعيين شريط التقدم
+                document.getElementById('progressFill').style.width = '0%';
+                document.getElementById('progressText').textContent = '0% مكتمل';
+                
+                alert('تم إعادة تعيين تقدمك بنجاح. يمكنك البدء من جديد.');
+            }
+        }
+    </script>
+</body>
+</html>

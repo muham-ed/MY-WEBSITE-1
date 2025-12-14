@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft Office | MY WEBSITE</title>
+ <link rel="icon" href="icons mohamed.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+          * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        }
+        
+        body { 
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); 
+            color: #fff; 
+            min-height: 100vh; 
+            overflow-x: hidden; 
+            position: relative; 
+        }
+        
+        body::before { 
+            content: ""; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.1) 0%, transparent 20%), 
+                        radial-gradient(circle at 90% 80%, rgba(247, 37, 133, 0.1) 0%, transparent 20%); 
+            z-index: -1; 
+        }
+
+        /* شريط التنقل */
+        .nav-container { 
+            background: rgba(22, 1, 1, 0.95); 
+            padding: 15px 0; 
+            position: fixed; 
+            top: 0; 
+            width: 100%;
+            z-index: 1000; 
+            backdrop-filter: blur(10px); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+        
+        .nav-content { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 20px; 
+        }
+        
+        .nav-logo { 
+            font-size: 1.8rem; 
+            font-weight: 700; 
+            background: linear-gradient(45deg, #4361ee, #3a0ca3); 
+            -webkit-background-clip: text; 
+            background-clip: text; 
+            color: transparent; 
+            text-decoration: none; 
+        }
+        
+        .nav-links { 
+            display: flex; 
+            gap: 25px; 
+        }
+        
+        .nav-link { 
+            color: #e0e1dd; 
+            text-decoration: none; 
+            font-weight: 500; 
+            padding: 8px 15px; 
+            border-radius: 5px; 
+            transition: all 0.3s ease; 
+        }
+        
+        .nav-link:hover, .nav-link.active { 
+            background: rgba(67, 97, 238, 0.2); 
+            color: #4cc9f0; 
+        }
+
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            margin-top: 80px;
+        }
+        
+        header { 
+            text-align: center; 
+            padding: 30px 0; 
+            margin-bottom: 30px; 
+            animation: fadeIn 1s ease; 
+        }
+        
+        .logo { 
+            font-size: 2.5rem; 
+            font-weight: 700; 
+            margin-bottom: 10px; 
+            background: linear-gradient(45deg, #4361ee, #3a0ca3); 
+            -webkit-background-clip: text; 
+            background-clip: text; 
+            color: transparent; 
+            display: inline-block; 
+        }
+        
+        .subtitle { 
+            font-size: 1.2rem; 
+            max-width: 800px; 
+            margin: 0 auto 20px; 
+            line-height: 1.6; 
+            color: #e0e1dd; 
+        }
+
+        .office-apps { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 25px; 
+            margin: 40px 0; 
+        }
+        
+        .app-card { 
+            background: rgba(27, 38, 59, 0.85); 
+            border-radius: 15px; 
+            padding: 25px; 
+            text-align: center; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            cursor: pointer;
+        }
+        
+        .app-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); 
+        }
+        
+        .app-icon { 
+            width: 100px; 
+            height: 100px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 2.5rem; 
+            margin: 0 auto 20px; 
+            color: white; 
+            transition: all 0.3s ease;
+        }
+        
+        .excel-icon { background: linear-gradient(45deg, #217346, #107c41); }
+        .word-icon { background: linear-gradient(45deg, #2b579a, #2b579a); }
+        .powerpoint-icon { background: linear-gradient(45deg, #d24726, #c43e1c); }
+        .outlook-icon { background: linear-gradient(45deg, #0078d4, #106ebe); }
+        
+        .app-title { 
+            font-size: 1.6rem; 
+            margin-bottom: 15px; 
+            color: #4cc9f0; 
+        }
+        
+        .app-description { 
+            line-height: 1.6; 
+            margin-bottom: 20px; 
+            color: #e0e1dd; 
+        }
+        
+        .app-resources { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 10px; 
+        }
+        
+        .app-resource { 
+            background: rgba(76, 201, 240, 0.1); 
+            padding: 8px 15px; 
+            border-radius: 20px; 
+            font-size: 0.9rem; 
+            display: inline-block; 
+            transition: all 0.3s ease; 
+            text-decoration: none; 
+            color: #e0e1dd; 
+            border: 1px solid rgba(76, 201, 240, 0.2); 
+        }
+        
+        .app-resource:hover { 
+            background: rgba(76, 201, 240, 0.3); 
+            transform: translateY(-3px); 
+            color: #4cc9f0; 
+        }
+
+        /* قسم تفاصيل التطبيقات */
+        .app-details {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: none;
+        }
+
+        .app-details.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .app-section {
+            margin-bottom: 30px;
+        }
+
+        .app-section h3 {
+            color: #4cc9f0;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-level {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .level-card {
+            background: rgba(67, 97, 238, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(67, 97, 238, 0.2);
+        }
+
+        .level-title {
+            color: #4cc9f0;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .skill-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-list li {
+            padding: 5px 0;
+            color: #e0e1dd;
+            position: relative;
+            padding-right: 20px;
+        }
+
+        .skill-list li::before {
+            content: "✓";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+        }
+
+        .download-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 40px 0;
+        }
+        
+        .download-btn {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.4);
+        }
+
+        .back-to-main {
+            background: linear-gradient(45deg, #4caf50, #2e7d32) !important;
+        }
+
+        footer { 
+            text-align: center; 
+            padding: 30px 0; 
+            margin-top: 40px; 
+            border-top: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+        
+        .social-icons { 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            margin: 20px 0; 
+        }
+        
+        .social-icon { 
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%; 
+            background: rgba(255, 255, 255, 0.1); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.5rem; 
+            transition: all 0.3s ease; 
+            text-decoration: none; 
+            color: #fff; 
+        }
+        
+        .social-icon:hover { 
+            background: #4361ee; 
+            transform: translateY(-5px); 
+            color: #fff; 
+        }
+        
+        .copyright { 
+            color: #e0e1dd; 
+            font-size: 0.9rem; 
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; } 
+            to { opacity: 1; } 
+        }
+
+        /* استجابة الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .nav-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+
+            .office-apps {
+                grid-template-columns: 1fr;
+            }
+
+            .skill-level {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <div class="nav-container">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">MY WEBSITE</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">الصفحة الرئيسية</a>
+                <a href="Microsoft_Office.html" class="nav-link active">Microsoft Office</a>
+                <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
+                <a href="#contact" class="nav-link">اتصل بنا</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">Microsoft Office</div>
+            <h1>خطة شاملة لإتقان جميع تطبيقات الأوفيس</h1>
+            <p class="subtitle">مسار تعليمي متكامل يغطي جميع تطبيقات Microsoft Office الأساسية مع التركيز على Excel كأداة تحليل بيانات قوية.</p>
+        </header>
+
+        <!-- التطبيقات -->
+        <div class="office-apps">
+            <div class="app-card" data-app="excel">
+                <div class="app-icon excel-icon"><i class="fas fa-file-excel"></i></div>
+                <h3 class="app-title">Microsoft Excel</h3>
+                <p class="app-description">أداة قوية لتحليل البيانات وإنشاء الجداول المحورية والرسوم البيانية وإجراء العمليات الحسابية المعقدة.</p>
+                <div class="app-resources">
+                    <span class="app-resource view-details" data-app="excel">التفاصيل</span>
+                    <a href="https://support.microsoft.com/ar-sa/excel" class="app-resource" target="_blank">الموقع الرسمي</a>
+                </div>
+            </div>
+
+            <div class="app-card" data-app="word">
+                <div class="app-icon word-icon"><i class="fas fa-file-word"></i></div>
+                <h3 class="app-title">Microsoft Word</h3>
+                <p class="app-description">أداة معالجة النصوص الرائدة لإنشاء المستندات والتقارير والخطابات بشكل احترافي.</p>
+                <div class="app-resources">
+                    <span class="app-resource view-details" data-app="word">التفاصيل</span>
+                    <a href="https://support.microsoft.com/ar-sa/word" class="app-resource" target="_blank">الموقع الرسمي</a>
+                </div>
+            </div>
+
+            <div class="app-card" data-app="powerpoint">
+                <div class="app-icon powerpoint-icon"><i class="fas fa-file-powerpoint"></i></div>
+                <h3 class="app-title">Microsoft PowerPoint</h3>
+                <p class="app-description">برنامج العروض التقديمية الذي يمكنك من إنشاء عروض ديناميكية وجذابة بسهولة.</p>
+                <div class="app-resources">
+                    <span class="app-resource view-details" data-app="powerpoint">التفاصيل</span>
+                    <a href="https://support.microsoft.com/ar-sa/powerpoint" class="app-resource" target="_blank">الموقع الرسمي</a>
+                </div>
+            </div>
+
+            <div class="app-card" data-app="outlook">
+                <div class="app-icon outlook-icon"><i class="fas fa-envelope"></i></div>
+                <h3 class="app-title">Microsoft Outlook</h3>
+                <p class="app-description">أداة إدارة البريد الإلكتروني والمهام والتقويمات وجهات الاتصال في مكان واحد.</p>
+                <div class="app-resources">
+                    <span class="app-resource view-details" data-app="outlook">التفاصيل</span>
+                    <a href="https://support.microsoft.com/ar-sa/outlook" class="app-resource" target="_blank">الموقع الرسمي</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- تفاصيل Excel -->
+        <div id="excel-details" class="app-details">
+            <h2 style="color: #4cc9f0; text-align: center; margin-bottom: 30px;">
+                <i class="fas fa-file-excel" style="margin-left: 10px;"></i>
+                دليل شامل لتعلم Microsoft Excel
+            </h2>
+
+            <div class="app-section">
+                <h3><i class="fas fa-layer-group"></i>مستويات التعلم</h3>
+                
+                <div class="skill-level">
+                    <div class="level-card">
+                        <h4 class="level-title">المستوى المبتدئ (2-4 أسابيع)</h4>
+                        <ul class="skill-list">
+                            <li>أساسيات واجهة Excel</li>
+                            <li>إدخال البيانات والتنسيق</li>
+                            <li>العمليات الحسابية البسيطة</li>
+                            <li>إنشاء الجداول</li>
+                            <li>استخدام القوالب</li>
+                            <li>طباعة وحفظ الملفات</li>
+                        </ul>
+                    </div>
+
+                    <div class="level-card">
+                        <h4 class="level-title">المستوى المتوسط (4-6 أسابيع)</h4>
+                        <ul class="skill-list">
+                            <li>الدوال المتقدمة (VLOOKUP, IF, SUMIF)</li>
+                            <li>إنشاء الرسوم البيانية</li>
+                            <li>التنسيق الشرطي</li>
+                            <li>فرز وتصفية البيانات</li>
+                            <li>التحقق من صحة البيانات</li>
+                            <li>حماية أوراق العمل</li>
+                        </ul>
+                    </div>
+
+                    <div class="level-card">
+                        <h4 class="level-title">المستوى المتقدم (6-8 أسابيع)</h4>
+                        <ul class="skill-list">
+                            <li>الجداول المحورية (Pivot Tables)</li>
+                            <li>تحليل البيانات المتقدم</li>
+                            <li>الماكرو والأتمتة</li>
+                            <li>Power Query و Power Pivot</li>
+                            <li>لوحات المعلومات (Dashboards)</li>
+                            <li>ربط البيانات من مصادر متعددة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-section">
+                <h3><i class="fas fa-tools"></i>الأدوات والميزات الأساسية</h3>
+                <p style="color: #e0e1dd; line-height: 1.6; margin-bottom: 20px;">
+                    تعلم كيفية استخدام الأدوات المختلفة في Excel لتحسين إنتاجيتك وإنشاء تقارير احترافية. 
+                    من الدوال الأساسية إلى تحليل البيانات المتقدم، ستتمكن من التعامل مع أي نوع من البيانات بكفاءة عالية.
+                </p>
+            </div>
+
+            <div class="app-section">
+                <h3><i class="fas fa-graduation-cap"></i>مصادر التعلم الموصى بها</h3>
+                <div class="app-resources" style="justify-content: flex-start;">
+                    <a href="https://support.microsoft.com/ar-sa/excel" class="app-resource" target="_blank">دعم Microsoft الرسمي</a>
+                    <a href="https://exceljet.net/" class="app-resource" target="_blank">ExcelJet</a>
+                    <a href="https://www.excel-university.com/" class="app-resource" target="_blank">Excel University</a>
+                    <a href="https://chandoo.org/" class="app-resource" target="_blank">Chandoo.org</a>
+                    <a href="https://www.youtube.com/user/ExcelIsFun" class="app-resource" target="_blank">ExcelIsFun YouTube</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- تفاصيل Word -->
+        <div id="word-details" class="app-details">
+            <h2 style="color: #4cc9f0; text-align: center; margin-bottom: 30px;">
+                <i class="fas fa-file-word" style="margin-left: 10px;"></i>
+                دليل شامل لتعلم Microsoft Word
+            </h2>
+
+            <div class="app-section">
+                <h3><i class="fas fa-layer-group"></i>مستويات التعلم</h3>
+                
+                <div class="skill-level">
+                    <div class="level-card">
+                        <h4 class="level-title">المستوى المبتدئ (1-3 أسابيع)</h4>
+                        <ul class="skill-list">
+                            <li>أساسيات واجهة Word</li>
+                            <li>إدخال النص وتنسيقه</li>
+                            <li>إدارة الفقرات والمحاذاة</li>
+                            <li>إدراج الصور والجداول</li>
+                            <li>التدقيق الإملائي والنحوي</li>
+                            <li>حفظ وتصدير المستندات</li>
+                        </ul>
+                    </div>
+
+                    <div class="level-card">
+                        <h4 class="level-title">المستوى المتوسط (3-5 أسابيع)</h4>
+                        <ul class="skill-list">
+                            <li>أنماط النص والفقرات</li>
+                            <li>إنشاء القوالب والنماذج</li>
+                            <li>الجداول المتقدمة والرسوم البيانية</li>
+                            <li>الرؤوس والتذييلات وأرقام الصفحات</li>
+                            <li>الفهرس والمراجع</li>
+                            <li>دمج المراسلات</li>
+                        </ul>
+                    </div>
+
+                    <div class="level-card">
+                        <h4 class="level-title">المستوى المتقدم (4-6 أسابيع)</h4>
+                        <ul class="skill-list">
+                            <li>المستندات الرئيسية</li>
+                            <li>الحماية وتقييد التحرير</li>
+                            <li>الماكرو والأتمتة</li>
+                            <li>التعاون والمقارنة بين المستندات</li>
+                            <li>إعدادات الطباعة المتقدمة</li>
+                            <li>التكامل مع التطبيقات الأخرى</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-section">
+                <h3><i class="fas fa-tools"></i>الأدوات والميزات الأساسية</h3>
+                <p style="color: #e0e1dd; line-height: 1.6; margin-bottom: 20px;">
+                    اكتشف قوة Microsoft Word في إنشاء مستندات احترافية. تعلم كيفية استخدام الأدوات المتقدمة 
+                    لتحسين إنتاجيتك وإنشاء تقارير ومستندات معقدة بسهولة وكفاءة.
+                </p>
+            </div>
+
+            <div class="app-section">
+                <h3><i class="fas fa-graduation-cap"></i>مصادر التعلم الموصى بها</h3>
+                <div class="app-resources" style="justify-content: flex-start;">
+                    <a href="https://support.microsoft.com/ar-sa/word" class="app-resource" target="_blank">دعم Microsoft الرسمي</a>
+                    <a href="https://www.wordtemplates.org/" class="app-resource" target="_blank">Word Templates</a>
+                    <a href="https://www.msofficeforums.com/word/" class="app-resource" target="_blank">MS Office Forums</a>
+                    <a href="https://www.youtube.com/user/Office" class="app-resource" target="_blank">Office YouTube</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- تفاصيل PowerPoint -->
+        <div id="powerpoint-details" class="app-details">
+            <h2 style="color: #4cc9f0; text-align: center; margin-bottom: 30px;">
+                <i class="fas fa-file-powerpoint" style="margin-left: 10px;"></i>
+                دليل شامل لتعلم Microsoft PowerPoint
+            </h2>
+
+            <div class="app-section">
+                <h3><i class="fas fa-layer-group"></i>مستويات التعلم</h3>
+                
+                <div class="skill-level">
+                    <div class="level-card">
+                        <h4 class="level-title">المستوى المبتدئ (1-2 أسابيع)</h4>
+                        <ul class="skill-list">
+                            <li>أساسيات واجهة PowerPoint</li>
+                            <li>إنشاء شرائح جديدة وتخطيطها</li>
+                            <li>إضافة النص وتنسيقه</li>
+                            <li>إدراج الصور والأشكال</li>
+                            <li>التصميمات والسمات</li>
+                            <li>عرض تقديمي أساسي</li>
+                        </ul>
+                    </div>
+
+                    <div class="level-card">
+                        <h4 class="level-title">المستوى المتوسط (2-4 أسابيع)</h4>
+                        <ul class="skill-list">
+                            <li>الحركات والتحويلات</li>
+                            <li>تنسيق متقدم للوسائط</li>
+                            <li>المخططات والرسوم البيانية</li>
+                            <li>إنشاء القوالب المخصصة</li>
+                            <li>التوقيت والمؤقت</li>
+                            <li>التعليقات التوضيحية أثناء العرض</li>
+                        </ul>
+                    </div>
+
+                    <div class="level-card">
+                        <h4 class="level-title">المستوى المتقدم (3-5 أسابيع)</h4>
+                        <ul class="skill-list">
+                            <li>دمج الوسائط المتعددة</li>
+                            <li>الحركات المتقدمة والمؤثرات</li>
+                            <li>التعاون والعروض التقديمية المشتركة</li>
+                            <li>إنشاء عروض تفاعلية</li>
+                            <li>التكامل مع Office الأخرى</li>
+                            <li>نصائح لتقديم عروض مؤثرة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-section">
+                <h3><i class="fas fa-tools"></i>الأدوات والميزات الأساسية</h3>
+                <p style="color: #e0e1dd; line-height: 1.6; margin-bottom: 20px;">
+                    استفد من كامل إمكانيات PowerPoint لإنشاء عروض تقديمية مذهلة وجذابة. تعلم كيفية استخدام 
+                    الأدوات المتقدمة لتحويل أفكارك إلى عروض تقديمية احترافية تترك انطباعاً قوياً.
+                </p>
+            </div>
+
+            <div class="app-section">
+                <h3><i class="fas fa-graduation-cap"></i>مصادر التعلم الموصى بها</h3>
+                <div class="app-resources" style="justify-content: flex-start;">
+                    <a href="https://support.microsoft.com/ar-sa/powerpoint" class="app-resource" target="_blank">دعم Microsoft الرسمي</a>
+                    <a href="https://24slides.com/presentbetter/" class="app-resource" target="_blank">Present Better</a>
+                    <a href="https://www.presentationload.com/" class="app-resource" target="_blank">PresentationLoad</a>
+                    <a href="https://www.youtube.com/user/Office" class="app-resource" target="_blank">Office YouTube</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- تفاصيل Outlook -->
+        <div id="outlook-details" class="app-details">
+            <h2 style="color: #4cc9f0; text-align: center; margin-bottom: 30px;">
+                <i class="fas fa-envelope" style="margin-left: 10px;"></i>
+                دليل شامل لتعلم Microsoft Outlook
+            </h2>
+
+            <div class="app-section">
+                <h3><i class="fas fa-layer-group"></i>مستويات التعلم</h3>
+                
+                <div class="skill-level">
+                    <div class="level-card">
+                        <h4 class="level-title">المستوى المبتدئ (1-2 أسابيع)</h4>
+                        <ul class="skill-list">
+                            <li>إعداد الحساب والتكوين</li>
+                            <li>إرسال واستقبال البريد الإلكتروني</li>
+                            <li>تنظيم البريد في المجلدات</li>
+                            <li>إدارة جهات الاتصال</li>
+                            <li>استخدام التقويم الأساسي</li>
+                            <li>إنشاء المهام والتذكيرات</li>
+                        </ul>
+                    </div>
+
+                    <div class="level-card">
+                        <h4 class="level-title">المستوى المتوسط (2-3 أسابيع)</h4>
+                        <ul class="skill-list">
+                            <li>القواعد والتنظيم المتقدم للبريد</li>
+                            <li>التصنيفات والألوان</li>
+                            <li>إدارة التقويم المتقدمة</li>
+                            <li>المجموعات والتعاون</li>
+                            <li>البحث المتقدم والتصفية</li>
+                            <li>تخصيص واجهة المستخدم</li>
+                        </ul>
+                    </div>
+
+                    <div class="level-card">
+                        <h4 class="level-title">المستوى المتقدم (2-4 أسابيع)</h4>
+                        <ul class="skill-list">
+                            <li>أتمتة المهام باستخدام القواعد</li>
+                            <li>إدارة المشاريع باستخدام Outlook</li>
+                            <li>التكامل مع التطبيقات الأخرى</li>
+                            <li>الأمان وإعدادات الخصوصية</li>
+                            <li>استكشاف الأخطاء وإصلاحها</li>
+                            <li>نصائح للإنتاجية المتقدمة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-section">
+                <h3><i class="fas fa-tools"></i>الأدوات والميزات الأساسية</h3>
+                <p style="color: #e0e1dd; line-height: 1.6; margin-bottom: 20px;">
+                    استفد من كامل إمكانيات Outlook لتنظيم عملك وزيادة إنتاجيتك. تعلم كيفية إدارة بريدك الإلكتروني، 
+                    وتقويمك، ومهامك، وجهات اتصالك في مكان واحد لتحقيق أقصى استفادة من وقتك.
+                </p>
+            </div>
+
+            <div class="app-section">
+                <h3><i class="fas fa-graduation-cap"></i>مصادر التعلم الموصى بها</h3>
+                <div class="app-resources" style="justify-content: flex-start;">
+                    <a href="https://support.microsoft.com/ar-sa/outlook" class="app-resource" target="_blank">دعم Microsoft الرسمي</a>
+                    <a href="https://www.slipstick.com/" class="app-resource" target="_blank">Slipstick</a>
+                    <a href="https://www.howto-outlook.com/" class="app-resource" target="_blank">HowTo-Outlook</a>
+                    <a href="https://www.youtube.com/user/Office" class="app-resource" target="_blank">Office YouTube</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-buttons">
+            <a href="index.html" class="download-btn back-to-main">
+                <i class="fas fa-arrow-left"></i> العودة للصفحة الرئيسية
+            </a>
+            <a href="#" class="download-btn">
+                <i class="fas fa-file-pdf"></i> تحميل دليل Excel (PDF)
+            </a>
+            <a href="#" class="download-btn">
+                <i class="fas fa-calendar-alt"></i> جدول تعلم Office
+            </a>
+            <a href="https://github.com/muham-ed/skills-github-pages" class="download-btn" target="_blank">
+                <i class="fab fa-github"></i> مشروع GitHub
+            </a>
+            <a href="https://www.youtube.com/channel/UCS5vFLuP5h1NTgvHiM2oJHQ" class="download-btn" target="_blank">
+                <i class="fab fa-youtube"></i> قناتي على YouTube
+            </a>
+            <a href="https://wa.me/201060828627" class="download-btn" target="_blank" style="background: linear-gradient(45deg, #25D366, #128C7E);">
+                <i class="fab fa-whatsapp"></i> التواصل عبر واتساب
+            </a>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/mohamed-ala-a-2b333533a" class="social-icon" target="_blank">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/muham-ed/skills-github-pages" class="social-icon" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.youtube.com/channel/UCS5vFLuP5h1NTgvHiM2oJHQ" class="social-icon" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.instagram.com/mohamedabotasa/" class="social-icon" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61550839582471&locale=ar_AR" class="social-icon" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://wa.me/201060828627" class="social-icon" target="_blank" style="background: linear-gradient(45deg, #25D366, #128C7E);">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="mailto:mohamedalaaaldinabotasa@gmail.com" class="social-icon">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+        <p class="copyright">© 2025 MY WEBSITE | تم التصميم بواسطة Mohamed Alaa</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // تأثيرات للبطاقات
+            const appCards = document.querySelectorAll('.app-card');
+            appCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const icon = card.querySelector('.app-icon');
+                    icon.style.transform = 'scale(1.1)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    const icon = card.querySelector('.app-icon');
+                    icon.style.transform = 'scale(1)';
+                });
+            });
+
+            // إظهار وإخفاء التفاصيل
+            const viewDetailsButtons = document.querySelectorAll('.view-details');
+            const appDetailsSections = document.querySelectorAll('.app-details');
+            
+            viewDetailsButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const appName = this.getAttribute('data-app');
+                    
+                    // إخفاء جميع الأقسام
+                    appDetailsSections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    // إظهار القسم المطلوب
+                    const targetSection = document.getElementById(`${appName}-details`);
+                    if (targetSection) {
+                        targetSection.classList.add('active');
+                        
+                        // التمرير إلى القسم
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // التنقل السلس للروابط الداخلية
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // تأثيرات الظهور عند التمرير
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // تطبيق التأثيرات على البطاقات
+            appCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+
+            // تطبيق التأثيرات على أقسام التفاصيل
+            const detailsSections = document.querySelectorAll('.app-details');
+            detailsSections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
