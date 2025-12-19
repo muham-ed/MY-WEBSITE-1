@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MY WEBSITE | Mohamed Alaa</title>
-  <link rel="icon" href="icons mohamed.png" type="image/png">
-
+    <title>مسار التطور التقني | Mohamed Alaa</title>
+    <link rel="icon" href="icons mohamed.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { 
@@ -612,16 +611,20 @@
     </style>
 </head>
 <body>
-    <!-- شريط التنقل -->
-    <div class="nav-container">
-        <div class="nav-content">
-            <a href="index.html" class="nav-logo">MY WEBSITE</a>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link active">الصفحة الرئيسية</a>
-                <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
-                <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
-                <a href="#contact" class="nav-link">اتصل بنا</a>
-            </div>
+   <!-- شريط التنقل -->
+<nav class="nav-container">
+    <div class="nav-content">
+        <a href="index.html" class="nav-logo">Mohamed Alaa</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">الرئيسية</a>
+            <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
+            <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
+            <a href="data-science-intro.html.html" class="nav-link">علم البيانات</a>
+        </div>
+    </div>
+</nav>
+    </div>
+</div>
         </div>
     </div>
 
@@ -629,7 +632,7 @@
         <header>
             <div class="logo">مسار التطور التقني</div>
             <h1>خطة تطوير المهارات التقنية خطوة بخطوة</h1>
-            <p class="subtitle">مسار تعليمي شامل يبدأ من أساسيات الحاسوب حتى الاحتراف البرمجي. اتبع هذه الخطوات لتطوير مهاراتك التقنية وبناء مشاريع عملية.</p>
+            <p class="subtitle">مسار تعليمي شامل يبدأ من أساسيات الحاسوب حتى الاحتراف البرمجي وعلم البيانات. اتبع هذه الخطوات لتطوير مهاراتك التقنية وبناء مشاريع عملية.</p>
         </header>
         
         <!-- شريط التقدم -->
@@ -648,10 +651,10 @@
         
         <!-- مسار البرمجة -->
         <div id="programming-path" class="path-container">
-            <h2 class="section-title">مسار التطور البرمجي</h2>
+            <h2 class="section-title">مسار التطور البرمجي وتحليل البيانات</h2>
             
             <div class="learning-path">
-                <!-- المرحلة الجديدة: ما قبل البرمجة -->
+                <!-- المرحلة 0: ما قبل البرمجة -->
                 <div class="path-item" data-step="1">
                     <span class="status-badge">مكتمل</span>
                     <div class="path-icon">
@@ -731,12 +734,18 @@
                 <div class="path-item" data-step="5">
                     <span class="status-badge">مكتمل</span>
                     <div class="path-icon">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-brain"></i>
                     </div>
                     <div class="path-content">
-                        <h3 class="path-title">تحليل البيانات</h3>
-                        <p class="path-description">تعلّم معالجة البيانات وتحليلها باستخدام مكتبات مثل Pandas وNumPy في Python. اكتشف كيفية استخراج الرؤى من البيانات وتقديمها بشكل مرئي باستخدام Matplotlib وSeaborn.</p>
+                        <h3 class="path-title">مدخل إلى علم البيانات</h3>
+                        <p class="path-description">قبل الغوص في تحليل البيانات، تعرف على الصورة الكبيرة! ما هو علم البيانات؟ كيف يختلف عن تحليل البيانات؟ وما هي تطبيقاته في الحياة الواقعية؟ هذه المقدمة ستضعك على بداية الطريق الصحيح.</p>
+                        <a href="data-science-intro.html" class="go-to-btn" style="background: linear-gradient(45deg, #9c27b0, #673ab7);">
+                            <i class="fas fa-brain"></i> ابدأ بمقدمة علم البيانات (مهم!)
+                        </a>
                         <div class="path-resources">
+                            <a href="data-science-intro.html" class="resource" target="_blank" style="background: linear-gradient(45deg, #9c27b0, #673ab7);">
+                                <i class="fas fa-brain"></i> مدخل إلى علم البيانات
+                            </a>
                             <a href="https://www.kaggle.com/" class="resource" target="_blank">Kaggle</a>
                             <a href="https://www.datacamp.com/" class="resource" target="_blank">DataCamp</a>
                             <a href="https://towardsdatascience.com/" class="resource" target="_blank">Towards Data Science</a>
@@ -747,6 +756,25 @@
                 
                 <!-- الخطوة 5 -->
                 <div class="path-item" data-step="6">
+                    <span class="status-badge">مكتمل</span>
+                    <div class="path-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="path-content">
+                        <h3 class="path-title">تحليل البيانات</h3>
+                        <p class="path-description">تعلّم معالجة البيانات وتحليلها باستخدام مكتبات مثل Pandas وNumPy في Python. اكتشف كيفية استخراج الرؤى من البيانات وتقديمها بشكل مرئي باستخدام Matplotlib وSeaborn.</p>
+                        <div class="path-resources">
+                            <a href="https://www.kaggle.com/learn" class="resource" target="_blank">Kaggle Learn</a>
+                            <a href="https://www.datacamp.com/courses/tech:python" class="resource" target="_blank">DataCamp Python</a>
+                            <a href="https://pandas.pydata.org/docs/" class="resource" target="_blank">Pandas Documentation</a>
+                            <a href="https://www.coursera.org/professional-certificates/ibm-data-science" class="resource" target="_blank">IBM Data Science</a>
+                        </div>
+                        <button class="complete-btn" onclick="completeStep(6)">تم الإكمال</button>
+                    </div>
+                </div>
+                
+                <!-- الخطوة 6 -->
+                <div class="path-item" data-step="7">
                     <span class="status-badge">مكتمل</span>
                     <div class="path-icon">
                         <i class="fas fa-project-diagram"></i>
@@ -760,7 +788,7 @@
                             <a href="https://www.frontendmentor.io/" class="resource" target="_blank">Frontend Mentor</a>
                             <a href="https://github.com/muham-ed/skills-github-pages" class="resource" target="_blank">مشروع GitHub الخاص بي</a>
                         </div>
-                        <button class="complete-btn" onclick="completeStep(6)">تم الإكمال</button>
+                        <button class="complete-btn" onclick="completeStep(7)">تم الإكمال</button>
                     </div>
                 </div>
             </div>
@@ -771,23 +799,23 @@
                 <div class="stat-icon">
                     <i class="fas fa-clock"></i>
                 </div>
-                <div class="stat-number">6-12 شهر</div>
-                <div class="stat-title">المدة المتوقعة للإتقان البرمجي</div>
+                <div class="stat-number">8-15 شهر</div>
+                <div class="stat-title">المدة المتوقعة للإتقان البرمجي والتحليلي</div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-icon">
                     <i class="fas fa-book"></i>
                 </div>
-                <div class="stat-number">6 مراحل</div>
-                <div class="stat-title">مراحل التعلم البرمجي</div>
+                <div class="stat-number">7 مراحل</div>
+                <div class="stat-title">مراحل التعلم الشاملة</div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-icon">
                     <i class="fas fa-graduation-cap"></i>
                 </div>
-                <div class="stat-number">25+ مشروع</div>
+                <div class="stat-number">30+ مشروع</div>
                 <div class="stat-title">مشاريع عملية مقترحة</div>
             </div>
             
@@ -801,7 +829,7 @@
         </div>
         
         <div class="timeline-container">
-            <h2 class="section-title">التوقيتات المقترحة لكل مرحلة برمجية</h2>
+            <h2 class="section-title">التوقيتات المقترحة لكل مرحلة تعليمية</h2>
             
             <div class="time-estimates">
                 <div class="time-card">
@@ -829,24 +857,36 @@
                 </div>
                 
                 <div class="time-card">
+                    <div class="time-title">مدخل علم البيانات</div>
+                    <div class="time-value">1-2 أسبوع</div>
+                    <div class="time-note">فهم الصورة الكبيرة</div>
+                </div>
+                
+                <div class="time-card">
                     <div class="time-title">تحليل البيانات</div>
                     <div class="time-value">6-10 أسابيع</div>
                     <div class="time-note">للإتقان المتوسط</div>
                 </div>
+                
+                <div class="time-card">
+                    <div class="time-title">مشاريع عملية</div>
+                    <div class="time-value">مستمر</div>
+                    <div class="time-note">بناء محفظة أعمال</div>
+                </div>
             </div>
         </div>
         
-        <!-- قسم الأسئلة الشائعة الجديد -->
+        <!-- قسم الأسئلة الشائعة -->
         <div class="faq-container">
             <h2 class="section-title">الأسئلة الشائعة</h2>
             
             <div class="faq-item">
                 <div class="faq-question">
-                    <span>كم من الوقت أحتاج لتعلم البرمجة؟</span>
+                    <span>كم من الوقت أحتاج لتعلم البرمجة وتحليل البيانات؟</span>
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>تعلم البرمجة عملية مستمرة، ولكن يمكنك الوصول إلى مستوى جيد في غضون 6-12 شهراً من الدراسة المنتظمة. المدة تعتمد على عدة عوامل مثل الوقت الذي تخصصه يومياً، خلفيتك السابقة، وجودة المصادر التعليمية التي تستخدمها.</p>
+                    <p>تعلم البرمجة وتحليل البيانات عملية مستمرة، ولكن يمكنك الوصول إلى مستوى جيد في غضون 8-15 شهراً من الدراسة المنتظمة. المدة تعتمد على عدة عوامل مثل الوقت الذي تخصصه يومياً، خلفيتك السابقة، وجودة المصادر التعليمية التي تستخدمها.</p>
                 </div>
             </div>
             
@@ -856,17 +896,27 @@
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>Python تعتبر من أفضل اللغات للمبتدئين بسبب بساطة تركيبها وتعدد استخداماتها. JavaScript أيضاً خيار ممتاز إذا كنت مهتماً بتطوير الويب. اختر اللغة التي تناسب أهدافك ومجال اهتمامك.</p>
+                    <p>Python تعتبر من أفضل اللغات للمبتدئين بسبب بساطة تركيبها وتعدد استخداماتها في البرمجة وتحليل البيانات. JavaScript أيضاً خيار ممتاز إذا كنت مهتماً بتطوير الويب. اختر اللغة التي تناسب أهدافك ومجال اهتمامك.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <div class="faq-question">
-                    <span>هل أحتاج إلى شهادة جامعية لأصبح مبرمجاً؟</span>
+                    <span>هل أحتاج إلى شهادة جامعية لأصبح مبرمجاً أو محلل بيانات؟</span>
                     <i class="fas fa-chevron-down faq-icon"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>لا، لا تحتاج بالضرورة إلى شهادة جامعية. العديد من المبرمجين الناجحين هم самоучки. الأهم هو بناء مهارات قوية وإنشاء مشاريع عملية تظهر قدراتك. ومع ذلك، الشهادة جامعية قد تفتح لك أبواباً إضافية في سوق العمل.</p>
+                    <p>لا، لا تحتاج بالضرورة إلى شهادة جامعية. العديد من المبرمجين ومحللي البيانات الناجحين هم самоучки. الأهم هو بناء مهارات قوية وإنشاء مشاريع عملية تظهر قدراتك. ومع ذلك، الشهادة جامعية قد تفتح لك أبواباً إضافية في سوق العمل.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>ما الفرق بين علم البيانات وتحليل البيانات؟</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>تحليل البيانات يركز على الإجابة على أسئلة محددة موجودة مسبقاً وفهم الماضي والحاضر. بينما علم البيانات أوسع نطاقاً ويشمل اكتشاف أسئلة جديدة، بناء نماذج تنبؤية، واستخدام الذكاء الاصطناعي والتعلم الآلي. ابدأ بصفحة <a href="data-science-intro.html" style="color: #4cc9f0;">مدخل إلى علم البيانات</a> لفهم الفروق بالتفصيل.</p>
                 </div>
             </div>
             
@@ -909,6 +959,9 @@
             <a href="Microsoft_Office.html" class="download-btn" style="background: linear-gradient(45deg, #4caf50, #2e7d32);">
                 <i class="fas fa-arrow-right"></i> الانتقال إلى صفحة Microsoft Office
             </a>
+            <a href="data-science-intro.html" class="download-btn" style="background: linear-gradient(45deg, #9c27b0, #673ab7);">
+                <i class="fas fa-brain"></i> ابدأ بمقدمة علم البيانات
+            </a>
         </div>
     </div>
     
@@ -936,7 +989,7 @@
                 <i class="fas fa-envelope"></i>
             </a>
         </div>
-        <p class="copyright">© 2025 مسار التطور البرمجي | تم التصميم بواسطة Mohamed Alaa</p>
+        <p class="copyright">© 2025 مسار التطور التقني | تم التصميم بواسطة Mohamed Alaa</p>
     </footer>
 
     <button id="backToTop" class="back-to-top">
@@ -958,7 +1011,7 @@
                 
                 icon.addEventListener('mouseleave', () => {
                     icon.style.transform = 'scale(1)';
-                    icon.style.boxShadow = '0 5px 15px rgba(67, 97, 238, 0.4)';
+                    icon.style.boxShadow = 'none';
                 });
             });
             
@@ -1006,7 +1059,7 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
             
-            // التنقل بين الأقسام - إصلاح المشكلة
+            // التنقل بين الأقسام
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', function(e) {
                     // إذا كان الرابط يشير إلى قسم في الصفحة الحالية
@@ -1025,12 +1078,11 @@
                         
                         if (targetSection) {
                             window.scrollTo({
-                                top: targetSection.offsetTop - 80,
+                                top: targetSection.offsetTop - 100,
                                 behavior: 'smooth'
                             });
                         }
                     }
-                    // إذا كان الرابط يشير إلى صفحة أخرى، لن نمنع السلوك الافتراضي
                 });
             });
             
@@ -1039,6 +1091,14 @@
             faqItems.forEach(item => {
                 const question = item.querySelector('.faq-question');
                 question.addEventListener('click', () => {
+                    // إغلاق جميع الأسئلة الأخرى
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // فتح/إغلاق السؤال الحالي
                     item.classList.toggle('active');
                 });
             });
