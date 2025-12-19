@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مدخل إلى علم البيانات | مسار التطور التقني</title>
+    <title>دورة علم البيانات وتحليلها | مسار التطور التقني</title>
     <link rel="icon" href="icons mohamed.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* أنماط أساسية */
         * { 
             margin: 0; 
             padding: 0; 
@@ -36,7 +37,7 @@
 
         /* شريط التنقل */
         .nav-container { 
-            background: rgba(22, 1, 1, 0.95); 
+            background: rgba(15, 23, 42, 0.95); 
             padding: 15px 0; 
             position: fixed; 
             top: 0; 
@@ -90,35 +91,101 @@
             padding: 20px; 
             margin-top: 80px;
         }
-        
-        header { 
-            text-align: center; 
-            padding: 30px 0; 
-            margin-bottom: 30px; 
-            animation: fadeIn 1s ease; 
-        }
-        
-        .logo { 
-            font-size: 2.5rem; 
-            font-weight: 700; 
-            margin-bottom: 10px; 
-            background: linear-gradient(45deg, #4361ee, #3a0ca3); 
-            -webkit-background-clip: text; 
-            background-clip: text; 
-            color: transparent; 
-            display: inline-block; 
-        }
-        
-        .subtitle { 
-            font-size: 1.2rem; 
-            max-width: 800px; 
-            margin: 0 auto 20px; 
-            line-height: 1.6; 
-            color: #e0e1dd; 
+
+        /* هيدر الدورة */
+        .course-header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(58, 12, 163, 0.1));
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* محتوى الصفحة */
-        .intro-section {
+        .course-header .logo {
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3, #4cc9f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .course-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .course-header .subtitle {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #e0e1dd;
+            line-height: 1.6;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .meta-item i {
+            color: #4cc9f0;
+            font-size: 1.2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .cta-btn {
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn.primary {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+        }
+
+        .cta-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid #4361ee;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.3);
+        }
+
+        /* أقسام الدورة */
+        .course-section {
             background: rgba(27, 38, 59, 0.85);
             border-radius: 15px;
             padding: 30px;
@@ -136,207 +203,662 @@
             gap: 10px;
         }
 
-        .definition-box {
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.2), rgba(58, 12, 163, 0.2));
-            border-right: 5px solid #4361ee;
-            padding: 25px;
-            border-radius: 0 15px 15px 0;
-            margin: 25px 0;
-        }
-
-        .key-points {
+        /* نظرة عامة */
+        .overview-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
+            gap: 25px;
+            margin-top: 30px;
         }
 
-        .point-card {
-            background: rgba(76, 201, 240, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid rgba(76, 201, 240, 0.2);
+        .overview-card {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
 
-        .point-card:hover {
+        .overview-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(76, 201, 240, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .point-icon {
-            width: 60px;
-            height: 60px;
+        .overview-icon {
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background: linear-gradient(45deg, #4361ee, #3a0ca3);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: white;
+            margin-bottom: 20px;
+        }
+
+        .overview-card h3 {
+            color: #4cc9f0;
             margin-bottom: 15px;
+            font-size: 1.4rem;
         }
 
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            overflow: hidden;
+        .overview-card ul {
+            list-style: none;
+            padding: 0;
         }
 
-        .comparison-table th {
-            background: linear-gradient(45deg, #4361ee, #3a0ca3);
-            color: white;
-            padding: 15px;
-            text-align: right;
+        .overview-card ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #e0e1dd;
         }
 
-        .comparison-table td {
-            padding: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .comparison-table tr:last-child td {
+        .overview-card ul li:last-child {
             border-bottom: none;
         }
 
-        /* إنفوجرافيك */
-        .infographic-container {
+        /* الجدول الزمني */
+        .timeline {
             position: relative;
             margin: 40px 0;
-            padding: 30px;
-            background: rgba(27, 38, 59, 0.85);
-            border-radius: 15px;
-            text-align: center;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 50%;
+            transform: translateX(50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #4361ee, #4cc9f0);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .timeline-header {
+            flex: 1;
+            padding-left: 40px;
+            text-align: right;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-right: 40px;
+            text-align: right;
+        }
+
+        .week-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .timeline-header h3 {
+            color: #4cc9f0;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .lesson {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .lifecycle-steps {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin: 40px 0;
+        .lesson:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(-5px);
         }
 
-        .step {
-            flex: 1;
-            min-width: 150px;
+        .lesson-icon {
+            color: #4cc9f0;
+            font-size: 1.5rem;
+            margin-top: 5px;
+        }
+
+        .lesson-content h4 {
+            color: #fff;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .lesson-content p {
+            color: #e0e1dd;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .lesson-meta {
+            display: flex;
+            gap: 15px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .lesson-meta i {
+            margin-left: 5px;
+        }
+
+        /* أدوات التحليل */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .tool-card {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 25px;
+            border-radius: 15px;
             text-align: center;
-            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tool-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            margin: 0 auto 20px;
+        }
+
+        .tool-icon.excel {
+            background: linear-gradient(45deg, #217346, #107C41);
+        }
+
+        .tool-icon.sql {
+            background: linear-gradient(45deg, #F29111, #E48A16);
+        }
+
+        .tool-icon.python {
+            background: linear-gradient(45deg, #3776AB, #306998);
+        }
+
+        .tool-icon.powerbi {
+            background: linear-gradient(45deg, #F2C811, #E8B408);
+        }
+
+        .tool-card h4 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .tool-card ul {
+            list-style: none;
+            padding: 0;
+            text-align: right;
+        }
+
+        .tool-card ul li {
+            padding: 8px 0;
+            color: #e0e1dd;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tool-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        /* خطوات العملية */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 180px;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.9);
+            padding: 25px 15px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .step-number {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #4caf50, #2e7d32);
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
             font-weight: bold;
-            color: white;
             margin: 0 auto 15px;
         }
 
-        .step-arrow {
-            font-size: 2rem;
+        .process-step h4 {
+            color: #4cc9f0;
+            margin-bottom: 10px;
+        }
+
+        .process-step p {
+            color: #e0e1dd;
+            font-size: 0.95rem;
+        }
+
+        /* تفاصيل المشروع */
+        .project-details {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(39, 174, 96, 0.1));
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .project-card h4 {
+            color: #4caf50;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        .project-card p {
+            color: #e0e1dd;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .project-objectives h5 {
+            color: #4cc9f0;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .project-objectives ul {
+            list-style: none;
+            padding-right: 20px;
+            margin-bottom: 30px;
+        }
+
+        .project-objectives li {
+            padding: 10px 0;
+            color: #e0e1dd;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .project-objectives li::before {
+            content: '✓';
+            position: absolute;
+            right: -20px;
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .project-resources h5 {
+            color: #4cc9f0;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .resource {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .resource i {
+            font-size: 1.5rem;
             color: #4cc9f0;
         }
 
-        @media (max-width: 768px) {
-            .step-arrow {
-                transform: rotate(90deg);
-            }
-            .lifecycle-steps {
-                flex-direction: column;
-            }
+        .resource span {
+            color: #e0e1dd;
         }
 
-        /* الأمثلة الواقعية */
-        .examples-grid {
+        /* المسارات المهنية */
+        .career-section {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
+            gap: 30px;
         }
 
-        .example-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+        .career-card h4, .skills-card h4 {
+            color: #4cc9f0;
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .job-card {
+            background: rgba(15, 23, 42, 0.9);
             padding: 20px;
+            border-radius: 10px;
+            text-align: center;
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .example-card:hover {
+        .job-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
-        /* مسار التعلم */
-        .learning-path {
-            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(39, 174, 96, 0.1));
-            border-right: 5px solid #4caf50;
-            padding: 25px;
-            border-radius: 0 15px 15px 0;
-            margin: 30px 0;
+        .job-card i {
+            font-size: 2.5rem;
+            color: #4cc9f0;
+            margin-bottom: 15px;
         }
 
-        .path-steps {
+        .job-card h5 {
+            color: #fff;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .job-card > p:first-of-type {
+            color: #e0e1dd;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .job-desc {
+            color: #888;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        /* المهارات */
+        .skills-list {
+            margin-top: 20px;
+        }
+
+        .skill {
+            margin-bottom: 25px;
+        }
+
+        .skill-name {
+            display: block;
+            color: #e0e1dd;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .skill-bar {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-level {
+            height: 100%;
+            background: linear-gradient(90deg, #4361ee, #4cc9f0);
+            border-radius: 5px;
+            transition: width 1s ease-in-out;
+        }
+
+        /* جدول زمني */
+        .schedule-container {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .weekly-plan {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .week-plan h4 {
+            color: #4cc9f0;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .week-plan ul {
             list-style: none;
             padding: 0;
-            margin: 20px 0;
         }
 
-        .path-steps li {
-            padding: 15px;
-            margin: 10px 0;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
+        .week-plan li {
+            padding: 12px 0;
+            color: #e0e1dd;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .path-steps li i {
-            color: #4caf50;
-        }
-
-        /* روابط الدورات */
-        .course-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin: 40px 0;
-        }
-        
-        .course-link {
-            background: linear-gradient(45deg, #4361ee, #3a0ca3);
-            color: white;
-            text-decoration: none;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
             align-items: center;
             gap: 10px;
         }
-        
-        .course-link:hover {
-            transform: translateY(-5px);
+
+        .week-plan li i {
+            color: #4cc9f0;
+        }
+
+        /* قسم التسجيل */
+        .enroll-section {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(58, 12, 163, 0.1));
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .enroll-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .pricing-card {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid #4361ee;
+            box-shadow: 0 15px 35px rgba(67, 97, 238, 0.2);
+        }
+
+        .pricing-header h3 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            margin-bottom: 30px;
+        }
+
+        .amount {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #4cc9f0;
+            display: block;
+        }
+
+        .period {
+            color: #e0e1dd;
+            font-size: 1.1rem;
+        }
+
+        .pricing-features ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features li {
+            padding: 15px 0;
+            color: #e0e1dd;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-features li i {
+            color: #4caf50;
+            font-size: 1.2rem;
+        }
+
+        .enroll-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .enroll-btn:hover {
+            transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(67, 97, 238, 0.4);
         }
 
-        .course-link.special {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+        .enroll-info h3 {
+            color: #4cc9f0;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step p {
+            color: #e0e1dd;
+            font-size: 1.1rem;
+        }
+
+        /* الأسئلة الشائعة */
+        .faq-container {
+            max-width: 800px;
+            margin: 30px auto 0;
+        }
+
+        .faq-item {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-question h4 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .faq-question i {
+            color: #4cc9f0;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer p {
+            color: #e0e1dd;
+            padding: 20px 0;
+            margin: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
         }
 
         /* أزرار التنقل */
@@ -371,7 +893,7 @@
             background: linear-gradient(45deg, #4caf50, #2e7d32) !important;
         }
 
-        /* التذييل */
+        /* الفوتر */
         footer { 
             text-align: center; 
             padding: 30px 0; 
@@ -411,12 +933,33 @@
             font-size: 0.9rem; 
         }
 
-        @keyframes fadeIn { 
-            from { opacity: 0; } 
-            to { opacity: 1; } 
+        /* أنماط متجاوبة */
+        @media (max-width: 992px) {
+            .timeline::before {
+                right: 30px;
+                transform: none;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+            }
+            
+            .timeline-header,
+            .timeline-content {
+                padding: 0;
+                text-align: right;
+                width: 100%;
+            }
+            
+            .timeline-header {
+                margin-bottom: 20px;
+            }
+            
+            .timeline-content {
+                padding-right: 0;
+            }
         }
 
-        /* استجابة الشاشات الصغيرة */
         @media (max-width: 768px) {
             .nav-content {
                 flex-direction: column;
@@ -431,28 +974,111 @@
             .container {
                 padding: 10px;
             }
-
-            .key-points {
-                grid-template-columns: 1fr;
+            
+            .course-header .logo {
+                font-size: 2.2rem;
             }
-
-            .comparison-table {
+            
+            .course-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .course-meta {
+                gap: 15px;
+            }
+            
+            .meta-item {
+                padding: 8px 15px;
                 font-size: 0.9rem;
             }
-
-            .course-links {
+            
+            .cta-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .overview-content {
                 grid-template-columns: 1fr;
             }
-
+            
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .process-steps {
+                flex-direction: column;
+            }
+            
+            .enroll-container {
+                grid-template-columns: 1fr;
+            }
+            
             .nav-buttons {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .weekly-plan {
+                grid-template-columns: 1fr;
+            }
+            
+            .career-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .jobs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* تأثيرات الرسوم المتحركة */
+        @keyframes fadeIn { 
+            from { opacity: 0; } 
+            to { opacity: 1; } 
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInChar {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
     <!-- شريط التنقل -->
-   <nav class="nav-container">
+  <nav class="nav-container">
     <div class="nav-content">
         <a href="index.html" class="nav-logo">Mohamed Alaa</a>
         <div class="nav-links">
@@ -460,341 +1086,587 @@
             <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
             <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
             <a href="data-science-intro.html.html" class="nav-link">علم البيانات</a>
+            <a href="login.html" class="nav-link login-btn">دخول</a>
         </div>
     </div>
 </nav>
         </div>
-    </div>
+    </nav>
 
     <div class="container">
-        <header>
-            <div class="logo">مدخل إلى علم البيانات</div>
-            <h1>الدليل الشامل لفهم علم البيانات وتحليلها</h1>
-            <p class="subtitle">اكتشف عالم البيانات، تعلم الفرق بين علم البيانات وتحليلها، وافهم كيفية تطبيقها في الحياة الواقعية. بداية مثالية قبل الدخول في أدوات التحليل المتقدمة.</p>
+        <!-- الهيدر الرئيسي -->
+        <header class="course-header">
+            <div class="logo">📊 دورة علم البيانات وتحليلها</div>
+            <h1>من الصفر إلى تحليل البيانات العملي</h1>
+            <p class="subtitle">رحلة تعلم شاملة تجمع بين النظرية والتطبيق لمدة 6 أسابيع</p>
+            
+            <div class="course-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>6 أسابيع</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-video"></i>
+                    <span>24 درس عملي</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>مشروعين تطبيقيين</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-certificate"></i>
+                    <span>شهادة إتمام</span>
+                </div>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="#enroll" class="cta-btn primary">
+                    <i class="fas fa-play-circle"></i> ابدأ التعلم الآن
+                </a>
+                <a href="#curriculum" class="cta-btn secondary">
+                    <i class="fas fa-list-alt"></i> عرض المنهج
+                </a>
+            </div>
         </header>
 
-        <!-- القسم الأول: تعريف علم البيانات -->
-        <section class="intro-section">
+        <!-- القسم 1: نظرة عامة على الدورة -->
+        <section id="overview" class="course-section">
             <h2 class="section-title">
-                <i class="fas fa-brain"></i>ما هو علم البيانات؟
+                <i class="fas fa-binoculars"></i> نظرة عامة على الدورة
             </h2>
             
-            <div class="definition-box">
-                <p style="font-size: 1.1rem; line-height: 1.8;">
-                    <strong>علم البيانات</strong> هو مجال متعدد التخصصات يجمع بين الإحصاء، الرياضيات، البرمجة، والخبرة المجال-specific لاكتشاف الرؤى والمعرفة من البيانات. إنه ليس مجرد تحليل بيانات، بل هو عملية كاملة تبدأ بطرح الأسئلة الصحيحة وتنتهي باتخاذ القرارات المستندة إلى البيانات.
-                </p>
-            </div>
-
-            <div class="key-points">
-                <div class="point-card">
-                    <div class="point-icon">
-                        <i class="fas fa-database"></i>
+            <div class="overview-content">
+                <div class="overview-card">
+                    <div class="overview-icon">
+                        <i class="fas fa-bullseye"></i>
                     </div>
-                    <h3>البيانات هي الوقود</h3>
-                    <p>كل شيء يبدأ بالبيانات - منظم، غير منظم، نص، صور، فيديو</p>
-                </div>
-
-                <div class="point-card">
-                    <div class="point-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>اكتشاف الأنماط</h3>
-                    <p>تحليل البيانات للعثور على أنماط واتجاهات مخفية</p>
-                </div>
-
-                <div class="point-card">
-                    <div class="point-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3>الرؤى القابلة للتنفيذ</h3>
-                    <p>تحويل البيانات إلى قرارات استراتيجية وتحسينات عملية</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- القسم الثاني: الفرق بين Data Science و Data Analytics -->
-        <section class="intro-section">
-            <h2 class="section-title">
-                <i class="fas fa-balance-scale"></i>علم البيانات أم تحليل البيانات؟
-            </h2>
-            
-            <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 20px;">
-                كثيرون يخلطون بين المصطلحين، لكن لكل منهما دور مختلف. إليك الفرق الرئيسي:
-            </p>
-
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>الناحية</th>
-                        <th>علم البيانات (Data Science)</th>
-                        <th>تحليل البيانات (Data Analytics)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>التركيز</strong></td>
-                        <td>اكتشاف أسئلة جديدة وأنماط غير معروفة</td>
-                        <td>الإجابة على أسئلة محددة موجودة مسبقاً</td>
-                    </tr>
-                    <tr>
-                        <td><strong>النطاق</strong></td>
-                        <td>أوسع - يشمل الذكاء الاصطناعي والتعلم الآلي</td>
-                        <td>أضيق - يركز على التحليل الإحصائي</td>
-                    </tr>
-                    <tr>
-                        <td><strong>الهدف</strong></td>
-                        <td>التنبؤ بالمستقبل وبناء النماذج التنبؤية</td>
-                        <td>فهم الماضي والحاضر لاتخاذ قرارات أفضل</td>
-                    </tr>
-                    <tr>
-                        <td><strong>المهارات</strong></td>
-                        <td>برمجة متقدمة، خوارزميات، رياضيات معقدة</td>
-                        <td>إحصاء، برمجة أساسية، أدوات تصوير</td>
-                    </tr>
-                    <tr>
-                        <td><strong>المخرجات</strong></td>
-                        <td>نماذج تنبؤية، أنظمة توصية، حلول مبتكرة</td>
-                        <td>تقارير، لوحات تحكم، توصيات عملية</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div style="background: rgba(76, 201, 240, 0.1); padding: 20px; border-radius: 10px; margin-top: 20px;">
-                <h4><i class="fas fa-info-circle" style="color: #4cc9f0;"></i> باختصار:</h4>
-                <p>إذا كنت تريد <strong>معرفة ماذا حدث ولماذا حدث</strong> ← اختر تحليل البيانات.</p>
-                <p>إذا كنت تريد <strong>معرفة ماذا سيحدث بعد ذلك</strong> ← اختر علم البيانات.</p>
-            </div>
-        </section>
-
-        <!-- القسم الثالث: إنفوجرافيك دورة حياة علم البيانات -->
-        <section class="intro-section">
-            <h2 class="section-title">
-                <i class="fas fa-sync-alt"></i>دورة حياة علم البيانات
-            </h2>
-            
-            <div class="infographic-container">
-                <h3 style="color: #4cc9f0; margin-bottom: 30px;">رحلة البيانات من المعلومة إلى القرار</h3>
-                
-                <div class="lifecycle-steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h4>جمع البيانات</h4>
-                        <p>من مصادر مختلفة (قواعد بيانات، APIs، ملفات)</p>
-                        <i class="fas fa-download" style="color: #4cc9f0; margin-top: 10px;"></i>
-                    </div>
-                    
-                    <div class="step-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                    
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h4>تنظيف البيانات</h4>
-                        <p>إزالة الأخطاء، معالجة القيم المفقودة، توحيد التنسيق</p>
-                        <i class="fas fa-broom" style="color: #4cc9f0; margin-top: 10px;"></i>
-                    </div>
-                    
-                    <div class="step-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                    
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <h4>تحليل البيانات</h4>
-                        <p>استكشاف الأنماط، اختبار الفرضيات، التحليل الإحصائي</p>
-                        <i class="fas fa-chart-bar" style="color: #4cc9f0; margin-top: 10px;"></i>
-                    </div>
-                    
-                    <div class="step-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                    
-                    <div class="step">
-                        <div class="step-number">4</div>
-                        <h4>بناء النماذج</h4>
-                        <p>تعلم الآلة، خوارزميات التنبؤ، تحسين النماذج</p>
-                        <i class="fas fa-cogs" style="color: #4cc9f0; margin-top: 10px;"></i>
-                    </div>
-                    
-                    <div class="step-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                    
-                    <div class="step">
-                        <div class="step-number">5</div>
-                        <h4>عرض النتائج</h4>
-                        <p>تصوير البيانات، تقارير تفاعلية، توصيات عملية</p>
-                        <i class="fas fa-eye" style="color: #4cc9f0; margin-top: 10px;"></i>
-                    </div>
+                    <h3>🎯 هدف الدورة</h3>
+                    <ul>
+                        <li>تعريف الطلاب والمبتدئين بمجال علم البيانات</li>
+                        <li>شرح الأدوات الأساسية (Python, SQL, Excel, Power BI)</li>
+                        <li>تقديم أمثلة عملية تربط النظرية بالتطبيق</li>
+                        <li>تجهيز المتعلم لبناء أول مشروع في تحليل البيانات</li>
+                    </ul>
                 </div>
                 
-                <p style="margin-top: 30px; font-style: italic; color: #e0e1dd;">
-                    هذه العملية دورية ومستمرة - كل نتيجة تخلق أسئلة جديدة تحتاج إلى إجابات!
-                </p>
-            </div>
-        </section>
-
-        <!-- القسم الرابع: أمثلة واقعية -->
-        <section class="intro-section">
-            <h2 class="section-title">
-                <i class="fas fa-globe-americas"></i>أمثلة واقعية من حياتنا اليومية
-            </h2>
-            
-            <div class="examples-grid">
-                <div class="example-card">
-                    <h3><i class="fas fa-shopping-cart" style="color: #4361ee;"></i> التجارة الإلكترونية</h3>
-                    <p>أنظمة التوصية في أمازون ونيتفليكس التي تقترح منتجات وأفلاماً قد تعجبك بناءً على سلوكك السابق.</p>
+                <div class="overview-card">
+                    <div class="overview-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>👥 لمن هذه الدورة؟</h3>
+                    <ul>
+                        <li>طلاب الجامعات في التخصصات التقنية</li>
+                        <li>المبتدئين في مجال البيانات</li>
+                        <li>محترفين يريدون تطوير مهاراتهم</li>
+                        <li>أصحاب المشاريع الصغيرة</li>
+                    </ul>
                 </div>
-
-                <div class="example-card">
-                    <h3><i class="fas fa-heartbeat" style="color: #f44336;"></i> الرعاية الصحية</h3>
-                    <p>تحديد الأمراض من الصور الطبية، التنبؤ بانتشار الأوبئة، تصميم علاجات شخصية للمرضى.</p>
-                </div>
-
-                <div class="example-card">
-                    <h3><i class="fas fa-car" style="color: #4caf50;"></i> السيارات الذاتية</h3>
-                    <p>سيارات تيسلا التي تتعلم من ملايين الأميال المقطوعة لتحسين قيادتها الذاتية.</p>
-                </div>
-
-                <div class="example-card">
-                    <h3><i class="fas fa-robot" style="color: #ff9800;"></i> المساعدات الذكية</h3>
-                    <p>Siri وGoogle Assistant التي تستخدم معالجة اللغة الطبيعية لفهم طلباتك والرد عليها.</p>
-                </div>
-
-                <div class="example-card">
-                    <h3><i class="fas fa-chart-line" style="color: #9c27b0;"></i> التمويل والمصارف</h3>
-                    <p>كشف الاحتيال في المعاملات المالية، تقييم المخاطر الائتمانية، التداول الآلي.</p>
-                </div>
-
-                <div class="example-card">
-                    <h3><i class="fas fa-video" style="color: #e91e63;"></i> وسائل التواصل</h3>
-                    <p>خوارزميات فيسبوك وإنستجرام التي تقرر أي المحتوى ستظهر لك في البداية.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- القسم الخامس: مسار التعلم -->
-        <section class="intro-section">
-            <h2 class="section-title">
-                <i class="fas fa-road"></i>كيف تبدأ رحلتك في علم البيانات؟
-            </h2>
-            
-            <div class="learning-path">
-                <p style="font-size: 1.1rem; margin-bottom: 20px;">
-                    لا تحتاج إلى أن تكون عالماً رياضياً لتبدأ! اتبع هذه الخطوات:
-                </p>
                 
-                <ol class="path-steps">
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <div>
-                            <strong>الخطوة 1: الأساسيات البرمجية</strong>
-                            <p>تعلم Python أو R - هما لغتا علم البيانات الرئيسيتان</p>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <div>
-                            <strong>الخطوة 2: الرياضيات والإحصاء</strong>
-                            <p>الجبر الخطي، الاحتمالات، الإحصاء - الأساس النظري</p>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <div>
-                            <strong>الخطوة 3: معالجة البيانات</strong>
-                            <p>Pandas، NumPy، تنظيف البيانات وتحويلها</p>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <div>
-                            <strong>الخطوة 4: تصور البيانات</strong>
-                            <p>Matplotlib، Seaborn، Plotly لعرض النتائج</p>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <div>
-                            <strong>الخطوة 5: تعلم الآلة</strong>
-                            <p>Scikit-learn، بناء النماذج التنبؤية</p>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <div>
-                            <strong>الخطوة 6: مشاريع عملية</strong>
-                            <p>طبق كل ما تعلمته على بيانات حقيقية</p>
-                        </div>
-                    </li>
-                </ol>
+                <div class="overview-card">
+                    <div class="overview-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>🏆 ماذا ستتعلم؟</h3>
+                    <ul>
+                        <li>مفاهيم علم البيانات وتحليل البيانات</li>
+                        <li>أدوات تحليل البيانات الأساسية</li>
+                        <li>تحويل البيانات إلى رؤى قابلة للتنفيذ</li>
+                        <li>بناء لوحات تحكم تفاعلية</li>
+                        <li>تنفيذ مشروع تحليل بيانات حقيقي</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
-        <!-- القسم السادس: روابط الدورات الموصى بها -->
-        <section class="intro-section">
+        <!-- القسم 2: منهج الدورة -->
+        <section id="curriculum" class="course-section">
             <h2 class="section-title">
-                <i class="fas fa-graduation-cap"></i>الخطوة التالية: دورات موصى بها
+                <i class="fas fa-book-open"></i> منهج الدورة (6 وحدات)
             </h2>
             
-            <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 25px;">
-                الآن وقد فهمت الصورة الكبيرة، إليك أفضل الدورات للبدء فعلياً:
-            </p>
+            <div class="timeline">
+                <!-- الأسبوع 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div class="week-badge">الأسبوع 1</div>
+                        <h3>الوحدة 1: مقدمة في علم البيانات</h3>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="lesson">
+                            <i class="fas fa-play-circle lesson-icon"></i>
+                            <div class="lesson-content">
+                                <h4>الدرس 1.1: ما هو علم البيانات؟</h4>
+                                <p>تعريف العلم وأهميته في الأعمال والمجتمع</p>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 15 دقيقة</span>
+                                    <span><i class="fas fa-file-alt"></i> تمارين</span>
+                                    <span><i class="fas fa-video"></i> فيديو</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lesson">
+                            <i class="fas fa-play-circle lesson-icon"></i>
+                            <div class="lesson-content">
+                                <h4>الدرس 1.2: Data Science vs Data Analytics</h4>
+                                <p>الفرق بين المصطلحات والأدوار المختلفة</p>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 12 دقيقة</span>
+                                    <span><i class="fas fa-question-circle"></i> اختبار قصير</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lesson">
+                            <i class="fas fa-play-circle lesson-icon"></i>
+                            <div class="lesson-content">
+                                <h4>الدرس 1.3: أمثلة واقعية</h4>
+                                <p>تطبيقات في التجارة الإلكترونية، الصحة، الرياضة</p>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 18 دقيقة</span>
+                                    <span><i class="fas fa-tasks"></i> دراسة حالة</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="course-links">
-                <a href="https://www.coursera.org/professional-certificates/ibm-data-science" class="course-link" target="_blank">
-                    <i class="fab fa-ibm" style="font-size: 2rem;"></i>
-                    <strong>IBM Data Science</strong>
-                    <p>شهادة مهنية شاملة من IBM</p>
-                </a>
+                <!-- الأسبوع 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div class="week-badge">الأسبوع 2</div>
+                        <h3>الوحدة 2: أنواع البيانات وخصائصها</h3>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="lesson">
+                            <i class="fas fa-play-circle lesson-icon"></i>
+                            <div class="lesson-content">
+                                <h4>الدرس 2.1: أنواع البيانات الأساسية</h4>
+                                <p>Record Data, Ordered Data, Graph Data</p>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 14 دقيقة</span>
+                                    <span><i class="fas fa-file-alt"></i> تمارين تصنيف</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lesson">
+                            <i class="fas fa-play-circle lesson-icon"></i>
+                            <div class="lesson-content">
+                                <h4>الدرس 2.2: خصائص البيانات</h4>
+                                <p>Nominal, Ordinal, Numeric, Discrete, Continuous</p>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 16 دقيقة</span>
+                                    <span><i class="fas fa-chart-bar"></i> أمثلة عملية</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lesson">
+                            <i class="fas fa-play-circle lesson-icon"></i>
+                            <div class="lesson-content">
+                                <h4>الدرس 2.3: البيانات الضخمة (Big Data)</h4>
+                                <p>مقدمة عن الـ 4V's: Volume, Velocity, Variety, Veracity</p>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 20 دقيقة</span>
+                                    <span><i class="fas fa-question-circle"></i> اختبار</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <a href="https://www.coursera.org/professional-certificates/google-data-analytics" class="course-link" target="_blank">
-                    <i class="fab fa-google" style="font-size: 2rem;"></i>
-                    <strong>Google Data Analytics</strong>
-                    <p>مسار تحليل البيانات من جوجل</p>
-                </a>
+                <!-- الأسبوع 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div class="week-badge">الأسبوع 3</div>
+                        <h3>الوحدة 3: أدوات محلل البيانات</h3>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="tools-grid">
+                            <div class="tool-card">
+                                <div class="tool-icon excel">
+                                    <i class="fas fa-file-excel"></i>
+                                </div>
+                                <h4>Microsoft Excel</h4>
+                                <ul>
+                                    <li>الجداول المحورية (Pivot Tables)</li>
+                                    <li>الرسوم البيانية الأساسية</li>
+                                    <li>الدوال الأساسية للتحليل</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="tool-card">
+                                <div class="tool-icon sql">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <h4>SQL</h4>
+                                <ul>
+                                    <li>SELECT, WHERE, JOIN</li>
+                                    <li>استعلامات التجميع</li>
+                                    <li>ربط جداول متعددة</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="tool-card">
+                                <div class="tool-icon python">
+                                    <i class="fab fa-python"></i>
+                                </div>
+                                <h4>Python</h4>
+                                <ul>
+                                    <li>مكتبات Pandas, Matplotlib</li>
+                                    <li>تنظيف البيانات</li>
+                                    <li>التصور البياني</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="tool-card">
+                                <div class="tool-icon powerbi">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h4>Power BI</h4>
+                                <ul>
+                                    <li>استيراد البيانات</li>
+                                    <li>بناء لوحات التحكم</li>
+                                    <li>التفاعل مع التقارير</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <a href="https://www.kaggle.com/learn" class="course-link" target="_blank">
-                    <i class="fab fa-kaggle" style="font-size: 2rem;"></i>
-                    <strong>Kaggle Learn</strong>
-                    <p>دروس مجانية مع بيانات حقيقية</p>
-                </a>
+                <!-- الأسبوع 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div class="week-badge">الأسبوع 4</div>
+                        <h3>الوحدة 4: خطوات العمل في علم البيانات</h3>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="process-steps">
+                            <div class="process-step">
+                                <div class="step-number">1</div>
+                                <h4>جمع البيانات</h4>
+                                <p>من مصادر مختلفة (قواعد بيانات، ملفات، APIs)</p>
+                            </div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">2</div>
+                                <h4>تنظيف البيانات</h4>
+                                <p>إزالة الأخطاء، معالجة القيم المفقودة</p>
+                            </div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">3</div>
+                                <h4>تحليل البيانات</h4>
+                                <p>استكشاف الأنماط، اختبار الفرضيات</p>
+                            </div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">4</div>
+                                <h4>بناء النماذج</h4>
+                                <p>النمذجة الأولية والتنبؤ</p>
+                            </div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">5</div>
+                                <h4>عرض النتائج</h4>
+                                <p>تقارير تفاعلية، توصيات عملية</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <a href="https://www.datacamp.com/tracks/data-scientist-with-python" class="course-link" target="_blank">
-                    <i class="fas fa-chart-line" style="font-size: 2rem;"></i>
-                    <strong>DataCamp Track</strong>
-                    <p>مسار كامل لعالم البيانات</p>
-                </a>
-            </div>
+                <!-- الأسبوع 5 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div class="week-badge">الأسبوع 5</div>
+                        <h3>الوحدة 5: مشروع عملي - تحليل المبيعات</h3>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="project-details">
+                            <div class="project-card">
+                                <h4>📈 مشروع: تحليل بيانات متجر إلكتروني</h4>
+                                <p>مجموعة بيانات حقيقية لمبيعات 12 شهر</p>
+                                
+                                <div class="project-objectives">
+                                    <h5>الأهداف:</h5>
+                                    <ul>
+                                        <li>تنظيف البيانات في Excel</li>
+                                        <li>تحليل اتجاهات المبيعات الشهرية</li>
+                                        <li>تحديد المنتجات الأكثر مبيعاً</li>
+                                        <li>تحليل سلوك العملاء</li>
+                                        <li>بناء لوحة تحكم في Power BI</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="project-resources">
+                                    <h5>الموارد المقدمة:</h5>
+                                    <div class="resources-grid">
+                                        <div class="resource">
+                                            <i class="fas fa-database"></i>
+                                            <span>مجموعة بيانات جاهزة</span>
+                                        </div>
+                                        <div class="resource">
+                                            <i class="fas fa-file-code"></i>
+                                            <span>قوالب Excel و Python</span>
+                                        </div>
+                                        <div class="resource">
+                                            <i class="fas fa-video"></i>
+                                            <span>فيديوهات خطوة بخطوة</span>
+                                        </div>
+                                        <div class="resource">
+                                            <i class="fas fa-question-circle"></i>
+                                            <span>دعم فني عبر المنتدى</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <div style="text-align: center; margin-top: 30px;">
-                <p style="font-size: 1rem; color: #e0e1dd;">
-                    <i class="fas fa-lightbulb" style="color: #ffd700;"></i>
-                    <strong>نصيحة:</strong> ابدأ بدورة واحدة وأكملها قبل الانتقال إلى التالية!
-                </p>
+                <!-- الأسبوع 6 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div class="week-badge">الأسبوع 6</div>
+                        <h3>الوحدة 6: مستقبل علم البيانات</h3>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="career-section">
+                            <div class="career-card">
+                                <h4>🚀 المسارات المهنية</h4>
+                                <div class="jobs-grid">
+                                    <div class="job-card">
+                                        <i class="fas fa-chart-bar"></i>
+                                        <h5>محلل بيانات</h5>
+                                        <p>Data Analyst</p>
+                                        <p class="job-desc">تحليل البيانات وتقديم التقارير</p>
+                                    </div>
+                                    
+                                    <div class="job-card">
+                                        <i class="fas fa-brain"></i>
+                                        <h5>عالم بيانات</h5>
+                                        <p>Data Scientist</p>
+                                        <p class="job-desc">بناء النماذج التنبؤية</p>
+                                    </div>
+                                    
+                                    <div class="job-card">
+                                        <i class="fas fa-tachometer-alt"></i>
+                                        <h5>مختص ذكاء الأعمال</h5>
+                                        <p>BI Specialist</p>
+                                        <p class="job-desc">بناء لوحات التحكم والتقارير</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skills-card">
+                                <h4>💼 المهارات المطلوبة في السوق</h4>
+                                <div class="skills-list">
+                                    <div class="skill">
+                                        <span class="skill-name">Excel متقدم</span>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="skill">
+                                        <span class="skill-name">SQL</span>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="skill">
+                                        <span class="skill-name">Python للبيانات</span>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="skill">
+                                        <span class="skill-name">Power BI / Tableau</span>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 75%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="skill">
+                                        <span class="skill-name">الإحصاء</span>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 70%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- أزرار التنقل -->
+        <!-- القسم 3: جدول زمني -->
+        <section id="schedule" class="course-section">
+            <h2 class="section-title">
+                <i class="fas fa-calendar-alt"></i> الجدول الزمني
+            </h2>
+            
+            <div class="schedule-container">
+                <div class="schedule-card">
+                    <h3>🕒 مدة الدورة: 6 أسابيع</h3>
+                    <div class="weekly-plan">
+                        <div class="week-plan">
+                            <h4>كل أسبوع يتضمن:</h4>
+                            <ul>
+                                <li><i class="fas fa-video"></i> 4 فيديوهات تعليمية (10-15 دقيقة)</li>
+                                <li><i class="fas fa-tasks"></i> تمارين تطبيقية</li>
+                                <li><i class="fas fa-question-circle"></i> اختبار قصير</li>
+                                <li><i class="fas fa-comments"></i> جلسة أسئلة وأجوبة</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-plan">
+                            <h4>الالتزام المطلوب:</h4>
+                            <ul>
+                                <li><i class="fas fa-clock"></i> 5-7 ساعات أسبوعياً</li>
+                                <li><i class="fas fa-laptop"></i> جهاز حاسوب شخصي</li>
+                                <li><i class="fas fa-wifi"></i> اتصال إنترنت</li>
+                                <li><i class="fas fa-heart"></i> حماس للتعلم!</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!--
+        <!-- القسم 4: التسجيل 
+        <section id="enroll" class="course-section enroll-section">
+            <h2 class="section-title">
+                <i class="fas fa-user-plus"></i> انضم للدورة الآن
+            </h2>
+            
+            <div class="enroll-container">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>الدورة الكاملة</h3>
+                        <div class="price">
+                            <span class="amount">مجاناً</span>
+                            <span class="period">للجميع</span>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> وصول كامل لجميع الدروس</li>
+                            <li><i class="fas fa-check"></i> مجموعات البيانات العملية</li>
+                            <li><i class="fas fa-check"></i> القوالب الجاهزة</li>
+                            <li><i class="fas fa-check"></i> شهادة إتمام إلكترونية</li>
+                            <li><i class="fas fa-check"></i> دعم عبر منتدى الدورة</li>
+                            <li><i class="fas fa-check"></i> تحديثات مستمرة</li>
+                        </ul>
+                    </div>
+                    
+                    <button class="enroll-btn" id="enrollButton">
+                        <i class="fas fa-user-plus"></i> سجل الآن مجاناً
+                    </button>
+                </div>
+                
+                <div class="enroll-info">
+                    <h3>📝 كيف تبدأ؟</h3>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <p>انقر على زر "سجل الآن"</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <p>ستتلقى بريداً تأكيدياً</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <p>ابدأ بالدرس الأول فوراً</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <p>شارك في المنتدى وناقش زملاءك</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            -->
+        </section>
+
+        <!-- القسم 5: الأسئلة الشائعة -->
+        <section id="faq" class="course-section">
+            <h2 class="section-title">
+                <i class="fas fa-question-circle"></i> الأسئلة الشائعة
+            </h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>هل أحتاج خلفية في البرمجة؟</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>لا، الدورة مصممة للمبتدئين تماماً. سنبدأ من الصفر في كل الأدوات.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>ما هي المتطلبات التقنية؟</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>جهاز حاسوب (ويندوز، ماك، أو لينكس) واتصال إنترنت. كل البرامج المستخدمة مجانية.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>هل أحصل على شهادة؟</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، عند إتمام جميع الدروس والمشروع النهائي، تحصل على شهادة إتمام إلكترونية.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>كم من الوقت أحتاج أسبوعياً؟</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>من 5 إلى 7 ساعات أسبوعياً، يمكنك تقسيمها حسب وقتك.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>هل يمكنني الوصول للمحتوى بعد انتهاء الدورة؟</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، سيكون الوصول متاحاً لك مدى الحياة.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- روابط التنقل -->
         <div class="nav-buttons">
+            <a href="data-science-intro.html" class="nav-btn">
+                <i class="fas fa-arrow-right"></i> العودة لمقدمة علم البيانات
+            </a>
+            
             <a href="index.html" class="nav-btn back-btn">
-                <i class="fas fa-arrow-left"></i> العودة للصفحة الرئيسية
-            </a>
-            
-            <a href="index.html#programming-path" class="nav-btn">
-                <i class="fas fa-chart-line"></i> الانتقال إلى قسم تحليل البيانات
-            </a>
-            
-            <a href="Computer_basics.html" class="nav-btn">
-                <i class="fas fa-desktop"></i> أساسيات الحاسوب أولاً
-            </a>
-            
-            <a href="Microsoft_Office.html" class="nav-btn">
-                <i class="fas fa-file-excel"></i> تعلم Excel للتحليل
+                <i class="fas fa-home"></i> الصفحة الرئيسية
             </a>
         </div>
     </div>
 
+    <!-- الفوتر -->
     <footer id="contact">
         <div class="social-icons">
             <a href="https://www.linkedin.com/in/mohamed-ala-a-2b333533a" class="social-icon" target="_blank">
@@ -819,10 +1691,13 @@
                 <i class="fas fa-envelope"></i>
             </a>
         </div>
-        <p class="copyright">© 2025 مسار التطور التقني | تم التصميم بواسطة Mohamed Alaa</p>
+        <p class="copyright">© 2025 مسار التطور التقني | دورة علم البيانات وتحليلها</p>
     </footer>
 
+    <!-- JavaScript -->
     <script>
+        // تفاعلات دورة علم البيانات
+
         document.addEventListener('DOMContentLoaded', function() {
             // تأثيرات الظهور عند التمرير
             const observerOptions = {
@@ -835,40 +1710,346 @@
                     if (entry.isIntersecting) {
                         entry.target.style.opacity = '1';
                         entry.target.style.transform = 'translateY(0)';
+                        
+                        // تأثير شريط المهارات
+                        if (entry.target.classList.contains('skill-level')) {
+                            const width = entry.target.style.width;
+                            entry.target.style.width = '0';
+                            setTimeout(() => {
+                                entry.target.style.width = width;
+                            }, 300);
+                        }
                     }
                 });
             }, observerOptions);
 
-            // تطبيق التأثيرات على البطاقات
-            const cards = document.querySelectorAll('.point-card, .example-card');
-            cards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(card);
+            // تطبيق التأثيرات على العناصر
+            const animatedElements = document.querySelectorAll(
+                '.overview-card, .tool-card, .process-step, .job-card, .lesson, .faq-item'
+            );
+            
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
             });
 
-            // تطبيق التأثيرات على خطوات دورة الحياة
-            const steps = document.querySelectorAll('.step');
-            steps.forEach(step => {
-                step.style.opacity = '0';
-                step.style.transform = 'translateY(20px)';
-                step.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(step);
+            // تطبيق التأثير على شريط المهارات
+            const skillLevels = document.querySelectorAll('.skill-level');
+            skillLevels.forEach(skill => {
+                observer.observe(skill);
             });
 
-            // تأثيرات على روابط الدورات
-            const courseLinks = document.querySelectorAll('.course-link');
-            courseLinks.forEach(link => {
-                link.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px) scale(1.02)';
+            // تفاعل الأسئلة الشائعة
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const faqItem = this.parentElement;
+                    faqItem.classList.toggle('active');
+                });
+            });
+
+            // زر التسجيل
+            const enrollButton = document.getElementById('enrollButton');
+            
+            if (enrollButton) {
+                enrollButton.addEventListener('click', function() {
+                    const modal = document.createElement('div');
+                    modal.className = 'enroll-modal';
+                    modal.innerHTML = `
+                        <div class="modal-content">
+                            <span class="close-modal">&times;</span>
+                            <h2><i class="fas fa-check-circle"></i> تم التسجيل بنجاح!</h2>
+                            <p>🎉 مرحباً بك في دورة علم البيانات وتحليلها</p>
+                            <p>سيصلك بريد إلكتروني بالتفاصيل وكيفية البدء.</p>
+                            <div class="modal-actions">
+                                <button class="modal-btn primary" onclick="window.location.href='#curriculum'">
+                                    <i class="fas fa-play-circle"></i> ابدأ التعلم الآن
+                                </button>
+                                <button class="modal-btn secondary close-modal-btn">
+                                    <i class="fas fa-times"></i> إغلاق
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(modal);
+                    
+                    // إضافة أنماط المودال
+                    const modalStyles = `
+                        .enroll-modal {
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(0, 0, 0, 0.8);
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            z-index: 10000;
+                            backdrop-filter: blur(5px);
+                        }
+                        
+                        .modal-content {
+                            background: linear-gradient(135deg, #0f2027, #203a43);
+                            padding: 40px;
+                            border-radius: 20px;
+                            max-width: 500px;
+                            width: 90%;
+                            text-align: center;
+                            border: 2px solid #4361ee;
+                            position: relative;
+                            animation: modalSlideIn 0.5s ease;
+                        }
+                        
+                        @keyframes modalSlideIn {
+                            from {
+                                opacity: 0;
+                                transform: translateY(-50px);
+                            }
+                            to {
+                                opacity: 1;
+                                transform: translateY(0);
+                            }
+                        }
+                        
+                        .close-modal {
+                            position: absolute;
+                            top: 15px;
+                            left: 15px;
+                            font-size: 28px;
+                            color: #fff;
+                            cursor: pointer;
+                            transition: color 0.3s ease;
+                        }
+                        
+                        .close-modal:hover {
+                            color: #4cc9f0;
+                        }
+                        
+                        .modal-content h2 {
+                            color: #4cc9f0;
+                            margin-bottom: 20px;
+                            font-size: 2rem;
+                        }
+                        
+                        .modal-content p {
+                            color: #e0e1dd;
+                            margin-bottom: 15px;
+                            font-size: 1.2rem;
+                        }
+                        
+                        .modal-actions {
+                            display: flex;
+                            gap: 15px;
+                            justify-content: center;
+                            margin-top: 30px;
+                            flex-wrap: wrap;
+                        }
+                        
+                        .modal-btn {
+                            padding: 12px 25px;
+                            border-radius: 50px;
+                            border: none;
+                            font-size: 1.1rem;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                        }
+                        
+                        .modal-btn.primary {
+                            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+                            color: white;
+                        }
+                        
+                        .modal-btn.secondary {
+                            background: rgba(255, 255, 255, 0.1);
+                            color: white;
+                            border: 2px solid #4361ee;
+                        }
+                        
+                        .modal-btn:hover {
+                            transform: translateY(-3px);
+                            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.3);
+                        }
+                    `;
+                    
+                    const styleSheet = document.createElement('style');
+                    styleSheet.textContent = modalStyles;
+                    document.head.appendChild(styleSheet);
+                    
+                    // إغلاق المودال
+                    const closeButtons = modal.querySelectorAll('.close-modal, .close-modal-btn');
+                    closeButtons.forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            modal.style.opacity = '0';
+                            setTimeout(() => {
+                                document.body.removeChild(modal);
+                                document.head.removeChild(styleSheet);
+                            }, 300);
+                        });
+                    });
+                    
+                    // إغلاق عند النقر خارج المودال
+                    modal.addEventListener('click', function(e) {
+                        if (e.target === modal) {
+                            modal.style.opacity = '0';
+                            setTimeout(() => {
+                                document.body.removeChild(modal);
+                                document.head.removeChild(styleSheet);
+                            }, 300);
+                        }
+                    });
+                    
+                    console.log('User enrolled in Data Science Course');
+                });
+            }
+
+            // تأثيرات عند المرور على الأزرار
+            const buttons = document.querySelectorAll('.cta-btn, .nav-btn, .modal-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
                 });
                 
-                link.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
+                btn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
                 });
             });
+
+            // تنعيم التمرير للروابط
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // تتبع تقدم التمرير
+            let scrollProgress = 0;
+            window.addEventListener('scroll', function() {
+                const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+                scrollProgress = Math.min(scrolled, 100);
+            });
+
+            // تأثيرات إضافية للبطاقات
+            const cards = document.querySelectorAll('.overview-card, .tool-card, .job-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.boxShadow = '0 15px 35px rgba(67, 97, 238, 0.2)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = 'none';
+                });
+            });
+
+            // تهيئة الخط الزمني
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                item.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(item);
+            });
+
+            // تأثيرات النص في الهيدر
+            const headerTitle = document.querySelector('.course-header h1');
+            if (headerTitle) {
+                const text = headerTitle.textContent;
+                headerTitle.innerHTML = '';
+                
+                text.split('').forEach((char, i) => {
+                    const span = document.createElement('span');
+                    span.textContent = char;
+                    span.style.opacity = '0';
+                    span.style.animation = `fadeInChar 0.5s ease forwards ${i * 0.05}s`;
+                    headerTitle.appendChild(span);
+                });
+            }
         });
+
+        // دالة لمشاركة الدورة
+        function shareCourse(platform) {
+            const url = window.location.href;
+            const title = 'دورة علم البيانات وتحليلها - مسار التطور التقني';
+            const text = 'اكتشف دورة علم البيانات الشاملة للمبتدئين!';
+            
+            let shareUrl = '';
+            
+            switch(platform) {
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+                    break;
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+                    break;
+                case 'linkedin':
+                    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+                    break;
+                case 'whatsapp':
+                    shareUrl = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
+                    break;
+            }
+            
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            }
+        }
+
+        // دالة لتنزيل مواد الدورة
+        function downloadResources(type) {
+            const resources = {
+                'datasets': 'https://example.com/datasets.zip',
+                'templates': 'https://example.com/templates.zip',
+                'slides': 'https://example.com/slides.pdf',
+                'cheatsheet': 'https://example.com/cheatsheet.pdf'
+            };
+            
+            if (resources[type]) {
+                window.open(resources[type], '_blank');
+            }
+        }
+
+        // تهيئة خط تقدم الدورة
+        function initCourseProgress() {
+            const progress = localStorage.getItem('courseProgress') || 0;
+            const progressBar = document.getElementById('courseProgressBar');
+            
+            if (progressBar) {
+                progressBar.style.width = `${progress}%`;
+                progressBar.textContent = `${progress}% مكتمل`;
+            }
+        }
+
+        // تحديث التقدم
+        function updateProgress(lessonId) {
+            let completedLessons = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            
+            if (!completedLessons.includes(lessonId)) {
+                completedLessons.push(lessonId);
+                localStorage.setItem('completedLessons', JSON.stringify(completedLessons));
+                
+                const progress = (completedLessons.length / 24) * 100; // 24 درس
+                localStorage.setItem('courseProgress', progress);
+                
+                initCourseProgress();
+            }
+        }
     </script>
 </body>
 </html>

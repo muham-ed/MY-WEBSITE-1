@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول | Mohamed Alaa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* أنماط أساسية */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
+            color: white;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.1) 0%, transparent 20%),
+                        radial-gradient(circle at 90% 80%, rgba(247, 37, 133, 0.1) 0%, transparent 20%);
+            z-index: -1;
+        }
+
+        /* شريط التنقل */
+        .nav-container {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: #e0e1dd;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: rgba(67, 97, 238, 0.2);
+            color: #4cc9f0;
+        }
+        
+       /* .login-btn {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white !important;
+        }
+        */
+       .login-btn:hover {
+            background: linear-gradient(45deg, #3a0ca3, #4361ee);
+        }
+
+         /* صفحة بطاقة تسجيل الدخول */
+        .login-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            padding-top: 100px;
+        }
+
+        .login-card {
+            background: rgba(27, 38, 59, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.6s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-card h2 {
+            margin-bottom: 30px;
+            color: #4cc9f0;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #e0e1dd;
+            font-weight: 500;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px 45px 15px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #4cc9f0;
+            box-shadow: 0 0 0 2px rgba(76, 201, 240, 0.2);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            margin-top: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #4361ee;
+            color: #4cc9f0;
+            margin-top: 15px;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(67, 97, 238, 0.1);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: #888;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .divider span {
+            padding: 0 15px;
+            font-size: 0.9rem;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .social-btn.google i {
+            color: #DB4437;
+        }
+
+        .social-btn.github i {
+            color: #333;
+        }
+
+        .links {
+            margin-top: 25px;
+        }
+
+        .links a {
+            color: #4cc9f0;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            display: block;
+            margin: 8px 0;
+        }
+
+        .links a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: right;
+            display: none;
+        }
+
+        .message.success {
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            color: #4caf50;
+        }
+
+        .message.error {
+            background: rgba(244, 67, 54, 0.1);
+            border: 1px solid rgba(244, 67, 54, 0.3);
+            color: #f44336;
+        }
+
+        .message.info {
+            background: rgba(33, 150, 243, 0.1);
+            border: 1px solid rgba(33, 150, 243, 0.3);
+            color: #2196f3;
+        }
+
+        /* تذييل الصفحة */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        .copyright {
+            color: #e0e1dd;
+            font-size: 0.9rem;
+        }
+
+        /* استجابة للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .nav-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .login-card {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+            
+            .social-login {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 25px 15px;
+            }
+            
+            .nav-links {
+                gap: 10px;
+            }
+            
+            .nav-link {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+   <nav class="nav-container">
+    <div class="nav-content">
+        <a href="index.html" class="nav-logo">Mohamed Alaa</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">الرئيسية</a>
+            <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
+            <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
+            <a href="data-science-intro.html.html" class="nav-link">علم البيانات</a>
+            <a href="login.html" class="nav-link login-btn">دخول</a>
+        </div>
+        </div>
+    </nav>
+
+    <!-- محتوى تسجيل الدخول -->
+    <div class="login-wrapper">
+        <div class="login-card">
+            <h2 id="title">
+                <i class="fas fa-user-circle"></i>
+                تسجيل الدخول
+            </h2>
+            
+            <div id="message" class="message"></div>
+            
+            <div class="input-group">
+                <label for="email">البريد الإلكتروني</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-envelope input-icon"></i>
+                    <input type="email" id="email" placeholder="example@email.com" required>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label for="password">كلمة المرور</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
+                </div>
+            </div>
+            
+            <button class="btn btn-primary" id="loginBtn">
+                <i class="fas fa-sign-in-alt"></i>
+                تسجيل الدخول
+            </button>
+            
+            <div class="divider">
+                <span>أو</span>
+            </div>
+            
+            <button class="btn btn-secondary" id="signUpBtn">
+                <i class="fas fa-user-plus"></i>
+                إنشاء حساب جديد
+            </button>
+            
+            <div class="social-login">
+                <button class="social-btn google" id="googleLogin">
+                    <i class="fab fa-google"></i>
+                    Google
+                </button>
+                <button class="social-btn github" id="githubLogin">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </button>
+            </div>
+            
+            <div class="links">
+                <a href="forgot-password.html" id="forgotPassword">
+                    <i class="fas fa-key"></i>
+                    نسيت كلمة المرور؟
+                </a>
+                <a href="index.html" id="backToHome">
+                    <i class="fas fa-home"></i>
+                    العودة للصفحة الرئيسية
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- تذييل الصفحة -->
+    <footer>
+        <p class="copyright">© 2025 مسار التطور التقني | تم التصميم بواسطة Mohamed Alaa</p>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { 
+            getAuth, 
+            createUserWithEmailAndPassword, 
+            signInWithEmailAndPassword,
+            signInWithPopup,
+            GoogleAuthProvider,
+            GithubAuthProvider,
+            sendPasswordResetEmail 
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        // ⚠️ **ضع بيانات مشروعك من Firebase هنا ⚠️**
+        const firebaseConfig = {
+            apiKey: "AIzaSy...",  // ضع API Key الخاص بك هنا
+            authDomain: "your-project.firebaseapp.com",
+            projectId: "your-project-id",
+            storageBucket: "your-project.appspot.com",
+            messagingSenderId: "your-messaging-sender-id",
+            appId: "your-app-id"
+        };
+
+        // تهيئة Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const googleProvider = new GoogleAuthProvider();
+        const githubProvider = new GithubAuthProvider();
+
+        // عناصر DOM
+        const title = document.getElementById('title');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const loginBtn = document.getElementById('loginBtn');
+        const signUpBtn = document.getElementById('signUpBtn');
+        const googleLoginBtn = document.getElementById('googleLogin');
+        const githubLoginBtn = document.getElementById('githubLogin');
+        const forgotPasswordLink = document.getElementById('forgotPassword');
+        const messageDiv = document.getElementById('message');
+
+        // حالة الواجهة (تسجيل دخول / إنشاء حساب)
+        let isSignUpMode = false;
+
+        // تبديل بين وضع تسجيل الدخول وإنشاء حساب
+        signUpBtn.addEventListener('click', () => {
+            if (!isSignUpMode) {
+                isSignUpMode = true;
+                title.innerHTML = '<i class="fas fa-user-plus"></i> إنشاء حساب جديد';
+                loginBtn.innerHTML = '<i class="fas fa-user-plus"></i> إنشاء الحساب';
+                signUpBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> لدي حساب بالفعل';
+                showMessage('info', 'يمكنك إنشاء حساب جديد باستخدام البريد الإلكتروني وكلمة المرور.');
+            } else {
+                isSignUpMode = false;
+                title.innerHTML = '<i class="fas fa-user-circle"></i> تسجيل الدخول';
+                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> تسجيل الدخول';
+                signUpBtn.innerHTML = '<i class="fas fa-user-plus"></i> إنشاء حساب جديد';
+                showMessage('info', 'يمكنك تسجيل الدخول باستخدام بريدك الإلكتروني وكلمة المرور.');
+            }
+        });
+
+        // عرض الرسائل
+        function showMessage(type, text) {
+            messageDiv.className = `message ${type}`;
+            messageDiv.textContent = text;
+            messageDiv.style.display = 'block';
+            
+            // إخفاء الرسالة بعد 5 ثواني
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // التحقق من صحة الإدخال
+        function validateInput() {
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+            
+            if (!email || !password) {
+                showMessage('error', 'الرجاء ملء جميع الحقول المطلوبة.');
+                return false;
+            }
+            
+            if (!validateEmail(email)) {
+                showMessage('error', 'الرجاء إدخال بريد إلكتروني صحيح.');
+                return false;
+            }
+            
+            if (password.length < 6) {
+                showMessage('error', 'كلمة المرور يجب أن تكون 6 أحرف على الأقل.');
+                return false;
+            }
+            
+            return true;
+        }
+
+        // التحقق من صحة البريد الإلكتروني
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // إنشاء حساب جديد
+        async function signUp() {
+            if (!validateInput()) return;
+            
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            
+            try {
+                loginBtn.disabled = true;
+                loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري إنشاء الحساب...';
+                
+                await createUserWithEmailAndPassword(auth, email, password);
+                
+                showMessage('success', '🎉 تم إنشاء الحساب بنجاح! يتم تسجيل الدخول الآن...');
+                
+                // الانتقال للصفحة الرئيسية بعد ثانيتين
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 2000);
+                
+            } catch (error) {
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<i class="fas fa-user-plus"></i> إنشاء الحساب';
+                
+                switch(error.code) {
+                    case 'auth/email-already-in-use':
+                        showMessage('error', 'هذا البريد الإلكتروني مستخدم بالفعل.');
+                        break;
+                    case 'auth/invalid-email':
+                        showMessage('error', 'بريد إلكتروني غير صالح.');
+                        break;
+                    case 'auth/weak-password':
+                        showMessage('error', 'كلمة المرور ضعيفة جداً. يجب أن تكون 6 أحرف على الأقل.');
+                        break;
+                    default:
+                        showMessage('error', `خطأ: ${error.message}`);
+                }
+            }
+        }
+
+        // تسجيل الدخول
+        async function login() {
+            if (!validateInput()) return;
+            
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            
+            try {
+                loginBtn.disabled = true;
+                loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تسجيل الدخول...';
+                
+                await signInWithEmailAndPassword(auth, email, password);
+                
+                showMessage('success', '🎉 تم تسجيل الدخول بنجاح! يتم التوجيه...');
+                
+                // الانتقال للصفحة الرئيسية بعد ثانيتين
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 2000);
+                
+            } catch (error) {
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> تسجيل الدخول';
+                
+                switch(error.code) {
+                    case 'auth/user-not-found':
+                        showMessage('error', 'لا يوجد حساب مرتبط بهذا البريد الإلكتروني.');
+                        break;
+                    case 'auth/wrong-password':
+                        showMessage('error', 'كلمة المرور غير صحيحة.');
+                        break;
+                    case 'auth/invalid-credential':
+                        showMessage('error', 'بيانات الاعتماد غير صالحة.');
+                        break;
+                    case 'auth/too-many-requests':
+                        showMessage('error', 'تم حظر الوصول مؤقتاً بسبب محاولات عديدة فاشلة.');
+                        break;
+                    default:
+                        showMessage('error', `خطأ في تسجيل الدخول: ${error.message}`);
+                }
+            }
+        }
+
+        // تسجيل الدخول بـ Google
+        googleLoginBtn.addEventListener('click', async () => {
+            try {
+                googleLoginBtn.disabled = true;
+                googleLoginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الاتصال...';
+                
+                await signInWithPopup(auth, googleProvider);
+                
+                showMessage('success', 'تم تسجيل الدخول باستخدام Google بنجاح!');
+                
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 2000);
+                
+            } catch (error) {
+                googleLoginBtn.disabled = false;
+                googleLoginBtn.innerHTML = '<i class="fab fa-google"></i> Google';
+                
+                if (error.code === 'auth/popup-closed-by-user') {
+                    showMessage('error', 'تم إغلاق نافذة التسجيل.');
+                } else {
+                    showMessage('error', `خطأ في تسجيل الدخول باستخدام Google: ${error.message}`);
+                }
+            }
+        });
+
+        // تسجيل الدخول بـ GitHub
+        githubLoginBtn.addEventListener('click', async () => {
+            try {
+                githubLoginBtn.disabled = true;
+                githubLoginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الاتصال...';
+                
+                await signInWithPopup(auth, githubProvider);
+                
+                showMessage('success', 'تم تسجيل الدخول باستخدام GitHub بنجاح!');
+                
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 2000);
+                
+            } catch (error) {
+                githubLoginBtn.disabled = false;
+                githubLoginBtn.innerHTML = '<i class="fab fa-github"></i> GitHub';
+                
+                if (error.code === 'auth/popup-closed-by-user') {
+                    showMessage('error', 'تم إغلاق نافذة التسجيل.');
+                } else {
+                    showMessage('error', `خطأ في تسجيل الدخول باستخدام GitHub: ${error.message}`);
+                }
+            }
+        });
+
+        // استعادة كلمة المرور
+        forgotPasswordLink.addEventListener('click', async (e) => {
+            e.preventDefault();
+            
+            const email = emailInput.value.trim();
+            
+            if (!email) {
+                showMessage('error', 'الرجاء إدخال بريدك الإلكتروني أولاً.');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                showMessage('error', 'الرجاء إدخال بريد إلكتروني صحيح.');
+                return;
+            }
+            
+            try {
+                await sendPasswordResetEmail(auth, email);
+                showMessage('success', 'تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني.');
+            } catch (error) {
+                showMessage('error', `خطأ في إرسال رابط الاستعادة: ${error.message}`);
+            }
+        });
+
+        // التعامل مع زر تسجيل الدخول/إنشاء حساب
+        loginBtn.addEventListener('click', () => {
+            if (isSignUpMode) {
+                signUp();
+            } else {
+                login();
+            }
+        });
+
+        // السماح بتسجيل الدخول بالضغط على Enter
+        document.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                if (isSignUpMode) {
+                    signUp();
+                } else {
+                    login();
+                }
+            }
+        });
+
+        // التحقق إذا كان المستخدم مسجلاً بالفعل
+        auth.onAuthStateChanged((user) => {
+            if (user && window.location.pathname.includes('login.html')) {
+                showMessage('info', 'أنت مسجل الدخول بالفعل! يتم توجيهك...');
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 2000);
+            }
+        });
+
+        // عرض نصائح للمستخدم عند التركيز على الحقول
+        emailInput.addEventListener('focus', () => {
+            showMessage('info', 'أدخل بريدك الإلكتروني المسجل.');
+        });
+
+        passwordInput.addEventListener('focus', () => {
+            showMessage('info', 'أدخل كلمة المرور الخاصة بحسابك.');
+        });
+
+        // نصائح للمستخدم الجديد
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                showMessage('info', 'مرحباً! يمكنك تسجيل الدخول أو إنشاء حساب جديد.');
+            }, 1000);
+        });
+
+    </script>
+
+    <!-- بديل في حالة تعطل Firebase -->
+    <script>
+        // التحقق من تحميل Firebase بنجاح
+        setTimeout(() => {
+            if (!window.firebaseLoaded) {
+                document.getElementById('message').innerHTML = `
+                    <div class="message info">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>ملاحظة:</strong> يجب إضافة بيانات مشروع Firebase الخاصة بك في السطر 316.
+                        <br><br>
+                        <small>خطوات الإعداد:
+                        <ol style="text-align: right; margin-right: 15px;">
+                            <li>اذهب إلى <a href="https://console.firebase.google.com" target="_blank">Firebase Console</a></li>
+                            <li>أنشئ مشروع جديد أو اختر مشروع موجود</li>
+                            <li>اضغط على "إضافة تطبيق ويب" (رمز &lt;/&gt;)</li>
+                            <li>انسخ بيانات التطبيق (firebaseConfig)</li>
+                            <li>الصقها في السطر 316 من هذا الملف</li>
+                            <li>في Firebase Console، اذهب إلى Authentication → Sign-in method</li>
+                            <li>فعّل البريد/كلمة المرور، Google، و GitHub</li>
+                        </ol>
+                        </small>
+                    </div>
+                `;
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
