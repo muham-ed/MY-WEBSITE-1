@@ -17,7 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.min.js"></script>
     
     <style>
-        /* ===== متغيرات الألوان ===== */
+        /* نفس الأنماط السابقة - احتفظ بها كما هي */
         :root {
             --primary: #8b5cf6;
             --primary-light: #a78bfa;
@@ -28,7 +28,6 @@
             --danger: #ef4444;
             --dark: #0b1120;
             --dark-card: #1e293b;
-            --dark-light: #334155;
             --text: #f8fafc;
             --text-muted: #94a3b8;
             --gradient-1: linear-gradient(135deg, #8b5cf6, #6366f1);
@@ -49,23 +48,8 @@
             background: linear-gradient(135deg, #0b1120, #1a1f2e, #0f172a); 
             color: var(--text); 
             min-height: 100vh; 
-            overflow-x: hidden; 
-            position: relative; 
         }
         
-        body::before { 
-            content: ""; 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 40%), 
-                        radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.15) 0%, transparent 40%); 
-            z-index: -1; 
-        }
-
-        /* ===== شريط التنقل ===== */
         .nav-container { 
             background: rgba(11, 17, 32, 0.95); 
             padding: 15px 0; 
@@ -94,7 +78,6 @@
             background-clip: text; 
             color: transparent; 
             text-decoration: none; 
-            letter-spacing: -0.5px;
         }
         
         .nav-links { 
@@ -123,16 +106,14 @@
             box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4);
         }
 
-        /* ===== الحاوية الرئيسية ===== */
         .container { 
             max-width: 1200px; 
             margin: 0 auto; 
             padding: 20px; 
             margin-top: 80px;
-            margin-bottom: 550px; /* مساحة أكبر للمحرر */
+            margin-bottom: 550px;
         }
         
-        /* ===== الهيدر ===== */
         header { 
             text-align: center; 
             padding: 50px 20px; 
@@ -163,7 +144,6 @@
             color: var(--text-muted); 
         }
 
-        /* ===== بطاقات الدروس ===== */
         .computer-lessons { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
@@ -264,7 +244,6 @@
             box-shadow: 0 15px 30px rgba(139, 92, 246, 0.5);
         }
 
-        /* ===== تفاصيل الدروس ===== */
         .lesson-details {
             background: rgba(30, 41, 59, 0.95);
             border-radius: 40px;
@@ -315,7 +294,6 @@
             flex-wrap: wrap;
         }
 
-        /* ===== قائمة المصطلحات ===== */
         .terms-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -358,7 +336,6 @@
             font-weight: 600;
         }
 
-        /* ===== اختصارات الكيبورد ===== */
         .shortcuts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -404,7 +381,6 @@
             flex: 1;
         }
 
-        /* ===== كود HTML ===== */
         .code-block {
             position: relative;
             background: #0b1120;
@@ -451,7 +427,6 @@
             transform: translateY(-3px);
         }
 
-        /* ===== المحرر الثابت ===== */
         .fixed-editor {
             position: fixed;
             bottom: 0;
@@ -640,7 +615,6 @@
             font-size: 14px;
         }
 
-        /* ===== النتيجة ===== */
         .result-box {
             background: #1e293b;
             border-radius: 24px;
@@ -684,7 +658,6 @@
             color: var(--text);
         }
 
-        /* ===== الفوتر ===== */
         footer {
             text-align: center;
             padding: 35px 0;
@@ -740,15 +713,16 @@
     </style>
 </head>
 <body>
-    <!-- شريط التنقل -->
-    <nav class="nav-container">
+    <!-- شريط التنقل الموحد -->
+   <nav class="nav-container">
         <div class="nav-content">
             <a href="index.html" class="nav-logo">Mohamed Alaa</a>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">الرئيسية</a>
-                <a href="Computer_basics.html" class="nav-link active">أساسيات الحاسوب</a>
+                <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
                 <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
-                <a href="data-science-intro.html.html" class="nav-link">علم البيانات</a>
+                <a href="data-analyst-course.html" class="nav-link">📊 Data Analyst</a>
+                <a href="data-scientist-course.html" class="nav-link active">🔬 Data Scientist</a>
                 <a href="blogs.html" class="nav-link">المقالات</a>
                 <a href="login.html" class="nav-link">دخول</a>
             </div>
@@ -809,69 +783,33 @@
             </div>
         </div>
 
-        <!-- ===== الدرس الأول: مكونات الحاسوب ===== -->
+        <!-- الدرس الأول: مكونات الحاسوب -->
         <div id="intro-details" class="lesson-details active">
             <h2><i class="fas fa-microchip"></i> الدرس الأول: مكونات الحاسوب الأساسية</h2>
 
-            <!-- قسم المصطلحات -->
             <div class="lesson-section">
                 <h3><i class="fas fa-language"></i> المصطلحات والترجمة الصحيحة</h3>
                 <div class="terms-grid">
-                    <div class="term-card">
-                        <div class="term-en">CPU</div>
-                        <div class="term-ar">وحدة المعالجة المركزية</div>
-                    </div>
-                    <div class="term-card">
-                        <div class="term-en">RAM</div>
-                        <div class="term-ar">الذاكرة العشوائية</div>
-                    </div>
-                    <div class="term-card">
-                        <div class="term-en">ROM</div>
-                        <div class="term-ar">ذاكرة القراءة فقط</div>
-                    </div>
-                    <div class="term-card">
-                        <div class="term-en">Monitor</div>
-                        <div class="term-ar">الشاشة</div>
-                    </div>
-                    <div class="term-card">
-                        <div class="term-en">Keyboard</div>
-                        <div class="term-ar">لوحة المفاتيح</div>
-                    </div>
-                    <div class="term-card">
-                        <div class="term-en">Mouse</div>
-                        <div class="term-ar">الفأرة</div>
-                    </div>
+                    <div class="term-card"><div class="term-en">CPU</div><div class="term-ar">وحدة المعالجة المركزية</div></div>
+                    <div class="term-card"><div class="term-en">RAM</div><div class="term-ar">الذاكرة العشوائية</div></div>
+                    <div class="term-card"><div class="term-en">ROM</div><div class="term-ar">ذاكرة القراءة فقط</div></div>
+                    <div class="term-card"><div class="term-en">Monitor</div><div class="term-ar">الشاشة</div></div>
+                    <div class="term-card"><div class="term-en">Keyboard</div><div class="term-ar">لوحة المفاتيح</div></div>
+                    <div class="term-card"><div class="term-en">Mouse</div><div class="term-ar">الفأرة</div></div>
                 </div>
             </div>
 
-            <!-- قسم الاختصارات -->
             <div class="lesson-section">
                 <h3><i class="fas fa-keyboard"></i> اختصارات الكيبورد</h3>
                 <div class="shortcuts-grid">
-                    <div class="shortcut-item">
-                        <span class="shortcut-key">Ctrl + C</span>
-                        <span class="shortcut-desc">نسخ</span>
-                    </div>
-                    <div class="shortcut-item">
-                        <span class="shortcut-key">Ctrl + V</span>
-                        <span class="shortcut-desc">لصق</span>
-                    </div>
-                    <div class="shortcut-item">
-                        <span class="shortcut-key">Ctrl + X</span>
-                        <span class="shortcut-desc">قص</span>
-                    </div>
-                    <div class="shortcut-item">
-                        <span class="shortcut-key">Ctrl + Z</span>
-                        <span class="shortcut-desc">تراجع</span>
-                    </div>
-                    <div class="shortcut-item">
-                        <span class="shortcut-key">Ctrl + A</span>
-                        <span class="shortcut-desc">تحديد الكل</span>
-                    </div>
+                    <div class="shortcut-item"><span class="shortcut-key">Ctrl + C</span><span class="shortcut-desc">نسخ</span></div>
+                    <div class="shortcut-item"><span class="shortcut-key">Ctrl + V</span><span class="shortcut-desc">لصق</span></div>
+                    <div class="shortcut-item"><span class="shortcut-key">Ctrl + X</span><span class="shortcut-desc">قص</span></div>
+                    <div class="shortcut-item"><span class="shortcut-key">Ctrl + Z</span><span class="shortcut-desc">تراجع</span></div>
+                    <div class="shortcut-item"><span class="shortcut-key">Ctrl + A</span><span class="shortcut-desc">تحديد الكل</span></div>
                 </div>
             </div>
 
-            <!-- الكود -->
             <div class="lesson-section">
                 <h3><i class="fas fa-code"></i> كود HTML</h3>
                 <div class="code-block">
@@ -890,11 +828,8 @@
                 </div>
             </div>
 
-            <!-- النتيجة -->
             <div class="result-box">
-                <div class="result-title">
-                    <i class="fas fa-check-circle"></i> النتيجة المتوقعة
-                </div>
+                <div class="result-title"><i class="fas fa-check-circle"></i> النتيجة المتوقعة</div>
                 <div class="result-grid">
                     <div class="result-item"><span class="result-en">CPU</span> <span class="result-ar">وحدة المعالجة</span></div>
                     <div class="result-item"><span class="result-en">RAM</span> <span class="result-ar">ذاكرة عشوائية</span></div>
@@ -904,7 +839,7 @@
             </div>
         </div>
 
-        <!-- ===== الدرس الثاني: نظام ويندوز ===== -->
+        <!-- الدرس الثاني: نظام ويندوز -->
         <div id="windows-details" class="lesson-details">
             <h2><i class="fab fa-windows"></i> الدرس الثاني: نظام ويندوز</h2>
             <div class="lesson-section">
@@ -918,7 +853,7 @@
             </div>
         </div>
 
-        <!-- ===== الدرس الثالث: إدارة الملفات ===== -->
+        <!-- الدرس الثالث: إدارة الملفات -->
         <div id="files-details" class="lesson-details">
             <h2><i class="fas fa-folder"></i> الدرس الثالث: إدارة الملفات</h2>
             <div class="lesson-section">
@@ -932,7 +867,7 @@
             </div>
         </div>
         
-        <!-- ===== الدرس الرابع: الإنترنت ===== -->
+        <!-- الدرس الرابع: الإنترنت -->
         <div id="internet-details" class="lesson-details">
             <h2><i class="fas fa-globe"></i> الدرس الرابع: الإنترنت</h2>
             <div class="lesson-section">
@@ -945,7 +880,7 @@
             </div>
         </div>
         
-        <!-- ===== الدرس الخامس: الكتابة السريعة ===== -->
+        <!-- الدرس الخامس: الكتابة السريعة -->
         <div id="typing-details" class="lesson-details">
             <h2><i class="fas fa-keyboard"></i> الدرس الخامس: الكتابة السريعة</h2>
             <div class="lesson-section">
@@ -957,7 +892,7 @@
             </div>
         </div>
         
-        <!-- ===== الدرس السادس: تطبيق عملي ===== -->
+        <!-- الدرس السادس: تطبيق عملي -->
         <div id="practice-details" class="lesson-details">
             <h2><i class="fas fa-check-circle"></i> الدرس السادس: تطبيق عملي</h2>
             <div class="lesson-section">
@@ -967,7 +902,7 @@
         </div>
     </div>
 
-    <!-- ===== المحرر الثابت في الأسفل ===== -->
+    <!-- المحرر الثابت في الأسفل -->
     <div class="fixed-editor" id="fixedEditor">
         <div class="editor-header">
             <div class="editor-title">
@@ -1006,9 +941,7 @@
                     <span><i class="fas fa-play-circle"></i> النتيجة</span>
                     <span id="outputStatus">✅ جاهز</span>
                 </div>
-                <div class="output-content" id="outputContent">
-                    // النتيجة ستظهر هنا
-                </div>
+                <div class="output-content" id="outputContent">// النتيجة ستظهر هنا</div>
             </div>
         </div>
     </div>

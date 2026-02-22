@@ -7,7 +7,6 @@
     <link rel="icon" href="icons mohamed.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* أنماط أساسية */
         * { 
             margin: 0; 
             padding: 0; 
@@ -35,7 +34,7 @@
             z-index: -1; 
         }
 
-        /* شريط التنقل */
+        /* ===== شريط التنقل الموحد ===== */
         .nav-container { 
             background: rgba(15, 23, 42, 0.95); 
             padding: 15px 0; 
@@ -69,6 +68,8 @@
         .nav-links { 
             display: flex; 
             gap: 25px; 
+            flex-wrap: wrap;
+            justify-content: center;
         }
         
         .nav-link { 
@@ -78,11 +79,16 @@
             padding: 8px 15px; 
             border-radius: 5px; 
             transition: all 0.3s ease; 
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(67, 97, 238, 0.2);
         }
         
         .nav-link:hover, .nav-link.active { 
-            background: rgba(67, 97, 238, 0.2); 
-            color: #4cc9f0; 
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white; 
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.4);
         }
 
         .container { 
@@ -92,7 +98,7 @@
             margin-top: 80px;
         }
 
-        /* هيدر الصفحة */
+        /* ===== هيدر الصفحة ===== */
         .page-header {
             text-align: center;
             padding: 40px 20px;
@@ -125,7 +131,7 @@
             line-height: 1.6;
         }
 
-        /* فلتر المقالات */
+        /* ===== فلتر المقالات ===== */
         .articles-filter {
             display: flex;
             justify-content: center;
@@ -151,7 +157,7 @@
             transform: translateY(-3px);
         }
 
-        /* شبكة المقالات */
+        /* ===== شبكة المقالات ===== */
         .articles-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -261,7 +267,7 @@
             color: #fff;
         }
 
-        /* مقال مميز */
+        /* ===== مقال مميز ===== */
         .featured-article {
             grid-column: 1 / -1;
             display: grid;
@@ -294,23 +300,7 @@
             align-self: flex-start;
         }
 
-        /* أقسام المقالات */
-        .articles-section {
-            margin-bottom: 60px;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            color: #4cc9f0;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* تفاصيل المقال */
+        /* ===== تفاصيل المقال ===== */
         .article-detail-content {
             background: rgba(15, 23, 42, 0.9);
             border-radius: 15px;
@@ -354,7 +344,21 @@
             color: #e0e1dd;
         }
 
-        /* الفوتر */
+        .article-detail-body h3 {
+            color: #4cc9f0;
+            margin: 30px 0 15px;
+        }
+
+        .article-detail-body ul, .article-detail-body ol {
+            padding-right: 30px;
+            margin: 15px 0;
+        }
+
+        .article-detail-body li {
+            margin: 8px 0;
+        }
+
+        /* ===== الفوتر ===== */
         footer { 
             text-align: center; 
             padding: 30px 0; 
@@ -367,6 +371,7 @@
             justify-content: center; 
             gap: 20px; 
             margin: 20px 0; 
+            flex-wrap: wrap;
         }
         
         .social-icon { 
@@ -381,6 +386,7 @@
             transition: all 0.3s ease; 
             text-decoration: none; 
             color: #fff; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .social-icon:hover { 
@@ -394,7 +400,7 @@
             font-size: 0.9rem; 
         }
 
-        /* أنماط متجاوبة */
+        /* ===== أنماط متجاوبة ===== */
         @media (max-width: 992px) {
             .featured-article {
                 grid-template-columns: 1fr;
@@ -458,7 +464,7 @@
             }
         }
 
-        /* تأثيرات الرسوم المتحركة */
+        /* ===== تأثيرات الحركة ===== */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -478,6 +484,7 @@
     </style>
 </head>
 <body>
+    <!-- ===== شريط التنقل الموحد ===== -->
     <nav class="nav-container">
         <div class="nav-content">
             <a href="index.html" class="nav-logo">Mohamed Alaa</a>
@@ -485,15 +492,16 @@
                 <a href="index.html" class="nav-link">الرئيسية</a>
                 <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
                 <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
-                <a href="data-science-intro.html.html" class="nav-link">علم البيانات</a>
-                <a href="blogs.html" class="nav-link active">المقالات</a>
+                <a href="data-analyst-course.html" class="nav-link">📊 Data Analyst</a>
+                <a href="data-scientist-course.html" class="nav-link active">🔬 Data Scientist</a>
+                <a href="blogs.html" class="nav-link">المقالات</a>
                 <a href="login.html" class="nav-link">دخول</a>
             </div>
         </div>
     </nav>
-
+    <!-- ===== الحاوية الرئيسية ===== -->
     <div class="container">
-        <!-- هيدر الصفحة -->
+        <!-- ===== هيدر الصفحة ===== -->
         <header class="page-header">
             <div class="logo">📝 مقالاتي</div>
             <h1>رحلة في عالم التقنية والبيانات</h1>
@@ -503,7 +511,7 @@
             </p>
         </header>
 
-        <!-- فلتر المقالات -->
+        <!-- ===== فلتر المقالات ===== -->
         <div class="articles-filter">
             <button class="filter-btn active" data-filter="all">جميع المقالات</button>
             <button class="filter-btn" data-filter="data-science">علم البيانات</button>
@@ -513,14 +521,14 @@
             <button class="filter-btn" data-filter="tips">نصائح عملية</button>
         </div>
 
-        <!-- المقالات -->
+        <!-- ===== قائمة المقالات ===== -->
         <section class="articles-section" id="articles-list">
             <h2 class="section-title">
                 <i class="fas fa-newspaper"></i> أحدث المقالات
             </h2>
             
             <div class="articles-grid">
-                <!-- مقال مميز -->
+                <!-- المقال 1: مقال مميز -->
                 <article class="article-card featured-article" data-category="data-science projects">
                     <div class="article-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
                         <div class="article-category">علم البيانات</div>
@@ -548,7 +556,7 @@
                     </div>
                 </article>
 
-                <!-- مقال 2 -->
+                <!-- المقال 2 -->
                 <article class="article-card" data-category="technology tips">
                     <div class="article-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
                         <div class="article-category">تقنية</div>
@@ -573,7 +581,7 @@
                     </div>
                 </article>
 
-                <!-- مقال 3 -->
+                <!-- المقال 3 -->
                 <article class="article-card" data-category="career">
                     <div class="article-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
                         <div class="article-category">المسيرة المهنية</div>
@@ -598,7 +606,7 @@
                     </div>
                 </article>
 
-                <!-- مقال 4 -->
+                <!-- المقال 4 -->
                 <article class="article-card" data-category="data-science">
                     <div class="article-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
                         <div class="article-category">علم البيانات</div>
@@ -623,7 +631,7 @@
                     </div>
                 </article>
 
-                <!-- مقال 5 -->
+                <!-- المقال 5 -->
                 <article class="article-card" data-category="projects">
                     <div class="article-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
                         <div class="article-category">المشاريع</div>
@@ -648,7 +656,7 @@
                     </div>
                 </article>
 
-                <!-- مقال 6 -->
+                <!-- المقال 6 -->
                 <article class="article-card" data-category="tips">
                     <div class="article-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
                         <div class="article-category">نصائح عملية</div>
@@ -675,14 +683,14 @@
             </div>
         </section>
 
-        <!-- تفاصيل المقال المختار -->
+        <!-- ===== تفاصيل المقال المختار ===== -->
         <section id="article-details" class="articles-section" style="display: none;">
             <h2 class="section-title">
                 <i class="fas fa-file-alt"></i> تفاصيل المقال
             </h2>
             
             <div class="article-detail-content" id="article-content">
-                <!-- سيتم تحميل محتوى المقال هنا ديناميكياً -->
+                <!-- يتم تحميل محتوى المقال هنا ديناميكياً -->
             </div>
             
             <div style="text-align: center; margin-top: 40px;">
@@ -692,50 +700,35 @@
             </div>
         </section>
 
-        <!-- روابط التنقل -->
+        <!-- ===== روابط التنقل ===== -->
         <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 40px 0;">
-            <a href="data-science-intro.html" class="filter-btn" style="text-decoration: none; text-align: center;">
-                <i class="fas fa-database"></i> دورة علم البيانات
+            <a href="data-analyst-course.html" class="filter-btn" style="text-decoration: none; text-align: center; background: linear-gradient(45deg, #10b981, #059669);">
+                <i class="fas fa-chart-line"></i> دورة تحليل البيانات
             </a>
-            
             <a href="index.html" class="filter-btn" style="text-decoration: none; text-align: center; background: linear-gradient(45deg, #4caf50, #2e7d32);">
                 <i class="fas fa-home"></i> الصفحة الرئيسية
             </a>
         </div>
     </div>
 
-    <!-- الفوتر -->
+    <!-- ===== الفوتر ===== -->
     <footer id="contact">
         <div class="social-icons">
-            <a href="https://www.linkedin.com/in/mohamed-ala-a-2b333533a" class="social-icon" target="_blank">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://github.com/muham-ed/skills-github-pages" class="social-icon" target="_blank">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://www.youtube.com/channel/UCS5vFLuP5h1NTgvHiM2oJHQ" class="social-icon" target="_blank">
-                <i class="fab fa-youtube"></i>
-            </a>
-            <a href="https://www.instagram.com/mohamedabotasa/" class="social-icon" target="_blank">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.facebook.com/profile.php?id=61550839582471&locale=ar_AR" class="social-icon" target="_blank">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://wa.me/201060828627" class="social-icon" target="_blank" style="background: linear-gradient(45deg, #25D366, #128C7E);">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="mailto:mohamedalaaaldinabotasa@gmail.com" class="social-icon">
-                <i class="fas fa-envelope"></i>
-            </a>
+            <a href="https://www.linkedin.com/in/mohamed-ala-a-2b333533a" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/muham-ed/skills-github-pages" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.youtube.com/channel/UCS5vFLuP5h1NTgvHiM2oJHQ" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/mohamedabotasa/" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61550839582471&locale=ar_AR" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://wa.me/201060828627" class="social-icon" target="_blank" style="background: linear-gradient(45deg, #25D366, #128C7E);"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:mohamedalaaaldinabotasa@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
         </div>
         <p class="copyright">© 2025 مسار التطور التقني | مقالات محمد علاء</p>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- ===== جافاسكريبت ===== -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // فلترة المقالات
+            // ===== فلترة المقالات =====
             const filterBtns = document.querySelectorAll('.filter-btn');
             const articleCards = document.querySelectorAll('.article-card');
             
@@ -770,7 +763,7 @@
                 });
             });
             
-            // عرض تفاصيل المقال
+            // ===== عرض تفاصيل المقال =====
             const readMoreLinks = document.querySelectorAll('.read-more');
             const articlesSection = document.getElementById('articles-list');
             const articleDetailsSection = document.getElementById('article-details');
