@@ -2,499 +2,532 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-    <title>أساسيات الحاسوب - منصة تفاعلية</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أساسيات الحاسوب | Mohamed Alaa</title>
     <link rel="icon" href="icons mohamed.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- CodeMirror -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/dracula.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.min.js"></script>
-    
     <style>
-        /* نفس الأنماط السابقة - احتفظ بها كما هي */
-        :root {
-            --primary: #8b5cf6;
-            --primary-light: #a78bfa;
-            --primary-dark: #6d28d9;
-            --secondary: #06b6d4;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --dark: #0b1120;
-            --dark-card: #1e293b;
-            --text: #f8fafc;
-            --text-muted: #94a3b8;
-            --gradient-1: linear-gradient(135deg, #8b5cf6, #6366f1);
-            --gradient-2: linear-gradient(135deg, #06b6d4, #3b82f6);
-            --gradient-3: linear-gradient(135deg, #10b981, #059669);
-            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
-            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            font-family: 'Cairo', 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
         }
-        
-        body { 
-            background: linear-gradient(135deg, #0b1120, #1a1f2e, #0f172a); 
-            color: var(--text); 
-            min-height: 100vh; 
-        }
-        
-        .nav-container { 
-            background: rgba(11, 17, 32, 0.95); 
-            padding: 15px 0; 
-            position: fixed; 
-            top: 0; 
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            z-index: 1000; 
-            backdrop-filter: blur(16px); 
-            border-bottom: 1px solid rgba(139, 92, 246, 0.3); 
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.1) 0%, transparent 20%),
+                        radial-gradient(circle at 90% 80%, rgba(247, 37, 133, 0.1) 0%, transparent 20%);
+            z-index: -1;
         }
-        
-        .nav-content { 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 0 20px; 
+
+        .nav-container {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
-        .nav-logo { 
-            font-size: 2rem; 
-            font-weight: 700; 
-            background: linear-gradient(135deg, #8b5cf6, #06b6d4); 
-            -webkit-background-clip: text; 
-            background-clip: text; 
-            color: transparent; 
-            text-decoration: none; 
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
         }
-        
-        .nav-links { 
-            display: flex; 
-            gap: 25px; 
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
             flex-wrap: wrap;
             justify-content: center;
         }
-        
-        .nav-link { 
-            color: var(--text); 
-            text-decoration: none; 
-            font-weight: 500; 
-            padding: 10px 18px; 
-            border-radius: 30px; 
-            transition: all 0.3s ease; 
+
+        .nav-link {
+            color: #e0e1dd;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(67, 97, 238, 0.2);
         }
-        
-        .nav-link:hover, .nav-link.active { 
-          /*  background: var(--gradient-1); */
-            color: white; 
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
             border-color: transparent;
             transform: translateY(-2px);
-           /*  box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4);*/
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.4);
         }
 
-        .container { 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            padding: 20px; 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
             margin-top: 80px;
-            margin-bottom: 550px;
-        }
-        
-        header { 
-            text-align: center; 
-            padding: 50px 20px; 
-            margin-bottom: 40px; 
-            background: rgba(30, 41, 59, 0.7);
-            border-radius: 40px;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            backdrop-filter: blur(12px);
-            animation: fadeIn 1s ease; 
-            box-shadow: var(--shadow);
-        }
-        
-        .logo { 
-            font-size: clamp(2rem, 8vw, 3rem); 
-            font-weight: 800; 
-            margin-bottom: 15px; 
-            background: linear-gradient(135deg, #8b5cf6, #06b6d4, #10b981); 
-            -webkit-background-clip: text; 
-            background-clip: text; 
-            color: transparent; 
-        }
-        
-        .subtitle { 
-            font-size: clamp(1rem, 4vw, 1.3rem); 
-            max-width: 700px; 
-            margin: 0 auto; 
-            line-height: 1.9; 
-            color: var(--text-muted); 
         }
 
-        .computer-lessons { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 25px; 
-            margin: 40px 0; 
+        .page-header {
+            text-align: center;
+            padding: 50px 20px;
+            margin-bottom: 40px;
+            background: rgba(27, 38, 59, 0.7);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            animation: fadeIn 1s ease;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
         }
-        
-        .lesson-card { 
-            background: rgba(30, 41, 59, 0.8); 
-            border-radius: 30px; 
-            padding: 35px 25px; 
-            text-align: center; 
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3, #4cc9f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #e0e1dd;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 25px 0 0;
+        }
+
+        .badge {
+            background: rgba(76, 201, 240, 0.15);
+            border: 1px solid #4cc9f0;
+            color: #4cc9f0;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0 0;
+        }
+
+        .download-btn {
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border: none;
             cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.5);
+        }
+
+        .download-btn.secondary {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: rgba(27, 38, 59, 0.85);
             backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
+            border-radius: 20px;
+            padding: 30px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
         }
-        
-        .lesson-card::before {
+
+        .card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: linear-gradient(90deg, #4361ee, #3a0ca3, #4cc9f0);
             transform: scaleX(0);
             transition: transform 0.5s ease;
         }
-        
-        .lesson-card:hover::before {
+
+        .card:hover::before {
             transform: scaleX(1);
         }
-        
-        .lesson-card:hover { 
-            transform: translateY(-15px) scale(1.02); 
-            border-color: var(--primary);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .lesson-icon { 
-            width: 110px; 
-            height: 110px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 3rem; 
-            margin: 0 auto 25px; 
-            color: white; 
-            transition: all 0.5s ease;
-            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
-        }
-        
-        .lesson-card:hover .lesson-icon {
-            transform: scale(1.1) rotate(8deg);
-        }
-        
-        .intro-icon { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
-        .windows-icon { background: linear-gradient(135deg, #0078d4, #004e8c); }
-        .files-icon { background: linear-gradient(135deg, #10b981, #047857); }
-        .internet-icon { background: linear-gradient(135deg, #f59e0b, #d97706); }
-        .typing-icon { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
-        .practice-icon { background: linear-gradient(135deg, #64748b, #475569); }
-        
-        .lesson-title { 
-            font-size: 1.8rem; 
-            margin-bottom: 15px; 
-            color: var(--secondary); 
-            font-weight: 700;
-        }
-        
-        .lesson-description { 
-            line-height: 1.8; 
-            margin-bottom: 25px; 
-            color: var(--text-muted); 
-            font-size: 1.05rem;
-        }
-        
-        .lesson-resource { 
-            background: var(--gradient-1); 
-            padding: 12px 30px; 
-            border-radius: 40px; 
-            display: inline-block; 
-            color: white; 
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            border: none;
-            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
-        }
-        
-        .lesson-resource:hover { 
-            transform: translateY(-3px) scale(1.05); 
-            box-shadow: 0 15px 30px rgba(139, 92, 246, 0.5);
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: #4cc9f0;
         }
 
-        .lesson-details {
-            background: rgba(30, 41, 59, 0.95);
-            border-radius: 40px;
-            padding: 40px;
-            margin: 50px 0;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            display: none;
-            box-shadow: var(--shadow-lg);
-            backdrop-filter: blur(12px);
-        }
-
-        .lesson-details.active {
-            display: block;
-            animation: slideIn 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(50px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .lesson-details h2 {
-            color: var(--secondary);
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
-            border-bottom: 2px solid rgba(139, 92, 246, 0.3);
-            padding-bottom: 20px;
-        }
-
-        .lesson-section {
-            margin-bottom: 45px;
-        }
-
-        .lesson-section h3 {
-            color: var(--primary-light);
-            font-size: clamp(1.4rem, 4vw, 1.8rem);
-            margin-bottom: 25px;
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
             display: flex;
             align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            margin: 0 auto 20px;
+            transition: all 0.3s ease;
         }
 
-        .terms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 25px 0;
+        .card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
         }
 
-        .term-card {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(6, 182, 212, 0.15));
-            padding: 25px;
-            border-radius: 24px;
+        .card h3 {
+            color: #4cc9f0;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #e0e1dd;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .spec-list {
+            list-style: none;
+            padding: 0;
+            text-align: right;
+            margin-top: 15px;
+        }
+
+        .spec-list li {
+            color: #e0e1dd;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .spec-list li i {
+            color: #4cc9f0;
+            width: 20px;
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        .comparison-section {
+            background: rgba(27, 38, 59, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px;
+            margin: 40px 0;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
-            backdrop-filter: blur(5px);
+        }
+
+        .section-title {
+            color: #4cc9f0;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            color: #e0e1dd;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .comparison-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        .comparison-card.laptop {
+            border-top: 5px solid #4cc9f0;
+        }
+
+        .comparison-card.desktop {
+            border-top: 5px solid #4361ee;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .comparison-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .laptop h3 { color: #4cc9f0; }
+        .desktop h3 { color: #4361ee; }
+
+        .comparison-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .comparison-card ul li {
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #e0e1dd;
+        }
+
+        .comparison-card ul li i {
+            width: 24px;
+            color: #4cc9f0;
+        }
+
+        .tips-box {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(58, 12, 163, 0.1));
+            border: 1px solid #4361ee;
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 30px;
             text-align: center;
         }
 
-        .term-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 30px rgba(139, 92, 246, 0.3);
+        .tips-box p {
+            color: #fff;
+            font-size: 1.2rem;
         }
 
-        .term-en {
-            color: var(--secondary);
-            font-size: 1.8rem;
-            font-weight: 800;
+        .tips-box i {
+            color: #4cc9f0;
+            font-size: 2rem;
             margin-bottom: 10px;
-            font-family: 'Courier New', monospace;
-            background: rgba(0, 0, 0, 0.3);
-            display: inline-block;
-            padding: 5px 20px;
-            border-radius: 40px;
         }
 
-        .term-ar {
-            color: var(--text);
-            font-size: 1.4rem;
-            margin-bottom: 8px;
-            font-weight: 600;
+        .shortcuts-section {
+            margin: 40px 0;
         }
 
         .shortcuts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 15px;
-            margin: 20px 0;
+            margin-top: 25px;
         }
 
         .shortcut-item {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(6, 182, 212, 0.2));
-            padding: 20px;
-            border-radius: 20px;
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 15px;
+            padding: 15px;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-            flex-wrap: wrap;
+            transition: 0.3s;
         }
 
         .shortcut-item:hover {
-            transform: translateX(-8px);
-            border-color: var(--secondary);
+            transform: translateX(-5px);
+            border-color: #4cc9f0;
         }
 
         .shortcut-key {
             background: #1e1e1e;
-            padding: 12px 18px;
-            border-radius: 16px;
+            color: #4cc9f0;
+            padding: 8px 15px;
+            border-radius: 10px;
             font-family: 'Courier New', monospace;
             font-weight: bold;
+            border: 2px solid #4cc9f0;
             min-width: 100px;
             text-align: center;
-            color: var(--secondary);
-            border: 2px solid var(--secondary);
-            font-size: 1.1rem;
         }
 
         .shortcut-desc {
-            color: var(--text);
-            font-size: 1.1rem;
-            font-weight: 500;
+            color: #e0e1dd;
             flex: 1;
         }
 
-        .code-block {
-            position: relative;
-            background: #0b1120;
-            border-radius: 24px;
-            padding: 35px;
-            margin: 35px 0;
-            font-family: 'Courier New', monospace;
-            direction: ltr;
-            text-align: left;
-            overflow-x: auto;
-            border: 2px solid var(--primary);
-            box-shadow: var(--shadow-lg);
+        .practice-section {
+            background: linear-gradient(135deg, #10b981, #047857);
+            border-radius: 30px;
+            padding: 40px;
+            margin: 40px 0;
         }
 
-        .code-block pre {
-            margin: 0;
-            color: #e2e8f0;
-            font-size: 1rem;
-            line-height: 1.9;
+        .practice-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
         }
 
-        .copy-code-btn {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--secondary);
-            color: var(--secondary);
-            padding: 10px 22px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+        .step {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: white;
+            color: #10b981;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 10px;
-            backdrop-filter: blur(5px);
-            font-weight: 600;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
         }
 
-        .copy-code-btn:hover {
-            background: var(--secondary);
+        .step p {
             color: white;
-            transform: translateY(-3px);
+            margin: 0;
         }
 
-        .fixed-editor {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(11, 17, 32, 0.98);
-            backdrop-filter: blur(20px);
-            border-top: 4px solid var(--primary);
-            z-index: 999;
-            box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.7);
+        .interactive-editor {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 2px solid #4cc9f0;
         }
 
         .editor-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
-            background: rgba(0, 0, 0, 0.4);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+            margin-bottom: 20px;
             flex-wrap: wrap;
             gap: 15px;
         }
 
         .editor-title {
-            color: var(--secondary);
-            font-size: 1.2rem;
+            color: #4cc9f0;
+            font-size: 1.3rem;
             display: flex;
             align-items: center;
             gap: 10px;
-            font-weight: 700;
         }
 
-        .editor-title i {
-            font-size: 1.5rem;
-        }
-
-        .editor-controls {
+        .editor-actions {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
         }
 
-        .control-btn {
+        .editor-btn {
             padding: 10px 20px;
             border: none;
-            border-radius: 40px;
+            border-radius: 10px;
             cursor: pointer;
-            font-weight: 700;
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 8px;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
         }
 
         .run-btn {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: linear-gradient(45deg, #10b981, #059669);
             color: white;
         }
 
         .run-btn:hover {
-            transform: translateY(-4px);
-        }
-
-        .copy-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--secondary);
-            border: 2px solid var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.4);
         }
 
         .reset-btn {
@@ -503,169 +536,86 @@
             border: 2px solid #f87171;
         }
 
-        .zoom-btn {
+        .reset-btn:hover {
+            background: rgba(248, 113, 113, 0.2);
+        }
+
+        .copy-btn {
             background: rgba(255, 255, 255, 0.1);
-            color: var(--secondary);
-            border: 2px solid var(--secondary);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1.2rem;
+            color: #4cc9f0;
+            border: 2px solid #4cc9f0;
         }
 
-        .zoom-btn:hover {
-            background: var(--secondary);
-            color: white;
+        .copy-btn:hover {
+            background: rgba(76, 201, 240, 0.2);
         }
 
-        .zoom-level {
-            color: white;
-            font-size: 0.9rem;
-            min-width: 50px;
-            text-align: center;
-        }
-
-        .toggle-editor {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .editor-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            padding: 20px;
-            max-height: 500px;
-            transition: max-height 0.4s ease;
-            overflow: hidden;
-        }
-
-        .editor-container.collapsed {
-            max-height: 0;
-            padding: 0 20px;
-        }
-
-        @media (max-width: 768px) {
-            .editor-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .container {
-                margin-bottom: 600px;
-            }
-            
-            .editor-header {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .editor-controls {
-                justify-content: center;
-            }
-        }
-
-        .editor-panel, .output-panel {
+        .editor-area {
             background: #0b1120;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 2px solid rgba(139, 92, 246, 0.3);
-            box-shadow: var(--shadow);
-        }
-
-        .panel-header {
-            background: #1e293b;
-            padding: 12px 15px;
-            color: #fff;
-            font-weight: 700;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1rem;
-            border-bottom: 2px solid var(--primary);
-        }
-
-        .CodeMirror {
-            height: 280px;
-            font-size: 14px;
-        }
-
-        .output-content {
+            border-radius: 15px;
             padding: 20px;
-            color: #fff;
+            min-height: 150px;
+            color: #e0e1dd;
             font-family: 'Courier New', monospace;
-            white-space: pre-wrap;
-            min-height: 280px;
-            max-height: 280px;
-            overflow-y: auto;
-            background: #0b1120;
             line-height: 1.8;
-            font-size: 14px;
-        }
-
-        .result-box {
-            background: #1e293b;
-            border-radius: 24px;
-            padding: 30px;
-            margin: 30px 0;
-            border: 2px solid var(--success);
-            box-shadow: var(--shadow);
-        }
-
-        .result-title {
-            color: var(--success);
-            font-size: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
             margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            white-space: pre-wrap;
+            direction: ltr;
+            text-align: left;
         }
 
-        .result-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
+        .editor-area:focus {
+            outline: none;
+            border-color: #4cc9f0;
         }
 
-        .result-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .result-en {
-            color: var(--secondary);
-            font-weight: bold;
+        .output-area {
+            background: #0b1120;
+            border-radius: 15px;
+            padding: 20px;
+            min-height: 80px;
+            color: #e0e1dd;
             font-family: 'Courier New', monospace;
+            border: 1px solid #10b981;
+            white-space: pre-wrap;
+            direction: ltr;
+            text-align: left;
         }
 
-        .result-ar {
-            color: var(--text);
-        }
-
-        footer {
+        .tip-card {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            border-radius: 30px;
+            padding: 40px;
+            margin: 40px 0;
             text-align: center;
-            padding: 35px 0;
+        }
+
+        .tip-card i {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .tip-card h3 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .tip-card p {
+            color: white;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .footer {
             margin-top: 40px;
-            border-top: 2px solid rgba(139, 92, 246, 0.3);
-            margin-bottom: 550px;
-            background: rgba(11, 17, 32, 0.5);
-            backdrop-filter: blur(10px);
+            padding: 30px;
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
         }
 
         .social-icons {
@@ -680,24 +630,50 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
             transition: all 0.3s ease;
+            text-decoration: none;
             color: #fff;
-            border: 2px solid rgba(139, 92, 246, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .social-icon:hover {
-            background: var(--gradient-1);
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
             transform: translateY(-5px);
+            color: #fff;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .footer-link {
+            background: rgba(76, 201, 240, 0.1);
+            color: #4cc9f0;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            border: 1px solid #4cc9f0;
+            transition: 0.3s;
+        }
+
+        .footer-link:hover {
+            background: #4cc9f0;
+            color: #0f172a;
         }
 
         .copyright {
-            color: var(--text-muted);
-            font-size: 1rem;
+            color: #e0e1dd;
+            font-size: 0.9rem;
+            margin-top: 20px;
         }
 
         @keyframes fadeIn {
@@ -710,489 +686,443 @@
                 transform: translateY(0);
             }
         }
+
+        @media (max-width: 768px) {
+            .nav-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .download-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- شريط التنقل الموحد --><nav class="nav-container">
-        <div class="nav-content">
-            <a href="index.html" class="nav-logo">Mohamed Alaa</a>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link">الرئيسية</a>
-                <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
-                <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
-                <a href="data-analyst-course.html" class="nav-link">📊 Data Analyst</a>
-                <a href="data-scientist-course.html" class="nav-link active">🔬 Data Scientist</a>
-                <a href="blogs.html" class="nav-link">المقالات</a>
-                <a href="login.html" class="nav-link">دخول</a>
-            </div>
+
+<nav class="nav-container">
+    <div class="nav-content">
+        <a href="index.html" class="nav-logo">Mohamed Alaa</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">الرئيسية</a>
+            <a href="Computer_basics.html" class="nav-link active">أساسيات الحاسوب</a>
+            <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
+            <a href="data-analyst-course.html" class="nav-link">📊 Data Analyst</a>
+            <a href="data-scientist-course.html" class="nav-link">🔬 Data Scientist</a>
+            <a href="blogs.html" class="nav-link">المقالات</a>
+            <a href="login.html" class="nav-link">دخول</a>
         </div>
-    </nav>
-    <!-- الحاوية الرئيسية -->
-    <div class="container">
-        <!-- الهيدر -->
-        <header>
-            <div class="logo">أساسيات الحاسوب</div>
-            <h1>دورة تفاعلية لتعلم مكونات الحاسوب</h1>
-            <p class="subtitle">اختر درسك، اقرأ الشرح، وجرب الأمثلة في المحرر بالأسفل</p>
-        </header>
+    </div>
+</nav>
 
-        <!-- بطاقات الدروس -->
-        <div class="computer-lessons">
-            <div class="lesson-card" data-lesson="intro">
-                <div class="lesson-icon intro-icon"><i class="fas fa-microchip"></i></div>
-                <h3 class="lesson-title">مكونات الحاسوب</h3>
-                <p class="lesson-description">تعرف على المكونات الأساسية للحاسوب بالعربي والإنجليزي</p>
-                <div class="lesson-resource view-details" data-lesson="intro">📖 عرض الدرس</div>
-            </div>
-
-            <div class="lesson-card" data-lesson="windows">
-                <div class="lesson-icon windows-icon"><i class="fab fa-windows"></i></div>
-                <h3 class="lesson-title">نظام ويندوز</h3>
-                <p class="lesson-description">اختصارات ومصطلحات ويندوز المهمة</p>
-                <div class="lesson-resource view-details" data-lesson="windows">📖 عرض الدرس</div>
-            </div>
-
-            <div class="lesson-card" data-lesson="files">
-                <div class="lesson-icon files-icon"><i class="fas fa-folder"></i></div>
-                <h3 class="lesson-title">إدارة الملفات</h3>
-                <p class="lesson-description">أنواع الملفات وامتداداتها</p>
-                <div class="lesson-resource view-details" data-lesson="files">📖 عرض الدرس</div>
-            </div>
-            
-            <div class="lesson-card" data-lesson="internet">
-                <div class="lesson-icon internet-icon"><i class="fas fa-globe"></i></div>
-                <h3 class="lesson-title">الإنترنت</h3>
-                <p class="lesson-description">أساسيات التصفح والبحث</p>
-                <div class="lesson-resource view-details" data-lesson="internet">📖 عرض الدرس</div>
-            </div>
-            
-            <div class="lesson-card" data-lesson="typing">
-                <div class="lesson-icon typing-icon"><i class="fas fa-keyboard"></i></div>
-                <h3 class="lesson-title">الكتابة السريعة</h3>
-                <p class="lesson-description">نصائح لزيادة سرعة الكتابة</p>
-                <div class="lesson-resource view-details" data-lesson="typing">📖 عرض الدرس</div>
-            </div>
-            
-            <div class="lesson-card" data-lesson="practice">
-                <div class="lesson-icon practice-icon"><i class="fas fa-check-circle"></i></div>
-                <h3 class="lesson-title">تطبيق عملي</h3>
-                <p class="lesson-description">مشروع شامل لكل ما تعلمته</p>
-                <div class="lesson-resource view-details" data-lesson="practice">📖 عرض الدرس</div>
-            </div>
-        </div>
-
-        <!-- الدرس الأول: مكونات الحاسوب -->
-        <div id="intro-details" class="lesson-details active">
-            <h2><i class="fas fa-microchip"></i> الدرس الأول: مكونات الحاسوب الأساسية</h2>
-
-            <div class="lesson-section">
-                <h3><i class="fas fa-language"></i> المصطلحات والترجمة الصحيحة</h3>
-                <div class="terms-grid">
-                    <div class="term-card"><div class="term-en">CPU</div><div class="term-ar">وحدة المعالجة المركزية</div></div>
-                    <div class="term-card"><div class="term-en">RAM</div><div class="term-ar">الذاكرة العشوائية</div></div>
-                    <div class="term-card"><div class="term-en">ROM</div><div class="term-ar">ذاكرة القراءة فقط</div></div>
-                    <div class="term-card"><div class="term-en">Monitor</div><div class="term-ar">الشاشة</div></div>
-                    <div class="term-card"><div class="term-en">Keyboard</div><div class="term-ar">لوحة المفاتيح</div></div>
-                    <div class="term-card"><div class="term-en">Mouse</div><div class="term-ar">الفأرة</div></div>
-                </div>
-            </div>
-
-            <div class="lesson-section">
-                <h3><i class="fas fa-keyboard"></i> اختصارات الكيبورد</h3>
-                <div class="shortcuts-grid">
-                    <div class="shortcut-item"><span class="shortcut-key">Ctrl + C</span><span class="shortcut-desc">نسخ</span></div>
-                    <div class="shortcut-item"><span class="shortcut-key">Ctrl + V</span><span class="shortcut-desc">لصق</span></div>
-                    <div class="shortcut-item"><span class="shortcut-key">Ctrl + X</span><span class="shortcut-desc">قص</span></div>
-                    <div class="shortcut-item"><span class="shortcut-key">Ctrl + Z</span><span class="shortcut-desc">تراجع</span></div>
-                    <div class="shortcut-item"><span class="shortcut-key">Ctrl + A</span><span class="shortcut-desc">تحديد الكل</span></div>
-                </div>
-            </div>
-
-            <div class="lesson-section">
-                <h3><i class="fas fa-code"></i> كود HTML</h3>
-                <div class="code-block">
-                    <button class="copy-code-btn" onclick="copyCode(this, 'intro-code')">
-                        <i class="fas fa-copy"></i> نسخ
-                    </button>
-                    <pre id="intro-code"><code>&lt;h1&gt;🔹 مكونات الحاسوب 🔹&lt;/h1&gt;
-&lt;ul&gt;
-    &lt;li&gt;&lt;strong&gt;CPU&lt;/strong&gt; - وحدة المعالجة المركزية&lt;/li&gt;
-    &lt;li&gt;&lt;strong&gt;RAM&lt;/strong&gt; - الذاكرة العشوائية&lt;/li&gt;
-    &lt;li&gt;&lt;strong&gt;ROM&lt;/strong&gt; - ذاكرة القراءة فقط&lt;/li&gt;
-    &lt;li&gt;&lt;strong&gt;Monitor&lt;/strong&gt; - الشاشة&lt;/li&gt;
-    &lt;li&gt;&lt;strong&gt;Keyboard&lt;/strong&gt; - لوحة المفاتيح&lt;/li&gt;
-    &lt;li&gt;&lt;strong&gt;Mouse&lt;/strong&gt; - الفأرة&lt;/li&gt;
-&lt;/ul&gt;</code></pre>
-                </div>
-            </div>
-
-            <div class="result-box">
-                <div class="result-title"><i class="fas fa-check-circle"></i> النتيجة المتوقعة</div>
-                <div class="result-grid">
-                    <div class="result-item"><span class="result-en">CPU</span> <span class="result-ar">وحدة المعالجة</span></div>
-                    <div class="result-item"><span class="result-en">RAM</span> <span class="result-ar">ذاكرة عشوائية</span></div>
-                    <div class="result-item"><span class="result-en">ROM</span> <span class="result-ar">ذاكرة قراءة فقط</span></div>
-                    <div class="result-item"><span class="result-en">Monitor</span> <span class="result-ar">الشاشة</span></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- الدرس الثاني: نظام ويندوز -->
-        <div id="windows-details" class="lesson-details">
-            <h2><i class="fab fa-windows"></i> الدرس الثاني: نظام ويندوز</h2>
-            <div class="lesson-section">
-                <h3><i class="fas fa-keyboard"></i> اختصارات ويندوز</h3>
-                <div class="shortcuts-grid">
-                    <div class="shortcut-item"><span class="shortcut-key">Win + E</span><span class="shortcut-desc">مستكشف الملفات</span></div>
-                    <div class="shortcut-item"><span class="shortcut-key">Win + D</span><span class="shortcut-desc">إظهار سطح المكتب</span></div>
-                    <div class="shortcut-item"><span class="shortcut-key">Win + L</span><span class="shortcut-desc">قفل الشاشة</span></div>
-                    <div class="shortcut-item"><span class="shortcut-key">Alt + Tab</span><span class="shortcut-desc">تبديل النوافذ</span></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- الدرس الثالث: إدارة الملفات -->
-        <div id="files-details" class="lesson-details">
-            <h2><i class="fas fa-folder"></i> الدرس الثالث: إدارة الملفات</h2>
-            <div class="lesson-section">
-                <h3><i class="fas fa-file"></i> أنواع الملفات</h3>
-                <div class="terms-grid">
-                    <div class="term-card"><div class="term-en">.txt</div><div class="term-ar">ملف نصي</div></div>
-                    <div class="term-card"><div class="term-en">.jpg</div><div class="term-ar">صورة</div></div>
-                    <div class="term-card"><div class="term-en">.pdf</div><div class="term-ar">مستند</div></div>
-                    <div class="term-card"><div class="term-en">.mp3</div><div class="term-ar">صوت</div></div>
-                </div>
-            </div>
-        </div>
+<div class="container">
+    <div class="page-header">
+        <div class="logo">🖥️ أساسيات الحاسوب</div>
+        <h1>دورة شاملة لفهم مكونات الحاسوب</h1>
+        <p class="subtitle">رحلة تعليمية من الصفر تفهم فيها كل جزء في جهازك، الفرق بين الأجهزة، وأهم الاختصارات للمحترفين</p>
         
-        <!-- الدرس الرابع: الإنترنت -->
-        <div id="internet-details" class="lesson-details">
-            <h2><i class="fas fa-globe"></i> الدرس الرابع: الإنترنت</h2>
-            <div class="lesson-section">
-                <h3><i class="fas fa-keyboard"></i> اختصارات المتصفح</h3>
-                <div class="shortcuts-grid">
-                    <div class="shortcut-item"><span class="shortcut-key">Ctrl + T</span><span class="shortcut-desc">تبويب جديد</span></div>
-                    <div class="shortcut-item"><span class="shortcut-key">Ctrl + W</span><span class="shortcut-desc">إغلاق التبويب</span></div>
-                    <div class="shortcut-item"><span class="shortcut-key">Ctrl + Shift + T</span><span class="shortcut-desc">فتح مغلق</span></div>
-                </div>
+        <!-- أزرار التحميل -->
+        <div class="download-buttons">
+            <a href="1-Introduction to Computer Fundamentals – مقدمة في أساسيات الحاسوب.pptx" download="1-Introduction to Computer Fundamentals – مقدمة في أساسيات الحاسوب.pptx" class="download-btn" id="downloadPdfBtn">
+                <i class="fas fa-file-pdf"></i> تحميل الدرس الأول (PDF)
+            </a>
+            <a href="#" id="generateNotesBtn" class="download-btn secondary">
+                <i class="fas fa-file-alt"></i> إنشاء وتحميل الملخص
+            </a>
+        </div>
+
+        <div class="badge-container">
+            <span class="badge"><i class="fas fa-clock"></i> 6 دروس</span>
+            <span class="badge"><i class="fas fa-tasks"></i> 3 مشاريع</span>
+            <span class="badge"><i class="fas fa-level-up-alt"></i> للمبتدئين</span>
+        </div>
+    </div>
+
+    <!-- المكونات الأساسية -->
+    <h2 class="section-title">🔧 المكونات الأساسية للحاسوب</h2>
+    <div class="grid">
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-microchip"></i></div>
+            <h3>وحدة المعالجة (CPU)</h3>
+            <p>هو <span class="highlight">"العقل المدبر"</span> للكمبيوتر. كل عملية بتتم من خلاله، بيفهم وينفذ الأوامر.</p>
+            <ul class="spec-list">
+                <li><i class="fas fa-check-circle"></i> سرعة تصل إلى 5 جيجاهيرتز</li>
+                <li><i class="fas fa-check-circle"></i> عدد النوى يصل إلى 24 نواة</li>
+                <li><i class="fas fa-check-circle"></i> Intel, AMD, Apple Silicon</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-memory"></i></div>
+            <h3>الذاكرة العشوائية (RAM)</h3>
+            <p>مساحة العمل المؤقتة. كل ما زادت، قدرت تفتح برامج أكتر في نفس الوقت من غير تهنيج.</p>
+            <ul class="spec-list">
+                <li><i class="fas fa-check-circle"></i> 8 جيجابايت للمستخدم العادي</li>
+                <li><i class="fas fa-check-circle"></i> 16-32 جيجابايت للمحترفين</li>
+                <li><i class="fas fa-check-circle"></i> DDR4, DDR5 الأحدث</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-hdd"></i></div>
+            <h3>وحدة التخزين (SSD/HDD)</h3>
+            <p>المخزن الدائم لصورك وملفاتك. <span class="highlight">SSD أسرع</span>، HDD أرخص للسعات الكبيرة.</p>
+            <ul class="spec-list">
+                <li><i class="fas fa-check-circle"></i> SSD: سرعة 500-7000 ميجابايت/ث</li>
+                <li><i class="fas fa-check-circle"></i> HDD: سعات 1-20 تيرابايت</li>
+                <li><i class="fas fa-check-circle"></i> NVMe أسرع من SATA</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-desktop"></i></div>
+            <h3>الشاشة (Monitor)</h3>
+            <p>نافذتك على العالم الرقمي. دقة الألوان والوضوح هما سر الراحة للعين.</p>
+            <ul class="spec-list">
+                <li><i class="fas fa-check-circle"></i> دقة Full HD, 4K, 8K</li>
+                <li><i class="fas fa-check-circle"></i> معدل تحديث 60-240Hz</li>
+                <li><i class="fas fa-check-circle"></i> IPS, OLED, TN</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- مقارنة بين اللابتوب والمكتبي -->
+    <div class="comparison-section">
+        <h2 class="section-title">💻 مقارنة شاملة: لابتوب vs كمبيوتر مكتبي</h2>
+        <p class="section-subtitle">أيهما يناسب احتياجك؟ تعرف على الفروقات بالتفصيل</p>
+
+        <div class="comparison-grid">
+            <div class="comparison-card laptop">
+                <h3><i class="fas fa-laptop"></i> لابتوب (Laptop)</h3>
+                <ul>
+                    <li><i class="fas fa-weight-hanging"></i> خفيف وسهل الحمل - مناسب للسفر</li>
+                    <li><i class="fas fa-battery-full"></i> يعمل بالبطارية (3-10 ساعات)</li>
+                    <li><i class="fas fa-tools"></i> صعب الترقية - القطع مدمجة</li>
+                    <li><i class="fas fa-dollar-sign"></i> أغلى لنفس المواصفات</li>
+                    <li><i class="fas fa-wifi"></i> كل شيء مدمج (شاشة، كيبورد، كاميرا)</li>
+                    <li><i class="fas fa-plug"></i> منافذ أقل، قد تحتاج محول</li>
+                </ul>
+            </div>
+
+            <div class="comparison-card desktop">
+                <h3><i class="fas fa-tower"></i> مكتبي (Desktop)</h3>
+                <ul>
+                    <li><i class="fas fa-weight-hanging"></i> كبير وثقيل - استقرار ثابت</li>
+                    <li><i class="fas fa-plug"></i> يحتاج كهرباء دائمة</li>
+                    <li><i class="fas fa-tools"></i> سهل الترقية - كل قطعة مستقلة</li>
+                    <li><i class="fas fa-dollar-sign"></i> أرخص وأعلى أداء بنفس التكلفة</li>
+                    <li><i class="fas fa-desktop"></i> شاشة منفصلة تختارها بنفسك</li>
+                    <li><i class="fas fa-plug"></i> منافذ كثيرة، يدعم توصيلات متعددة</li>
+                </ul>
             </div>
         </div>
-        
-        <!-- الدرس الخامس: الكتابة السريعة -->
-        <div id="typing-details" class="lesson-details">
-            <h2><i class="fas fa-keyboard"></i> الدرس الخامس: الكتابة السريعة</h2>
-            <div class="lesson-section">
-                <h3><i class="fas fa-hands"></i> وضع الأصابع</h3>
-                <div class="terms-grid">
-                    <div class="term-card"><div class="term-ar">اليد اليسرى: A,S,D,F</div></div>
-                    <div class="term-card"><div class="term-ar">اليد اليمنى: J,K,L,;</div></div>
-                </div>
-            </div>
+
+        <div class="tips-box">
+            <i class="fas fa-lightbulb"></i>
+            <p><strong>💡 نصيحة:</strong> لو محتاج التنقل → لابتوب. لو عايز أقوى أداء بأقل سعر → مكتبي. لو بتعمل الاثنين → الأفضل يكون عندك الاتنين!</p>
         </div>
-        
-        <!-- الدرس السادس: تطبيق عملي -->
-        <div id="practice-details" class="lesson-details">
-            <h2><i class="fas fa-check-circle"></i> الدرس السادس: تطبيق عملي</h2>
-            <div class="lesson-section">
-                <h3><i class="fas fa-project-diagram"></i> مشروع شامل</h3>
-                <p class="text-muted">حاول إنشاء صفحة HTML تعرض كل ما تعلمته</p>
+    </div>
+
+    <!-- اختصارات الكيبورد -->
+    <div class="shortcuts-section">
+        <h2 class="section-title">⌨️ أهم اختصارات الكيبورد</h2>
+        <p class="section-subtitle">اختصارات بتوفرلك وقت كتير وتخليك أسرع في الشغل</p>
+
+        <div class="shortcuts-grid">
+            <div class="shortcut-item">
+                <span class="shortcut-key">Ctrl + C</span>
+                <span class="shortcut-desc">نسخ (Copy)</span>
+            </div>
+            <div class="shortcut-item">
+                <span class="shortcut-key">Ctrl + V</span>
+                <span class="shortcut-desc">لصق (Paste)</span>
+            </div>
+            <div class="shortcut-item">
+                <span class="shortcut-key">Ctrl + X</span>
+                <span class="shortcut-desc">قص (Cut)</span>
+            </div>
+            <div class="shortcut-item">
+                <span class="shortcut-key">Ctrl + Z</span>
+                <span class="shortcut-desc">تراجع (Undo)</span>
+            </div>
+            <div class="shortcut-item">
+                <span class="shortcut-key">Ctrl + Y</span>
+                <span class="shortcut-desc">إعادة (Redo)</span>
+            </div>
+            <div class="shortcut-item">
+                <span class="shortcut-key">Ctrl + A</span>
+                <span class="shortcut-desc">تحديد الكل</span>
+            </div>
+            <div class="shortcut-item">
+                <span class="shortcut-key">Ctrl + S</span>
+                <span class="shortcut-desc">حفظ (Save)</span>
+            </div>
+            <div class="shortcut-item">
+                <span class="shortcut-key">Ctrl + P</span>
+                <span class="shortcut-desc">طباعة (Print)</span>
+            </div>
+            <div class="shortcut-item">
+                <span class="shortcut-key">Ctrl + F</span>
+                <span class="shortcut-desc">بحث (Find)</span>
+            </div>
+            <div class="shortcut-item">
+                <span class="shortcut-key">Win + E</span>
+                <span class="shortcut-desc">مستكشف الملفات</span>
             </div>
         </div>
     </div>
 
-    <!-- المحرر الثابت في الأسفل -->
-    <div class="fixed-editor" id="fixedEditor">
-        <div class="editor-header">
-            <div class="editor-title">
-                <i class="fas fa-code" id="editorIcon"></i>
-                <span id="editorTitle">محرر الأكواد - جرب كتابة الكود بنفسك</span>
+    <!-- المحرر التفاعلي -->
+    <div class="practice-section">
+        <h2 style="color: white; font-size: 2rem; text-align: center;">🎮 جرب بنفسك - محرر تفاعلي</h2>
+        <p style="color: white; text-align: center; margin-bottom: 30px;">اكتب النص وجرب الاختصارات بنفسك!</p>
+
+        <div class="interactive-editor">
+            <div class="editor-header">
+                <div class="editor-title">
+                    <i class="fas fa-terminal"></i>
+                    <span>المحرر التجريبي</span>
+                </div>
+                <div class="editor-actions">
+                    <button class="editor-btn run-btn" onclick="runPractice()">
+                        <i class="fas fa-play"></i> تشغيل
+                    </button>
+                    <button class="editor-btn copy-btn" onclick="copyPractice()">
+                        <i class="fas fa-copy"></i> نسخ
+                    </button>
+                    <button class="editor-btn reset-btn" onclick="resetPractice()">
+                        <i class="fas fa-undo"></i> إعادة
+                    </button>
+                </div>
             </div>
-            <div class="editor-controls">
-                <button class="zoom-btn" id="zoomOut" title="تصغير">−</button>
-                <span class="zoom-level" id="zoomLevel">100%</span>
-                <button class="zoom-btn" id="zoomIn" title="تكبير">+</button>
-                <button class="control-btn run-btn" id="runCode"><i class="fas fa-play"></i> تشغيل</button>
-                <button class="control-btn copy-btn" id="copyCode"><i class="fas fa-copy"></i> نسخ</button>
-                <button class="control-btn reset-btn" id="resetCode"><i class="fas fa-undo"></i> إعادة</button>
-                <button class="toggle-editor" id="toggleEditor"><i class="fas fa-chevron-down"></i> إخفاء</button>
+            
+            <div id="practiceEditor" class="editor-area" contenteditable="true">
+مرحباً بكم في دورة أساسيات الحاسوب
+هذا نص تجريبي لتجربة الاختصارات
+جرب تستخدم Ctrl + C و Ctrl + V
+            </div>
+            
+            <div id="practiceOutput" class="output-area">
+// النتيجة هتظهر هنا بعد ما تضغط تشغيل
+            </div>
+            
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px; justify-content: center;">
+                <span class="badge" style="background: rgba(255,255,255,0.2);">💡 جرب: حدد النص واستخدم Ctrl+C ثم Ctrl+V</span>
             </div>
         </div>
 
-        <div class="editor-container" id="editorContainer">
-            <div class="editor-panel">
-                <div class="panel-header">
-                    <span><i class="fas fa-terminal"></i> الكود</span>
-                    <span>HTML</span>
-                </div>
-                <textarea id="codeEditor"><h1>🔹 مكونات الحاسوب 🔹</h1>
-<ul>
-    <li><strong>CPU</strong> - وحدة المعالجة المركزية</li>
-    <li><strong>RAM</strong> - الذاكرة العشوائية</li>
-    <li><strong>ROM</strong> - ذاكرة القراءة فقط</li>
-    <li><strong>Monitor</strong> - الشاشة</li>
-    <li><strong>Keyboard</strong> - لوحة المفاتيح</li>
-    <li><strong>Mouse</strong> - الفأرة</li>
-</ul></textarea>
+        <div class="practice-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <p>افتح المحرر وجرب تكتب</p>
             </div>
-            <div class="output-panel">
-                <div class="panel-header">
-                    <span><i class="fas fa-play-circle"></i> النتيجة</span>
-                    <span id="outputStatus">✅ جاهز</span>
-                </div>
-                <div class="output-content" id="outputContent">// النتيجة ستظهر هنا</div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <p>جرب Ctrl + A لتحديد الكل</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <p>جرب Ctrl + C للنسخ</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <p>جرب Ctrl + V للصق</p>
+            </div>
+            <div class="step">
+                <div class="step-number">5</div>
+                <p>جرب Ctrl + Z للتراجع</p>
+            </div>
+            <div class="step">
+                <div class="step-number">6</div>
+                <p>جرب Ctrl + Y للإعادة</p>
             </div>
         </div>
+    </div>
+
+    <!-- نصيحة ذهبية -->
+    <div class="tip-card">
+        <i class="fas fa-star"></i>
+        <h3>⭐ نصيحة ذهبية</h3>
+        <p>خصص 10 دقائق يومياً تتدرب فيها على الاختصارات</p>
+        <p style="font-size: 1.5rem; font-weight: bold; margin-top: 20px;">🚀 بعد أسبوع واحد بس...</p>
+        <p>هتحس إنك أسرع، أذكى، وأكثر سيطرة على الجهاز</p>
     </div>
 
     <!-- الفوتر -->
-    <footer>
-        <div class="social-icons">
-            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+    <div class="footer">
+        <div class="footer-links">
+            <a href="index.html" class="footer-link">الرئيسية</a>
+            <a href="Microsoft_Office.html" class="footer-link">Microsoft Office</a>
+            <a href="data-analyst-course.html" class="footer-link">📊 تحليل البيانات</a>
+            <a href="data-scientist-course.html" class="footer-link">🔬 علم البيانات</a>
         </div>
-        <p class="copyright">© 2025 MY WEBSITE | تم التصميم بواسطة Mohamed Alaa</p>
-    </footer>
 
-    <script>
-        // ==================== المتغيرات العامة ====================
-        let editor;
-        let isEditorVisible = true;
-        let currentLesson = 'intro';
-        let currentZoom = 100;
+       <footer id="contact">
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/mohamed-ala-a-2b333533a" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/muham-ed/skills-github-pages" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.youtube.com/channel/UCS5vFLuP5h1NTgvHiM2oJHQ" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/mohamedabotasa/" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61550839582471&locale=ar_AR" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://wa.me/201060828627" class="social-icon" target="_blank" style="background: linear-gradient(45deg, #25D366, #128C7E);"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:mohamedalaaaldinabotasa@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+        </div>
 
-        // ==================== تهيئة المحرر ====================
-        function initEditor() {
-            const textarea = document.getElementById('codeEditor');
-            editor = CodeMirror.fromTextArea(textarea, {
-                lineNumbers: true,
-                mode: 'htmlmixed',
-                theme: 'dracula',
-                autoCloseTags: true,
-                autoCloseBrackets: true,
-                matchBrackets: true,
-                indentUnit: 4,
-                tabSize: 4
-            });
-            editor.setSize('100%', '280px');
-            applyZoom();
-            runCode();
-        }
+        <p class="copyright">© 2025 مسار التطور التقني | تم التصميم بواسطة Mohamed Alaa</p>
+    </div>
+</div>
 
-        // ==================== تطبيق التكبير ====================
-        function applyZoom() {
-            const fontSize = (currentZoom / 100) * 14;
-            document.querySelector('.CodeMirror').style.fontSize = fontSize + 'px';
-            document.querySelector('.output-content').style.fontSize = fontSize + 'px';
-            document.getElementById('zoomLevel').textContent = currentZoom + '%';
-        }
+<script>
+    // ===== دوال المحرر التفاعلي =====
+    function runPractice() {
+        const editor = document.getElementById('practiceEditor');
+        const output = document.getElementById('practiceOutput');
+        const text = editor.innerText || editor.textContent;
+        
+        output.innerHTML = `📝 النص الذي كتبته:\n--------------------\n${text}\n--------------------\n✅ تم التنفيذ بنجاح`;
+    }
 
-        // ==================== تشغيل الكود ====================
-        function runCode() {
-            const code = editor.getValue();
-            const outputDiv = document.getElementById('outputContent');
-            const outputStatus = document.getElementById('outputStatus');
-            
-            outputStatus.textContent = '🔄 جاري التنفيذ...';
-            
-            try {
-                const iframe = document.createElement('iframe');
-                iframe.style.width = '100%';
-                iframe.style.height = '100%';
-                iframe.style.border = 'none';
-                
-                outputDiv.innerHTML = '';
-                outputDiv.appendChild(iframe);
-                
-                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                iframeDoc.open();
-                iframeDoc.write(`
-                    <html dir="rtl">
-                        <head>
-                            <meta charset="UTF-8">
-                            <style>
-                                body { 
-                                    font-family: 'Cairo', Arial; 
-                                    padding: 15px; 
-                                    background: #f8fafc;
-                                    color: #1e293b;
-                                }
-                                h1 { color: #8b5cf6; }
-                                li { 
-                                    padding: 8px; 
-                                    margin: 5px; 
-                                    background: #f1f5f9; 
-                                    border-radius: 8px;
-                                    list-style: none;
-                                }
-                                strong { color: #8b5cf6; }
-                            </style>
-                        </head>
-                        <body>${code}</body>
-                    </html>
-                `);
-                iframeDoc.close();
-                outputStatus.textContent = '✅ تم التنفيذ';
-            } catch (error) {
-                outputDiv.innerHTML = `<span style="color: #ef4444;">خطأ: ${error.message}</span>`;
-                outputStatus.textContent = '❌ خطأ';
-            }
-        }
-
-        // ==================== نسخ الكود ====================
-        function copyCode(button, elementId) {
-            const codeElement = document.getElementById(elementId);
-            const text = codeElement.textContent;
-            
-            navigator.clipboard.writeText(text).then(() => {
-                const originalText = button.innerHTML;
-                button.innerHTML = '<i class="fas fa-check"></i> تم النسخ!';
-                button.style.background = '#10b981';
-                button.style.color = 'white';
-                
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                    button.style.background = '';
-                    button.style.color = '';
-                }, 2000);
-            });
-        }
-
-        // ==================== تغيير الدرس ====================
-        function changeLesson(lessonId) {
-            currentLesson = lessonId;
-            const titles = {
-                intro: 'محرر الأكواد - جرب مكونات الحاسوب',
-                windows: 'محرر الأكواد - جرب اختصارات ويندوز',
-                files: 'محرر الأكواد - جرب أنواع الملفات',
-                internet: 'محرر الأكواد - جرب اختصارات الإنترنت',
-                typing: 'محرر الأكواد - جرب الكتابة',
-                practice: 'محرر الأكواد - مشروع عملي'
-            };
-            document.getElementById('editorTitle').textContent = titles[lessonId] || 'محرر الأكواد - جرب بنفسك';
-            
-            const icons = {
-                intro: 'fa-microchip',
-                windows: 'fa-windows',
-                files: 'fa-folder',
-                internet: 'fa-globe',
-                typing: 'fa-keyboard',
-                practice: 'fa-check-circle'
-            };
-            document.getElementById('editorIcon').className = `fas ${icons[lessonId] || 'fa-code'}`;
-        }
-
-        // ==================== إعادة تعيين الكود ====================
-        function resetCode() {
-            const codes = {
-                intro: `<h1>🔹 مكونات الحاسوب 🔹</h1>
-<ul>
-    <li><strong>CPU</strong> - وحدة المعالجة المركزية</li>
-    <li><strong>RAM</strong> - الذاكرة العشوائية</li>
-    <li><strong>ROM</strong> - ذاكرة القراءة فقط</li>
-    <li><strong>Monitor</strong> - الشاشة</li>
-    <li><strong>Keyboard</strong> - لوحة المفاتيح</li>
-    <li><strong>Mouse</strong> - الفأرة</li>
-</ul>`,
-                windows: `<h2>اختصارات ويندوز</h2>
-<ul>
-    <li><strong>Win + E</strong> - مستكشف الملفات</li>
-    <li><strong>Win + D</strong> - إظهار سطح المكتب</li>
-    <li><strong>Win + L</strong> - قفل الشاشة</li>
-</ul>`,
-                files: `<h2>أنواع الملفات</h2>
-<ul>
-    <li><strong>.txt</strong> - ملف نصي</li>
-    <li><strong>.jpg</strong> - صورة</li>
-    <li><strong>.pdf</strong> - مستند</li>
-</ul>`,
-                internet: `<h2>اختصارات المتصفح</h2>
-<ul>
-    <li><strong>Ctrl+T</strong> - تبويب جديد</li>
-    <li><strong>Ctrl+W</strong> - إغلاق التبويب</li>
-</ul>`,
-                typing: `<h2>نصائح للكتابة</h2>
-<ul>
-    <li>ضع أصابعك على F و J</li>
-    <li>درب نفسك يومياً</li>
-</ul>`,
-                practice: `<h2>مشروع عملي</h2>
-<p>حاول إنشاء صفحة HTML بسيطة</p>`
-            };
-            editor.setValue(codes[currentLesson] || codes.intro);
-            runCode();
-        }
-
-        // ==================== إظهار/إخفاء المحرر ====================
-        function toggleEditor() {
-            const container = document.getElementById('editorContainer');
-            const toggleBtn = document.getElementById('toggleEditor');
-            
-            if (isEditorVisible) {
-                container.classList.add('collapsed');
-                toggleBtn.innerHTML = '<i class="fas fa-chevron-up"></i> إظهار';
-                isEditorVisible = false;
-            } else {
-                container.classList.remove('collapsed');
-                toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> إخفاء';
-                isEditorVisible = true;
-            }
-        }
-
-        // ==================== تهيئة الصفحة ====================
-        document.addEventListener('DOMContentLoaded', function() {
-            initEditor();
-
-            // أزرار الدروس
-            document.querySelectorAll('.view-details').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const lesson = this.dataset.lesson;
-                    document.querySelectorAll('.lesson-details').forEach(s => s.classList.remove('active'));
-                    document.getElementById(`${lesson}-details`).classList.add('active');
-                    changeLesson(lesson);
-                });
-            });
-
-            // أحداث الأزرار
-            document.getElementById('runCode').addEventListener('click', runCode);
-            document.getElementById('copyCode').addEventListener('click', () => {
-                const code = editor.getValue();
-                navigator.clipboard.writeText(code).then(() => {
-                    const btn = document.getElementById('copyCode');
-                    btn.innerHTML = '<i class="fas fa-check"></i> تم النسخ!';
-                    setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i> نسخ', 2000);
-                });
-            });
-            document.getElementById('resetCode').addEventListener('click', resetCode);
-            document.getElementById('toggleEditor').addEventListener('click', toggleEditor);
-            
-            // أزرار التكبير
-            document.getElementById('zoomIn').addEventListener('click', () => {
-                if (currentZoom < 200) {
-                    currentZoom += 10;
-                    applyZoom();
-                }
-            });
-            document.getElementById('zoomOut').addEventListener('click', () => {
-                if (currentZoom > 50) {
-                    currentZoom -= 10;
-                    applyZoom();
-                }
-            });
-
-            // تشغيل الكود بـ Ctrl+Enter
-            editor.on('keydown', (cm, event) => {
-                if (event.ctrlKey && event.key === 'Enter') {
-                    event.preventDefault();
-                    runCode();
-                }
-            });
-
-            // تفعيل الدرس الأول
-            changeLesson('intro');
+    function copyPractice() {
+        const editor = document.getElementById('practiceEditor');
+        const text = editor.innerText || editor.textContent;
+        
+        navigator.clipboard.writeText(text).then(() => {
+            alert('✅ تم نسخ النص! جرب تلصقه بـ Ctrl + V');
         });
-    </script>
+    }
+
+    function resetPractice() {
+        const editor = document.getElementById('practiceEditor');
+        const output = document.getElementById('practiceOutput');
+        
+        editor.innerHTML = 'مرحباً بكم في دورة أساسيات الحاسوب\nهذا نص تجريبي لتجربة الاختصارات\nجرب تستخدم Ctrl + C و Ctrl + V';
+        output.innerHTML = '// النتيجة هتظهر هنا بعد ما تضغط تشغيل';
+    }
+
+    // ===== إنشاء وتحميل ملخص الدورة =====
+    document.getElementById('generateNotesBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // محتوى الملخص المستخرج من ملف PDF
+        const summary = `
+        📚 ملخص الدرس الأول: أساسيات الحاسوب 📚
+        
+        
+        إعداد: Mohamed Alaa
+        
+         المكونات الأساسية للحاسوب 
+        
+        1️⃣ وحدة المعالجة المركزية (CPU):
+        • عقل الكمبيوتر
+        • بتنفذ كل العمليات اللي بتطلبها البرامج
+        
+        2️⃣ الذاكرة العشوائية (RAM):
+        • المساحة المؤقتة اللي بيشتغل فيها النظام
+        • كل ما كانت أكبر كل ما الجهاز أسرع
+        
+        3️⃣ الشاشة (Monitor):
+        • بتعرض المعلومات
+        • وسيلة التواصل البصري بينك وبين الجهاز
+        
+        4️⃣ لوحة المفاتيح والفأرة:
+        • أدوات الإدخال الأساسية
+        • من خلالها بتكتب وبتتحرك داخل النظام
+        
+         الفرق بين اللابتوب والمكتبي 
+        
+        💻 اللابتوب:
+        • صغير وخفيف، سهل الحمل والتنقل
+        • يعمل بالبطارية
+        • صعب الترقية (القطع مدمجة)
+        • أغلى نسبياً
+        
+        🖥️ المكتبي:
+        • كبير وثقيل، للاستخدام الثابت
+        • يحتاج كهرباء دائمة
+        • سهل الترقية والصيانة
+        • أرخص وأعلى أداء
+        
+        أهم اختصارات الكيبورد 
+        
+        Ctrl + C : نسخ النص أو الملف
+        Ctrl + V : لصق النص أو الملف
+        Ctrl + X : قص النص أو الملف
+        Ctrl + Z : التراجع عن آخر عملية
+        Ctrl + Y : إعادة العملية الملغاة
+        Ctrl + A : تحديد الكل
+        Ctrl + S : حفظ الملف
+        Ctrl + P : طباعة
+        Ctrl + F : بحث داخل الصفحة
+        Win + E : فتح مستكشف الملفات
+        
+         تمرين عملي 
+        
+        1. افتح المفكرة (Notepad)
+        2. اكتب: "مرحباً بكم في دورة أساسيات الحاسوب"
+        3. استخدم Ctrl + A لتحديد النص
+        4. استخدم Ctrl + C للنسخ
+        5. اضغط Enter وانزل سطر جديد
+        6. استخدم Ctrl + V للصق
+        7. استخدم Ctrl + S للحفظ
+        8. جرب Ctrl + Z للتراجع
+        
+        ===== نصيحة ذهبية =====
+        
+        ⭐ خصص 10 دقائق يومياً تتدرب فيها على الاختصارات
+        🚀 بعد أسبوع واحد هتحس إنك أسرع وأذكى
+        
+    
+        Mohamed Alaa - مسار التطور التقني
+    `;
+        
+        // إنشاء ملف نصي
+        const blob = new Blob([summary], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'ملخص_أساسيات_الحاسوب.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        // رسالة تأكيد
+        alert('✅ تم إنشاء وتحميل الملخص بنجاح!\n\nالملخص يحتوي على كل المعلومات الأساسية من الدرس.');
+    });
+
+    // ===== رسالة ترحيب عند تحميل الـ PDF =====
+    document.getElementById('downloadPdfBtn').addEventListener('click', function(e) {
+        setTimeout(() => {
+            alert('📥 جاري تحميل الدرس الأول...\n\nملف: الدرس_الأول_أساسيات_الحاسوب.pdf');
+        }, 100);
+    });
+
+    // ===== دعم اختصارات الكيبورد في المحرر =====
+    document.getElementById('practiceEditor').addEventListener('keydown', function(e) {
+        if (e.ctrlKey) {
+            console.log('اختصار مستخدم:', e.key);
+        }
+    });
+</script>
+
 </body>
 </html>
