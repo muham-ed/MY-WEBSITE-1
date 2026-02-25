@@ -65,52 +65,23 @@
         }
 
         .nav-links {
-            display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: flex; gap: 25px; flex-wrap: wrap; justify-content: center;
         }
 
         .nav-link {
-            color: #e0e1dd;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 15px;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(67, 97, 238, 0.2);
+            color: #e0e1dd; text-decoration: none; font-weight: 500; padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(67, 97, 238, 0.2);
         }
 
-        .nav-link:hover,
-        .nav-link.active {
-            background: linear-gradient(45deg, #4361ee, #3a0ca3);
-            color: white;
-            border-color: transparent;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.4);
+        .nav-link:hover, .nav-link.active {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3); color: white; border-color: transparent; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(67, 97, 238, 0.4);
         }
 
         .login-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            padding-top: 100px;
+            display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; padding-top: 100px;
         }
 
         .login-card {
-            background: rgba(27, 38, 59, 0.95);
-            backdrop-filter: blur(15px);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.6s ease;
+            background: rgba(27, 38, 59, 0.95); backdrop-filter: blur(15px); padding: 40px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2); width: 100%; max-width: 400px; text-align: center; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); animation: slideUp 0.6s ease;
         }
 
         @keyframes slideUp {
@@ -119,13 +90,7 @@
         }
 
         .login-card h2 {
-            margin-bottom: 30px;
-            color: #4cc9f0;
-            font-size: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            margin-bottom: 30px; color: #4cc9f0; font-size: 2rem; display: flex; align-items: center; justify-content: center; gap: 10px;
         }
 
         .input-group { margin-bottom: 20px; text-align: right; }
@@ -133,32 +98,14 @@
         .input-wrapper { position: relative; }
 
         input {
-            width: 100%;
-            padding: 15px 45px 15px 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+            width: 100%; padding: 15px 45px 15px 15px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white; font-size: 1rem; transition: all 0.3s ease;
         }
 
         input:focus { outline: none; border-color: #4cc9f0; box-shadow: 0 0 0 2px rgba(76, 201, 240, 0.2); }
         .input-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #888; }
 
         .btn {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            width: 100%; padding: 15px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 1.1rem; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 10px;
         }
 
         .btn-primary { background: linear-gradient(45deg, #4361ee, #3a0ca3); color: white; margin-top: 10px; }
@@ -171,18 +118,7 @@
 
         .social-login { display: flex; gap: 15px; margin-bottom: 25px; }
         .social-btn {
-            flex: 1;
-            padding: 12px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            flex: 1; padding: 12px; border-radius: 10px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: white; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
 
         .social-btn.google i { color: #DB4437; }
@@ -192,9 +128,9 @@
         .links a { color: #4cc9f0; text-decoration: none; font-size: 0.95rem; display: block; margin: 8px 0; }
 
         .message { padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: right; display: none; }
-        .message.success { background: rgba(76, 175, 80, 0.1); border: 1px solid #4caf50; color: #4caf50; }
-        .message.error { background: rgba(244, 67, 54, 0.1); border: 1px solid #f44336; color: #f44336; }
-        .message.info { background: rgba(33, 150, 243, 0.1); border: 1px solid #2196f3; color: #2196f3; }
+        .message.success { background: rgba(76, 175, 80, 0.1); border: 1px solid rgba(76, 175, 80, 0.3); color: #4caf50; }
+        .message.error { background: rgba(244, 67, 54, 0.1); border: 1px solid rgba(244, 67, 54, 0.3); color: #f44336; }
+        .message.info { background: rgba(33, 150, 243, 0.1); border: 1px solid rgba(33, 150, 243, 0.3); color: #2196f3; }
 
         .name-group { display: none; }
         .name-group.show { display: block; }
@@ -202,9 +138,7 @@
         footer { text-align: center; padding: 30px 0; margin-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
         .social-icons { display: flex; justify-content: center; gap: 20px; margin: 20px 0; }
         .social-icon {
-            width: 50px; height: 50px; border-radius: 50%; background: rgba(255, 255, 255, 0.1);
-            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #fff;
-            text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.3s;
+            width: 50px; height: 50px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #fff; text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.3s;
         }
         .social-icon:hover { background: #4361ee; transform: translateY(-5px); }
 
@@ -242,7 +176,7 @@
                 <label for="email">البريد الإلكتروني</label>
                 <div class="input-wrapper">
                     <i class="fas fa-envelope input-icon"></i>
-                    <input type="email" id="email" placeholder="example@email.com">
+                    <input type="email" id="email" placeholder="example@email.com" required>
                 </div>
             </div>
             
@@ -250,7 +184,7 @@
                 <label for="password">كلمة المرور</label>
                 <div class="input-wrapper">
                     <i class="fas fa-lock input-icon"></i>
-                    <input type="password" id="password" placeholder="أدخل كلمة المرور">
+                    <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
                 </div>
             </div>
             
@@ -264,8 +198,8 @@
             </div>
             
             <div class="links">
-                <a href="#" id="forgotPassword">نسيت كلمة المرور؟</a>
-                <a href="index.html">العودة للرئيسية</a>
+                <a href="#" id="forgotPassword"><i class="fas fa-key"></i> نسيت كلمة المرور؟</a>
+                <a href="index.html"><i class="fas fa-home"></i> العودة للرئيسية</a>
             </div>
         </div>
     </div>
@@ -275,9 +209,8 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
     <script>
-        // إعدادات Firebase الحقيقية المستخرجة من صورك لمشروع MY-WEBSITE-1
         const firebaseConfig = {
-            apiKey: "AIzaSyDP2FvUqV7pAt8pI1G1Mh8oxA_W6_O6Q0k",
+            apiKey: "AIzaSyDP2FvUqV7pAt8pI1G1Mh8oxA_W6_O6Q0k", 
             authDomain: "my-website-1-93db8.firebaseapp.com",
             projectId: "my-website-1-93db8",
             storageBucket: "my-website-1-93db8.firebasestorage.app",
@@ -286,18 +219,38 @@
             measurementId: "G-7H72L9ZKNC"
         };
 
-        // تهيئة Firebase
-        firebase.initializeApp(firebaseConfig);
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        // عناصر الصفحة
-        const messageDiv = document.getElementById('message');
+        const title = document.getElementById('title');
+        const nameGroup = document.getElementById('nameGroup');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
         const loginBtn = document.getElementById('loginBtn');
         const signUpBtn = document.getElementById('signUpBtn');
-        const nameGroup = document.getElementById('nameGroup');
-        const title = document.getElementById('title');
+        const googleLoginBtn = document.getElementById('googleLogin');
+        const messageDiv = document.getElementById('message');
+
         let isSignUpMode = false;
+
+        signUpBtn.addEventListener('click', () => {
+            isSignUpMode = !isSignUpMode;
+            if (isSignUpMode) {
+                title.innerHTML = '<i class="fas fa-user-plus"></i> إنشاء حساب جديد';
+                loginBtn.innerHTML = '<i class="fas fa-user-plus"></i> إنشاء الحساب';
+                signUpBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> لدي حساب بالفعل';
+                nameGroup.classList.add('show');
+            } else {
+                title.innerHTML = '<i class="fas fa-user-circle"></i> تسجيل الدخول';
+                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> تسجيل الدخول';
+                signUpBtn.innerHTML = '<i class="fas fa-user-plus"></i> إنشاء حساب جديد';
+                nameGroup.classList.remove('show');
+            }
+        });
 
         function showMessage(type, text) {
             messageDiv.className = `message ${type}`;
@@ -306,48 +259,60 @@
             setTimeout(() => { messageDiv.style.display = 'none'; }, 5000);
         }
 
-        // التبديل بين تسجيل الدخول وإنشاء الحساب
-        signUpBtn.addEventListener('click', () => {
-            isSignUpMode = !isSignUpMode;
-            title.innerHTML = isSignUpMode ? '<i class="fas fa-user-plus"></i> إنشاء حساب' : '<i class="fas fa-user-circle"></i> تسجيل الدخول';
-            loginBtn.innerHTML = isSignUpMode ? 'إنشاء الحساب' : 'تسجيل الدخول';
-            signUpBtn.innerHTML = isSignUpMode ? 'لدي حساب بالفعل' : 'إنشاء حساب جديد';
-            nameGroup.classList.toggle('show');
-        });
-
-        // تنفيذ الدخول أو التسجيل
-        loginBtn.addEventListener('click', async () => {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const name = document.getElementById('name').value;
-
+        async function saveUserToFirestore(user, name) {
             try {
-                if (isSignUpMode) {
-                    const res = await auth.createUserWithEmailAndPassword(email, password);
-                    await db.collection('users').doc(res.user.uid).set({
-                        name: name,
-                        email: email,
-                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                const userRef = db.collection('users').doc(user.uid);
+                const userDoc = await userRef.get();
+                if (!userDoc.exists) {
+                    await userRef.set({
+                        name: name || user.displayName || 'مستخدم جديد',
+                        email: user.email,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        progress: { computer_basics: 0, data_analyst: 0, data_scientist: 0 }
                     });
-                } else {
-                    await auth.signInWithEmailAndPassword(email, password);
                 }
+            } catch (error) { console.error('Firestore Error:', error); }
+        }
+
+        async function login() {
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            try {
+                loginBtn.disabled = true;
+                await auth.signInWithEmailAndPassword(email, password);
                 window.location.href = "index.html";
             } catch (error) {
-                showMessage('error', error.message);
+                loginBtn.disabled = false;
+                showMessage('error', `خطأ: ${error.message}`);
             }
-        });
+        }
 
-        // تسجيل الدخول بـ Google
-        document.getElementById('googleLogin').addEventListener('click', async () => {
+        async function signUp() {
+            const name = nameInput.value;
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            try {
+                loginBtn.disabled = true;
+                const res = await auth.createUserWithEmailAndPassword(email, password);
+                await res.user.updateProfile({ displayName: name });
+                await saveUserToFirestore(res.user, name);
+                window.location.href = "index.html";
+            } catch (error) {
+                loginBtn.disabled = false;
+                showMessage('error', `خطأ: ${error.message}`);
+            }
+        }
+
+        googleLoginBtn.addEventListener('click', async () => {
             try {
                 const provider = new firebase.auth.GoogleAuthProvider();
                 const result = await auth.signInWithPopup(provider);
+                await saveUserToFirestore(result.user);
                 window.location.href = "index.html";
-            } catch (error) {
-                showMessage('error', error.message);
-            }
+            } catch (error) { showMessage('error', error.message); }
         });
+
+        loginBtn.addEventListener('click', () => isSignUpMode ? signUp() : login());
     </script>
 </body>
 </html>
