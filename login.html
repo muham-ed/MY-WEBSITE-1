@@ -7,35 +7,42 @@
     <link rel="icon" href="icons mohamed.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* التنسيق الجمالي للصفحة */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); color: #fff; min-height: 100vh; display: flex; flex-direction: column; }
-        .nav-container { background: rgba(15, 23, 42, 0.95); padding: 15px 0; position: fixed; top: 0; width: 100%; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .nav-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: linear-gradient(135deg, #0f2027, #2c5364); color: #fff; min-height: 100vh; }
+        .nav-container { background: rgba(15, 23, 42, 0.95); padding: 15px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .nav-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0 20px; align-items: center;}
         .nav-logo { font-size: 1.8rem; font-weight: 700; color: #4cc9f0; text-decoration: none; }
-        .login-wrapper { flex: 1; display: flex; justify-content: center; align-items: center; padding-top: 100px; }
-        .login-card { background: rgba(27, 38, 59, 0.95); padding: 40px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2); width: 100%; max-width: 400px; text-align: center; }
+        .login-wrapper { display: flex; justify-content: center; align-items: center; padding-top: 100px; }
+        .login-card { background: rgba(27, 38, 59, 0.95); padding: 40px; border-radius: 20px; width: 100%; max-width: 400px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.2); }
         .input-group { margin-bottom: 20px; text-align: right; }
-        .input-group label { display: block; margin-bottom: 8px; }
+        .input-group label { display: block; margin-bottom: 8px; color: #e0e1dd; }
         input { width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white; }
-        .btn { width: 100%; padding: 12px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; margin-top: 10px; transition: 0.3s; }
+        .btn { width: 100%; padding: 15px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; margin-top: 10px; transition: 0.3s; }
         .btn-primary { background: linear-gradient(45deg, #4361ee, #3a0ca3); color: white; }
         .btn-google { background: #fff; color: #444; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .message { padding: 10px; border-radius: 5px; margin-bottom: 15px; display: none; font-size: 0.9rem; }
+        .message { padding: 10px; border-radius: 5px; margin-bottom: 15px; display: none; }
         .error { background: rgba(244, 67, 54, 0.2); border: 1px solid #f44336; color: #ff9999; }
+        .success { background: rgba(76, 175, 80, 0.2); border: 1px solid #4caf50; color: #d4edda; }
+        .name-group { display: none; }
     </style>
 </head>
 <body>
     <nav class="nav-container">
         <div class="nav-content">
             <a href="index.html" class="nav-logo">Mohamed Alaa</a>
+            <a href="index.html" style="color: white; text-decoration: none;">الرئيسية</a>
         </div>
     </nav>
 
     <div class="login-wrapper">
         <div class="login-card">
-            <h2>تسجيل الدخول</h2><br>
-            <div id="message" class="message error"></div>
+            <h2 id="title">تسجيل الدخول</h2><br>
+            <div id="message" class="message"></div>
+            
+            <div class="input-group name-group" id="nameField">
+                <label>الاسم الكامل</label>
+                <input type="text" id="name" placeholder="أدخل اسمك">
+            </div>
             
             <div class="input-group">
                 <label>البريد الإلكتروني</label>
@@ -47,19 +54,21 @@
                 <input type="password" id="password" placeholder="أدخل كلمة المرور">
             </div>
             
-            <button class="btn btn-primary" id="loginBtn">دخول</button>
+            <button class="btn btn-primary" id="mainBtn">دخول</button>
             <button class="btn btn-google" id="googleBtn">
                 <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" width="20">
                 الدخول بواسطة Google
             </button>
+            <p style="margin-top: 20px; cursor: pointer; color: #4cc9f0;" id="toggleMode">ليس لديك حساب؟ سجل الآن</p>
         </div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
     <script>
-        // التعديل هنا: وضعنا بيانات مشروعك الحقيقية MY-WEBSITE-1
+        // إعداداتك الحقيقية من مشروع MY-WEBSITE-1
         const firebaseConfig = {
             apiKey: "AIzaSyDP2FvUqV7pAt8pI1G1Mh8oxA_W6_O6Q0k",
             authDomain: "my-website-1-93db8.firebaseapp.com",
@@ -70,40 +79,59 @@
             measurementId: "G-7H72L9ZKNC"
         };
 
-        // تهيئة Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
+        const db = firebase.firestore();
 
+        const mainBtn = document.getElementById('mainBtn');
+        const toggleMode = document.getElementById('toggleMode');
+        const nameField = document.getElementById('nameField');
         const messageDiv = document.getElementById('message');
+        let isSignUp = false;
 
-        // وظيفة إظهار الخطأ
-        function showError(msg) {
+        function showMsg(type, msg) {
             messageDiv.textContent = msg;
+            messageDiv.className = `message ${type}`;
             messageDiv.style.display = 'block';
         }
 
-        // تسجيل الدخول العادي
-        document.getElementById('loginBtn').addEventListener('click', () => {
+        toggleMode.onclick = () => {
+            isSignUp = !isSignUp;
+            document.getElementById('title').textContent = isSignUp ? "إنشاء حساب" : "تسجيل الدخول";
+            mainBtn.textContent = isSignUp ? "إنشاء الحساب" : "دخول";
+            nameField.style.display = isSignUp ? "block" : "none";
+            toggleMode.textContent = isSignUp ? "لديك حساب؟ سجل دخول" : "ليس لديك حساب؟ سجل الآن";
+        };
+
+        mainBtn.onclick = async () => {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            auth.signInWithEmailAndPassword(email, password)
-                .then(() => window.location.href = "index.html")
-                .catch(err => showError("خطأ: " + err.message));
-        });
+            const name = document.getElementById('name').value;
 
-        // تسجيل الدخول بـ Google
-        document.getElementById('googleBtn').addEventListener('click', () => {
+            try {
+                if (isSignUp) {
+                    const res = await auth.createUserWithEmailAndPassword(email, password);
+                    await db.collection('users').doc(res.user.uid).set({
+                        name: name,
+                        email: email,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    showMsg('success', 'تم إنشاء الحساب بنجاح!');
+                } else {
+                    await auth.signInWithEmailAndPassword(email, password);
+                }
+                window.location.href = "index.html";
+            } catch (err) {
+                showMsg('error', err.message);
+            }
+        };
+
+        document.getElementById('googleBtn').onclick = () => {
             const provider = new firebase.auth.GoogleAuthProvider();
             auth.signInWithPopup(provider)
                 .then(() => window.location.href = "index.html")
-                .catch(err => {
-                    if(err.code === 'auth/operation-not-supported-in-this-environment') {
-                        showError("يجب رفع الموقع على GitHub Pages ليعمل تسجيل Google");
-                    } else {
-                        showError(err.message);
-                    }
-                });
-        });
+                .catch(err => showMsg('error', "يجب رفع الموقع على GitHub Pages ليعمل Google Login"));
+        };
     </script>
 </body>
 </html>
