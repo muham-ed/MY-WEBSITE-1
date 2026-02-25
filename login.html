@@ -12,7 +12,8 @@
         .login-card { background: rgba(27, 38, 59, 0.95); padding: 40px; border-radius: 20px; width: 100%; max-width: 400px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .input-group { margin-bottom: 20px; text-align: right; }
         .input-group label { display: block; margin-bottom: 8px; color: #4cc9f0; }
-        input { width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white; outline: none; }
+        input { width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white; outline: none; transition: 0.3s; }
+        input:focus { border-color: #4cc9f0; background: rgba(255, 255, 255, 0.1); }
         .btn { width: 100%; padding: 15px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; margin-top: 10px; transition: 0.3s; }
         .btn-primary { background: linear-gradient(45deg, #4361ee, #3a0ca3); color: white; }
         .btn-google { background: #fff; color: #444; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
@@ -50,6 +51,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 
     <script>
+        // بيانات مشروعك الحقيقية
         const firebaseConfig = {
             apiKey: "AIzaSyDP2FvUqV7pAt8pI1G1Mh8oxA_W6_O6Q0k",
             authDomain: "my-website-1-93db8.firebaseapp.com",
@@ -59,6 +61,7 @@
             appId: "1:811350331643:web:03ccde538645de11f1488e"
         };
 
+        // تهيئة Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const messageDiv = document.getElementById('message');
@@ -70,34 +73,42 @@
         }
 
         let isSignUp = false;
-        document.getElementById('toggleMode').onclick = () => {
+        const toggleMode = document.getElementById('toggleMode');
+        const mainBtn = document.getElementById('mainBtn');
+
+        toggleMode.onclick = () => {
             isSignUp = !isSignUp;
             document.getElementById('title').textContent = isSignUp ? "إنشاء حساب" : "تسجيل الدخول";
-            document.getElementById('mainBtn').textContent = isSignUp ? "سجل الآن" : "دخول";
-            document.getElementById('toggleMode').textContent = isSignUp ? "لديك حساب؟ سجل دخول" : "ليس لديك حساب؟ سجل الآن";
+            mainBtn.textContent = isSignUp ? "سجل الآن" : "دخول";
+            toggleMode.textContent = isSignUp ? "لديك حساب؟ سجل دخول" : "ليس لديك حساب؟ سجل الآن";
         };
 
-        document.getElementById('mainBtn').onclick = async () => {
+        // الدخول بالبريد
+        mainBtn.onclick = async () => {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             try {
                 if (isSignUp) {
                     await auth.createUserWithEmailAndPassword(email, password);
-                    showMessage('success', 'تم الحساب بنجاح! جاري التحويل...');
+                    showMessage('success', 'تم إنشاء الحساب بنجاح! جاري التحويل...');
                 } else {
                     await auth.signInWithEmailAndPassword(email, password);
                 }
-                window.location.href = "index.html";
+                setTimeout(() => window.location.href = "index.html", 1000);
             } catch (error) {
-                showMessage('error', "تأكد من البيانات أو الحساب موجود بالفعل");
+                showMessage('error', "خطأ: تأكد من البيانات أو أن الحساب مسجل مسبقاً");
             }
         };
 
+        // دخول جوجل
         document.getElementById('googleBtn').onclick = () => {
             const provider = new firebase.auth.GoogleAuthProvider();
             auth.signInWithPopup(provider)
                 .then(() => window.location.href = "index.html")
-                .catch(() => showMessage('error', "يجب رفع الموقع على GitHub وتفعيل الدومين"));
+                .catch((error) => {
+                    // هنا تظهر الرسالة الحقيقية لو فيه مشكلة في الدومين
+                    showMessage('error', "حدث خطأ في الدخول بجوجل: " + error.message);
+                });
         };
     </script>
 </body>
