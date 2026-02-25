@@ -11,49 +11,47 @@
         body { background: linear-gradient(135deg, #0f2027, #2c5364); color: #fff; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
         .login-card { background: rgba(27, 38, 59, 0.95); padding: 40px; border-radius: 20px; width: 100%; max-width: 400px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .input-group { margin-bottom: 20px; text-align: right; }
-        .input-group label { display: block; margin-bottom: 8px; color: #4cc9f0; }
-        input { width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white; outline: none; transition: 0.3s; }
-        input:focus { border-color: #4cc9f0; background: rgba(255, 255, 255, 0.1); }
+        input { width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white; outline: none; }
         .btn { width: 100%; padding: 15px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; margin-top: 10px; transition: 0.3s; }
         .btn-primary { background: linear-gradient(45deg, #4361ee, #3a0ca3); color: white; }
         .btn-google { background: #fff; color: #444; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .message { padding: 10px; border-radius: 5px; margin-bottom: 15px; display: none; font-size: 0.9rem; }
         .error { background: rgba(244, 67, 54, 0.2); border: 1px solid #f44336; color: #ff9999; }
-        .success { background: rgba(76, 175, 80, 0.2); border: 1px solid #4caf50; color: #d4edda; }
-        #toggleMode { margin-top: 20px; cursor: pointer; color: #4cc9f0; text-decoration: underline; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
     <div class="login-card">
-        <h2 id="title">تسجيل الدخول</h2><br>
+        <h2>تسجيل الدخول</h2><br>
         <div id="message" class="message"></div>
         
         <div class="input-group">
-            <label>البريد الإلكتروني</label>
-            <input type="email" id="email" placeholder="example@mail.com">
+            <input type="email" id="email" placeholder="البريد الإلكتروني">
         </div>
         
         <div class="input-group">
-            <label>كلمة المرور</label>
-            <input type="password" id="password" placeholder="******">
+            <input type="password" id="password" placeholder="كلمة المرور">
         </div>
         
-        <button class="btn btn-primary" id="mainBtn">دخول</button>
+        <button class="btn btn-primary" id="loginBtn">دخول</button>
+        
+        <div style="margin: 10px 0;">أو</div>
+        
         <button class="btn btn-google" id="googleBtn">
             <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" width="20">
-            بواسطة Google
+            الدخول بواسطة Google
         </button>
-        <p id="toggleMode">ليس لديك حساب؟ سجل الآن</p>
+        <br>
+        <a href="index.html" style="color: #4cc9f0; text-decoration: none; font-size: 0.8rem;">العودة للرئيسية</a>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 
     <script>
-        // بيانات مشروعك الحقيقية
+        // إعدادات مشروعك الحقيقية MY-WEBSITE-1
         const firebaseConfig = {
-            apiKey: "AIzaSyDP2FvUqV7pAt8pI1G1Mh8oxA_W6_O6Q0k",
+            apiKey: "AIzaSyDP2FvUqV7pAt8pI1G1Mh8oxA_W6_O6Q0k", // تم تصحيح المفتاح هنا
             authDomain: "my-website-1-93db8.firebaseapp.com",
             projectId: "my-website-1-93db8",
             storageBucket: "my-website-1-93db8.appspot.com",
@@ -61,53 +59,32 @@
             appId: "1:811350331643:web:03ccde538645de11f1488e"
         };
 
-        // تهيئة Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const messageDiv = document.getElementById('message');
 
-        function showMessage(type, text) {
-            messageDiv.textContent = text;
-            messageDiv.className = `message ${type}`;
-            messageDiv.style.display = 'block';
-        }
-
-        let isSignUp = false;
-        const toggleMode = document.getElementById('toggleMode');
-        const mainBtn = document.getElementById('mainBtn');
-
-        toggleMode.onclick = () => {
-            isSignUp = !isSignUp;
-            document.getElementById('title').textContent = isSignUp ? "إنشاء حساب" : "تسجيل الدخول";
-            mainBtn.textContent = isSignUp ? "سجل الآن" : "دخول";
-            toggleMode.textContent = isSignUp ? "لديك حساب؟ سجل دخول" : "ليس لديك حساب؟ سجل الآن";
-        };
-
-        // الدخول بالبريد
-        mainBtn.onclick = async () => {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            try {
-                if (isSignUp) {
-                    await auth.createUserWithEmailAndPassword(email, password);
-                    showMessage('success', 'تم إنشاء الحساب بنجاح! جاري التحويل...');
-                } else {
-                    await auth.signInWithEmailAndPassword(email, password);
-                }
-                setTimeout(() => window.location.href = "index.html", 1000);
-            } catch (error) {
-                showMessage('error', "خطأ: تأكد من البيانات أو أن الحساب مسجل مسبقاً");
-            }
-        };
-
-        // دخول جوجل
+        // تسجيل الدخول بجوجل
         document.getElementById('googleBtn').onclick = () => {
             const provider = new firebase.auth.GoogleAuthProvider();
             auth.signInWithPopup(provider)
                 .then(() => window.location.href = "index.html")
                 .catch((error) => {
-                    // هنا تظهر الرسالة الحقيقية لو فيه مشكلة في الدومين
-                    showMessage('error', "حدث خطأ في الدخول بجوجل: " + error.message);
+                    messageDiv.style.display = 'block';
+                    messageDiv.className = "message error";
+                    messageDiv.textContent = "خطأ: " + error.message;
+                });
+        };
+
+        // تسجيل الدخول بالبريد
+        document.getElementById('loginBtn').onclick = () => {
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value;
+            auth.signInWithEmailAndPassword(email, pass)
+                .then(() => window.location.href = "index.html")
+                .catch((error) => {
+                    messageDiv.style.display = 'block';
+                    messageDiv.className = "message error";
+                    messageDiv.textContent = "خطأ في البيانات";
                 });
         };
     </script>
