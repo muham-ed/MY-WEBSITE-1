@@ -7,364 +7,49 @@
     <link rel="icon" href="icons mohamed.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 20px;
-        }
-
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.1) 0%, transparent 20%),
-                        radial-gradient(circle at 90% 80%, rgba(247, 37, 133, 0.1) 0%, transparent 20%);
-            z-index: -1;
-        }
-
-        .login-card {
-            background: rgba(27, 38, 59, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 30px;
-            width: 100%;
-            max-width: 450px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 0.6s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #4361ee, #3a0ca3, #4cc9f0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        h2 {
-            color: #4cc9f0;
-            margin-bottom: 30px;
-            font-size: 1.8rem;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-            text-align: right;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #4cc9f0;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        .input-wrapper {
-            position: relative;
-        }
-
-        .input-wrapper i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #888;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .input-wrapper i:hover {
-            color: #4cc9f0;
-        }
-
-        .input-wrapper .fa-eye,
-        .input-wrapper .fa-eye-slash {
-            left: 15px;
-            right: auto;
-        }
-
-        input {
-            width: 100%;
-            padding: 15px 45px 15px 45px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #4cc9f0;
-            box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.2);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        input::placeholder {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .name-field {
-            display: none;
-        }
-
-        .name-field.show {
-            display: block;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, #4361ee, #3a0ca3);
-            color: white;
-        }
-
-        .btn-primary:hover:not(:disabled) {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.4);
-        }
-
-        .btn-primary:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .btn-google {
-            background: white;
-            color: #444;
-            border: 1px solid #ddd;
-        }
-
-        .btn-google:hover:not(:disabled) {
-            background: #f5f5f5;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 25px 0;
-            color: #888;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .divider span {
-            padding: 0 15px;
-            font-size: 0.9rem;
-        }
-
-        .message {
-            padding: 15px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            display: none;
-            font-size: 0.95rem;
-            text-align: center;
-        }
-
-        .message.error {
-            background: rgba(244, 67, 54, 0.15);
-            border: 1px solid #f44336;
-            color: #ff9999;
-        }
-
-        .message.success {
-            background: rgba(76, 175, 80, 0.15);
-            border: 1px solid #4caf50;
-            color: #a5d6a5;
-        }
-
-        .message.info {
-            background: rgba(33, 150, 243, 0.15);
-            border: 1px solid #2196f3;
-            color: #90caf9;
-        }
-
-        .toggle-mode {
-            margin-top: 25px;
-            cursor: pointer;
-            color: #4cc9f0;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-            display: inline-block;
-        }
-
-        .toggle-mode:hover {
-            color: white;
-            text-decoration: underline;
-        }
-
-        .forgot-password {
-            text-align: left;
-            margin: 15px 0 5px;
-        }
-
-        .forgot-password a {
-            color: #888;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .forgot-password a:hover {
-            color: #4cc9f0;
-        }
-
-        .back-home {
-            margin-top: 20px;
-        }
-
-        .back-home a {
-            color: #888;
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            transition: color 0.3s ease;
-        }
-
-        .back-home a:hover {
-            color: #4cc9f0;
-        }
-
-        .loading-spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: linear-gradient(135deg, #0f2027, #2c5364); color: #fff; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .login-card { background: rgba(27, 38, 59, 0.95); padding: 40px; border-radius: 20px; width: 100%; max-width: 400px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .input-group { margin-bottom: 20px; text-align: right; }
+        .input-group label { display: block; margin-bottom: 8px; color: #4cc9f0; }
+        input { width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white; outline: none; }
+        .btn { width: 100%; padding: 15px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; margin-top: 10px; transition: 0.3s; }
+        .btn-primary { background: linear-gradient(45deg, #4361ee, #3a0ca3); color: white; }
+        .btn-google { background: #fff; color: #444; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .message { padding: 10px; border-radius: 5px; margin-bottom: 15px; display: none; font-size: 0.9rem; }
+        .error { background: rgba(244, 67, 54, 0.2); border: 1px solid #f44336; color: #ff9999; }
+        .success { background: rgba(76, 175, 80, 0.2); border: 1px solid #4caf50; color: #d4edda; }
+        #toggleMode { margin-top: 20px; cursor: pointer; color: #4cc9f0; text-decoration: underline; font-size: 0.8rem; }
     </style>
 </head>
 <body>
+
     <div class="login-card">
-        <div class="logo">مسار التطور التقني</div>
-        <h2 id="title">تسجيل الدخول</h2>
-        
+        <h2 id="title">تسجيل الدخول</h2><br>
         <div id="message" class="message"></div>
-        
-        <div class="input-group name-field" id="nameField">
-            <label>الاسم الكامل</label>
-            <div class="input-wrapper">
-                <i class="fas fa-user"></i>
-                <input type="text" id="name" placeholder="أدخل اسمك الثلاثي">
-            </div>
-        </div>
         
         <div class="input-group">
             <label>البريد الإلكتروني</label>
-            <div class="input-wrapper">
-                <i class="fas fa-envelope"></i>
-                <input type="email" id="email" placeholder="example@mail.com">
-            </div>
+            <input type="email" id="email" placeholder="example@mail.com">
         </div>
         
         <div class="input-group">
             <label>كلمة المرور</label>
-            <div class="input-wrapper">
-                <i class="fas fa-lock" id="togglePassword"></i>
-                <i class="fas fa-eye" id="showPassword" style="left: 15px; right: auto;"></i>
-                <input type="password" id="password" placeholder="******">
-            </div>
+            <input type="password" id="password" placeholder="******">
         </div>
         
-        <div class="forgot-password">
-            <a href="#" id="forgotPassword"><i class="fas fa-key"></i> نسيت كلمة المرور؟</a>
-        </div>
-        
-        <button class="btn btn-primary" id="mainBtn">
-            <span id="btnText">دخول</span>
-        </button>
-        
-        <div class="divider">
-            <span>أو</span>
-        </div>
-        
+        <button class="btn btn-primary" id="mainBtn">دخول</button>
         <button class="btn btn-google" id="googleBtn">
-            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" width="20" alt="Google">
-            <span>الدخول بحساب Google</span>
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" width="20">
+            بواسطة Google
         </button>
-        
-        <div class="toggle-mode" id="toggleMode">
-            <i class="fas fa-user-plus"></i> ليس لديك حساب؟ سجل الآن
-        </div>
-        
-        <div class="back-home">
-            <a href="index.html">
-                <i class="fas fa-home"></i> العودة للصفحة الرئيسية
-            </a>
-        </div>
+        <p id="toggleMode">ليس لديك حساب؟ سجل الآن</p>
     </div>
 
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 
     <script>
-        // ===== إعدادات Firebase الصحيحة =====
         const firebaseConfig = {
             apiKey: "AIzaSyDP2FvUqV7pAt8pI1G1Mh8oxA_W6_O6Q0k",
             authDomain: "my-website-1-93db8.firebaseapp.com",
@@ -374,297 +59,46 @@
             appId: "1:811350331643:web:03ccde538645de11f1488e"
         };
 
-        // تهيئة Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
-
-        // ===== عناصر DOM =====
-        const title = document.getElementById('title');
-        const mainBtn = document.getElementById('mainBtn');
-        const btnText = document.getElementById('btnText');
-        const toggleMode = document.getElementById('toggleMode');
-        const nameField = document.getElementById('nameField');
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
-        const googleBtn = document.getElementById('googleBtn');
-        const forgotPasswordLink = document.getElementById('forgotPassword');
         const messageDiv = document.getElementById('message');
-        const showPasswordIcon = document.getElementById('showPassword');
 
-        let isSignUp = false;
-
-        // ===== إظهار/إخفاء كلمة المرور =====
-        showPasswordIcon.addEventListener('click', function() {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            this.classList.toggle('fa-eye');
-            this.classList.toggle('fa-eye-slash');
-        });
-
-        // ===== عرض الرسائل =====
         function showMessage(type, text) {
             messageDiv.textContent = text;
             messageDiv.className = `message ${type}`;
             messageDiv.style.display = 'block';
-            
-            setTimeout(() => {
-                messageDiv.style.display = 'none';
-            }, 5000);
         }
 
-        // ===== التحقق من صحة البريد الإلكتروني =====
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
-
-        // ===== التحقق من المدخلات =====
-        function validateInputs() {
-            const email = emailInput.value.trim();
-            const password = passwordInput.value.trim();
-
-            if (!email || !password) {
-                showMessage('error', '❌ الرجاء ملء جميع الحقول');
-                return false;
-            }
-
-            if (!validateEmail(email)) {
-                showMessage('error', '❌ البريد الإلكتروني غير صالح');
-                return false;
-            }
-
-            if (password.length < 6) {
-                showMessage('error', '❌ كلمة المرور يجب أن تكون 6 أحرف على الأقل');
-                return false;
-            }
-
-            if (isSignUp) {
-                const name = nameInput.value.trim();
-                if (!name) {
-                    showMessage('error', '❌ الرجاء إدخال الاسم الكامل');
-                    return false;
-                }
-                if (name.split(' ').length < 2) {
-                    showMessage('error', '❌ الرجاء إدخال الاسم الثلاثي على الأقل');
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        // ===== حفظ بيانات المستخدم =====
-        function saveUserData(user) {
-            localStorage.setItem('userId', user.uid);
-            localStorage.setItem('userEmail', user.email);
-            localStorage.setItem('userName', user.displayName || nameInput.value.trim() || 'مستخدم');
-        }
-
-        // ===== التبديل بين تسجيل الدخول وإنشاء حساب =====
-        toggleMode.addEventListener('click', () => {
+        let isSignUp = false;
+        document.getElementById('toggleMode').onclick = () => {
             isSignUp = !isSignUp;
-            
-            if (isSignUp) {
-                title.textContent = 'إنشاء حساب جديد';
-                btnText.textContent = 'إنشاء الحساب';
-                toggleMode.innerHTML = '<i class="fas fa-sign-in-alt"></i> لديك حساب؟ سجل دخول';
-                nameField.classList.add('show');
-                showMessage('info', '📝 أدخل بياناتك لإنشاء حساب جديد');
-            } else {
-                title.textContent = 'تسجيل الدخول';
-                btnText.textContent = 'دخول';
-                toggleMode.innerHTML = '<i class="fas fa-user-plus"></i> ليس لديك حساب؟ سجل الآن';
-                nameField.classList.remove('show');
-            }
-        });
+            document.getElementById('title').textContent = isSignUp ? "إنشاء حساب" : "تسجيل الدخول";
+            document.getElementById('mainBtn').textContent = isSignUp ? "سجل الآن" : "دخول";
+            document.getElementById('toggleMode').textContent = isSignUp ? "لديك حساب؟ سجل دخول" : "ليس لديك حساب؟ سجل الآن";
+        };
 
-        // ===== تسجيل الدخول =====
-        async function signIn() {
-            if (!validateInputs()) return;
-
-            const email = emailInput.value.trim();
-            const password = passwordInput.value.trim();
-
+        document.getElementById('mainBtn').onclick = async () => {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
             try {
-                mainBtn.disabled = true;
-                btnText.innerHTML = '<span class="loading-spinner"></span> جاري...';
-
-                const userCredential = await auth.signInWithEmailAndPassword(email, password);
-                const user = userCredential.user;
-
-                saveUserData(user);
-                showMessage('success', '✅ تم تسجيل الدخول بنجاح! جاري التوجيه...');
-                
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 1500);
-
-            } catch (error) {
-                mainBtn.disabled = false;
-                btnText.textContent = 'دخول';
-                
-                let errorMessage = '❌ ';
-                switch(error.code) {
-                    case 'auth/user-not-found':
-                        errorMessage += 'لا يوجد حساب بهذا البريد الإلكتروني';
-                        break;
-                    case 'auth/wrong-password':
-                        errorMessage += 'كلمة المرور غير صحيحة';
-                        break;
-                    case 'auth/invalid-credential':
-                        errorMessage += 'بيانات الدخول غير صالحة';
-                        break;
-                    case 'auth/too-many-requests':
-                        errorMessage += 'تم حظر الوصول مؤقتاً لكثرة المحاولات';
-                        break;
-                    default:
-                        errorMessage += error.message;
-                }
-                showMessage('error', errorMessage);
-            }
-        }
-
-        // ===== إنشاء حساب جديد =====
-        async function signUp() {
-            if (!validateInputs()) return;
-
-            const email = emailInput.value.trim();
-            const password = passwordInput.value.trim();
-            const name = nameInput.value.trim();
-
-            try {
-                mainBtn.disabled = true;
-                btnText.innerHTML = '<span class="loading-spinner"></span> جاري...';
-
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                const user = userCredential.user;
-
-                await user.updateProfile({
-                    displayName: name
-                });
-
-                saveUserData(user);
-                showMessage('success', '✅ تم إنشاء الحساب بنجاح! جاري التوجيه...');
-                
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 1500);
-
-            } catch (error) {
-                mainBtn.disabled = false;
-                btnText.textContent = 'إنشاء الحساب';
-                
-                let errorMessage = '❌ ';
-                switch(error.code) {
-                    case 'auth/email-already-in-use':
-                        errorMessage += 'البريد الإلكتروني مستخدم بالفعل';
-                        break;
-                    case 'auth/invalid-email':
-                        errorMessage += 'بريد إلكتروني غير صالح';
-                        break;
-                    case 'auth/weak-password':
-                        errorMessage += 'كلمة المرور ضعيفة جداً';
-                        break;
-                    default:
-                        errorMessage += error.message;
-                }
-                showMessage('error', errorMessage);
-            }
-        }
-
-        // ===== تسجيل الدخول بـ Google =====
-        googleBtn.addEventListener('click', async () => {
-            try {
-                googleBtn.disabled = true;
-                googleBtn.innerHTML = '<span class="loading-spinner"></span> جاري الاتصال...';
-
-                const provider = new firebase.auth.GoogleAuthProvider();
-                const result = await auth.signInWithPopup(provider);
-                const user = result.user;
-
-                saveUserData(user);
-                showMessage('success', '✅ تم تسجيل الدخول بنجاح! جاري التوجيه...');
-                
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 1500);
-
-            } catch (error) {
-                googleBtn.disabled = false;
-                googleBtn.innerHTML = '<img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" width="20"> <span>الدخول بحساب Google</span>';
-                
-                if (error.code === 'auth/popup-closed-by-user') {
-                    showMessage('error', '❌ تم إغلاق نافذة التسجيل');
-                } else if (error.code === 'auth/unauthorized-domain') {
-                    showMessage('error', '❌ هذا النطاق غير مصرح به. أضف النطاق في Firebase Console');
-                } else {
-                    showMessage('error', `❌ ${error.message}`);
-                }
-            }
-        });
-
-        // ===== نسيت كلمة المرور =====
-        forgotPasswordLink.addEventListener('click', async (e) => {
-            e.preventDefault();
-            
-            const email = emailInput.value.trim();
-            
-            if (!email) {
-                showMessage('error', '❌ الرجاء إدخال بريدك الإلكتروني أولاً');
-                return;
-            }
-
-            if (!validateEmail(email)) {
-                showMessage('error', '❌ البريد الإلكتروني غير صالح');
-                return;
-            }
-
-            try {
-                await auth.sendPasswordResetEmail(email);
-                showMessage('success', '✅ تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني');
-            } catch (error) {
-                showMessage('error', `❌ ${error.message}`);
-            }
-        });
-
-        // ===== الحدث الرئيسي للزر =====
-        mainBtn.addEventListener('click', () => {
-            if (isSignUp) {
-                signUp();
-            } else {
-                signIn();
-            }
-        });
-
-        // ===== تسجيل الدخول بضغط Enter =====
-        document.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
                 if (isSignUp) {
-                    signUp();
+                    await auth.createUserWithEmailAndPassword(email, password);
+                    showMessage('success', 'تم الحساب بنجاح! جاري التحويل...');
                 } else {
-                    signIn();
+                    await auth.signInWithEmailAndPassword(email, password);
                 }
+                window.location.href = "index.html";
+            } catch (error) {
+                showMessage('error', "تأكد من البيانات أو الحساب موجود بالفعل");
             }
-        });
+        };
 
-        // ===== التحقق من حالة تسجيل الدخول =====
-        auth.onAuthStateChanged((user) => {
-            if (user && window.location.pathname.includes('login.html')) {
-                showMessage('info', '👋 أنت مسجل الدخول بالفعل! جاري التوجيه...');
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 2000);
-            }
-        });
-
-        // ===== رسالة ترحيب =====
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                showMessage('info', '👋 مرحباً بك! سجل دخولك لمتابعة تقدمك');
-            }, 500);
-        });
+        document.getElementById('googleBtn').onclick = () => {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider)
+                .then(() => window.location.href = "index.html")
+                .catch(() => showMessage('error', "يجب رفع الموقع على GitHub وتفعيل الدومين"));
+        };
     </script>
 </body>
 </html>
