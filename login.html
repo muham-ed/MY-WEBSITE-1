@@ -185,16 +185,13 @@
             gap: 8px;
         }
 
-        .social-btn.google i { color: #DB4437; }
-        .social-btn.github i { color: #333; }
-
         .links { margin-top: 25px; }
         .links a { color: #4cc9f0; text-decoration: none; font-size: 0.95rem; display: block; margin: 8px 0; }
 
         .message { padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: right; display: none; }
-        .message.success { background: rgba(76, 175, 80, 0.1); border: 1px solid rgba(76, 175, 80, 0.3); color: #4caf50; }
-        .message.error { background: rgba(244, 67, 54, 0.1); border: 1px solid rgba(244, 67, 54, 0.3); color: #f44336; }
-        .message.info { background: rgba(33, 150, 243, 0.1); border: 1px solid rgba(33, 150, 243, 0.3); color: #2196f3; }
+        .message.success { background: rgba(76, 175, 80, 0.1); border: 1px solid #4caf50; color: #4caf50; }
+        .message.error { background: rgba(244, 67, 54, 0.1); border: 1px solid #f44336; color: #f44336; }
+        .message.info { background: rgba(33, 150, 243, 0.1); border: 1px solid #2196f3; color: #2196f3; }
 
         .name-group { display: none; }
         .name-group.show { display: block; }
@@ -207,11 +204,6 @@
             text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.3s;
         }
         .social-icon:hover { background: #4361ee; transform: translateY(-5px); }
-
-        @media (max-width: 768px) {
-            .nav-content { flex-direction: column; gap: 15px; }
-            .social-login { flex-direction: column; }
-        }
     </style>
 </head>
 <body>
@@ -220,11 +212,6 @@
             <a href="index.html" class="nav-logo">Mohamed Alaa</a>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">الرئيسية</a>
-                <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
-                <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
-                <a href="data-analyst-course.html" class="nav-link">📊 Data Analyst</a>
-                <a href="data-scientist-course.html" class="nav-link">🔬 Data Scientist</a>
-                <a href="blogs.html" class="nav-link">المقالات</a>
                 <a href="login.html" class="nav-link active">دخول</a>
             </div>
         </div>
@@ -247,7 +234,7 @@
                 <label for="email">البريد الإلكتروني</label>
                 <div class="input-wrapper">
                     <i class="fas fa-envelope input-icon"></i>
-                    <input type="email" id="email" placeholder="example@email.com" required>
+                    <input type="email" id="email" placeholder="example@email.com">
                 </div>
             </div>
             
@@ -255,7 +242,7 @@
                 <label for="password">كلمة المرور</label>
                 <div class="input-wrapper">
                     <i class="fas fa-lock input-icon"></i>
-                    <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
+                    <input type="password" id="password" placeholder="أدخل كلمة المرور">
                 </div>
             </div>
             
@@ -264,36 +251,24 @@
             <button class="btn btn-secondary" id="signUpBtn"><i class="fas fa-user-plus"></i> إنشاء حساب جديد</button>
             
             <div class="social-login">
-                <button class="social-btn google" id="googleLogin"><i class="fab fa-google"></i> Google</button>
-                <button class="social-btn github" id="githubLogin"><i class="fab fa-github"></i> GitHub</button>
+                <button class="social-btn" id="googleLogin"><i class="fab fa-google"></i> Google</button>
+                <button class="social-btn" id="githubLogin"><i class="fab fa-github"></i> GitHub</button>
             </div>
             
             <div class="links">
-                <a href="#" id="forgotPassword"><i class="fas fa-key"></i> نسيت كلمة المرور؟</a>
-                <a href="index.html"><i class="fas fa-home"></i> العودة للرئيسية</a>
+                <a href="#" id="forgotPassword">نسيت كلمة المرور؟</a>
             </div>
         </div>
     </div>
-
-    <footer>
-        <div class="social-icons">
-            <a href="https://www.linkedin.com/in/mohamed-ala-a-2b333533a" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://github.com/muham-ed/skills-github-pages" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://www.youtube.com/channel/UCS5vFLuP5h1NTgvHiM2oJHQ" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://wa.me/201060828627" class="social-icon" target="_blank" style="background: #25D366;"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:mohamedalaaaldinabotasa@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
-        </div>
-        <p class="copyright">© 2025 مسار التطور التقني | تصميم Mohamed Alaa</p>
-    </footer>
 
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
     <script>
-        // ===== إعدادات Firebase الحقيقية لمشروعك MY-WEBSITE-1 =====
+        // إعدادات Firebase الحقيقية لمشروعك "MY-WEBSITE-1"
         const firebaseConfig = {
-            apiKey: "AIzaSyDP2FvUqV7pAt8pI1G1Mh8o...", // استبدل بـ API Key الكامل من لوحة التحكم
+            apiKey: "AIzaSyDP2FvUqV7pAt8pI1G1Mh8oxA_W6_O6Q0k",
             authDomain: "my-website-1-93db8.firebaseapp.com",
             projectId: "my-website-1-93db8",
             storageBucket: "my-website-1-93db8.firebasestorage.app",
@@ -302,43 +277,17 @@
             measurementId: "G-7H72L9ZKNC"
         };
 
-        // تهيئة Firebase
-        if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-        }
+        firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        // عناصر DOM
-        const title = document.getElementById('title');
-        const nameGroup = document.getElementById('nameGroup');
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
+        const messageDiv = document.getElementById('message');
         const loginBtn = document.getElementById('loginBtn');
         const signUpBtn = document.getElementById('signUpBtn');
-        const googleLoginBtn = document.getElementById('googleLogin');
-        const githubLoginBtn = document.getElementById('githubLogin');
-        const forgotPasswordLink = document.getElementById('forgotPassword');
-        const messageDiv = document.getElementById('message');
+        const nameGroup = document.getElementById('nameGroup');
+        const title = document.getElementById('title');
 
         let isSignUpMode = false;
-
-        // تبديل الأوضاع
-        signUpBtn.addEventListener('click', () => {
-            isSignUpMode = !isSignUpMode;
-            if (isSignUpMode) {
-                title.innerHTML = '<i class="fas fa-user-plus"></i> إنشاء حساب جديد';
-                loginBtn.innerHTML = '<i class="fas fa-user-plus"></i> إنشاء الحساب';
-                signUpBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> لدي حساب بالفعل';
-                nameGroup.classList.add('show');
-            } else {
-                title.innerHTML = '<i class="fas fa-user-circle"></i> تسجيل الدخول';
-                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> تسجيل الدخول';
-                signUpBtn.innerHTML = '<i class="fas fa-user-plus"></i> إنشاء حساب جديد';
-                nameGroup.classList.remove('show');
-            }
-        });
 
         function showMessage(type, text) {
             messageDiv.className = `message ${type}`;
@@ -347,60 +296,45 @@
             setTimeout(() => { messageDiv.style.display = 'none'; }, 5000);
         }
 
-        async function saveUserToFirestore(user, name) {
+        signUpBtn.addEventListener('click', () => {
+            isSignUpMode = !isSignUpMode;
+            title.innerHTML = isSignUpMode ? '<i class="fas fa-user-plus"></i> إنشاء حساب' : '<i class="fas fa-user-circle"></i> تسجيل الدخول';
+            loginBtn.innerHTML = isSignUpMode ? 'إنشاء الحساب' : 'تسجيل الدخول';
+            nameGroup.style.display = isSignUpMode ? 'block' : 'none';
+        });
+
+        async function handleAuth() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const name = document.getElementById('name').value;
+
             try {
-                const userRef = db.collection('users').doc(user.uid);
-                const userDoc = await userRef.get();
-                if (!userDoc.exists) {
-                    await userRef.set({
-                        name: name || user.displayName || 'مستخدم',
-                        email: user.email,
-                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                        progress: { computer_basics: 0, data_analyst: 0, data_scientist: 0 }
+                if (isSignUpMode) {
+                    const res = await auth.createUserWithEmailAndPassword(email, password);
+                    await db.collection('users').doc(res.user.uid).set({
+                        name: name,
+                        email: email,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
                     });
+                    showMessage('success', 'تم إنشاء الحساب بنجاح!');
+                } else {
+                    await auth.signInWithEmailAndPassword(email, password);
+                    window.location.href = "index.html";
                 }
-            } catch (error) { console.error('Firestore Error:', error); }
-        }
-
-        async function login() {
-            const email = emailInput.value;
-            const password = passwordInput.value;
-            try {
-                loginBtn.disabled = true;
-                await auth.signInWithEmailAndPassword(email, password);
-                window.location.href = "index.html";
             } catch (error) {
-                loginBtn.disabled = false;
-                showMessage('error', `خطأ: ${error.message}`);
+                showMessage('error', error.message);
             }
         }
 
-        async function signUp() {
-            const name = nameInput.value;
-            const email = emailInput.value;
-            const password = passwordInput.value;
-            try {
-                loginBtn.disabled = true;
-                const res = await auth.createUserWithEmailAndPassword(email, password);
-                await res.user.updateProfile({ displayName: name });
-                await saveUserToFirestore(res.user, name);
-                window.location.href = "index.html";
-            } catch (error) {
-                loginBtn.disabled = false;
-                showMessage('error', `خطأ: ${error.message}`);
-            }
-        }
+        loginBtn.addEventListener('click', handleAuth);
 
-        googleLoginBtn.addEventListener('click', async () => {
+        document.getElementById('googleLogin').addEventListener('click', async () => {
             try {
                 const provider = new firebase.auth.GoogleAuthProvider();
-                const result = await auth.signInWithPopup(provider);
-                await saveUserToFirestore(result.user);
+                await auth.signInWithPopup(provider);
                 window.location.href = "index.html";
             } catch (error) { showMessage('error', error.message); }
         });
-
-        loginBtn.addEventListener('click', () => isSignUpMode ? signUp() : login());
     </script>
 </body>
 </html>
