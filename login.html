@@ -185,6 +185,9 @@
             gap: 8px;
         }
 
+        .social-btn.google i { color: #DB4437; }
+        .social-btn.github i { color: #333; }
+
         .links { margin-top: 25px; }
         .links a { color: #4cc9f0; text-decoration: none; font-size: 0.95rem; display: block; margin: 8px 0; }
 
@@ -204,6 +207,11 @@
             text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.3s;
         }
         .social-icon:hover { background: #4361ee; transform: translateY(-5px); }
+
+        @media (max-width: 768px) {
+            .nav-content { flex-direction: column; gap: 15px; }
+            .social-login { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
@@ -251,12 +259,13 @@
             <button class="btn btn-secondary" id="signUpBtn"><i class="fas fa-user-plus"></i> إنشاء حساب جديد</button>
             
             <div class="social-login">
-                <button class="social-btn" id="googleLogin"><i class="fab fa-google"></i> Google</button>
-                <button class="social-btn" id="githubLogin"><i class="fab fa-github"></i> GitHub</button>
+                <button class="social-btn google" id="googleLogin"><i class="fab fa-google"></i> Google</button>
+                <button class="social-btn github" id="githubLogin"><i class="fab fa-github"></i> GitHub</button>
             </div>
             
             <div class="links">
                 <a href="#" id="forgotPassword">نسيت كلمة المرور؟</a>
+                <a href="index.html">العودة للرئيسية</a>
             </div>
         </div>
     </div>
@@ -266,7 +275,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
     <script>
-        // إعدادات Firebase الحقيقية لمشروعك "MY-WEBSITE-1"
+        // إعدادات Firebase الحقيقية المستخرجة من صورك لمشروع MY-WEBSITE-1
         const firebaseConfig = {
             apiKey: "AIzaSyDP2FvUqV7pAt8pI1G1Mh8oxA_W6_O6Q0k",
             authDomain: "my-website-1-93db8.firebaseapp.com",
@@ -277,16 +286,17 @@
             measurementId: "G-7H72L9ZKNC"
         };
 
+        // تهيئة Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
 
+        // عناصر الصفحة
         const messageDiv = document.getElementById('message');
         const loginBtn = document.getElementById('loginBtn');
         const signUpBtn = document.getElementById('signUpBtn');
         const nameGroup = document.getElementById('nameGroup');
         const title = document.getElementById('title');
-
         let isSignUpMode = false;
 
         function showMessage(type, text) {
@@ -296,14 +306,17 @@
             setTimeout(() => { messageDiv.style.display = 'none'; }, 5000);
         }
 
+        // التبديل بين تسجيل الدخول وإنشاء الحساب
         signUpBtn.addEventListener('click', () => {
             isSignUpMode = !isSignUpMode;
             title.innerHTML = isSignUpMode ? '<i class="fas fa-user-plus"></i> إنشاء حساب' : '<i class="fas fa-user-circle"></i> تسجيل الدخول';
             loginBtn.innerHTML = isSignUpMode ? 'إنشاء الحساب' : 'تسجيل الدخول';
-            nameGroup.style.display = isSignUpMode ? 'block' : 'none';
+            signUpBtn.innerHTML = isSignUpMode ? 'لدي حساب بالفعل' : 'إنشاء حساب جديد';
+            nameGroup.classList.toggle('show');
         });
 
-        async function handleAuth() {
+        // تنفيذ الدخول أو التسجيل
+        loginBtn.addEventListener('click', async () => {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const name = document.getElementById('name').value;
@@ -316,24 +329,24 @@
                         email: email,
                         createdAt: firebase.firestore.FieldValue.serverTimestamp()
                     });
-                    showMessage('success', 'تم إنشاء الحساب بنجاح!');
                 } else {
                     await auth.signInWithEmailAndPassword(email, password);
-                    window.location.href = "index.html";
                 }
+                window.location.href = "index.html";
             } catch (error) {
                 showMessage('error', error.message);
             }
-        }
+        });
 
-        loginBtn.addEventListener('click', handleAuth);
-
+        // تسجيل الدخول بـ Google
         document.getElementById('googleLogin').addEventListener('click', async () => {
             try {
                 const provider = new firebase.auth.GoogleAuthProvider();
-                await auth.signInWithPopup(provider);
+                const result = await auth.signInWithPopup(provider);
                 window.location.href = "index.html";
-            } catch (error) { showMessage('error', error.message); }
+            } catch (error) {
+                showMessage('error', error.message);
+            }
         });
     </script>
 </body>
