@@ -187,6 +187,374 @@
             box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
         }
 
+        .progress-container {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .progress-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .progress-stats {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .progress-percent {
+            color: #4cc9f0;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .completed-badge {
+            color: #e0e1dd;
+            background: rgba(76, 201, 240, 0.15);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .reset-btn {
+            background: rgba(244, 67, 54, 0.15);
+            border: 1px solid #f44336;
+            color: #f44336;
+            padding: 8px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .reset-btn:hover {
+            background: #f44336;
+            color: white;
+        }
+
+        .progress-bar-bg {
+            height: 20px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.1);
+            margin: 15px 0 8px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4cc9f0, #4361ee, #3a0ca3);
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: width 0.3s;
+        }
+
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            20% { transform: translateX(100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .lesson-dots {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            padding: 0 5px;
+        }
+
+        .dot {
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .dot.completed {
+            color: #10b981;
+            text-shadow: 0 0 10px #10b981;
+        }
+
+        .progress-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .completed-info {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #e0e1dd;
+            font-size: 0.95rem;
+        }
+
+        .remaining-info {
+            color: #e0e1dd;
+            font-size: 0.85rem;
+            background: rgba(255,255,255,0.05);
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .search-box {
+            margin: 20px 0;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 30px;
+            border: none;
+            background: rgba(27, 38, 59, 0.85);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #4cc9f0;
+        }
+
+        .search-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .lesson-card {
+            background: rgba(27, 38, 59, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lesson-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #4361ee, #3a0ca3, #4cc9f0);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .lesson-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: #4cc9f0;
+        }
+
+        .lesson-card.completed {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .lesson-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .lesson-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .lesson-number {
+            color: #4cc9f0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .lesson-title {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .lesson-topics {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .lesson-topics li {
+            color: #e0e1dd;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lesson-topics li i {
+            color: #4cc9f0;
+            width: 20px;
+            font-size: 0.9rem;
+        }
+
+        .lesson-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: 0.3s;
+            min-width: 120px;
+        }
+
+        .download-lesson-btn {
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+        }
+
+        .download-lesson-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .complete-lesson-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid #4cc9f0;
+        }
+
+        .complete-lesson-btn:hover {
+            background: #4cc9f0;
+            color: #0f172a;
+        }
+
+        .complete-lesson-btn.completed {
+            background: #10b981;
+            border-color: #10b981;
+        }
+
+        @keyframes celebratePulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .celebrate-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            z-index: 10000;
+            animation: slideInDown 0.5s, fadeOut 0.5s 2.5s forwards;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 2px solid #ffd700;
+        }
+
+        @keyframes slideInDown {
+            from {
+                transform: translate(-50%, -100%);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, -50%);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .confetti {
+            position: fixed;
+            z-index: 9999;
+            pointer-events: none;
+            animation: confettiFall 1.5s ease forwards;
+        }
+
+        @keyframes confettiFall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -530,13 +898,13 @@
             box-shadow: 0 10px 20px rgba(16, 185, 129, 0.4);
         }
 
-        .reset-btn {
+        .reset-btn-editor {
             background: rgba(255, 255, 255, 0.1);
             color: #f87171;
             border: 2px solid #f87171;
         }
 
-        .reset-btn:hover {
+        .reset-btn-editor:hover {
             background: rgba(248, 113, 113, 0.2);
         }
 
@@ -609,6 +977,199 @@
             line-height: 1.8;
         }
 
+        .projects-section {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 30px;
+            padding: 40px;
+            margin: 50px 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            color: #f59e0b;
+            margin-bottom: 15px;
+        }
+
+        .project-card h4 {
+            color: #4cc9f0;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: #e0e1dd;
+            line-height: 1.6;
+        }
+
+        .faq-section {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 30px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .faq-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: #e0e1dd;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .rating-section {
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            border-radius: 30px;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 2.5rem;
+            margin: 20px 0;
+        }
+
+        .star {
+            cursor: pointer;
+            color: #ffd700;
+            transition: 0.2s;
+        }
+
+        .star:hover {
+            transform: scale(1.2);
+        }
+
+        .resources-section {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 30px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .resource-item {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: #4cc9f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .resource-item:hover {
+            background: #4cc9f0;
+            color: #0f172a;
+            transform: translateY(-3px);
+        }
+
+        .user-info {
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .user-details {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4361ee;
+            font-size: 2rem;
+        }
+
+        .user-text h3 {
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .user-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid white;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logout-btn:hover {
+            background: white;
+            color: #4361ee;
+        }
+
         .footer {
             margin-top: 40px;
             padding: 30px;
@@ -676,6 +1237,29 @@
             margin-top: 20px;
         }
 
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: none;
+            z-index: 999;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+            transition: 0.3s;
+        }
+
+        #backToTop:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.6);
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -714,6 +1298,29 @@
                 width: 100%;
                 justify-content: center;
             }
+
+            .lessons-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-actions {
+                flex-direction: column;
+            }
+
+            .progress-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .progress-stats {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .user-info {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -735,15 +1342,32 @@
 </nav>
 
 <div class="container">
+    <!-- معلومات المستخدم -->
+    <div id="userInfoCard" class="user-info">
+        <div class="user-details">
+            <div class="user-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="user-text">
+                <h3 id="displayName">مرحباً بك</h3>
+                <p id="displayEmail"></p>
+            </div>
+        </div>
+        <button class="logout-btn" onclick="logout()">
+            <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+        </button>
+    </div>
+
+    <!-- الهيدر الرئيسي -->
     <div class="page-header">
         <div class="logo">🖥️ أساسيات الحاسوب</div>
-        <h1>دورة شاملة لفهم مكونات الحاسوب</h1>
-        <p class="subtitle">رحلة تعليمية من الصفر تفهم فيها كل جزء في جهازك، الفرق بين الأجهزة، وأهم الاختصارات للمحترفين</p>
+        <h1>دورة شاملة من الصفر إلى الاحتراف</h1>
+        <p class="subtitle">6 دروس نظرية + 3 مشاريع عملية - افهم كل جزء في جهازك واختار الجهاز المناسب لشغلك</p>
         
         <!-- أزرار التحميل -->
         <div class="download-buttons">
-            <a href="1-Introduction to Computer Fundamentals – مقدمة في أساسيات الحاسوب.pptx" download="1-Introduction to Computer Fundamentals – مقدمة في أساسيات الحاسوب.pptx" class="download-btn" id="downloadPdfBtn">
-                <i class="fas fa-file-pdf"></i> تحميل الدرس الأول (PDF)
+            <a href="#" class="download-btn" id="downloadPptBtn">
+                <i class="fas fa-file-powerpoint"></i> تحميل الدرس الأول (PPTX)
             </a>
             <a href="#" id="generateNotesBtn" class="download-btn secondary">
                 <i class="fas fa-file-alt"></i> إنشاء وتحميل الملخص
@@ -754,6 +1378,208 @@
             <span class="badge"><i class="fas fa-clock"></i> 6 دروس</span>
             <span class="badge"><i class="fas fa-tasks"></i> 3 مشاريع</span>
             <span class="badge"><i class="fas fa-level-up-alt"></i> للمبتدئين</span>
+        </div>
+    </div>
+
+    <!-- شريط التقدم مع زر إعادة التعيين -->
+    <div class="progress-container">
+        <div class="progress-header">
+            <div class="progress-title">
+                <i class="fas fa-chart-line" style="color: #4cc9f0; font-size: 1.5rem;"></i>
+                <span style="color: #4cc9f0; font-weight: 600; font-size: 1.2rem;">تقدمك في الدورة</span>
+            </div>
+            
+            <div class="progress-stats">
+                <span class="progress-percent" id="progressPercent">0%</span>
+                <span class="completed-badge" id="completedCount">0</span>
+                
+                <!-- زر إعادة تعيين الدورة -->
+                <button onclick="resetCourse()" class="reset-btn">
+                    <i class="fas fa-redo-alt"></i> إعادة تعيين
+                </button>
+            </div>
+        </div>
+        
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressBar" style="width: 0%;"></div>
+        </div>
+        
+        <div class="lesson-dots">
+            <span class="dot" id="lessonDot1">○</span>
+            <span class="dot" id="lessonDot2">○</span>
+            <span class="dot" id="lessonDot3">○</span>
+            <span class="dot" id="lessonDot4">○</span>
+            <span class="dot" id="lessonDot5">○</span>
+            <span class="dot" id="lessonDot6">○</span>
+        </div>
+        
+        <div class="progress-footer">
+            <div class="completed-info">
+                <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                <span><span id="completedCount2">0</span> من 6 دروس مكتملة</span>
+            </div>
+            <div class="remaining-info">
+                <i class="fas fa-clock"></i> متبقي <span id="remainingLessons">6</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- شريط البحث -->
+    <div class="search-box">
+        <input type="text" id="searchLessons" class="search-input" placeholder="🔍 ابحث في الدروس...">
+    </div>
+
+    <!-- الدروس -->
+    <h2 class="section-title">📖 محتوى الدورة</h2>
+    <div class="lessons-grid" id="lessonsGrid">
+        <!-- الدرس 1 -->
+        <div class="lesson-card" data-title="مقدمة في الحاسوب">
+            <div class="lesson-header">
+                <div class="lesson-icon"><i class="fas fa-info-circle"></i></div>
+                <div>
+                    <span class="lesson-number">الدرس 01</span>
+                    <h3 class="lesson-title">مقدمة في الحاسوب</h3>
+                </div>
+            </div>
+            <ul class="lesson-topics">
+                <li><i class="fas fa-check-circle"></i> تعريف الحاسوب ووظائفه الأساسية</li>
+                <li><i class="fas fa-check-circle"></i> Laptop vs Desktop vs Server</li>
+                <li><i class="fas fa-check-circle"></i> أهم المصطلحات للمبتدئين</li>
+                <li><i class="fas fa-check-circle"></i> الفرق بين الأجهزة المختلفة</li>
+            </ul>
+            <div class="lesson-actions">
+                <button class="lesson-btn download-lesson-btn" onclick="downloadLesson(1)">
+                    <i class="fas fa-download"></i> تحميل
+                </button>
+                <button class="lesson-btn complete-lesson-btn" onclick="toggleLesson(1)" id="lesson-btn-1">
+                    <i class="fas fa-circle"></i> تحديد كمكتمل
+                </button>
+            </div>
+        </div>
+
+        <!-- الدرس 2 -->
+        <div class="lesson-card" data-title="وحدة المعالجة CPU">
+            <div class="lesson-header">
+                <div class="lesson-icon"><i class="fas fa-microchip"></i></div>
+                <div>
+                    <span class="lesson-number">الدرس 02</span>
+                    <h3 class="lesson-title">وحدة المعالجة (CPU)</h3>
+                </div>
+            </div>
+            <ul class="lesson-topics">
+                <li><i class="fas fa-check-circle"></i> دور المعالج كـ "العقل المدبر"</li>
+                <li><i class="fas fa-check-circle"></i> GHz vs Cores - الفرق والسرعة</li>
+                <li><i class="fas fa-check-circle"></i> Intel vs AMD vs Apple Silicon</li>
+                <li><i class="fas fa-check-circle"></i> اختيار المعالج المناسب لاستخدامك</li>
+            </ul>
+            <div class="lesson-actions">
+                <button class="lesson-btn download-lesson-btn" onclick="downloadLesson(2)">
+                    <i class="fas fa-download"></i> تحميل
+                </button>
+                <button class="lesson-btn complete-lesson-btn" onclick="toggleLesson(2)" id="lesson-btn-2">
+                    <i class="fas fa-circle"></i> تحديد كمكتمل
+                </button>
+            </div>
+        </div>
+
+        <!-- الدرس 3 -->
+        <div class="lesson-card" data-title="الذاكرة العشوائية RAM">
+            <div class="lesson-header">
+                <div class="lesson-icon"><i class="fas fa-memory"></i></div>
+                <div>
+                    <span class="lesson-number">الدرس 03</span>
+                    <h3 class="lesson-title">الذاكرة العشوائية (RAM)</h3>
+                </div>
+            </div>
+            <ul class="lesson-topics">
+                <li><i class="fas fa-check-circle"></i> مفهوم "مساحة العمل المؤقتة"</li>
+                <li><i class="fas fa-check-circle"></i> الفرق بين DDR4 و DDR5</li>
+                <li><i class="fas fa-check-circle"></i> 8GB vs 16GB vs 32GB</li>
+                <li><i class="fas fa-check-circle"></i> تجربة عملية: فتح برامج متعددة</li>
+            </ul>
+            <div class="lesson-actions">
+                <button class="lesson-btn download-lesson-btn" onclick="downloadLesson(3)">
+                    <i class="fas fa-download"></i> تحميل
+                </button>
+                <button class="lesson-btn complete-lesson-btn" onclick="toggleLesson(3)" id="lesson-btn-3">
+                    <i class="fas fa-circle"></i> تحديد كمكتمل
+                </button>
+            </div>
+        </div>
+
+        <!-- الدرس 4 -->
+        <div class="lesson-card" data-title="وحدات التخزين SSD HDD">
+            <div class="lesson-header">
+                <div class="lesson-icon"><i class="fas fa-hdd"></i></div>
+                <div>
+                    <span class="lesson-number">الدرس 04</span>
+                    <h3 class="lesson-title">وحدات التخزين (SSD/HDD)</h3>
+                </div>
+            </div>
+            <ul class="lesson-topics">
+                <li><i class="fas fa-check-circle"></i> التخزين المؤقت vs الدائم</li>
+                <li><i class="fas fa-check-circle"></i> SSD vs HDD (سرعة - سعر - سعة)</li>
+                <li><i class="fas fa-check-circle"></i> NVMe vs SATA</li>
+                <li><i class="fas fa-check-circle"></i> مشروع: حساب سرعة نقل الملفات</li>
+            </ul>
+            <div class="lesson-actions">
+                <button class="lesson-btn download-lesson-btn" onclick="downloadLesson(4)">
+                    <i class="fas fa-download"></i> تحميل
+                </button>
+                <button class="lesson-btn complete-lesson-btn" onclick="toggleLesson(4)" id="lesson-btn-4">
+                    <i class="fas fa-circle"></i> تحديد كمكتمل
+                </button>
+            </div>
+        </div>
+
+        <!-- الدرس 5 -->
+        <div class="lesson-card" data-title="الشاشة Monitor">
+            <div class="lesson-header">
+                <div class="lesson-icon"><i class="fas fa-desktop"></i></div>
+                <div>
+                    <span class="lesson-number">الدرس 05</span>
+                    <h3 class="lesson-title">الشاشة (Monitor)</h3>
+                </div>
+            </div>
+            <ul class="lesson-topics">
+                <li><i class="fas fa-check-circle"></i> الدقة: Full HD, 4K, 8K</li>
+                <li><i class="fas fa-check-circle"></i> معدل التحديث 60Hz - 240Hz</li>
+                <li><i class="fas fa-check-circle"></i> IPS vs OLED vs TN</li>
+                <li><i class="fas fa-check-circle"></i> تجربة مقارنة الشاشات</li>
+            </ul>
+            <div class="lesson-actions">
+                <button class="lesson-btn download-lesson-btn" onclick="downloadLesson(5)">
+                    <i class="fas fa-download"></i> تحميل
+                </button>
+                <button class="lesson-btn complete-lesson-btn" onclick="toggleLesson(5)" id="lesson-btn-5">
+                    <i class="fas fa-circle"></i> تحديد كمكتمل
+                </button>
+            </div>
+        </div>
+
+        <!-- الدرس 6 -->
+        <div class="lesson-card" data-title="اختصارات الكيبورد">
+            <div class="lesson-header">
+                <div class="lesson-icon"><i class="fas fa-keyboard"></i></div>
+                <div>
+                    <span class="lesson-number">الدرس 06</span>
+                    <h3 class="lesson-title">اختصارات لوحة المفاتيح</h3>
+                </div>
+            </div>
+            <ul class="lesson-topics">
+                <li><i class="fas fa-check-circle"></i> Ctrl + C, Ctrl + V, Ctrl + Z ...</li>
+                <li><i class="fas fa-check-circle"></i> محرر تجريبي للتدريب</li>
+                <li><i class="fas fa-check-circle"></i> نصائح لتسريع العمل</li>
+                <li><i class="fas fa-check-circle"></i> مشروع: كتابة نص بالاختصارات فقط</li>
+            </ul>
+            <div class="lesson-actions">
+                <button class="lesson-btn download-lesson-btn" onclick="downloadLesson(6)">
+                    <i class="fas fa-download"></i> تحميل
+                </button>
+                <button class="lesson-btn complete-lesson-btn" onclick="toggleLesson(6)" id="lesson-btn-6">
+                    <i class="fas fa-circle"></i> تحديد كمكتمل
+                </button>
+            </div>
         </div>
     </div>
 
@@ -909,7 +1735,7 @@
                     <button class="editor-btn copy-btn" onclick="copyPractice()">
                         <i class="fas fa-copy"></i> نسخ
                     </button>
-                    <button class="editor-btn reset-btn" onclick="resetPractice()">
+                    <button class="editor-btn reset-btn-editor" onclick="resetPractice()">
                         <i class="fas fa-undo"></i> إعادة
                     </button>
                 </div>
@@ -958,6 +1784,28 @@
         </div>
     </div>
 
+    <!-- المشاريع العملية -->
+    <div class="projects-section">
+        <h2 class="section-title">🎯 المشاريع العملية</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-icon"><i class="fas fa-table"></i></div>
+                <h4>مقارنة أداء لابتوب ومكتبي</h4>
+                <p>جدول يوضح الفروقات في السرعة، السعر، وإمكانيات الترقية مع أمثلة حقيقية</p>
+            </div>
+            <div class="project-card">
+                <div class="project-icon"><i class="fas fa-flask"></i></div>
+                <h4>اختبار RAM والتخزين</h4>
+                <p>تجربة فتح برامج متعددة ونقل ملفات كبيرة مع تسجيل النتائج</p>
+            </div>
+            <div class="project-card">
+                <div class="project-icon"><i class="fas fa-file-pdf"></i></div>
+                <h4>دليل الاختصارات الشخصي</h4>
+                <p>ملف PDF بأهم الاختصارات اللي تستخدمها يومياً</p>
+            </div>
+        </div>
+    </div>
+
     <!-- نصيحة ذهبية -->
     <div class="tip-card">
         <i class="fas fa-star"></i>
@@ -965,6 +1813,73 @@
         <p>خصص 10 دقائق يومياً تتدرب فيها على الاختصارات</p>
         <p style="font-size: 1.5rem; font-weight: bold; margin-top: 20px;">🚀 بعد أسبوع واحد بس...</p>
         <p>هتحس إنك أسرع، أذكى، وأكثر سيطرة على الجهاز</p>
+    </div>
+
+    <!-- الأسئلة الشائعة -->
+    <div class="faq-section">
+        <h2 class="section-title">❓ أسئلة شائعة</h2>
+        
+        <div class="faq-item" onclick="toggleFaq(1)">
+            <div class="faq-question">
+                <span>هل الدورة مناسبة للمبتدئين تماماً؟</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer" id="faq-1">
+                نعم! الدورة مصممة خصيصاً للأشخاص اللي معندهمش أي خلفية تقنية. هتبدأ معاهم من الصفر.
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFaq(2)">
+            <div class="faq-question">
+                <span>هل أحتاج لجهاز معين لمتابعة الدورة؟</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer" id="faq-2">
+                أي جهاز كمبيوتر عادي يكفي، سواء كان لابتوب أو مكتبي، يعمل بنظام ويندوز أو ماك.
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFaq(3)">
+            <div class="faq-question">
+                <span>هل سأحصل على شهادة بعد إنهاء الدورة؟</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer" id="faq-3">
+                الدورة مجانية ولا تقدم شهادة، لكنك ستكتسب مهارات عملية قيمة ومشاريع تبني بها بورتفوليو قوي.
+            </div>
+        </div>
+    </div>
+
+    <!-- تقييم الدورة -->
+    <div class="rating-section">
+        <h3 style="color: white; font-size: 1.8rem; margin-bottom: 20px;">⭐⭐⭐ قيم الدورة</h3>
+        <div class="stars">
+            <span class="star" onclick="rateCourse(1)">★</span>
+            <span class="star" onclick="rateCourse(2)">★</span>
+            <span class="star" onclick="rateCourse(3)">★</span>
+            <span class="star" onclick="rateCourse(4)">★</span>
+            <span class="star" onclick="rateCourse(5)">★</span>
+        </div>
+        <p id="ratingMessage" style="color: white; font-size: 1.2rem;"></p>
+    </div>
+
+    <!-- مواد إضافية -->
+    <div class="resources-section">
+        <h2 class="section-title">📦 مواد إضافية</h2>
+        <div class="resources-grid">
+            <a href="#" class="resource-item">
+                <i class="fas fa-file-pdf"></i> كتاب تعلم الحاسوب للمبتدئين
+            </a>
+            <a href="#" class="resource-item">
+                <i class="fas fa-file-excel"></i> جدول اختصارات الكيبورد
+            </a>
+            <a href="#" class="resource-item">
+                <i class="fas fa-video"></i> فيديوهات شرح إضافية
+            </a>
+            <a href="#" class="resource-item">
+                <i class="fas fa-question-circle"></i> اختبارات تفاعلية
+            </a>
+        </div>
     </div>
 
     <!-- الفوتر -->
@@ -976,14 +1891,13 @@
             <a href="data-scientist-course.html" class="footer-link">🔬 علم البيانات</a>
         </div>
 
-       <footer id="contact">
         <div class="social-icons">
             <a href="https://www.linkedin.com/in/mohamed-ala-a-2b333533a" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
             <a href="https://github.com/muham-ed/skills-github-pages" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
             <a href="https://www.youtube.com/channel/UCS5vFLuP5h1NTgvHiM2oJHQ" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
             <a href="https://www.instagram.com/mohamedabotasa/" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://www.facebook.com/profile.php?id=61550839582471&locale=ar_AR" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://wa.me/201060828627" class="social-icon" target="_blank" style="background: linear-gradient(45deg, #25D366, #128C7E);"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://wa.me/201060828627" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
             <a href="mailto:mohamedalaaaldinabotasa@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
         </div>
 
@@ -991,20 +1905,311 @@
     </div>
 </div>
 
+<!-- زر العودة للأعلى -->
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'});">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
 <script>
-    // ===== دوال المحرر التفاعلي =====
+    // ===== إعدادات Firebase - قم بتغيير هذه القيم من لوحة تحكم Firebase =====
+    const firebaseConfig = {
+        apiKey: "AIzaSyB8sHpLcX5X5X5X5X5X5X5X5X5X5X5X5X5", // ضع الـ API Key الصحيح هنا
+        authDomain: "project-811350331643.firebaseapp.com",
+        projectId: "project-811350331643",
+        storageBucket: "project-811350331643.appspot.com",
+        messagingSenderId: "811350331643",
+        appId: "1:811350331643:web:abc123" // ضع الـ App ID الصحيح هنا
+    };
+
+    // تهيئة Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // ===== متغيرات عامة =====
+    let currentUserId = localStorage.getItem('userId');
+    let userName = localStorage.getItem('userName');
+    let userEmail = localStorage.getItem('userEmail');
+    let completedLessons = JSON.parse(localStorage.getItem('completedLessons')) || [];
+
+    // ===== التحقق من حالة المصادقة =====
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            // مستخدم مسجل الدخول
+            currentUserId = user.uid;
+            userName = user.displayName || 'مستخدم';
+            userEmail = user.email;
+            
+            localStorage.setItem('userId', currentUserId);
+            localStorage.setItem('userName', userName);
+            localStorage.setItem('userEmail', userEmail);
+            
+            displayUserInfo();
+            loadUserProgress();
+        } else {
+            // مستخدم غير مسجل الدخول
+            currentUserId = null;
+            userName = null;
+            userEmail = null;
+            
+            localStorage.removeItem('userId');
+            localStorage.removeItem('userName');
+            localStorage.removeItem('userEmail');
+            
+            document.getElementById('userInfoCard').style.display = 'none';
+        }
+    });
+
+    // ===== عرض معلومات المستخدم =====
+    function displayUserInfo() {
+        if (currentUserId) {
+            document.getElementById('userInfoCard').style.display = 'flex';
+            document.getElementById('displayName').textContent = userName || 'مستخدم';
+            document.getElementById('displayEmail').textContent = userEmail || '';
+        }
+    }
+
+    // ===== تسجيل الخروج =====
+    async function logout() {
+        try {
+            await auth.signOut();
+            localStorage.clear();
+            window.location.reload();
+        } catch (error) {
+            console.error('خطأ في تسجيل الخروج:', error);
+        }
+    }
+
+    // ===== تحميل تقدم المستخدم من Firebase =====
+    async function loadUserProgress() {
+        if (!currentUserId) return;
+        
+        try {
+            const userRef = db.collection('users').doc(currentUserId);
+            const userDoc = await userRef.get();
+            
+            if (userDoc.exists) {
+                const userData = userDoc.data();
+                if (userData.completedCourses && userData.completedCourses.computer_basics) {
+                    completedLessons = userData.completedCourses.computer_basics;
+                    localStorage.setItem('completedLessons', JSON.stringify(completedLessons));
+                    
+                    updateProgress();
+                    updateLessonButtons();
+                }
+            }
+        } catch (error) {
+            console.error('خطأ في تحميل التقدم:', error);
+        }
+    }
+
+    // ===== حفظ تقدم المستخدم في Firebase =====
+    async function saveProgressToFirebase() {
+        if (!currentUserId) return;
+        
+        try {
+            const userRef = db.collection('users').doc(currentUserId);
+            await userRef.update({
+                'completedCourses.computer_basics': completedLessons,
+                'progress.computer_basics': (completedLessons.length / 6) * 100
+            });
+            console.log('تم حفظ التقدم في Firebase');
+        } catch (error) {
+            console.error('خطأ في حفظ التقدم:', error);
+        }
+    }
+
+    // ===== دوال الدروس =====
+    function toggleLesson(lessonId) {
+        const index = completedLessons.indexOf(lessonId);
+        
+        if (index === -1) {
+            completedLessons.push(lessonId);
+            celebrateLesson(lessonId);
+        } else {
+            completedLessons.splice(index, 1);
+        }
+        
+        localStorage.setItem('completedLessons', JSON.stringify(completedLessons));
+        saveProgressToFirebase(); // حفظ في Firebase
+        updateProgress();
+        updateLessonButtons();
+    }
+
+    function celebrateLesson(lessonId) {
+        const lessonNames = {
+            1: 'مقدمة في الحاسوب',
+            2: 'وحدة المعالجة (CPU)',
+            3: 'الذاكرة العشوائية (RAM)',
+            4: 'وحدات التخزين (SSD/HDD)',
+            5: 'الشاشة (Monitor)',
+            6: 'اختصارات الكيبورد'
+        };
+        
+        const message = document.createElement('div');
+        message.className = 'celebrate-message';
+        message.innerHTML = `
+            <i class="fas fa-tada"></i>
+            🎉 تهانينا! أكملت الدرس: ${lessonNames[lessonId]}
+            <i class="fas fa-tada"></i>
+        `;
+        document.body.appendChild(message);
+        
+        const btn = document.getElementById(`lesson-btn-${lessonId}`);
+        btn.style.animation = 'celebratePulse 0.5s ease';
+        setTimeout(() => {
+            btn.style.animation = '';
+        }, 500);
+        
+        for (let i = 0; i < 50; i++) {
+            setTimeout(() => {
+                createConfetti();
+            }, i * 30);
+        }
+        
+        setTimeout(() => {
+            message.remove();
+        }, 3000);
+    }
+
+    function createConfetti() {
+        const colors = ['#4cc9f0', '#4361ee', '#f72585', '#f8961e', '#43aa8b', '#f94144', '#f9c74f', '#90be6d'];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        const confetti = document.createElement('div');
+        confetti.style.position = 'fixed';
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.top = '-10px';
+        confetti.style.width = Math.random() * 10 + 5 + 'px';
+        confetti.style.height = Math.random() * 10 + 5 + 'px';
+        confetti.style.background = randomColor;
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        confetti.style.zIndex = '9999';
+        confetti.style.pointerEvents = 'none';
+        confetti.style.boxShadow = '0 0 10px rgba(255,255,255,0.5)';
+        confetti.style.transition = 'all 1.5s ease';
+        document.body.appendChild(confetti);
+        
+        setTimeout(() => {
+            confetti.style.transform = `translateY(${window.innerHeight}px) rotate(${Math.random() * 720}deg)`;
+            confetti.style.opacity = '0';
+        }, 10);
+        
+        setTimeout(() => {
+            document.body.removeChild(confetti);
+        }, 1500);
+    }
+
+    function updateProgress() {
+        const percent = (completedLessons.length / 6) * 100;
+        document.getElementById('progressBar').style.width = percent + '%';
+        document.getElementById('progressPercent').textContent = Math.round(percent) + '%';
+        document.getElementById('completedCount').textContent = completedLessons.length;
+        document.getElementById('completedCount2').textContent = completedLessons.length;
+        document.getElementById('remainingLessons').textContent = 6 - completedLessons.length;
+        
+        for (let i = 1; i <= 6; i++) {
+            const dot = document.getElementById(`lessonDot${i}`);
+            if (dot) {
+                if (completedLessons.includes(i)) {
+                    dot.innerHTML = '●';
+                    dot.style.color = '#10b981';
+                    dot.classList.add('completed');
+                } else {
+                    dot.innerHTML = '○';
+                    dot.style.color = '#4cc9f0';
+                    dot.classList.remove('completed');
+                }
+            }
+        }
+    }
+
+    function updateLessonButtons() {
+        for (let i = 1; i <= 6; i++) {
+            const btn = document.getElementById(`lesson-btn-${i}`);
+            if (btn) {
+                if (completedLessons.includes(i)) {
+                    btn.innerHTML = '<i class="fas fa-check-circle"></i> تم الإكمال';
+                    btn.style.background = '#10b981';
+                    btn.style.borderColor = '#10b981';
+                } else {
+                    btn.innerHTML = '<i class="fas fa-circle"></i> تحديد كمكتمل';
+                    btn.style.background = 'rgba(255,255,255,0.1)';
+                    btn.style.borderColor = '#4cc9f0';
+                }
+            }
+        }
+    }
+
+    function resetCourse() {
+        if (confirm('⚠️ هل أنت متأكد من إعادة تعيين تقدم الدورة؟')) {
+            completedLessons = [];
+            localStorage.setItem('completedLessons', JSON.stringify(completedLessons));
+            saveProgressToFirebase();
+            updateProgress();
+            updateLessonButtons();
+            alert('✅ تم إعادة تعيين الدورة بنجاح!');
+        }
+    }
+
+    // ===== شريط البحث =====
+    document.getElementById('searchLessons').addEventListener('keyup', function() {
+        const searchTerm = this.value.toLowerCase();
+        document.querySelectorAll('.lesson-card').forEach(card => {
+            const title = card.getAttribute('data-title').toLowerCase();
+            const topics = card.textContent.toLowerCase();
+            if (title.includes(searchTerm) || topics.includes(searchTerm)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+
+    // ===== تحميل الدروس =====
+    function downloadLesson(lessonNumber) {
+        const lessons = {
+            1: { title: "مقدمة في الحاسوب", content: "الدرس الأول: مقدمة في الحاسوب\n\nتعريف الحاسوب ووظائفه الأساسية\nالفرق بين Laptop, Desktop, Server\nأهم المصطلحات والاختصارات للمبتدئين\nالفرق بين الأجهزة المختلفة" },
+            2: { title: "وحدة المعالجة CPU", content: "الدرس الثاني: وحدة المعالجة المركزية (CPU)\n\nدور المعالج كـ 'العقل المدبر'\nالفرق بين عدد الأنوية والسرعة (GHz vs Cores)\nمقارنة بين Intel, AMD, Apple Silicon\nاختيار المعالج المناسب لاستخدامك" },
+            3: { title: "الذاكرة العشوائية RAM", content: "الدرس الثالث: الذاكرة العشوائية (RAM)\n\nمفهوم 'مساحة العمل المؤقتة'\nالفرق بين DDR4 و DDR5\n8GB vs 16GB vs 32GB - أيهما تختار؟\nتجربة عملية: فتح برامج متعددة" },
+            4: { title: "وحدات التخزين SSD HDD", content: "الدرس الرابع: وحدات التخزين (SSD/HDD)\n\nالفرق بين التخزين المؤقت والدائم\nمقارنة بين SSD و HDD (سرعة - سعر - سعة)\nNVMe vs SATA\nمشروع: حساب سرعة نقل الملفات" },
+            5: { title: "الشاشة Monitor", content: "الدرس الخامس: الشاشة (Monitor)\n\nالدقة: Full HD, 4K, 8K\nمعدل التحديث 60Hz - 240Hz وتأثيره\nIPS vs OLED vs TN\nتجربة مقارنة الشاشات" },
+            6: { title: "اختصارات الكيبورد", content: "الدرس السادس: اختصارات لوحة المفاتيح\n\nأهم الاختصارات: Ctrl + C, Ctrl + V, Ctrl + Z\nمحرر تجريبي للتدريب العملي\nنصائح لتسريع العمل\nمشروع: كتابة نص بالاختصارات فقط" }
+        };
+        
+        const lesson = lessons[lessonNumber];
+        const content = `${lesson.content}\n\n📥 تم التحميل من موقع Mohamed Alaa - مسار التطور التقني`;
+        
+        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `الدرس_${lessonNumber}_${lesson.title}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        alert(`✅ تم تحميل الدرس ${lessonNumber}: ${lesson.title}`);
+    }
+
+    // ===== المحرر التفاعلي =====
     function runPractice() {
         const editor = document.getElementById('practiceEditor');
         const output = document.getElementById('practiceOutput');
         const text = editor.innerText || editor.textContent;
-        
         output.innerHTML = `📝 النص الذي كتبته:\n--------------------\n${text}\n--------------------\n✅ تم التنفيذ بنجاح`;
     }
 
     function copyPractice() {
         const editor = document.getElementById('practiceEditor');
         const text = editor.innerText || editor.textContent;
-        
         navigator.clipboard.writeText(text).then(() => {
             alert('✅ تم نسخ النص! جرب تلصقه بـ Ctrl + V');
         });
@@ -1013,88 +2218,57 @@
     function resetPractice() {
         const editor = document.getElementById('practiceEditor');
         const output = document.getElementById('practiceOutput');
-        
         editor.innerHTML = 'مرحباً بكم في دورة أساسيات الحاسوب\nهذا نص تجريبي لتجربة الاختصارات\nجرب تستخدم Ctrl + C و Ctrl + V';
         output.innerHTML = '// النتيجة هتظهر هنا بعد ما تضغط تشغيل';
     }
 
-    // ===== إنشاء وتحميل ملخص الدورة =====
+    // ===== إنشاء وتحميل الملخص =====
     document.getElementById('generateNotesBtn').addEventListener('click', function(e) {
         e.preventDefault();
         
-        // محتوى الملخص المستخرج من ملف PDF
-        const summary = `
-        📚 ملخص الدرس الأول: أساسيات الحاسوب 📚
+        const summary = `==========================================
+📚 ملخص دورة أساسيات الحاسوب 📚
+==========================================
+
+إعداد: Mohamed Alaa
+
+================= المكونات الأساسية =================
+
+1️⃣ وحدة المعالجة المركزية (CPU):
+• عقل الكمبيوتر
+• سرعة تصل إلى 5 جيجاهيرتز
+• Intel, AMD, Apple Silicon
+
+2️⃣ الذاكرة العشوائية (RAM):
+• مساحة العمل المؤقتة
+• 8GB للمستخدم العادي، 16-32GB للمحترفين
+• DDR4, DDR5
+
+3️⃣ وحدات التخزين:
+• SSD: سريع (500-7000 MB/s)
+• HDD: سعات كبيرة (1-20TB)
+
+4️⃣ الشاشة:
+• Full HD, 4K, 8K
+• معدل تحديث 60-240Hz
+
+================= أهم الاختصارات =================
+
+Ctrl + C : نسخ
+Ctrl + V : لصق
+Ctrl + X : قص
+Ctrl + Z : تراجع
+Ctrl + Y : إعادة
+Ctrl + A : تحديد الكل
+Ctrl + S : حفظ
+Ctrl + P : طباعة
+Ctrl + F : بحث
+Win + E : مستكشف الملفات
+
+==========================================
+Mohamed Alaa - مسار التطور التقني
+==========================================`;
         
-        
-        إعداد: Mohamed Alaa
-        
-         المكونات الأساسية للحاسوب 
-        
-        1️⃣ وحدة المعالجة المركزية (CPU):
-        • عقل الكمبيوتر
-        • بتنفذ كل العمليات اللي بتطلبها البرامج
-        
-        2️⃣ الذاكرة العشوائية (RAM):
-        • المساحة المؤقتة اللي بيشتغل فيها النظام
-        • كل ما كانت أكبر كل ما الجهاز أسرع
-        
-        3️⃣ الشاشة (Monitor):
-        • بتعرض المعلومات
-        • وسيلة التواصل البصري بينك وبين الجهاز
-        
-        4️⃣ لوحة المفاتيح والفأرة:
-        • أدوات الإدخال الأساسية
-        • من خلالها بتكتب وبتتحرك داخل النظام
-        
-         الفرق بين اللابتوب والمكتبي 
-        
-        💻 اللابتوب:
-        • صغير وخفيف، سهل الحمل والتنقل
-        • يعمل بالبطارية
-        • صعب الترقية (القطع مدمجة)
-        • أغلى نسبياً
-        
-        🖥️ المكتبي:
-        • كبير وثقيل، للاستخدام الثابت
-        • يحتاج كهرباء دائمة
-        • سهل الترقية والصيانة
-        • أرخص وأعلى أداء
-        
-        أهم اختصارات الكيبورد 
-        
-        Ctrl + C : نسخ النص أو الملف
-        Ctrl + V : لصق النص أو الملف
-        Ctrl + X : قص النص أو الملف
-        Ctrl + Z : التراجع عن آخر عملية
-        Ctrl + Y : إعادة العملية الملغاة
-        Ctrl + A : تحديد الكل
-        Ctrl + S : حفظ الملف
-        Ctrl + P : طباعة
-        Ctrl + F : بحث داخل الصفحة
-        Win + E : فتح مستكشف الملفات
-        
-         تمرين عملي 
-        
-        1. افتح المفكرة (Notepad)
-        2. اكتب: "مرحباً بكم في دورة أساسيات الحاسوب"
-        3. استخدم Ctrl + A لتحديد النص
-        4. استخدم Ctrl + C للنسخ
-        5. اضغط Enter وانزل سطر جديد
-        6. استخدم Ctrl + V للصق
-        7. استخدم Ctrl + S للحفظ
-        8. جرب Ctrl + Z للتراجع
-        
-        ===== نصيحة ذهبية =====
-        
-        ⭐ خصص 10 دقائق يومياً تتدرب فيها على الاختصارات
-        🚀 بعد أسبوع واحد هتحس إنك أسرع وأذكى
-        
-    
-        Mohamed Alaa - مسار التطور التقني
-    `;
-        
-        // إنشاء ملف نصي
         const blob = new Blob([summary], { type: 'text/plain;charset=utf-8' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -1105,21 +2279,55 @@
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
         
-        // رسالة تأكيد
-        alert('✅ تم إنشاء وتحميل الملخص بنجاح!\n\nالملخص يحتوي على كل المعلومات الأساسية من الدرس.');
+        alert('✅ تم إنشاء وتحميل الملخص بنجاح!');
     });
 
-    // ===== رسالة ترحيب عند تحميل الـ PDF =====
-    document.getElementById('downloadPdfBtn').addEventListener('click', function(e) {
-        setTimeout(() => {
-            alert('📥 جاري تحميل الدرس الأول...\n\nملف: الدرس_الأول_أساسيات_الحاسوب.pdf');
-        }, 100);
+    // ===== الأسئلة الشائعة =====
+    function toggleFaq(id) {
+        const faqItem = event.currentTarget;
+        faqItem.classList.toggle('active');
+    }
+
+    // ===== تقييم الدورة =====
+    function rateCourse(stars) {
+        document.getElementById('ratingMessage').innerHTML = `شكراً لتقييمك! (${stars} نجوم)`;
+        localStorage.setItem('courseRating', stars);
+        
+        const allStars = document.querySelectorAll('.star');
+        allStars.forEach((star, index) => {
+            if (index < stars) {
+                star.style.opacity = '1';
+            } else {
+                star.style.opacity = '0.5';
+            }
+        });
+    }
+
+    // ===== زر العودة للأعلى =====
+    window.addEventListener('scroll', function() {
+        const btn = document.getElementById('backToTop');
+        if (window.pageYOffset > 300) {
+            btn.style.display = 'block';
+        } else {
+            btn.style.display = 'none';
+        }
     });
 
-    // ===== دعم اختصارات الكيبورد في المحرر =====
-    document.getElementById('practiceEditor').addEventListener('keydown', function(e) {
-        if (e.ctrlKey) {
-            console.log('اختصار مستخدم:', e.key);
+    // ===== تحميل العرض التقديمي (تجريبي) =====
+    document.getElementById('downloadPptBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('📥 سيتم إضافة ملف العرض التقديمي قريباً');
+    });
+
+    // ===== تهيئة الصفحة =====
+    document.addEventListener('DOMContentLoaded', function() {
+        displayUserInfo();
+        updateProgress();
+        updateLessonButtons();
+        
+        const savedRating = localStorage.getItem('courseRating');
+        if (savedRating) {
+            rateCourse(parseInt(savedRating));
         }
     });
 </script>
