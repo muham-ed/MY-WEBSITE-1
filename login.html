@@ -55,6 +55,7 @@
             </div>
             
             <button class="btn btn-primary" id="mainBtn">دخول</button>
+            <div style="margin: 15px 0; color: #888;">أو</div>
             <button class="btn btn-google" id="googleBtn">
                 <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" width="20">
                 الدخول بواسطة Google
@@ -108,11 +109,16 @@
             const password = document.getElementById('password').value;
             const name = document.getElementById('name').value;
 
+            if(!email || !password) {
+                showMsg('error', 'يرجى ملء جميع الحقول');
+                return;
+            }
+
             try {
                 if (isSignUp) {
                     const res = await auth.createUserWithEmailAndPassword(email, password);
                     await db.collection('users').doc(res.user.uid).set({
-                        name: name,
+                        name: name || "مستخدم جديد",
                         email: email,
                         createdAt: firebase.firestore.FieldValue.serverTimestamp()
                     });
@@ -130,7 +136,13 @@
             const provider = new firebase.auth.GoogleAuthProvider();
             auth.signInWithPopup(provider)
                 .then(() => window.location.href = "index.html")
-                .catch(err => showMsg('error', "يجب رفع الموقع على GitHub Pages ليعمل Google Login"));
+                .catch(err => {
+                    if(err.code === 'auth/operation-not-supported-in-this-environment') {
+                        showMsg('error', "يجب رفع الموقع على GitHub Pages أو استخدام سيرفر ليعمل دخول Google");
+                    } else {
+                        showMsg('error', err.message);
+                    }
+                });
         };
     </script>
 </body>
