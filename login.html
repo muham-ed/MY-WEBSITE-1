@@ -11,7 +11,8 @@
         body { background: linear-gradient(135deg, #0f2027, #2c5364); color: #fff; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
         .login-card { background: rgba(27, 38, 59, 0.95); padding: 40px; border-radius: 20px; width: 100%; max-width: 400px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .input-group { margin-bottom: 20px; text-align: right; }
-        input { width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white; outline: none; }
+        input { width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white; outline: none; transition: 0.3s; }
+        input:focus { border-color: #4cc9f0; }
         .btn { width: 100%; padding: 15px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; margin-top: 10px; transition: 0.3s; }
         .btn-primary { background: linear-gradient(45deg, #4361ee, #3a0ca3); color: white; }
         .btn-google { background: #fff; color: #444; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
@@ -22,7 +23,7 @@
 <body>
 
     <div class="login-card">
-        <h2>تسجيل الدخول</h2><br>
+        <h2 id="title">تسجيل الدخول</h2><br>
         <div id="message" class="message"></div>
         
         <div class="input-group">
@@ -33,16 +34,12 @@
             <input type="password" id="password" placeholder="كلمة المرور">
         </div>
         
-        <button class="btn btn-primary" id="loginBtn">دخول</button>
-        
-        <div style="margin: 10px 0;">أو</div>
-        
+        <button class="btn btn-primary" id="mainBtn">دخول</button>
         <button class="btn btn-google" id="googleBtn">
             <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" width="20">
-            الدخول بواسطة Google
+            بواسطة Google
         </button>
-        <br>
-        <a href="index.html" style="color: #4cc9f0; text-decoration: none; font-size: 0.8rem;">العودة للرئيسية</a>
+        <p id="toggleMode" style="cursor:pointer; margin-top:15px; font-size: 0.8rem; text-decoration: underline;">ليس لديك حساب؟ سجل الآن</p>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
@@ -51,7 +48,7 @@
     <script>
         // إعدادات مشروعك الحقيقية MY-WEBSITE-1
         const firebaseConfig = {
-            apiKey: "AIzaSyDP2FvUqV7pAt8pI1G1Mh8oxA_W6_O6Q0k", // تم تصحيح المفتاح هنا
+            apiKey: "AIzaSyDP2FvUqV7pAt8pI1G1Mh8oxA_W6_O6Q0k", 
             authDomain: "my-website-1-93db8.firebaseapp.com",
             projectId: "my-website-1-93db8",
             storageBucket: "my-website-1-93db8.appspot.com",
@@ -71,21 +68,22 @@
                 .catch((error) => {
                     messageDiv.style.display = 'block';
                     messageDiv.className = "message error";
-                    messageDiv.textContent = "خطأ: " + error.message;
+                    messageDiv.textContent = "حدث خطأ: " + error.message;
                 });
         };
 
-        // تسجيل الدخول بالبريد
-        document.getElementById('loginBtn').onclick = () => {
+        // تسجيل الدخول العادي
+        document.getElementById('mainBtn').onclick = async () => {
             const email = document.getElementById('email').value;
-            const pass = document.getElementById('password').value;
-            auth.signInWithEmailAndPassword(email, pass)
-                .then(() => window.location.href = "index.html")
-                .catch((error) => {
-                    messageDiv.style.display = 'block';
-                    messageDiv.className = "message error";
-                    messageDiv.textContent = "خطأ في البيانات";
-                });
+            const password = document.getElementById('password').value;
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+                window.location.href = "index.html";
+            } catch (error) {
+                messageDiv.style.display = 'block';
+                messageDiv.className = "message error";
+                messageDiv.textContent = "خطأ في البريد أو كلمة المرور";
+            }
         };
     </script>
 </body>
