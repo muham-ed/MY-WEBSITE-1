@@ -8,23 +8,120 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background: linear-gradient(135deg, #0f2027, #2c5364); color: #fff; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .login-card { background: rgba(27, 38, 59, 0.95); padding: 40px; border-radius: 20px; width: 100%; max-width: 400px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        body { 
+            background: linear-gradient(135deg, #0f2027, #2c5364); 
+            color: #fff; 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px; 
+        }
+        .login-card { 
+            background: rgba(27, 38, 59, 0.95); 
+            padding: 40px; 
+            border-radius: 20px; 
+            width: 100%; 
+            max-width: 400px; 
+            text-align: center; 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3, #4cc9f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
         .input-group { margin-bottom: 20px; text-align: right; }
-        input { width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white; outline: none; transition: 0.3s; }
+        input { 
+            width: 100%; 
+            padding: 12px; 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            border-radius: 10px; 
+            color: white; 
+            outline: none; 
+            transition: 0.3s; 
+        }
         input:focus { border-color: #4cc9f0; }
-        .btn { width: 100%; padding: 15px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; margin-top: 10px; transition: 0.3s; }
+        .btn { 
+            width: 100%; 
+            padding: 15px; 
+            border: none; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            margin-top: 10px; 
+            transition: 0.3s; 
+        }
         .btn-primary { background: linear-gradient(45deg, #4361ee, #3a0ca3); color: white; }
         .btn-google { background: #fff; color: #444; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .message { padding: 10px; border-radius: 5px; margin-bottom: 15px; display: none; font-size: 0.9rem; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .message { 
+            padding: 12px; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+            display: none; 
+            font-size: 0.9rem;
+            text-align: center;
+        }
         .error { background: rgba(244, 67, 54, 0.2); border: 1px solid #f44336; color: #ff9999; }
+        .success { background: rgba(76, 175, 80, 0.2); border: 1px solid #4caf50; color: #a5d6a5; }
+        .info { background: rgba(33, 150, 243, 0.2); border: 1px solid #2196f3; color: #90caf9; }
+        .name-field { display: none; }
+        .name-field.show { display: block; }
+        .toggle-mode { 
+            cursor: pointer; 
+            margin-top: 15px; 
+            color: #4cc9f0; 
+            font-size: 0.9rem; 
+            transition: color 0.3s;
+        }
+        .toggle-mode:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        .back-home {
+            margin-top: 20px;
+        }
+        .back-home a {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+        .back-home a:hover {
+            color: #4cc9f0;
+        }
+        .domain-note {
+            margin-top: 15px;
+            padding: 8px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 5px;
+            font-size: 0.8rem;
+            color: #aaa;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-
     <div class="login-card">
-        <h2 id="title">تسجيل الدخول</h2><br>
+        <div class="logo">مسار التطور التقني</div>
+        <h2 id="title">تسجيل الدخول</h2>
+        
         <div id="message" class="message"></div>
+        
+        <!-- حقل الاسم (يظهر فقط عند إنشاء حساب جديد) -->
+        <div class="input-group name-field" id="nameField">
+            <input type="text" id="name" placeholder="الاسم الكامل">
+        </div>
         
         <div class="input-group">
             <input type="email" id="email" placeholder="البريد الإلكتروني">
@@ -35,56 +132,321 @@
         </div>
         
         <button class="btn btn-primary" id="mainBtn">دخول</button>
+        
+        <div style="margin: 20px 0; position: relative;">
+            <hr style="border: 1px solid rgba(255,255,255,0.1);">
+            <span style="position: relative; top: -12px; background: rgba(27, 38, 59, 0.95); padding: 0 10px; color: #888;">أو</span>
+        </div>
+        
         <button class="btn btn-google" id="googleBtn">
             <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" width="20">
-            بواسطة Google
+            الدخول بواسطة Google
         </button>
-        <p id="toggleMode" style="cursor:pointer; margin-top:15px; font-size: 0.8rem; text-decoration: underline;">ليس لديك حساب؟ سجل الآن</p>
+        
+        <div class="toggle-mode" id="toggleMode">
+            ليس لديك حساب؟ سجل الآن
+        </div>
+        
+        <div class="back-home">
+            <a href="index.html">
+                <i class="fas fa-home"></i> العودة للرئيسية
+            </a>
+        </div>
+        
+        <!-- ملاحظة صغيرة عن النطاق (اختياري) -->
+        <div class="domain-note">
+            <i class="fas fa-shield-alt"></i> نطاق آمن: GitHub Pages
+        </div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 
     <script>
-        // إعدادات مشروعك الحقيقية MY-WEBSITE-1
+        // ===== بيانات Firebase الصحيحة من مشروعك =====
         const firebaseConfig = {
-            apiKey: "AIzaSyDP2FvUqV7pAt8pI1G1Mh8oxA_W6_O6Q0k", 
-            authDomain: "my-website-1-93db8.firebaseapp.com",
-            projectId: "my-website-1-93db8",
-            storageBucket: "my-website-1-93db8.appspot.com",
+            apiKey: "AIzaSyDG3CAjOyNDqNF5ISkUnFz5ZGHlSwCicq8",
+            authDomain: "my-website-1-93d68.firebaseapp.com",
+            projectId: "my-website-1-93d68",
+            storageBucket: "my-website-1-93d68.firebasestorage.app",
             messagingSenderId: "811350331643",
-            appId: "1:811350331643:web:03ccde538645de11f1488e"
+            appId: "1:811350331643:web:4fa42821093d629d1f605e",
+            measurementId: "G-P4J6584N2T"
         };
 
+        // تهيئة Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
+        
+        // عناصر DOM
         const messageDiv = document.getElementById('message');
+        const title = document.getElementById('title');
+        const mainBtn = document.getElementById('mainBtn');
+        const toggleMode = document.getElementById('toggleMode');
+        const nameField = document.getElementById('nameField');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        
+        let isSignUp = false;
 
-        // تسجيل الدخول بجوجل
+        // ===== عرض الرسائل =====
+        function showMessage(type, text) {
+            messageDiv.style.display = 'block';
+            messageDiv.className = `message ${type}`;
+            messageDiv.textContent = text;
+            
+            // إخفاء الرسالة بعد 5 ثوان
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // ===== التبديل بين تسجيل الدخول وإنشاء حساب =====
+        toggleMode.addEventListener('click', () => {
+            isSignUp = !isSignUp;
+            
+            if (isSignUp) {
+                title.textContent = 'إنشاء حساب جديد';
+                mainBtn.textContent = 'إنشاء الحساب';
+                toggleMode.textContent = 'لديك حساب؟ سجل دخول';
+                nameField.classList.add('show');
+            } else {
+                title.textContent = 'تسجيل الدخول';
+                mainBtn.textContent = 'دخول';
+                toggleMode.textContent = 'ليس لديك حساب؟ سجل الآن';
+                nameField.classList.remove('show');
+            }
+        });
+
+        // ===== التحقق من المدخلات =====
+        function validateInputs() {
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            if (!email || !password) {
+                showMessage('error', '❌ الرجاء ملء جميع الحقول');
+                return false;
+            }
+
+            if (!email.includes('@') || !email.includes('.')) {
+                showMessage('error', '❌ البريد الإلكتروني غير صالح');
+                return false;
+            }
+
+            if (password.length < 6) {
+                showMessage('error', '❌ كلمة المرور يجب أن تكون 6 أحرف على الأقل');
+                return false;
+            }
+
+            if (isSignUp) {
+                const name = nameInput.value.trim();
+                if (!name) {
+                    showMessage('error', '❌ الرجاء إدخال الاسم الكامل');
+                    return false;
+                }
+                if (name.split(' ').length < 2) {
+                    showMessage('error', '❌ الرجاء إدخال الاسم الثلاثي على الأقل');
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        // ===== حفظ بيانات المستخدم =====
+        function saveUserData(user) {
+            localStorage.setItem('userId', user.uid);
+            localStorage.setItem('userEmail', user.email);
+            localStorage.setItem('userName', user.displayName || nameInput.value.trim() || 'مستخدم');
+            
+            // يمكنك أيضاً حفظ المستخدم في Firestore إذا أردت
+            // saveUserToFirestore(user);
+        }
+
+        // ===== (اختياري) حفظ المستخدم في Firestore =====
+        /*
+        function saveUserToFirestore(user) {
+            const db = firebase.firestore();
+            db.collection('users').doc(user.uid).set({
+                name: user.displayName || nameInput.value.trim(),
+                email: user.email,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            }).catch(error => console.error('خطأ في حفظ المستخدم:', error));
+        }
+        */
+
+        // ===== تسجيل الدخول =====
+        async function signIn() {
+            if (!validateInputs()) return;
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            try {
+                mainBtn.disabled = true;
+                mainBtn.textContent = 'جاري...';
+
+                const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                saveUserData(userCredential.user);
+                
+                showMessage('success', '✅ تم تسجيل الدخول بنجاح! جاري التوجيه...');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+
+            } catch (error) {
+                mainBtn.disabled = false;
+                mainBtn.textContent = 'دخول';
+                
+                let errorMessage = '❌ ';
+                switch(error.code) {
+                    case 'auth/user-not-found':
+                        errorMessage += 'لا يوجد حساب بهذا البريد الإلكتروني';
+                        break;
+                    case 'auth/wrong-password':
+                        errorMessage += 'كلمة المرور غير صحيحة';
+                        break;
+                    case 'auth/invalid-credential':
+                        errorMessage += 'بيانات الدخول غير صالحة';
+                        break;
+                    case 'auth/too-many-requests':
+                        errorMessage += 'تم حظر الوصول مؤقتاً لكثرة المحاولات';
+                        break;
+                    default:
+                        errorMessage += error.message;
+                }
+                showMessage('error', errorMessage);
+            }
+        }
+
+        // ===== إنشاء حساب جديد =====
+        async function signUp() {
+            if (!validateInputs()) return;
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+            const name = nameInput.value.trim();
+
+            try {
+                mainBtn.disabled = true;
+                mainBtn.textContent = 'جاري...';
+
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+
+                await user.updateProfile({
+                    displayName: name
+                });
+
+                saveUserData(user);
+                showMessage('success', '✅ تم إنشاء الحساب بنجاح! جاري التوجيه...');
+                
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+
+            } catch (error) {
+                mainBtn.disabled = false;
+                mainBtn.textContent = 'إنشاء الحساب';
+                
+                let errorMessage = '❌ ';
+                switch(error.code) {
+                    case 'auth/email-already-in-use':
+                        errorMessage += 'البريد الإلكتروني مستخدم بالفعل';
+                        break;
+                    case 'auth/invalid-email':
+                        errorMessage += 'بريد إلكتروني غير صالح';
+                        break;
+                    case 'auth/weak-password':
+                        errorMessage += 'كلمة المرور ضعيفة جداً';
+                        break;
+                    default:
+                        errorMessage += error.message;
+                }
+                showMessage('error', errorMessage);
+            }
+        }
+
+        // ===== تسجيل الدخول بـ Google =====
         document.getElementById('googleBtn').onclick = () => {
             const provider = new firebase.auth.GoogleAuthProvider();
+            
+            // إضافة نطاق الموقع (اختياري لكن مفيد)
+            provider.setCustomParameters({
+                prompt: 'select_account'
+            });
+            
+            // تعطيل الزر مؤقتاً لمنع الضغط المتكرر
+            const googleBtn = document.getElementById('googleBtn');
+            googleBtn.disabled = true;
+            googleBtn.innerHTML = '<span class="fa-spinner"></span> جاري...';
+            
             auth.signInWithPopup(provider)
-                .then(() => window.location.href = "index.html")
+                .then((result) => {
+                    saveUserData(result.user);
+                    showMessage('success', '✅ تم تسجيل الدخول بنجاح! جاري التوجيه...');
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 1500);
+                })
                 .catch((error) => {
-                    messageDiv.style.display = 'block';
-                    messageDiv.className = "message error";
-                    messageDiv.textContent = "حدث خطأ: " + error.message;
+                    googleBtn.disabled = false;
+                    googleBtn.innerHTML = '<img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" width="20"> الدخول بواسطة Google';
+                    
+                    let errorMessage = '❌ ';
+                    if (error.code === 'auth/popup-closed-by-user') {
+                        errorMessage += 'تم إغلاق نافذة التسجيل';
+                    } else if (error.code === 'auth/unauthorized-domain') {
+                        errorMessage += 'هذا النطاق غير مصرح به. لكنك أضفت النطاقات الصحيحة ✅';
+                        // رسالة تشجيعية لأنك أضفت النطاقات بالفعل
+                        setTimeout(() => {
+                            showMessage('info', 'حاول مرة أخرى، النطاقات مضافة بشكل صحيح');
+                        }, 1000);
+                    } else {
+                        errorMessage += error.message;
+                    }
+                    showMessage('error', errorMessage);
                 });
         };
 
-        // تسجيل الدخول العادي
-        document.getElementById('mainBtn').onclick = async () => {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            try {
-                await auth.signInWithEmailAndPassword(email, password);
-                window.location.href = "index.html";
-            } catch (error) {
-                messageDiv.style.display = 'block';
-                messageDiv.className = "message error";
-                messageDiv.textContent = "خطأ في البريد أو كلمة المرور";
+        // ===== الحدث الرئيسي للزر =====
+        mainBtn.addEventListener('click', () => {
+            if (isSignUp) {
+                signUp();
+            } else {
+                signIn();
             }
-        };
+        });
+
+        // ===== تسجيل الدخول بضغط Enter =====
+        document.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                if (isSignUp) {
+                    signUp();
+                } else {
+                    signIn();
+                }
+            }
+        });
+
+        // ===== التحقق من حالة تسجيل الدخول =====
+        auth.onAuthStateChanged((user) => {
+            if (user && window.location.pathname.includes('login.html')) {
+                showMessage('info', '👋 أنت مسجل الدخول بالفعل! جاري التوجيه...');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            }
+        });
+
+        // ===== رسالة ترحيب عند تحميل الصفحة =====
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                showMessage('info', '👋 مرحباً بك! سجل دخولك لمتابعة تقدمك');
+            }, 500);
+        });
     </script>
 </body>
 </html>
