@@ -841,3 +841,109 @@
                 grid-template-columns: 1fr;
             }
         }
+        .program-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.program-icon.programming {
+    background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+}
+
+.program-icon.networking {
+    background: linear-gradient(135deg, #0066cc, #004999);
+}
+
+.program-icon.professional {
+    background: linear-gradient(135deg, #10b981, #047857);
+}
+
+.program-icon.business {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.program-icon.english {
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+}
+
+.program-card:hover .program-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/*///////////////////////////*/
+/* تنسيق خاص بلوجو Flutter */
+.program-icon.flutter-icon {
+    background: linear-gradient(135deg, #8b5cf6, #6d28d9); /* بنفسجي مثل الباقي */
+}
+
+.program-icon.flutter-icon::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.program-card:hover .program-icon.flutter-icon::before {
+    opacity: 1;
+}
+
+.program-icon.flutter-icon i {
+    color: white;
+    font-size: 2.2rem;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.program-card:hover .program-icon.flutter-icon i {
+    transform: scale(1.1) rotate(5deg);
+    text-shadow: 0 5px 15px rgba(2, 86, 155, 0.4);
+}
+
+/* إضافة تأثير توهج خاص */
+@keyframes flutterGlow {
+    0% {
+        box-shadow: 0 0 5px #02569B;
+    }
+    50% {
+        box-shadow: 0 0 20px #42A5F5;
+    }
+    100% {
+        box-shadow: 0 0 5px #02569B;
+    }
+}
+/* تنسيق صورة Flutter */
+.flutter-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* يحول الشعار للأبيض */
+    transition: all 0.3s ease;
+}
+
+.program-card:hover .flutter-logo {
+    transform: scale(1.1) rotate(5deg);
+    filter: brightness(1) invert(0); /* يظهر بالألوان الأصلية عند التحويم */
+}
+
+/* إذا أردت الشعار ملون دائماً */
+.flutter-logo-color {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.program-card:hover .flutter-logo-color {
+    transform: scale(1.1) rotate(5deg);
+}
