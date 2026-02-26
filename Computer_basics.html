@@ -2,1326 +2,15 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="5c511f271e2533ebea62194fe08a12d3a6d5cc97" content="5c511f271e2533ebea62194fe08a12d3e6d5cc97" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أساسيات الحاسوب | Mohamed Alaa</title>
+    <title>أساسيات الحاسوب - الدورة الشاملة | Mohamed Alaa</title>
     <link rel="icon" href="icons mohamed.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="computer_basics.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: #fff;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.1) 0%, transparent 20%),
-                        radial-gradient(circle at 90% 80%, rgba(247, 37, 133, 0.1) 0%, transparent 20%);
-            z-index: -1;
-        }
-
-        .nav-container {
-            background: rgba(15, 23, 42, 0.95);
-            padding: 15px 0;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        .nav-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #4361ee, #3a0ca3);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .nav-link {
-            color: #e0e1dd;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 15px;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(67, 97, 238, 0.2);
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            background: linear-gradient(45deg, #4361ee, #3a0ca3);
-            color: white;
-            border-color: transparent;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.4);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            margin-top: 80px;
-        }
-
-        .page-header {
-            text-align: center;
-            padding: 50px 20px;
-            margin-bottom: 40px;
-            background: rgba(27, 38, 59, 0.7);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            animation: fadeIn 1s ease;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-        }
-
-        .logo {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, #4361ee, #3a0ca3, #4cc9f0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .page-header h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: #e0e1dd;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        .badge-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin: 25px 0 0;
-        }
-
-        .badge {
-            background: rgba(76, 201, 240, 0.15);
-            border: 1px solid #4cc9f0;
-            color: #4cc9f0;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .download-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin: 30px 0 0;
-        }
-
-        .download-btn {
-            background: linear-gradient(45deg, #10b981, #059669);
-            color: white;
-            text-decoration: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem;
-            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
-        }
-
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.5);
-        }
-
-        .download-btn.secondary {
-            background: linear-gradient(45deg, #4361ee, #3a0ca3);
-            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
-        }
-
-        .progress-container {
-            background: rgba(27, 38, 59, 0.85);
-            border-radius: 20px;
-            padding: 25px;
-            margin: 30px 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .progress-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .progress-stats {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .progress-percent {
-            color: #4cc9f0;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .completed-badge {
-            color: #e0e1dd;
-            background: rgba(76, 201, 240, 0.15);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-
-        .reset-btn {
-            background: rgba(244, 67, 54, 0.15);
-            border: 1px solid #f44336;
-            color: #f44336;
-            padding: 8px 15px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.3s;
-        }
-
-        .reset-btn:hover {
-            background: #f44336;
-            color: white;
-        }
-
-        .progress-bar-bg {
-            height: 20px;
-            border-radius: 30px;
-            background: rgba(255,255,255,0.1);
-            margin: 15px 0 8px;
-        }
-
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #4cc9f0, #4361ee, #3a0ca3);
-            border-radius: 30px;
-            position: relative;
-            overflow: hidden;
-            transition: width 0.3s;
-        }
-
-        .progress-bar-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shine 2s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%); }
-            20% { transform: translateX(100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .lesson-dots {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 8px;
-            padding: 0 5px;
-        }
-
-        .dot {
-            font-size: 0.8rem;
-            transition: 0.3s;
-        }
-
-        .dot.completed {
-            color: #10b981;
-            text-shadow: 0 0 10px #10b981;
-        }
-
-        .progress-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 10px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .completed-info {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: #e0e1dd;
-            font-size: 0.95rem;
-        }
-
-        .remaining-info {
-            color: #e0e1dd;
-            font-size: 0.85rem;
-            background: rgba(255,255,255,0.05);
-            padding: 4px 10px;
-            border-radius: 20px;
-        }
-
-        .search-box {
-            margin: 20px 0;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 15px 20px;
-            border-radius: 30px;
-            border: none;
-            background: rgba(27, 38, 59, 0.85);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 1rem;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: #4cc9f0;
-        }
-
-        .search-input::placeholder {
-            color: #94a3b8;
-        }
-
-        .lessons-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
-        }
-
-        .lesson-card {
-            background: rgba(27, 38, 59, 0.85);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .lesson-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #4361ee, #3a0ca3, #4cc9f0);
-            transform: scaleX(0);
-            transition: transform 0.5s ease;
-        }
-
-        .lesson-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .lesson-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            border-color: #4cc9f0;
-        }
-
-        .lesson-card.completed {
-            border-color: #10b981;
-            background: rgba(16, 185, 129, 0.1);
-        }
-
-        .lesson-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .lesson-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #4361ee, #3a0ca3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: white;
-        }
-
-        .lesson-number {
-            color: #4cc9f0;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .lesson-title {
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-
-        .lesson-topics {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0;
-        }
-
-        .lesson-topics li {
-            color: #e0e1dd;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .lesson-topics li i {
-            color: #4cc9f0;
-            width: 20px;
-            font-size: 0.9rem;
-        }
-
-        .lesson-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .lesson-btn {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: 0.3s;
-            min-width: 120px;
-        }
-
-        .download-lesson-btn {
-            background: linear-gradient(45deg, #10b981, #059669);
-            color: white;
-        }
-
-        .download-lesson-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.4);
-        }
-
-        .complete-lesson-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 2px solid #4cc9f0;
-        }
-
-        .complete-lesson-btn:hover {
-            background: #4cc9f0;
-            color: #0f172a;
-        }
-
-        .complete-lesson-btn.completed {
-            background: #10b981;
-            border-color: #10b981;
-        }
-
-        @keyframes celebratePulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        .celebrate-message {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 20px 40px;
-            border-radius: 50px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            z-index: 10000;
-            animation: slideInDown 0.5s, fadeOut 0.5s 2.5s forwards;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border: 2px solid #ffd700;
-        }
-
-        @keyframes slideInDown {
-            from {
-                transform: translate(-50%, -100%);
-                opacity: 0;
-            }
-            to {
-                transform: translate(-50%, -50%);
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeOut {
-            from {
-                opacity: 1;
-            }
-            to {
-                opacity: 0;
-                visibility: hidden;
-            }
-        }
-
-        .confetti {
-            position: fixed;
-            z-index: 9999;
-            pointer-events: none;
-            animation: confettiFall 1.5s ease forwards;
-        }
-
-        @keyframes confettiFall {
-            to {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
-            }
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-        }
-
-        .card {
-            background: rgba(27, 38, 59, 0.85);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #4361ee, #3a0ca3, #4cc9f0);
-            transform: scaleX(0);
-            transition: transform 0.5s ease;
-        }
-
-        .card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            border-color: #4cc9f0;
-        }
-
-        .card-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #4361ee, #3a0ca3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: white;
-            margin: 0 auto 20px;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover .card-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .card h3 {
-            color: #4cc9f0;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .card p {
-            color: #e0e1dd;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        .spec-list {
-            list-style: none;
-            padding: 0;
-            text-align: right;
-            margin-top: 15px;
-        }
-
-        .spec-list li {
-            color: #e0e1dd;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .spec-list li i {
-            color: #4cc9f0;
-            width: 20px;
-        }
-
-        .highlight {
-            background: linear-gradient(45deg, #4361ee, #3a0ca3);
-            color: white;
-            padding: 3px 12px;
-            border-radius: 20px;
-            font-weight: 600;
-            display: inline-block;
-            margin: 5px 0;
-        }
-
-        .comparison-section {
-            background: rgba(27, 38, 59, 0.85);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            padding: 40px;
-            margin: 40px 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .section-title {
-            color: #4cc9f0;
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .section-subtitle {
-            color: #e0e1dd;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-        }
-
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .comparison-card {
-            background: rgba(15, 23, 42, 0.6);
-            border-radius: 20px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.3s;
-        }
-
-        .comparison-card.laptop {
-            border-top: 5px solid #4cc9f0;
-        }
-
-        .comparison-card.desktop {
-            border-top: 5px solid #4361ee;
-        }
-
-        .comparison-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .comparison-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .laptop h3 { color: #4cc9f0; }
-        .desktop h3 { color: #4361ee; }
-
-        .comparison-card ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .comparison-card ul li {
-            margin: 15px 0;
-            padding: 10px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #e0e1dd;
-        }
-
-        .comparison-card ul li i {
-            width: 24px;
-            color: #4cc9f0;
-        }
-
-        .tips-box {
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(58, 12, 163, 0.1));
-            border: 1px solid #4361ee;
-            border-radius: 20px;
-            padding: 25px;
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        .tips-box p {
-            color: #fff;
-            font-size: 1.2rem;
-        }
-
-        .tips-box i {
-            color: #4cc9f0;
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .shortcuts-section {
-            margin: 40px 0;
-        }
-
-        .shortcuts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .shortcut-item {
-            background: rgba(27, 38, 59, 0.85);
-            border-radius: 15px;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.3s;
-        }
-
-        .shortcut-item:hover {
-            transform: translateX(-5px);
-            border-color: #4cc9f0;
-        }
-
-        .shortcut-key {
-            background: #1e1e1e;
-            color: #4cc9f0;
-            padding: 8px 15px;
-            border-radius: 10px;
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-            border: 2px solid #4cc9f0;
-            min-width: 100px;
-            text-align: center;
-        }
-
-        .shortcut-desc {
-            color: #e0e1dd;
-            flex: 1;
-        }
-
-        .practice-section {
-            background: linear-gradient(135deg, #10b981, #047857);
-            border-radius: 30px;
-            padding: 40px;
-            margin: 40px 0;
-        }
-
-        .practice-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .step {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(5px);
-            border-radius: 20px;
-            padding: 20px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .step-number {
-            width: 40px;
-            height: 40px;
-            background: white;
-            color: #10b981;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-        }
-
-        .step p {
-            color: white;
-            margin: 0;
-        }
-
-        .interactive-editor {
-            background: rgba(15, 23, 42, 0.95);
-            border-radius: 20px;
-            padding: 25px;
-            margin: 30px 0;
-            border: 2px solid #4cc9f0;
-        }
-
-        .editor-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .editor-title {
-            color: #4cc9f0;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .editor-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .editor-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .run-btn {
-            background: linear-gradient(45deg, #10b981, #059669);
-            color: white;
-        }
-
-        .run-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.4);
-        }
-
-        .reset-btn-editor {
-            background: rgba(255, 255, 255, 0.1);
-            color: #f87171;
-            border: 2px solid #f87171;
-        }
-
-        .reset-btn-editor:hover {
-            background: rgba(248, 113, 113, 0.2);
-        }
-
-        .copy-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: #4cc9f0;
-            border: 2px solid #4cc9f0;
-        }
-
-        .copy-btn:hover {
-            background: rgba(76, 201, 240, 0.2);
-        }
-
-        .editor-area {
-            background: #0b1120;
-            border-radius: 15px;
-            padding: 20px;
-            min-height: 150px;
-            color: #e0e1dd;
-            font-family: 'Courier New', monospace;
-            line-height: 1.8;
-            border: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 20px;
-            white-space: pre-wrap;
-            direction: ltr;
-            text-align: left;
-        }
-
-        .editor-area:focus {
-            outline: none;
-            border-color: #4cc9f0;
-        }
-
-        .output-area {
-            background: #0b1120;
-            border-radius: 15px;
-            padding: 20px;
-            min-height: 80px;
-            color: #e0e1dd;
-            font-family: 'Courier New', monospace;
-            border: 1px solid #10b981;
-            white-space: pre-wrap;
-            direction: ltr;
-            text-align: left;
-        }
-
-        .tip-card {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            border-radius: 30px;
-            padding: 40px;
-            margin: 40px 0;
-            text-align: center;
-        }
-
-        .tip-card i {
-            font-size: 3rem;
-            color: white;
-            margin-bottom: 15px;
-        }
-
-        .tip-card h3 {
-            color: white;
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-
-        .tip-card p {
-            color: white;
-            font-size: 1.2rem;
-            line-height: 1.8;
-        }
-
-        .projects-section {
-            background: rgba(27, 38, 59, 0.85);
-            border-radius: 30px;
-            padding: 40px;
-            margin: 50px 0;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .project-card {
-            background: rgba(15, 23, 42, 0.6);
-            border-radius: 20px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-        }
-
-        .project-icon {
-            font-size: 2.5rem;
-            color: #f59e0b;
-            margin-bottom: 15px;
-        }
-
-        .project-card h4 {
-            color: #4cc9f0;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-
-        .project-card p {
-            color: #e0e1dd;
-            line-height: 1.6;
-        }
-
-        .faq-section {
-            background: rgba(27, 38, 59, 0.85);
-            border-radius: 30px;
-            padding: 40px;
-            margin: 40px 0;
-        }
-
-        .faq-item {
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
-
-        .faq-question {
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #4cc9f0;
-            font-weight: 600;
-        }
-
-        .faq-answer {
-            padding: 0 20px 20px;
-            color: #e0e1dd;
-            line-height: 1.6;
-            display: none;
-        }
-
-        .faq-item.active .faq-answer {
-            display: block;
-        }
-
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-        }
-
-        .rating-section {
-            background: linear-gradient(135deg, #4361ee, #3a0ca3);
-            border-radius: 30px;
-            padding: 40px;
-            margin: 40px 0;
-            text-align: center;
-        }
-
-        .stars {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            font-size: 2.5rem;
-            margin: 20px 0;
-        }
-
-        .star {
-            cursor: pointer;
-            color: #ffd700;
-            transition: 0.2s;
-        }
-
-        .star:hover {
-            transform: scale(1.2);
-        }
-
-        .resources-section {
-            background: rgba(27, 38, 59, 0.85);
-            border-radius: 30px;
-            padding: 30px;
-            margin: 40px 0;
-        }
-
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .resource-item {
-            background: rgba(255,255,255,0.05);
-            padding: 15px;
-            border-radius: 15px;
-            text-decoration: none;
-            color: #4cc9f0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: 0.3s;
-        }
-
-        .resource-item:hover {
-            background: #4cc9f0;
-            color: #0f172a;
-            transform: translateY(-3px);
-        }
-
-        .user-info {
-            background: linear-gradient(135deg, #4361ee, #3a0ca3);
-            border-radius: 20px;
-            padding: 20px;
-            margin: 20px 0;
-            display: none;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .user-details {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .user-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #4361ee;
-            font-size: 2rem;
-        }
-
-        .user-text h3 {
-            color: white;
-            margin-bottom: 5px;
-        }
-
-        .user-text p {
-            color: rgba(255,255,255,0.9);
-            font-size: 0.9rem;
-        }
-
-        .logout-btn {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid white;
-            color: white;
-            padding: 10px 25px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logout-btn:hover {
-            background: white;
-            color: #4361ee;
-        }
-
-        .footer {
-            margin-top: 40px;
-            padding: 30px;
-            background: rgba(27, 38, 59, 0.85);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 25px 0;
-            flex-wrap: wrap;
-        }
-
-        .social-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .social-icon:hover {
-            background: linear-gradient(45deg, #4361ee, #3a0ca3);
-            transform: translateY(-5px);
-            color: #fff;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
-
-        .footer-link {
-            background: rgba(76, 201, 240, 0.1);
-            color: #4cc9f0;
-            text-decoration: none;
-            padding: 10px 25px;
-            border-radius: 30px;
-            border: 1px solid #4cc9f0;
-            transition: 0.3s;
-        }
-
-        .footer-link:hover {
-            background: #4cc9f0;
-            color: #0f172a;
-        }
-
-        .copyright {
-            color: #e0e1dd;
-            font-size: 0.9rem;
-            margin-top: 20px;
-        }
-
-        #backToTop {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #4361ee, #3a0ca3);
-            color: white;
-            border: none;
-            cursor: pointer;
-            display: none;
-            z-index: 999;
-            font-size: 1.2rem;
-            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
-            transition: 0.3s;
-        }
-
-        #backToTop:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.6);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-content {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .comparison-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .page-header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .container {
-                padding: 10px;
-            }
-
-            .download-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .download-btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .lessons-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .lesson-actions {
-                flex-direction: column;
-            }
-
-            .progress-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .progress-stats {
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .user-info {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
     </style>
 </head>
 <body>
@@ -1332,7 +21,9 @@
         <div class="nav-links">
             <a href="index.html" class="nav-link">الرئيسية</a>
             <a href="Computer_basics.html" class="nav-link active">أساسيات الحاسوب</a>
+            <a href="programming-basics.html" class="nav-link active">أساسيات البرمجة</a>
             <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
+            <a href="programming-basics.html" class="nav-link">أساسيات البرمجة</a>
             <a href="data-analyst-course.html" class="nav-link">📊 Data Analyst</a>
             <a href="data-scientist-course.html" class="nav-link">🔬 Data Scientist</a>
             <a href="blogs.html" class="nav-link">المقالات</a>
@@ -1362,7 +53,7 @@
     <div class="page-header">
         <div class="logo">🖥️ أساسيات الحاسوب</div>
         <h1>دورة شاملة من الصفر إلى الاحتراف</h1>
-        <p class="subtitle">6 دروس نظرية + 3 مشاريع عملية - افهم كل جزء في جهازك واختار الجهاز المناسب لشغلك</p>
+        <p class="subtitle">6 دروس شاملة + 5 مشاريع عملية - افهم كل جزء في جهازك واختار الجهاز المناسب لشغلك</p>
         
         <!-- أزرار التحميل -->
         <div class="download-buttons">
@@ -1376,8 +67,29 @@
 
         <div class="badge-container">
             <span class="badge"><i class="fas fa-clock"></i> 6 دروس</span>
-            <span class="badge"><i class="fas fa-tasks"></i> 3 مشاريع</span>
+            <span class="badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
             <span class="badge"><i class="fas fa-level-up-alt"></i> للمبتدئين</span>
+            <span class="badge"><i class="fas fa-certificate"></i> شهادة معتمدة</span>
+        </div>
+    </div>
+
+    <!-- إحصائيات سريعة -->
+    <div class="stats-section">
+        <div class="stat-card">
+            <div class="stat-number" id="completedLessonsCount">0</div>
+            <div class="stat-label">الدروس المكتملة</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="earnedBadgesCount">0</div>
+            <div class="stat-label">الشارات المكتسبة</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="quizHighScore">0</div>
+            <div class="stat-label">أعلى نتيجة</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="studyTime">0</div>
+            <div class="stat-label">دقيقة تعلم</div>
         </div>
     </div>
 
@@ -1385,13 +97,13 @@
     <div class="progress-container">
         <div class="progress-header">
             <div class="progress-title">
-                <i class="fas fa-chart-line" style="color: #4cc9f0; font-size: 1.5rem;"></i>
-                <span style="color: #4cc9f0; font-weight: 600; font-size: 1.2rem;">تقدمك في الدورة</span>
+                <i class="fas fa-chart-line"></i>
+                <span>تقدمك في الدورة</span>
             </div>
             
             <div class="progress-stats">
                 <span class="progress-percent" id="progressPercent">0%</span>
-                <span class="completed-badge" id="completedCount">0</span>
+                <span class="completed-badge" id="completedCount">0/6</span>
                 
                 <!-- زر إعادة تعيين الدورة -->
                 <button onclick="resetCourse()" class="reset-btn">
@@ -1433,7 +145,7 @@
     <h2 class="section-title">📖 محتوى الدورة</h2>
     <div class="lessons-grid" id="lessonsGrid">
         <!-- الدرس 1 -->
-        <div class="lesson-card" data-title="مقدمة في الحاسوب">
+        <div class="lesson-card" data-title="مقدمة في الحاسوب" id="lesson1">
             <div class="lesson-header">
                 <div class="lesson-icon"><i class="fas fa-info-circle"></i></div>
                 <div>
@@ -1452,13 +164,13 @@
                     <i class="fas fa-download"></i> تحميل
                 </button>
                 <button class="lesson-btn complete-lesson-btn" onclick="toggleLesson(1)" id="lesson-btn-1">
-                    <i class="fas fa-circle"></i> تحديد كمكتمل
+                    <i class="fas fa-circle"></i> إكمال
                 </button>
             </div>
         </div>
 
         <!-- الدرس 2 -->
-        <div class="lesson-card" data-title="وحدة المعالجة CPU">
+        <div class="lesson-card" data-title="وحدة المعالجة CPU" id="lesson2">
             <div class="lesson-header">
                 <div class="lesson-icon"><i class="fas fa-microchip"></i></div>
                 <div>
@@ -1477,13 +189,13 @@
                     <i class="fas fa-download"></i> تحميل
                 </button>
                 <button class="lesson-btn complete-lesson-btn" onclick="toggleLesson(2)" id="lesson-btn-2">
-                    <i class="fas fa-circle"></i> تحديد كمكتمل
+                    <i class="fas fa-circle"></i> إكمال
                 </button>
             </div>
         </div>
 
         <!-- الدرس 3 -->
-        <div class="lesson-card" data-title="الذاكرة العشوائية RAM">
+        <div class="lesson-card" data-title="الذاكرة العشوائية RAM" id="lesson3">
             <div class="lesson-header">
                 <div class="lesson-icon"><i class="fas fa-memory"></i></div>
                 <div>
@@ -1502,13 +214,13 @@
                     <i class="fas fa-download"></i> تحميل
                 </button>
                 <button class="lesson-btn complete-lesson-btn" onclick="toggleLesson(3)" id="lesson-btn-3">
-                    <i class="fas fa-circle"></i> تحديد كمكتمل
+                    <i class="fas fa-circle"></i> إكمال
                 </button>
             </div>
         </div>
 
         <!-- الدرس 4 -->
-        <div class="lesson-card" data-title="وحدات التخزين SSD HDD">
+        <div class="lesson-card" data-title="وحدات التخزين SSD HDD" id="lesson4">
             <div class="lesson-header">
                 <div class="lesson-icon"><i class="fas fa-hdd"></i></div>
                 <div>
@@ -1527,13 +239,13 @@
                     <i class="fas fa-download"></i> تحميل
                 </button>
                 <button class="lesson-btn complete-lesson-btn" onclick="toggleLesson(4)" id="lesson-btn-4">
-                    <i class="fas fa-circle"></i> تحديد كمكتمل
+                    <i class="fas fa-circle"></i> إكمال
                 </button>
             </div>
         </div>
 
         <!-- الدرس 5 -->
-        <div class="lesson-card" data-title="الشاشة Monitor">
+        <div class="lesson-card" data-title="الشاشة Monitor" id="lesson5">
             <div class="lesson-header">
                 <div class="lesson-icon"><i class="fas fa-desktop"></i></div>
                 <div>
@@ -1552,13 +264,13 @@
                     <i class="fas fa-download"></i> تحميل
                 </button>
                 <button class="lesson-btn complete-lesson-btn" onclick="toggleLesson(5)" id="lesson-btn-5">
-                    <i class="fas fa-circle"></i> تحديد كمكتمل
+                    <i class="fas fa-circle"></i> إكمال
                 </button>
             </div>
         </div>
 
         <!-- الدرس 6 -->
-        <div class="lesson-card" data-title="اختصارات الكيبورد">
+        <div class="lesson-card" data-title="اختصارات الكيبورد" id="lesson6">
             <div class="lesson-header">
                 <div class="lesson-icon"><i class="fas fa-keyboard"></i></div>
                 <div>
@@ -1577,9 +289,56 @@
                     <i class="fas fa-download"></i> تحميل
                 </button>
                 <button class="lesson-btn complete-lesson-btn" onclick="toggleLesson(6)" id="lesson-btn-6">
-                    <i class="fas fa-circle"></i> تحديد كمكتمل
+                    <i class="fas fa-circle"></i> إكمال
                 </button>
             </div>
+        </div>
+    </div>
+
+    <!-- شارات الإنجاز -->
+    <div class="achievements-section">
+        <h2 class="section-title">🏆 إنجازاتك</h2>
+        <div class="badges-grid" id="badgesGrid">
+            <div class="badge-item" data-badge="beginner">
+                <div class="badge-icon"><i class="fas fa-star"></i></div>
+                <div class="badge-title">مبتدئ</div>
+                <div class="badge-desc">أكمل أول 3 دروس</div>
+            </div>
+            <div class="badge-item" data-badge="intermediate">
+                <div class="badge-icon"><i class="fas fa-medal"></i></div>
+                <div class="badge-title">متوسط</div>
+                <div class="badge-desc">أكمل 6 دروس</div>
+            </div>
+            <div class="badge-item" data-badge="expert">
+                <div class="badge-icon"><i class="fas fa-crown"></i></div>
+                <div class="badge-title">خبير</div>
+                <div class="badge-desc">أكمل كل الدروس</div>
+            </div>
+            <div class="badge-item" data-badge="quiz-master">
+                <div class="badge-icon"><i class="fas fa-brain"></i></div>
+                <div class="badge-title">عبقري</div>
+                <div class="badge-desc">100% في الاختبار</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- الاختبار التفاعلي -->
+    <div class="quiz-container">
+        <h2 class="section-title">📝 اختبر معلوماتك</h2>
+        <div class="quiz-header">
+            <span>10 أسئلة في أساسيات الحاسوب</span>
+            <span id="quizScore">0/10</span>
+        </div>
+        <div class="quiz-progress">
+            <div class="quiz-progress-fill" id="quizProgress" style="width: 0%;"></div>
+        </div>
+        <div id="quizQuestion" class="quiz-question"></div>
+        <div id="quizOptions" class="quiz-options"></div>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <button onclick="resetQuiz()" class="lesson-btn complete-lesson-btn" style="background: linear-gradient(45deg, #f59e0b, #d97706); width: auto; padding: 10px 30px;">
+                <i class="fas fa-redo-alt"></i> إعادة الاختبار
+            </button>
         </div>
     </div>
 
@@ -1792,17 +551,51 @@
                 <div class="project-icon"><i class="fas fa-table"></i></div>
                 <h4>مقارنة أداء لابتوب ومكتبي</h4>
                 <p>جدول يوضح الفروقات في السرعة، السعر، وإمكانيات الترقية مع أمثلة حقيقية</p>
+                <a href="#" class="project-link">تحميل المشروع</a>
             </div>
             <div class="project-card">
                 <div class="project-icon"><i class="fas fa-flask"></i></div>
                 <h4>اختبار RAM والتخزين</h4>
                 <p>تجربة فتح برامج متعددة ونقل ملفات كبيرة مع تسجيل النتائج</p>
+                <a href="#" class="project-link">تحميل المشروع</a>
             </div>
             <div class="project-card">
                 <div class="project-icon"><i class="fas fa-file-pdf"></i></div>
                 <h4>دليل الاختصارات الشخصي</h4>
                 <p>ملف PDF بأهم الاختصارات اللي تستخدمها يومياً</p>
+                <a href="#" class="project-link">تحميل المشروع</a>
             </div>
+            <div class="project-card">
+                <div class="project-icon"><i class="fas fa-chart-bar"></i></div>
+                <h4>تحليل مواصفات جهازك</h4>
+                <p>كيف تقرأ مواصفات جهازك وتفهم إمكانياته</p>
+                <a href="#" class="project-link">تحميل المشروع</a>
+            </div>
+            <div class="project-card">
+                <div class="project-icon"><i class="fas fa-network-wired"></i></div>
+                <h4>إعداد شبكة منزلية</h4>
+                <p>خطوات إعداد راوتر وربط الأجهزة</p>
+                <a href="#" class="project-link">تحميل المشروع</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- شهادة الإتمام -->
+    <div id="certificateSection" class="certificate-section">
+        <h2 class="section-title">🎓 شهادة إتمام الدورة</h2>
+        <div class="certificate-preview">
+            <div class="certificate-title">مسار التطور التقني</div>
+            <div class="certificate-name" id="certificateName">محمد علاء</div>
+            <div class="certificate-desc">لإتمام دورة أساسيات الحاسوب بنجاح</div>
+            <div class="certificate-date" id="certificateDate"></div>
+        </div>
+        <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+            <button onclick="downloadCertificate()" class="lesson-btn complete-lesson-btn" style="background: linear-gradient(45deg, #10b981, #047857); width: auto; padding: 10px 30px;">
+                <i class="fas fa-download"></i> تحميل الشهادة
+            </button>
+            <button onclick="shareAchievement()" class="share-btn">
+                <i class="fab fa-whatsapp"></i> مشاركة الإنجاز
+            </button>
         </div>
     </div>
 
@@ -1845,7 +638,17 @@
                 <i class="fas fa-chevron-down faq-icon"></i>
             </div>
             <div class="faq-answer" id="faq-3">
-                الدورة مجانية ولا تقدم شهادة، لكنك ستكتسب مهارات عملية قيمة ومشاريع تبني بها بورتفوليو قوي.
+                نعم! عند إكمال جميع الدروس، ستحصل على شهادة إتمام قابلة للتحميل والمشاركة.
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(4)">
+            <div class="faq-question">
+                <span>كم تستغرق الدورة؟</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer" id="faq-4">
+                الدورة تحتوي على 6 دروس، كل درس يستغرق حوالي 30-45 دقيقة. يمكنك إكمالها في أسبوع مع الممارسة.
             </div>
         </div>
     </div>
@@ -1887,16 +690,17 @@
         <div class="footer-links">
             <a href="index.html" class="footer-link">الرئيسية</a>
             <a href="Microsoft_Office.html" class="footer-link">Microsoft Office</a>
+            <a href="programming-basics.html" class="footer-link">أساسيات البرمجة</a>
             <a href="data-analyst-course.html" class="footer-link">📊 تحليل البيانات</a>
             <a href="data-scientist-course.html" class="footer-link">🔬 علم البيانات</a>
         </div>
 
         <div class="social-icons">
             <a href="https://www.linkedin.com/in/mohamed-ala-a-2b333533a" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://github.com/muham-ed/skills-github-pages" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://www.youtube.com/channel/UCS5vFLuP5h1NTgvHiM2oJHQ" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://github.com/muham-ed" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.youtube.com/@MohamedAlaa-tech" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
             <a href="https://www.instagram.com/mohamedabotasa/" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=61550839582471&locale=ar_AR" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61550839582471" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
             <a href="https://wa.me/201060828627" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
             <a href="mailto:mohamedalaaaldinabotasa@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
         </div>
@@ -1910,20 +714,37 @@
     <i class="fas fa-arrow-up"></i>
 </button>
 
+<!-- زر تبديل الوضع ليلي/نهاري -->
+<button id="themeToggle" class="theme-toggle" onclick="toggleTheme()">
+    <i class="fas fa-sun"></i>
+</button>
+
+<!-- مودال المكافآت -->
+<div id="rewardModal" class="reward-modal">
+    <div class="reward-content">
+        <div class="reward-icon"><i class="fas fa-trophy"></i></div>
+        <h2 id="rewardTitle" style="color:#4cc9f0;">مبروك!</h2>
+        <p id="rewardDesc" style="margin:20px 0;">لقد حصلت على إنجاز جديد</p>
+        <button onclick="closeReward()" class="lesson-btn complete-lesson-btn" style="width:auto; padding:10px 30px;">متابعة</button>
+    </div>
+</div>
+
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
 
 <script>
-    // ===== إعدادات Firebase - قم بتغيير هذه القيم من لوحة تحكم Firebase =====
+    // ===== إعدادات Firebase الصحيحة =====
     const firebaseConfig = {
-        apiKey: "AIzaSyB8sHpLcX5X5X5X5X5X5X5X5X5X5X5X5X5", // ضع الـ API Key الصحيح هنا
-        authDomain: "project-811350331643.firebaseapp.com",
-        projectId: "project-811350331643",
-        storageBucket: "project-811350331643.appspot.com",
+        apiKey: "AIzaSyDG3CAjOyNDqNF5ISkUnFz5ZGHlSwCicq8",
+        authDomain: "my-website-1-93d68.firebaseapp.com",
+        projectId: "my-website-1-93d68",
+        storageBucket: "my-website-1-93d68.firebasestorage.app",
         messagingSenderId: "811350331643",
-        appId: "1:811350331643:web:abc123" // ضع الـ App ID الصحيح هنا
+        appId: "1:811350331643:web:4fa42821093d629d1f605e",
+        measurementId: "G-P4J6584N2T"
     };
 
     // تهيئة Firebase
@@ -1933,14 +754,17 @@
 
     // ===== متغيرات عامة =====
     let currentUserId = localStorage.getItem('userId');
-    let userName = localStorage.getItem('userName');
+    let userName = localStorage.getItem('userName') || 'مستخدم';
     let userEmail = localStorage.getItem('userEmail');
-    let completedLessons = JSON.parse(localStorage.getItem('completedLessons')) || [];
+    let completedLessons = JSON.parse(localStorage.getItem('comp_completedLessons')) || [];
+    let earnedBadges = JSON.parse(localStorage.getItem('comp_earnedBadges')) || [];
+    let quizHighScore = parseInt(localStorage.getItem('comp_quizHighScore')) || 0;
+    let startTime = parseInt(localStorage.getItem('comp_studyStartTime')) || Date.now();
+    let totalStudyTime = parseInt(localStorage.getItem('comp_totalStudyTime')) || 0;
 
     // ===== التحقق من حالة المصادقة =====
     auth.onAuthStateChanged((user) => {
         if (user) {
-            // مستخدم مسجل الدخول
             currentUserId = user.uid;
             userName = user.displayName || 'مستخدم';
             userEmail = user.email;
@@ -1952,7 +776,6 @@
             displayUserInfo();
             loadUserProgress();
         } else {
-            // مستخدم غير مسجل الدخول
             currentUserId = null;
             userName = null;
             userEmail = null;
@@ -1997,10 +820,11 @@
                 const userData = userDoc.data();
                 if (userData.completedCourses && userData.completedCourses.computer_basics) {
                     completedLessons = userData.completedCourses.computer_basics;
-                    localStorage.setItem('completedLessons', JSON.stringify(completedLessons));
+                    localStorage.setItem('comp_completedLessons', JSON.stringify(completedLessons));
                     
                     updateProgress();
                     updateLessonButtons();
+                    updateStats();
                 }
             }
         } catch (error) {
@@ -2018,10 +842,20 @@
                 'completedCourses.computer_basics': completedLessons,
                 'progress.computer_basics': (completedLessons.length / 6) * 100
             });
-            console.log('تم حفظ التقدم في Firebase');
         } catch (error) {
             console.error('خطأ في حفظ التقدم:', error);
         }
+    }
+
+    // ===== تحديث الإحصائيات =====
+    function updateStats() {
+        document.getElementById('completedLessonsCount').innerText = completedLessons.length;
+        document.getElementById('earnedBadgesCount').innerText = earnedBadges.length;
+        document.getElementById('quizHighScore').innerText = quizHighScore;
+        
+        const now = Date.now();
+        const sessionTime = Math.floor((now - startTime) / 60000);
+        document.getElementById('studyTime').innerText = totalStudyTime + sessionTime;
     }
 
     // ===== دوال الدروس =====
@@ -2031,14 +865,18 @@
         if (index === -1) {
             completedLessons.push(lessonId);
             celebrateLesson(lessonId);
+            totalStudyTime += 5; // إضافة 5 دقائق لكل درس
+            localStorage.setItem('comp_totalStudyTime', totalStudyTime);
         } else {
             completedLessons.splice(index, 1);
         }
         
-        localStorage.setItem('completedLessons', JSON.stringify(completedLessons));
-        saveProgressToFirebase(); // حفظ في Firebase
+        localStorage.setItem('comp_completedLessons', JSON.stringify(completedLessons));
+        saveProgressToFirebase();
         updateProgress();
         updateLessonButtons();
+        checkBadges();
+        updateStats();
     }
 
     function celebrateLesson(lessonId) {
@@ -2051,59 +889,26 @@
             6: 'اختصارات الكيبورد'
         };
         
-        const message = document.createElement('div');
-        message.className = 'celebrate-message';
-        message.innerHTML = `
-            <i class="fas fa-tada"></i>
-            🎉 تهانينا! أكملت الدرس: ${lessonNames[lessonId]}
-            <i class="fas fa-tada"></i>
-        `;
-        document.body.appendChild(message);
-        
-        const btn = document.getElementById(`lesson-btn-${lessonId}`);
-        btn.style.animation = 'celebratePulse 0.5s ease';
-        setTimeout(() => {
-            btn.style.animation = '';
-        }, 500);
-        
-        for (let i = 0; i < 50; i++) {
-            setTimeout(() => {
-                createConfetti();
-            }, i * 30);
-        }
-        
-        setTimeout(() => {
-            message.remove();
-        }, 3000);
+        showReward('أحسنت!', `لقد أكملت درس: ${lessonNames[lessonId]}`);
+        celebrate();
     }
 
-    function createConfetti() {
-        const colors = ['#4cc9f0', '#4361ee', '#f72585', '#f8961e', '#43aa8b', '#f94144', '#f9c74f', '#90be6d'];
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        
-        const confetti = document.createElement('div');
-        confetti.style.position = 'fixed';
-        confetti.style.left = Math.random() * 100 + '%';
-        confetti.style.top = '-10px';
-        confetti.style.width = Math.random() * 10 + 5 + 'px';
-        confetti.style.height = Math.random() * 10 + 5 + 'px';
-        confetti.style.background = randomColor;
-        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-        confetti.style.zIndex = '9999';
-        confetti.style.pointerEvents = 'none';
-        confetti.style.boxShadow = '0 0 10px rgba(255,255,255,0.5)';
-        confetti.style.transition = 'all 1.5s ease';
-        document.body.appendChild(confetti);
-        
-        setTimeout(() => {
-            confetti.style.transform = `translateY(${window.innerHeight}px) rotate(${Math.random() * 720}deg)`;
-            confetti.style.opacity = '0';
-        }, 10);
-        
-        setTimeout(() => {
-            document.body.removeChild(confetti);
-        }, 1500);
+    function celebrate() {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+    }
+
+    function showReward(title, desc) {
+        document.getElementById('rewardTitle').innerText = title;
+        document.getElementById('rewardDesc').innerText = desc;
+        document.getElementById('rewardModal').classList.add('show');
+    }
+
+    function closeReward() {
+        document.getElementById('rewardModal').classList.remove('show');
     }
 
     function updateProgress() {
@@ -2135,13 +940,15 @@
             const btn = document.getElementById(`lesson-btn-${i}`);
             if (btn) {
                 if (completedLessons.includes(i)) {
-                    btn.innerHTML = '<i class="fas fa-check-circle"></i> تم الإكمال';
+                    btn.innerHTML = '<i class="fas fa-check-circle"></i> تم';
                     btn.style.background = '#10b981';
                     btn.style.borderColor = '#10b981';
+                    btn.classList.add('completed');
                 } else {
-                    btn.innerHTML = '<i class="fas fa-circle"></i> تحديد كمكتمل';
+                    btn.innerHTML = '<i class="fas fa-circle"></i> إكمال';
                     btn.style.background = 'rgba(255,255,255,0.1)';
                     btn.style.borderColor = '#4cc9f0';
+                    btn.classList.remove('completed');
                 }
             }
         }
@@ -2150,12 +957,49 @@
     function resetCourse() {
         if (confirm('⚠️ هل أنت متأكد من إعادة تعيين تقدم الدورة؟')) {
             completedLessons = [];
-            localStorage.setItem('completedLessons', JSON.stringify(completedLessons));
+            earnedBadges = [];
+            localStorage.setItem('comp_completedLessons', JSON.stringify(completedLessons));
+            localStorage.setItem('comp_earnedBadges', JSON.stringify(earnedBadges));
             saveProgressToFirebase();
             updateProgress();
             updateLessonButtons();
-            alert('✅ تم إعادة تعيين الدورة بنجاح!');
+            updateBadgesDisplay();
+            document.getElementById('certificateSection').style.display = 'none';
+            showReward('تم', '✅ تم إعادة تعيين الدورة');
         }
+    }
+
+    // ===== التحقق من الشارات =====
+    function checkBadges() {
+        if (completedLessons.length >= 3 && !earnedBadges.includes('beginner')) {
+            earnedBadges.push('beginner');
+            showReward('إنجاز جديد!', 'حصلت على شارة مبتدئ');
+        }
+        
+        if (completedLessons.length === 6 && !earnedBadges.includes('intermediate')) {
+            earnedBadges.push('intermediate');
+            showReward('إنجاز جديد!', 'حصلت على شارة متوسط');
+        }
+        
+        if (completedLessons.length === 6 && !earnedBadges.includes('expert')) {
+            earnedBadges.push('expert');
+            showReward('تهانينا! 🏆', 'أكملت جميع الدروس!');
+            showCertificate();
+        }
+        
+        localStorage.setItem('comp_earnedBadges', JSON.stringify(earnedBadges));
+        updateBadgesDisplay();
+    }
+
+    function updateBadgesDisplay() {
+        const badges = document.querySelectorAll('.badge-item');
+        badges.forEach(badge => {
+            const badgeType = badge.dataset.badge;
+            if (earnedBadges.includes(badgeType) || 
+                (badgeType === 'quiz-master' && quizHighScore === 10)) {
+                badge.classList.add('earned');
+            }
+        });
     }
 
     // ===== شريط البحث =====
@@ -2184,7 +1028,7 @@
         };
         
         const lesson = lessons[lessonNumber];
-        const content = `${lesson.content}\n\n📥 تم التحميل من موقع Mohamed Alaa - مسار التطور التقني`;
+        const content = `${lesson.content}\n\n📥 تم التحميل من موقع Mohamed Alaa - مسار التطور التقني\nhttps://muham-ed.github.io/MY-WEBSITE-1/Computer_basics.html`;
         
         const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
         const url = URL.createObjectURL(blob);
@@ -2196,7 +1040,7 @@
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
         
-        alert(`✅ تم تحميل الدرس ${lessonNumber}: ${lesson.title}`);
+        showReward('تم التحميل', `✅ تم تحميل الدرس ${lessonNumber}`);
     }
 
     // ===== المحرر التفاعلي =====
@@ -2204,14 +1048,23 @@
         const editor = document.getElementById('practiceEditor');
         const output = document.getElementById('practiceOutput');
         const text = editor.innerText || editor.textContent;
-        output.innerHTML = `📝 النص الذي كتبته:\n--------------------\n${text}\n--------------------\n✅ تم التنفيذ بنجاح`;
+        
+        let result = '';
+        if (text.includes('Ctrl + C') || text.includes('Ctrl + V')) {
+            result = '✅ تم محاكاة النسخ واللصق بنجاح!';
+            celebrate();
+        } else {
+            result = `📝 النص الذي كتبته:\n--------------------\n${text}\n--------------------\n✅ تم التنفيذ بنجاح`;
+        }
+        
+        output.innerHTML = result;
     }
 
     function copyPractice() {
         const editor = document.getElementById('practiceEditor');
         const text = editor.innerText || editor.textContent;
         navigator.clipboard.writeText(text).then(() => {
-            alert('✅ تم نسخ النص! جرب تلصقه بـ Ctrl + V');
+            showReward('تم النسخ', '✅ تم نسخ النص');
         });
     }
 
@@ -2220,6 +1073,106 @@
         const output = document.getElementById('practiceOutput');
         editor.innerHTML = 'مرحباً بكم في دورة أساسيات الحاسوب\nهذا نص تجريبي لتجربة الاختصارات\nجرب تستخدم Ctrl + C و Ctrl + V';
         output.innerHTML = '// النتيجة هتظهر هنا بعد ما تضغط تشغيل';
+    }
+
+    // ===== نظام الاختبار =====
+    const quizQuestions = [
+        { q: "ما هي وظيفة CPU؟", a: ["التخزين", "المعالجة", "العرض", "الإدخال"], c: 1 },
+        { q: "ما الفرق بين RAM و HDD؟", a: ["RAM أسرع", "HDD أسرع", "نفس الشيء", "لا فرق"], c: 0 },
+        { q: "ما اختصار نسخ؟", a: ["Ctrl+V", "Ctrl+C", "Ctrl+X", "Ctrl+Z"], c: 1 },
+        { q: "ما اختصار لصق؟", a: ["Ctrl+V", "Ctrl+C", "Ctrl+X", "Ctrl+Z"], c: 0 },
+        { q: "أيها أسرع SSD أم HDD؟", a: ["SSD", "HDD", "نفس السرعة", "يعتمد"], c: 0 },
+        { q: "ما وظيفة RAM؟", a: ["تخزين دائم", "ذاكرة مؤقتة", "معالجة", "عرض"], c: 1 },
+        { q: "ما اختصار تراجع؟", a: ["Ctrl+Y", "Ctrl+Z", "Ctrl+A", "Ctrl+S"], c: 1 },
+        { q: "أي شركة تصنع معالجات؟", a: ["Intel", "NVIDIA", "Samsung", "Dell"], c: 0 },
+        { q: "ما معنى 4K في الشاشات؟", a: ["الدقة", "السرعة", "الحجم", "الوزن"], c: 0 },
+        { q: "ما اختصار حفظ؟", a: ["Ctrl+P", "Ctrl+S", "Ctrl+F", "Ctrl+E"], c: 1 }
+    ];
+
+    let currentQuiz = 0;
+    let quizScore = 0;
+
+    function loadQuiz() {
+        if (currentQuiz >= quizQuestions.length) {
+            showQuizResults();
+            return;
+        }
+
+        const q = quizQuestions[currentQuiz];
+        document.getElementById('quizQuestion').innerText = `سؤال ${currentQuiz + 1}/${quizQuestions.length}: ${q.q}`;
+        document.getElementById('quizScore').innerText = `${quizScore}/${quizQuestions.length}`;
+        
+        const optionsDiv = document.getElementById('quizOptions');
+        optionsDiv.innerHTML = '';
+        
+        q.a.forEach((opt, idx) => {
+            const div = document.createElement('div');
+            div.className = 'quiz-option';
+            div.innerHTML = `<span class="quiz-option-letter">${String.fromCharCode(65 + idx)}</span><span>${opt}</span>`;
+            div.onclick = () => selectQuizOption(idx);
+            optionsDiv.appendChild(div);
+        });
+
+        document.getElementById('quizProgress').style.width = ((currentQuiz + 1) / quizQuestions.length * 100) + '%';
+    }
+
+    function selectQuizOption(index) {
+        const q = quizQuestions[currentQuiz];
+        const options = document.querySelectorAll('.quiz-option');
+        
+        options.forEach(opt => opt.classList.remove('selected'));
+        options[index].classList.add('selected');
+        
+        setTimeout(() => {
+            if (index === q.c) {
+                quizScore++;
+                options[index].classList.add('correct');
+                celebrate();
+            } else {
+                options[index].classList.add('wrong');
+                options[q.c].classList.add('correct');
+            }
+            
+            currentQuiz++;
+            document.getElementById('quizScore').innerText = `${quizScore}/${quizQuestions.length}`;
+            setTimeout(loadQuiz, 1500);
+        }, 500);
+    }
+
+    function showQuizResults() {
+        const percentage = (quizScore / quizQuestions.length) * 100;
+        
+        if (quizScore > quizHighScore) {
+            quizHighScore = quizScore;
+            localStorage.setItem('comp_quizHighScore', quizHighScore);
+        }
+        
+        if (quizScore === quizQuestions.length && !earnedBadges.includes('quiz-master')) {
+            earnedBadges.push('quiz-master');
+            localStorage.setItem('comp_earnedBadges', JSON.stringify(earnedBadges));
+            showReward('عبقري! 🧠', 'أجبت على جميع الأسئلة بشكل صحيح');
+        }
+        
+        const resultHTML = `
+            <div style="text-align: center; padding: 30px;">
+                <div style="font-size: 3rem;">${percentage >= 70 ? '🎉' : '📚'}</div>
+                <div style="font-size: 2rem; color: ${percentage >= 70 ? '#10b981' : '#ef4444'};">${quizScore}/${quizQuestions.length}</div>
+                <div style="font-size: 1.2rem; margin: 20px;">${percentage.toFixed(1)}%</div>
+                <button onclick="resetQuiz()" class="lesson-btn complete-lesson-btn" style="background: #4361ee; width:auto; padding:10px 30px;">
+                    <i class="fas fa-redo-alt"></i> حاول مرة أخرى
+                </button>
+            </div>
+        `;
+        
+        document.getElementById('quizQuestion').innerHTML = '🎯 انتهى الاختبار!';
+        document.getElementById('quizOptions').innerHTML = resultHTML;
+        updateBadgesDisplay();
+    }
+
+    function resetQuiz() {
+        currentQuiz = 0;
+        quizScore = 0;
+        loadQuiz();
     }
 
     // ===== إنشاء وتحميل الملخص =====
@@ -2267,6 +1220,7 @@ Win + E : مستكشف الملفات
 
 ==========================================
 Mohamed Alaa - مسار التطور التقني
+https://muham-ed.github.io/MY-WEBSITE-1/
 ==========================================`;
         
         const blob = new Blob([summary], { type: 'text/plain;charset=utf-8' });
@@ -2279,7 +1233,7 @@ Mohamed Alaa - مسار التطور التقني
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
         
-        alert('✅ تم إنشاء وتحميل الملخص بنجاح!');
+        showReward('تم', '✅ تم إنشاء وتحميل الملخص');
     });
 
     // ===== الأسئلة الشائعة =====
@@ -2291,7 +1245,7 @@ Mohamed Alaa - مسار التطور التقني
     // ===== تقييم الدورة =====
     function rateCourse(stars) {
         document.getElementById('ratingMessage').innerHTML = `شكراً لتقييمك! (${stars} نجوم)`;
-        localStorage.setItem('courseRating', stars);
+        localStorage.setItem('comp_courseRating', stars);
         
         const allStars = document.querySelectorAll('.star');
         allStars.forEach((star, index) => {
@@ -2303,32 +1257,123 @@ Mohamed Alaa - مسار التطور التقني
         });
     }
 
-    // ===== زر العودة للأعلى =====
-    window.addEventListener('scroll', function() {
-        const btn = document.getElementById('backToTop');
-        if (window.pageYOffset > 300) {
-            btn.style.display = 'block';
+    // ===== الشهادة =====
+    function showCertificate() {
+        document.getElementById('certificateSection').style.display = 'block';
+        
+        const name = localStorage.getItem('userName') || 'محمد علاء';
+        document.getElementById('certificateName').innerText = name;
+        
+        const today = new Date();
+        document.getElementById('certificateDate').innerText = today.toLocaleDateString('ar-EG');
+    }
+
+    function downloadCertificate() {
+        const name = localStorage.getItem('userName') || 'محمد علاء';
+        const today = new Date().toLocaleDateString('ar-EG');
+        const content = `
+╔══════════════════════════════════════════════════════════╗
+║                                                          ║
+║              مسار التطور التقني                          ║
+║         Mohamed Alaa - Technical Development Path        ║
+║                                                          ║
+║                    شهادة إتمام                           ║
+║               Certificate of Completion                  ║
+║                                                          ║
+║   تمنح هذه الشهادة إلى                                    ║
+║                                                          ║
+║              ${name}                                      ║
+║                                                          ║
+║   لإتمامه بنجاح دورة                                    ║
+║                                                          ║
+║         "أساسيات الحاسوب - Computer Basics"              ║
+║                                                          ║
+║   6 دروس | 5 مشاريع عملية                                ║
+║                                                          ║
+║   التاريخ: ${today}                                       ║
+║                                                          ║
+║                                   محمد علاء               ║
+║                                   Mohamed Alaa           ║
+║                                                          ║
+╚══════════════════════════════════════════════════════════╝
+
+📌 رابط الدورة: https://muham-ed.github.io/MY-WEBSITE-1/Computer_basics.html
+        `;
+        
+        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `شهادة_${name}.txt`;
+        a.click();
+        
+        showReward('تم التحميل', '✅ تم تحميل الشهادة');
+    }
+
+    // ===== مشاركة الإنجاز =====
+    function shareAchievement() {
+        const text = `🎓 لقد أكملت ${completedLessons.length} دروس في دورة أساسيات الحاسوب على منصة مسار التطور التقني!`;
+        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    // ===== الوضع ليلي/نهاري =====
+    function toggleTheme() {
+        document.body.classList.toggle('light-mode');
+        const btn = document.getElementById('themeToggle');
+        if (document.body.classList.contains('light-mode')) {
+            btn.innerHTML = '<i class="fas fa-moon"></i>';
+            localStorage.setItem('comp_theme', 'light');
         } else {
-            btn.style.display = 'none';
+            btn.innerHTML = '<i class="fas fa-sun"></i>';
+            localStorage.setItem('comp_theme', 'dark');
         }
-    });
+    }
 
     // ===== تحميل العرض التقديمي (تجريبي) =====
     document.getElementById('downloadPptBtn').addEventListener('click', function(e) {
         e.preventDefault();
-        alert('📥 سيتم إضافة ملف العرض التقديمي قريباً');
+        showReward('قريباً', '📥 سيتم إضافة ملف العرض التقديمي قريباً');
     });
+
+    // ===== زر العودة للأعلى =====
+    window.addEventListener('scroll', function() {
+        const btn = document.getElementById('backToTop');
+        btn.style.display = window.pageYOffset > 300 ? 'block' : 'none';
+    });
+
+    // ===== حفظ وقت البدء =====
+    localStorage.setItem('comp_studyStartTime', startTime);
 
     // ===== تهيئة الصفحة =====
     document.addEventListener('DOMContentLoaded', function() {
         displayUserInfo();
         updateProgress();
         updateLessonButtons();
+        updateBadgesDisplay();
+        updateStats();
         
-        const savedRating = localStorage.getItem('courseRating');
+        const savedRating = localStorage.getItem('comp_courseRating');
         if (savedRating) {
             rateCourse(parseInt(savedRating));
         }
+        
+        const savedTheme = localStorage.getItem('comp_theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            document.getElementById('themeToggle').innerHTML = '<i class="fas fa-moon"></i>';
+        }
+        
+        setTimeout(loadQuiz, 500);
+        
+        if (completedLessons.length === 6) {
+            showCertificate();
+        }
+        
+        setInterval(() => {
+            const now = Date.now();
+            const sessionTime = Math.floor((now - startTime) / 60000);
+            document.getElementById('studyTime').innerText = totalStudyTime + sessionTime;
+        }, 60000);
     });
 </script>
 

@@ -1,0 +1,523 @@
+
+        /* ===== أنماط متطابقة مع الصفحات الأخرى ===== */
+        :root {
+            --primary: #10b981; /* أخضر لتحليل البيانات */
+            --primary-light: #34d399;
+            --primary-dark: #059669;
+            --secondary: #3b82f6; /* أزرق */
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #0b1120;
+            --dark-card: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --gradient-1: linear-gradient(135deg, #10b981, #059669);
+            --gradient-2: linear-gradient(135deg, #3b82f6, #2563eb);
+            --gradient-3: linear-gradient(135deg, #10b981, #34d399);
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Cairo', 'Tajawal', 'Segoe UI', sans-serif; 
+        }
+        
+        body { 
+            background: linear-gradient(135deg, #0b1120, #1a1f2e); 
+            color: var(--text); 
+            min-height: 100vh; 
+        }
+        
+        /* ===== شريط التنقل الموحد ===== */
+        .nav-container { 
+            background: rgba(11, 17, 32, 0.95); 
+            padding: 15px 0; 
+            position: fixed; 
+            top: 0; 
+            width: 100%;
+            z-index: 1000; 
+            backdrop-filter: blur(16px); 
+            border-bottom: 1px solid rgba(16, 185, 129, 0.3); 
+        }
+        
+        .nav-content { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 20px; 
+        }
+        
+        .nav-logo { 
+            font-size: 2rem; 
+            font-weight: 700; 
+            background: linear-gradient(135deg, #10b981, #3b82f6); 
+            -webkit-background-clip: text; 
+            background-clip: text; 
+            color: transparent; 
+            text-decoration: none; 
+        }
+        
+        .nav-links { 
+            display: flex; 
+            gap: 25px; 
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .nav-link { 
+            color: var(--text); 
+            text-decoration: none; 
+            font-weight: 500; 
+            padding: 10px 18px; 
+            border-radius: 30px; 
+            transition: all 0.3s ease; 
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(16,185,129,0.2);
+        }
+        
+        .nav-link:hover, .nav-link.active { 
+            background: var(--gradient-1); 
+            color: white; 
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16,185,129,0.4);
+        }
+
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            margin-top: 80px;
+            margin-bottom: 100px;
+        }
+        
+        header { 
+            text-align: center; 
+            padding: 50px 20px; 
+            margin-bottom: 40px; 
+            background: rgba(30,41,59,0.7);
+            border-radius: 40px;
+            border: 1px solid rgba(16,185,129,0.3);
+            backdrop-filter: blur(12px);
+        }
+        
+        .logo { 
+            font-size: 3rem; 
+            font-weight: 800; 
+            background: linear-gradient(135deg, #10b981, #3b82f6, #8b5cf6); 
+            -webkit-background-clip: text; 
+            background-clip: text; 
+            color: transparent; 
+        }
+
+        .progress-container {
+            background: rgba(30,41,59,0.8);
+            border-radius: 30px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .progress-title {
+            color: var(--primary);
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-1);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .lessons-sidebar {
+            background: rgba(30,41,59,0.8);
+            border-radius: 30px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .lessons-sidebar h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .units-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .unit-card {
+            background: rgba(0,0,0,0.2);
+            border-radius: 20px;
+            padding: 15px;
+        }
+        
+        .unit-title {
+            color: var(--primary-light);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .unit-lessons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .lesson-item {
+            background: rgba(16,185,129,0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .lesson-item:hover, .lesson-item.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .lesson-item.completed {
+            background: var(--primary-dark);
+            color: white;
+            opacity: 0.8;
+        }
+
+        .lesson-content {
+            background: rgba(30,41,59,0.9);
+            border-radius: 30px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .lesson-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .lesson-title {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        .lesson-nav {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover:not(:disabled) {
+            background: var(--primary);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .key-points {
+            background: rgba(16,185,129,0.1);
+            border-right: 5px solid var(--primary);
+            padding: 25px;
+            border-radius: 0 20px 20px 0;
+            margin: 20px 0;
+        }
+        
+        .key-points h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .key-points ul {
+            list-style: none;
+            padding-right: 0;
+        }
+        
+        .key-points li {
+            padding: 8px 0;
+            color: var(--text);
+            position: relative;
+            padding-right: 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .key-points li::before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+        }
+
+        .code-section {
+            margin: 30px 0;
+            background: rgba(15,23,42,0.6);
+            border-radius: 20px;
+            padding: 25px;
+            border: 2px solid var(--primary);
+        }
+        
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .code-title {
+            color: var(--primary);
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .code-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .code-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .run-btn {
+            background: var(--gradient-1);
+            color: white;
+        }
+        
+        .copy-btn {
+            background: rgba(255,255,255,0.1);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .reset-btn {
+            background: rgba(255,255,255,0.1);
+            color: var(--danger);
+            border: 2px solid var(--danger);
+        }
+        
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .editor-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .editor-panel, .output-panel {
+            background: #0b1120;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .panel-header {
+            background: #1e293b;
+            padding: 12px 15px;
+            color: #fff;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .CodeMirror {
+            height: 300px;
+            font-size: 14px;
+        }
+        
+        .output-content {
+            padding: 20px;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            min-height: 300px;
+            max-height: 300px;
+            overflow-y: auto;
+            background: #0b1120;
+        }
+
+        .quiz-section {
+            margin: 30px 0;
+            background: rgba(16,185,129,0.1);
+            border-radius: 20px;
+            padding: 25px;
+        }
+        
+        .quiz-question {
+            color: var(--text);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .quiz-option {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 12px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .quiz-option:hover {
+            background: rgba(16,185,129,0.2);
+        }
+        
+        .quiz-option.selected {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .quiz-option.correct {
+            background: var(--success);
+            color: white;
+        }
+        
+        .quiz-option.wrong {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .quiz-feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .quiz-feedback.success {
+            background: rgba(16,185,129,0.2);
+            border: 1px solid var(--success);
+            color: var(--success);
+        }
+        
+        .quiz-feedback.error {
+            background: rgba(239,68,68,0.2);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+        }
+        
+        .quiz-submit {
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .complete-btn {
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 700;
+            margin-top: 20px;
+            width: 100%;
+            font-size: 1.2rem;
+        }
+        
+        .complete-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ===== الفوتر ===== */
+        footer {
+            text-align: center;
+            padding: 35px 0;
+            margin-top: 40px;
+            border-top: 2px solid rgba(16,185,129,0.3);
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            color: #fff;
+            border: 2px solid rgba(16,185,129,0.3);
+        }
+        
+        .social-icon:hover {
+            background: var(--gradient-1);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
