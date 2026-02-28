@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أساسيات الحاسوب - الدورة الشاملة | Mohamed Alaa</title>
     <link rel="icon" href="icons mohamed.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="Computer_basics.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
     </style>
@@ -21,9 +21,8 @@
         <div class="nav-links">
             <a href="index.html" class="nav-link">الرئيسية</a>
             <a href="Computer_basics.html" class="nav-link active">أساسيات الحاسوب</a>
-            <a href="programming-basics.html" class="nav-link active">أساسيات البرمجة</a>
-            <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
             <a href="programming-basics.html" class="nav-link">أساسيات البرمجة</a>
+            <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
             <a href="data-analyst-course.html" class="nav-link">📊 Data Analyst</a>
             <a href="data-scientist-course.html" class="nav-link">🔬 Data Scientist</a>
             <a href="blogs.html" class="nav-link">المقالات</a>
@@ -34,7 +33,7 @@
 
 <div class="container">
     <!-- معلومات المستخدم -->
-    <div id="userInfoCard" class="user-info">
+    <div id="userInfoCard" class="user-info" style="display: none;">
         <div class="user-details">
             <div class="user-avatar">
                 <i class="fas fa-user"></i>
@@ -161,7 +160,7 @@
             </ul>
             <div class="lesson-actions">
                 <button class="lesson-btn download-lesson-btn" onclick="downloadLesson(1)">
-                    <i class="fas fa-download"></i> تحميل
+                    <i class="fas fa-download"></i> تحميل الدرس
                 </button>
                 <button class="lesson-btn complete-lesson-btn" onclick="toggleLesson(1)" id="lesson-btn-1">
                     <i class="fas fa-circle"></i> إكمال
@@ -186,7 +185,7 @@
             </ul>
             <div class="lesson-actions">
                 <button class="lesson-btn download-lesson-btn" onclick="downloadLesson(2)">
-                    <i class="fas fa-download"></i> تحميل
+                    <i class="fas fa-download"></i> تحميل الدرس
                 </button>
                 <button class="lesson-btn complete-lesson-btn" onclick="toggleLesson(2)" id="lesson-btn-2">
                     <i class="fas fa-circle"></i> إكمال
@@ -211,7 +210,7 @@
             </ul>
             <div class="lesson-actions">
                 <button class="lesson-btn download-lesson-btn" onclick="downloadLesson(3)">
-                    <i class="fas fa-download"></i> تحميل
+                    <i class="fas fa-download"></i> تحميل الدرس
                 </button>
                 <button class="lesson-btn complete-lesson-btn" onclick="toggleLesson(3)" id="lesson-btn-3">
                     <i class="fas fa-circle"></i> إكمال
@@ -236,7 +235,7 @@
             </ul>
             <div class="lesson-actions">
                 <button class="lesson-btn download-lesson-btn" onclick="downloadLesson(4)">
-                    <i class="fas fa-download"></i> تحميل
+                    <i class="fas fa-download"></i> تحميل الدرس
                 </button>
                 <button class="lesson-btn complete-lesson-btn" onclick="toggleLesson(4)" id="lesson-btn-4">
                     <i class="fas fa-circle"></i> إكمال
@@ -261,7 +260,7 @@
             </ul>
             <div class="lesson-actions">
                 <button class="lesson-btn download-lesson-btn" onclick="downloadLesson(5)">
-                    <i class="fas fa-download"></i> تحميل
+                    <i class="fas fa-download"></i> تحميل الدرس
                 </button>
                 <button class="lesson-btn complete-lesson-btn" onclick="toggleLesson(5)" id="lesson-btn-5">
                     <i class="fas fa-circle"></i> إكمال
@@ -286,7 +285,7 @@
             </ul>
             <div class="lesson-actions">
                 <button class="lesson-btn download-lesson-btn" onclick="downloadLesson(6)">
-                    <i class="fas fa-download"></i> تحميل
+                    <i class="fas fa-download"></i> تحميل الدرس
                 </button>
                 <button class="lesson-btn complete-lesson-btn" onclick="toggleLesson(6)" id="lesson-btn-6">
                     <i class="fas fa-circle"></i> إكمال
@@ -838,10 +837,14 @@
         
         try {
             const userRef = db.collection('users').doc(currentUserId);
-            await userRef.update({
-                'completedCourses.computer_basics': completedLessons,
-                'progress.computer_basics': (completedLessons.length / 6) * 100
-            });
+            await userRef.set({
+                completedCourses: {
+                    computer_basics: completedLessons
+                },
+                progress: {
+                    computer_basics: (completedLessons.length / 6) * 100
+                }
+            }, { merge: true });
         } catch (error) {
             console.error('خطأ في حفظ التقدم:', error);
         }
@@ -905,6 +908,11 @@
         document.getElementById('rewardTitle').innerText = title;
         document.getElementById('rewardDesc').innerText = desc;
         document.getElementById('rewardModal').classList.add('show');
+        
+        // إخفاء المودال تلقائياً بعد 3 ثواني
+        setTimeout(() => {
+            document.getElementById('rewardModal').classList.remove('show');
+        }, 3000);
     }
 
     function closeReward() {
@@ -915,7 +923,7 @@
         const percent = (completedLessons.length / 6) * 100;
         document.getElementById('progressBar').style.width = percent + '%';
         document.getElementById('progressPercent').textContent = Math.round(percent) + '%';
-        document.getElementById('completedCount').textContent = completedLessons.length;
+        document.getElementById('completedCount').textContent = completedLessons.length + '/6';
         document.getElementById('completedCount2').textContent = completedLessons.length;
         document.getElementById('remainingLessons').textContent = 6 - completedLessons.length;
         
@@ -958,8 +966,16 @@
         if (confirm('⚠️ هل أنت متأكد من إعادة تعيين تقدم الدورة؟')) {
             completedLessons = [];
             earnedBadges = [];
+            quizHighScore = 0;
+            totalStudyTime = 0;
+            startTime = Date.now();
+            
             localStorage.setItem('comp_completedLessons', JSON.stringify(completedLessons));
             localStorage.setItem('comp_earnedBadges', JSON.stringify(earnedBadges));
+            localStorage.setItem('comp_quizHighScore', quizHighScore);
+            localStorage.setItem('comp_totalStudyTime', totalStudyTime);
+            localStorage.setItem('comp_studyStartTime', startTime);
+            
             saveProgressToFirebase();
             updateProgress();
             updateLessonButtons();
@@ -1018,8 +1034,22 @@
 
     // ===== تحميل الدروس =====
     function downloadLesson(lessonNumber) {
+        // إذا كان المستخدم يريد تحميل الدرس الأول (رقم 1)
+        if (lessonNumber === 1) {
+            // محاولة تحميل ملف البوربوينت
+            const link = document.createElement('a');
+            link.href = 'اول درس.pptx'; // تأكد أن الملف موجود في نفس المسار
+            link.download = 'الدرس_الاول_مقدمة_في_الحاسوب.pptx'; // الاسم الذي سيظهر عند التحميل
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showReward('تم التحميل', '✅ تم تحميل ملف العرض التقديمي للدرس الأول');
+            return; // نخرج من الدالة حتى لا ينفذ الكود القديم
+        }
+        
+        // للدروس الأخرى، استمر في النص القديم
         const lessons = {
-            1: { title: "مقدمة في الحاسوب", content: "الدرس الأول: مقدمة في الحاسوب\n\nتعريف الحاسوب ووظائفه الأساسية\nالفرق بين Laptop, Desktop, Server\nأهم المصطلحات والاختصارات للمبتدئين\nالفرق بين الأجهزة المختلفة" },
             2: { title: "وحدة المعالجة CPU", content: "الدرس الثاني: وحدة المعالجة المركزية (CPU)\n\nدور المعالج كـ 'العقل المدبر'\nالفرق بين عدد الأنوية والسرعة (GHz vs Cores)\nمقارنة بين Intel, AMD, Apple Silicon\nاختيار المعالج المناسب لاستخدامك" },
             3: { title: "الذاكرة العشوائية RAM", content: "الدرس الثالث: الذاكرة العشوائية (RAM)\n\nمفهوم 'مساحة العمل المؤقتة'\nالفرق بين DDR4 و DDR5\n8GB vs 16GB vs 32GB - أيهما تختار؟\nتجربة عملية: فتح برامج متعددة" },
             4: { title: "وحدات التخزين SSD HDD", content: "الدرس الرابع: وحدات التخزين (SSD/HDD)\n\nالفرق بين التخزين المؤقت والدائم\nمقارنة بين SSD و HDD (سرعة - سعر - سعة)\nNVMe vs SATA\nمشروع: حساب سرعة نقل الملفات" },
@@ -1265,7 +1295,8 @@ https://muham-ed.github.io/MY-WEBSITE-1/
         document.getElementById('certificateName').innerText = name;
         
         const today = new Date();
-        document.getElementById('certificateDate').innerText = today.toLocaleDateString('ar-EG');
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('certificateDate').innerText = today.toLocaleDateString('ar-EG', options);
     }
 
     function downloadCertificate() {
@@ -1304,8 +1335,11 @@ https://muham-ed.github.io/MY-WEBSITE-1/
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `شهادة_${name}.txt`;
+        a.download = `شهادة_${name.replace(/\s+/g, '_')}.txt`;
+        document.body.appendChild(a);
         a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
         
         showReward('تم التحميل', '✅ تم تحميل الشهادة');
     }
@@ -1329,10 +1363,19 @@ https://muham-ed.github.io/MY-WEBSITE-1/
         }
     }
 
-    // ===== تحميل العرض التقديمي (تجريبي) =====
+    // ===== تحميل العرض التقديمي (لزر العرض الرئيسي) =====
     document.getElementById('downloadPptBtn').addEventListener('click', function(e) {
         e.preventDefault();
-        showReward('قريباً', '📥 سيتم إضافة ملف العرض التقديمي قريباً');
+        
+        // تحميل ملف البوربوينت مباشرة
+        const link = document.createElement('a');
+        link.href = 'اول درس.pptx';
+        link.download = 'الدرس_الاول_مقدمة_في_الحاسوب.pptx';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        showReward('تم التحميل', '✅ تم تحميل ملف العرض التقديمي');
     });
 
     // ===== زر العودة للأعلى =====
