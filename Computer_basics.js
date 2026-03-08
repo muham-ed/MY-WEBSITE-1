@@ -1,4 +1,4 @@
- // ===== إعدادات Firebase الصحيحة =====
+   // ===== إعدادات Firebase الصحيحة =====
     const firebaseConfig = {
         apiKey: "AIzaSyDG3CAjOyNDqNF5ISkUnFz5ZGHlSwCicq8",
         authDomain: "my-website-1-93d68.firebaseapp.com",
