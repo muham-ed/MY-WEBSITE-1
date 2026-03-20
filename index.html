@@ -1,627 +1,1010 @@
-                <!DOCTYPE html>
-                <html lang="ar" dir="rtl">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>مسار التطور التقني | Mohamed Alaa</title>
-                    <meta name="description" content="مسار تعليمي مجاني شامل — +60 دورة تبدأ من أساسيات الحاسوب حتى الاحتراف البرمجي وتحليل البيانات والذكاء الاصطناعي">
-                    <meta name="keywords" content="برمجة, تعلم البرمجة, دورة برمجة, تحليل بيانات, علم بيانات, ذكاء اصطناعي, شبكات, أمن سيبراني">
-                    <meta name="author" content="Mohamed Alaa">
-                    
-                    <!-- Open Graph -->
-                    <meta property="og:title" content="مسار التطور التقني">
-                    <meta property="og:description" content="أكبر منصة عربية مجانية لتعلم التقنية - +60 دورة">
-                    <meta property="og:type" content="website">
-                    <meta property="og:url" content="https://muham-ed.github.io/MY-WEBSITE-1/">
-                    
-                    <link rel="icon" href="icons mohamed.png" type="image/png">
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-                    <link rel="stylesheet" href="index.css">
-                </head>
-                <body>
-                    <!-- ===== شريط التنقل ===== -->
-                    <nav class="nav-container">
-                        <div class="nav-content">
-                            <a href="index.html" class="nav-logo">Mohamed Alaa</a>
-                            <div class="nav-links">
-                                <a href="index.html" class="nav-link active">الرئيسية</a>
-                                <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
-                                <a href="programming-basics.html" class="nav-link">أساسيات البرمجة</a>
-                                <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
-                                <a href="data-analyst-course.html" class="nav-link">📊 Data Analyst</a>
-                                <a href="data-scientist-course.html" class="nav-link">🔬 Data Scientist</a>
-                                <a href="blogs.html" class="nav-link">المقالات</a>
-                                <a href="login.html" class="nav-link">دخول</a>
-                            </div>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محمد علاء | مطور ويب ومحلل بيانات - متاح للعمل</title>
+    <meta name="description" content="أنا محمد علاء، مطور ويب ومحلل بيانات - أبحث عن فرص عمل. +60 دورة تعليمية مجانية في البرمجة وتحليل البيانات.">
+    <meta name="keywords" content="مطور ويب, محلل بيانات, مستقل, وظائف برمجة, مشاريع تقنية">
+    <meta name="author" content="Mohamed Alaa">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="محمد علاء | مطور ويب ومحلل بيانات">
+    <meta property="og:description" content="متاح للعمل - اطلب خدمتك الآن">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://muham-ed.github.io/MY-WEBSITE-1/">
+    
+    <link rel="icon" href="icons mohamed.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        /* ===== أنماط زر مستقل العائم ===== */
+        .floating-mostaql-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 9999;
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 15px rgba(46, 204, 113, 0);
+            }
+        }
+
+        .mostaql-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 15px 30px rgba(46, 204, 113, 0.4);
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .mostaql-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(46, 204, 113, 0.6);
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+        }
+
+        .mostaql-btn i {
+            font-size: 1.6rem;
+        }
+
+        /* ===== زر في الهيدر ===== */
+        .hero-mostaql-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            text-decoration: none;
+            padding: 18px 36px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-top: 25px;
+            box-shadow: 0 15px 30px rgba(46, 204, 113, 0.4);
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .hero-mostaql-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(46, 204, 113, 0.6);
+        }
+
+        .hero-mostaql-btn i {
+            font-size: 1.5rem;
+        }
+
+        /* ===== روابط بجانب كل مشروع ===== */
+        .project-service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(46, 204, 113, 0.1);
+            color: #2ecc71;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            transition: all 0.3s ease;
+            margin-top: 12px;
+        }
+
+        .project-service-link:hover {
+            background: #2ecc71;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
+        }
+
+        .project-service-link i {
+            font-size: 1rem;
+        }
+
+        .project-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ===== زر مستقل في التحميل ===== */
+        .mostaql-download-btn {
+            background: linear-gradient(135deg, #2ecc71, #27ae60) !important;
+            font-size: 1.1rem !important;
+            font-weight: 700 !important;
+            border: 2px solid rgba(255,255,255,0.3) !important;
+        }
+
+        .mostaql-download-btn:hover {
+            background: linear-gradient(135deg, #27ae60, #2ecc71) !important;
+            transform: translateY(-5px) !important;
+            box-shadow: 0 15px 30px rgba(46, 204, 113, 0.4) !important;
+        }
+
+        /* ===== أيقونة مستقل في الفوتر ===== */
+        .mostaql-footer-icon {
+            background: linear-gradient(135deg, #2ecc71, #27ae60) !important;
+            color: white !important;
+            font-size: 1.3rem !important;
+        }
+
+        .mostaql-footer-icon:hover {
+            transform: translateY(-5px) scale(1.1) !important;
+            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.5) !important;
+        }
+
+        /* ===== شارة متاح للعمل ===== */
+        .available-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-right: 10px;
+            animation: pulse-green 2s infinite;
+        }
+
+        /* ===== أنماط أيقونة Flutter ===== */
+        .flutter-icon {
+            background: linear-gradient(135deg, #02569B, #42A5F5) !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flutter-logo {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1);
+            transition: all 0.3s ease;
+            object-fit: contain;
+        }
+
+        .program-card:hover .flutter-logo {
+            transform: scale(1.1) rotate(5deg);
+            filter: brightness(1) invert(0);
+        }
+
+        /* تحسينات للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .floating-mostaql-btn {
+                bottom: 20px;
+                left: 20px;
+            }
+            
+            .mostaql-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            
+            .mostaql-btn i {
+                font-size: 1.2rem;
+            }
+            
+            .hero-mostaql-btn {
+                padding: 14px 25px;
+                font-size: 1.1rem;
+            }
+            
+            .project-service-link {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===== زر مستقل العائم ===== -->
+    <div class="floating-mostaql-btn">
+        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="mostaql-btn">
+            <i class="fas fa-briefcase"></i>
+            <span>متاح للعمل - اطلب خدمتك الآن</span>
+            <i class="fas fa-arrow-left"></i>
+        </a>
+    </div>
+
+    <!-- شريط التنقل -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">Mohamed Alaa</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">الرئيسية</a>
+                <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
+                <a href="programming-basics.html" class="nav-link">أساسيات البرمجة</a>
+                <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
+                <a href="data-analyst-course.html" class="nav-link">📊 Data Analyst</a>
+                <a href="data-scientist-course.html" class="nav-link">🔬 Data Scientist</a>
+                <a href="blogs.html" class="nav-link">المقالات</a>
+                <a href="login.html" class="nav-link">دخول</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- الهيدر مع زر مستقل -->
+        <header>
+            <div class="logo">مسار التطور التقني</div>
+            <h1>محمد علاء - مطور ويب ومحلل بيانات <span class="available-badge">متاح للعمل</span></h1>
+            <p class="subtitle">أنا محمد علاء، مطور ويب ومحلل بيانات بخبرة في بناء المواقع والتطبيقات وتحليل البيانات. أقدم +60 دورة تعليمية مجانية، ومتاح للعمل على مشاريعكم.</p>
+            
+            <!-- زر الهيدر -->
+            <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="hero-mostaql-btn">
+                <i class="fas fa-briefcase"></i>
+                <span>مستعد للعمل معك! اطلب خدمتك الآن</span>
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            
+            <div id="userWelcome" style="display: none;" class="user-welcome"></div>
+        </header>
+
+        <div class="progress-container">
+            <div class="progress-header">
+                <h2 class="progress-title">تقدمك في المسار التعليمي</h2>
+                <button class="reset-progress" onclick="resetProgress()">
+                    <i class="fas fa-redo-alt"></i> إعادة تعيين التقدم
+                </button>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">0% مكتمل</div>
+        </div>
+
+        <div id="programming-path" class="path-container">
+            <h2 class="section-title">مسار التطور البرمجي وتحليل البيانات</h2>
+
+            <div class="learning-path">
+                <!-- المرحلة 1 -->
+                <div class="path-item" data-step="1">
+                    <span class="status-badge">مكتمل</span>
+                    <div class="path-icon"><i class="fas fa-desktop"></i></div>
+                    <div class="path-content">
+                        <h3 class="path-title">أساسيات الحاسوب</h3>
+                        <p class="path-description">هذه المرحلة أضعها بين يديك كمدخل آمن لعالم التقنية. سأرشدك فيها خطوة بخطوة لفهم أساسيات الحاسوب، بدءاً من نظام التشغيل وكيفية إدارة الملفات، مروراً بأساسيات الإنترنت، وصولاً إلى إتقان مهارات الكتابة باللمس.</p>
+                        <a href="Computer_basics.html" class="go-to-btn">
+                            <i class="fas fa-arrow-left"></i> ابدأ رحلتك في أساسيات الحاسوب
+                        </a>
+                        <div class="path-resources">
+                            <a href="https://edu.gcfglobal.org/ar/" class="resource" target="_blank">GCFGlobal</a>
+                            <a href="https://www.microsoft.com/ar-sa/digitalliteracy" class="resource" target="_blank">Microsoft Digital Literacy</a>
+                            <a href="https://www.typingclub.com/" class="resource" target="_blank">TypingClub</a>
+                            <a href="https://www.edraak.org/" class="resource" target="_blank">إدراك</a>
                         </div>
-                    </nav>
-
-                    <!-- ===== الحاوية الرئيسية ===== -->
-                    <div class="container">
-                        <!-- الهيدر -->
-                        <header>
-                            <div class="logo">مسار التطور التقني</div>
-                            <h1>خطة تطوير المهارات التقنية خطوة بخطوة</h1>
-                            <p class="subtitle">مسار تعليمي مجاني شامل — +60 دورة تبدأ من أساسيات الحاسوب حتى الاحتراف البرمجي وتحليل البيانات والذكاء الاصطناعي.</p>
-                            <div id="userWelcome" style="display: none;" class="user-welcome"></div>
-                        </header>
-
-                        <!-- شريط التقدم -->
-                        <div class="progress-container">
-                            <div class="progress-header">
-                                <h2 class="progress-title">تقدمك في المسار التعليمي</h2>
-                                <button class="reset-progress" onclick="resetProgress()">
-                                    <i class="fas fa-redo-alt"></i> إعادة تعيين التقدم
-                                </button>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="progressFill"></div>
-                            </div>
-                            <div class="progress-text" id="progressText">0% مكتمل</div>
+                        <button class="complete-btn" onclick="completeStep(1)">تم الإكمال</button>
+                        
+                        <!-- رابط الخدمة -->
+                        <div class="project-footer">
+                            <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                                <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                            </a>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- ===== مسار التعلم ===== -->
-                        <div id="programming-path" class="path-container">
-                            <h2 class="section-title">مسار التطور البرمجي وتحليل البيانات</h2>
-                            <div class="learning-path">
-                                <!-- المرحلة 1 -->
-                                <div class="path-item" data-step="1">
-                                    <span class="status-badge">مكتمل</span>
-                                    <div class="path-icon"><i class="fas fa-desktop"></i></div>
-                                    <div class="path-content">
-                                        <h3 class="path-title">أساسيات الحاسوب</h3>
-                                        <p class="path-description">هذه المرحلة أضعها بين يديك كمدخل آمن لعالم التقنية. سأرشدك فيها خطوة بخطوة لفهم أساسيات الحاسوب، بدءاً من نظام التشغيل وكيفية إدارة الملفات، مروراً بأساسيات الإنترنت، ووصولاً إلى إتقان مهارات الكتابة باللمس.</p>
-                                        <a href="Computer_basics.html" class="go-to-btn">
-                                            <i class="fas fa-arrow-left"></i> ابدأ رحلتك في أساسيات الحاسوب
-                                        </a>
-                                        <div class="path-resources">
-                                            <a href="https://edu.gcfglobal.org/ar/" class="resource" target="_blank">GCFGlobal</a>
-                                            <a href="https://www.microsoft.com/ar-sa/digitalliteracy" class="resource" target="_blank">Microsoft Digital Literacy</a>
-                                            <a href="https://www.typingclub.com/" class="resource" target="_blank">TypingClub</a>
-                                            <a href="https://www.edraak.org/" class="resource" target="_blank">إدراك</a>
-                                        </div>
-                                        <button class="complete-btn" onclick="completeStep(1)">تم الإكمال</button>
-                                    </div>
-                                </div>
-
-                                <!-- المرحلة 2 -->
-                                <div class="path-item" data-step="2">
-                                    <span class="status-badge">مكتمل</span>
-                                    <div class="path-icon"><i class="fas fa-laptop-code"></i></div>
-                                    <div class="path-content">
-                                        <h3 class="path-title">أساسيات البرمجة</h3>
-                                        <p class="path-description">ابدأ بتعلم المفاهيم الأساسية للبرمجة مثل المتغيرات، الشروط، الحلقات، الدوال وهياكل البيانات الأساسية. اختر لغة برمجية لتبدأ بها مثل Python أو JavaScript.</p>
-                                        <a href="programming-basics.html" class="go-to-btn">
-                                            <i class="fas fa-arrow-left"></i> ابدأ أساسيات البرمجة
-                                        </a>
-                                        <div class="path-resources">
-                                            <a href="https://www.freecodecamp.org/" class="resource" target="_blank">freeCodeCamp</a>
-                                            <a href="https://www.codecademy.com/" class="resource" target="_blank">Codecademy</a>
-                                            <a href="https://www.w3schools.com/" class="resource" target="_blank">W3Schools</a>
-                                        </div>
-                                        <button class="complete-btn" onclick="completeStep(2)">تم الإكمال</button>
-                                    </div>
-                                </div>
-
-                                <!-- المرحلة 3 -->
-                                <div class="path-item" data-step="3">
-                                    <span class="status-badge">مكتمل</span>
-                                    <div class="path-icon" style="background: linear-gradient(135deg,#f05033,#de4c36);">
-                                        <i class="fab fa-git-alt"></i>
-                                    </div>
-                                    <div class="path-content">
-                                        <h3 class="path-title">Git & GitHub</h3>
-                                        <p class="path-description">التحكم في الإصدارات — ضروري لكل مبرمج من اليوم الأول. احفظ مشاريعك وتعاون مع الآخرين. تعلم commits، branches، merge، وكيفية رفع مشاريعك على GitHub.</p>
-                                        <a href="#" class="go-to-btn" style="background: linear-gradient(45deg,#f05033,#de4c36);">
-                                            <i class="fab fa-git-alt"></i> ابدأ دورة Git & GitHub
-                                        </a>
-                                        <div class="path-resources">
-                                            <a href="https://learngitbranching.js.org/" class="resource" target="_blank">Learn Git Branching</a>
-                                            <a href="https://github.com/" class="resource" target="_blank">GitHub</a>
-                                            <a href="https://www.w3schools.com/git/" class="resource" target="_blank">W3Schools Git</a>
-                                        </div>
-                                        <button class="complete-btn" onclick="completeStep(3)">تم الإكمال</button>
-                                    </div>
-                                </div>
-
-                                <!-- المرحلة 4 -->
-                                <div class="path-item" data-step="4">
-                                    <span class="status-badge">مكتمل</span>
-                                    <div class="path-icon"><i class="fas fa-code"></i></div>
-                                    <div class="path-content">
-                                        <h3 class="path-title">تطوير الويب</h3>
-                                        <p class="path-description">تعلم أساسيات تطوير الويب: HTML لبنية الصفحة، CSS للتنسيق والتزيين، JavaScript لإضافة التفاعل. ثم انتقل إلى تعلم إطار عمل مثل React أو Vue.js.</p>
-                                        <a href="#" class="go-to-btn">
-                                            <i class="fas fa-arrow-left"></i> ابدأ دورة تطوير الويب
-                                        </a>
-                                        <div class="path-resources">
-                                            <a href="https://developer.mozilla.org/" class="resource" target="_blank">MDN Web Docs</a>
-                                            <a href="https://frontendmasters.com/" class="resource" target="_blank">Frontend Masters</a>
-                                            <a href="https://www.theodinproject.com/" class="resource" target="_blank">The Odin Project</a>
-                                        </div>
-                                        <button class="complete-btn" onclick="completeStep(4)">تم الإكمال</button>
-                                    </div>
-                                </div>
-
-                                <!-- المرحلة 5 -->
-                                <div class="path-item" data-step="5">
-                                    <span class="status-badge">مكتمل</span>
-                                    <div class="path-icon"><i class="fas fa-database"></i></div>
-                                    <div class="path-content">
-                                        <h3 class="path-title">قواعد البيانات</h3>
-                                        <p class="path-description">افهم كيفية تخزين البيانات واسترجاعها باستخدام قواعد البيانات. تعلم SQL للتعامل مع قواعد البيانات العلائقية، وNoSQL للقواعد غير العلائقية مثل MongoDB.</p>
-                                        <a href="#" class="go-to-btn">
-                                            <i class="fas fa-arrow-left"></i> ابدأ دورة قواعد البيانات
-                                        </a>
-                                        <div class="path-resources">
-                                            <a href="https://sqlzoo.net/" class="resource" target="_blank">SQLZoo</a>
-                                            <a href="https://university.mongodb.com/" class="resource" target="_blank">MongoDB University</a>
-                                            <a href="https://www.postgresqltutorial.com/" class="resource" target="_blank">PostgreSQL Tutorial</a>
-                                        </div>
-                                        <button class="complete-btn" onclick="completeStep(5)">تم الإكمال</button>
-                                    </div>
-                                </div>
-
-                                <!-- المرحلة 6 -->
-                                <div class="path-item" data-step="6">
-                                    <span class="status-badge">مكتمل</span>
-                                    <div class="path-icon"><i class="fas fa-chart-line"></i></div>
-                                    <div class="path-content">
-                                        <h3 class="path-title">📊 تحليل البيانات (Data Analyst)</h3>
-                                        <p class="path-description">تعلم تحليل البيانات باستخدام الأدوات الأكثر طلباً: Excel، SQL، Power BI، Python (Pandas, Matplotlib). ستتمكن من تنظيف البيانات وتحليلها وتصورها واستخراج رؤى قيمة.</p>
-                                        <a href="data-analyst-course.html" class="go-to-btn" style="background: linear-gradient(45deg,#10b981,#059669);">
-                                            <i class="fas fa-chart-line"></i> ابدأ دورة تحليل البيانات
-                                        </a>
-                                        <div class="path-resources">
-                                            <a href="https://www.kaggle.com/" class="resource" target="_blank">Kaggle</a>
-                                            <a href="https://www.datacamp.com/" class="resource" target="_blank">DataCamp</a>
-                                            <a href="https://pandas.pydata.org/" class="resource" target="_blank">Pandas</a>
-                                            <a href="https://powerbi.microsoft.com/" class="resource" target="_blank">Power BI</a>
-                                        </div>
-                                        <button class="complete-btn" onclick="completeStep(6)">تم الإكمال</button>
-                                    </div>
-                                </div>
-
-                                <!-- المرحلة 7 -->
-                                <div class="path-item" data-step="7">
-                                    <span class="status-badge">مكتمل</span>
-                                    <div class="path-icon"><i class="fas fa-brain"></i></div>
-                                    <div class="path-content">
-                                        <h3 class="path-title">🔬 علم البيانات (Data Scientist)</h3>
-                                        <p class="path-description">تعلم علم البيانات المتقدم: الإحصاء، التعلم الآلي، الشبكات العصبية، باستخدام Python ومكتبات Scikit-learn، TensorFlow.</p>
-                                        <a href="data-scientist-course.html" class="go-to-btn" style="background: linear-gradient(45deg,#8b5cf6,#6d28d9);">
-                                            <i class="fas fa-brain"></i> ابدأ دورة علم البيانات
-                                        </a>
-                                        <div class="path-resources">
-                                            <a href="https://www.tensorflow.org/" class="resource" target="_blank">TensorFlow</a>
-                                            <a href="https://pytorch.org/" class="resource" target="_blank">PyTorch</a>
-                                            <a href="https://scikit-learn.org/" class="resource" target="_blank">Scikit-learn</a>
-                                        </div>
-                                        <button class="complete-btn" onclick="completeStep(7)">تم الإكمال</button>
-                                    </div>
-                                </div>
-
-                                <!-- المرحلة 8 -->
-                                <div class="path-item" data-step="8">
-                                    <span class="status-badge">مكتمل</span>
-                                    <div class="path-icon"><i class="fas fa-project-diagram"></i></div>
-                                    <div class="path-content">
-                                        <h3 class="path-title">مشاريع عملية</h3>
-                                        <p class="path-description">طبق ما تعلمته في مشاريع حقيقية. ابدأ بمشاريع صغيرة ثم تدرج إلى مشاريع أكثر تعقيداً. أنشئ محفظة أعمال (Portfolio) تعرض مهاراتك وإنجازاتك.</p>
-                                        <a href="#" class="go-to-btn">
-                                            <i class="fas fa-arrow-left"></i> ابدأ المشاريع العملية
-                                        </a>
-                                        <div class="path-resources">
-                                            <a href="https://github.com/" class="resource" target="_blank">GitHub</a>
-                                            <a href="https://devchallenges.io/" class="resource" target="_blank">DevChallenges</a>
-                                            <a href="https://www.frontendmentor.io/" class="resource" target="_blank">Frontend Mentor</a>
-                                        </div>
-                                        <button class="complete-btn" onclick="completeStep(8)">تم الإكمال</button>
-                                    </div>
-                                </div>
-                            </div>
+                <!-- المرحلة 2 -->
+                <div class="path-item" data-step="2">
+                    <span class="status-badge">مكتمل</span>
+                    <div class="path-icon"><i class="fas fa-laptop-code"></i></div>
+                    <div class="path-content">
+                        <h3 class="path-title">أساسيات البرمجة</h3>
+                        <p class="path-description">ابدأ بتعلم المفاهيم الأساسية للبرمجة مثل المتغيرات، الشروط، الحلقات، الدوال وهياكل البيانات الأساسية. اختر لغة برمجية لتبدأ بها مثل Python أو JavaScript.</p>
+                        <a href="programming-basics.html" class="go-to-btn">
+                            <i class="fas fa-arrow-left"></i> ابدأ أساسيات البرمجة
+                        </a>
+                        <div class="path-resources">
+                            <a href="https://www.freecodecamp.org/" class="resource" target="_blank">freeCodeCamp</a>
+                            <a href="https://www.codecademy.com/" class="resource" target="_blank">Codecademy</a>
+                            <a href="https://www.w3schools.com/" class="resource" target="_blank">W3Schools</a>
                         </div>
+                        <button class="complete-btn" onclick="completeStep(2)">تم الإكمال</button>
+                        
+                        <div class="project-footer">
+                            <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                                <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-                        <!-- ===== مسارات التعلم المتكاملة ===== -->
-                        <div class="programs-container">
-                            <h2 class="section-title">📚 مسارات التعلم المتكاملة</h2>
-                            <p class="section-subtitle">+60 دورة تعليمية مجانية — دروس تفاعلية، تمارين، ومشاريع عملية لكل المستويات</p>
+                <!-- المرحلة 3 -->
+                <div class="path-item" data-step="3">
+                    <span class="status-badge">مكتمل</span>
+                    <div class="path-icon" style="background: linear-gradient(135deg,#f05033,#de4c36);">
+                        <i class="fab fa-git-alt"></i>
+                    </div>
+                    <div class="path-content">
+                        <h3 class="path-title">Git & GitHub</h3>
+                        <p class="path-description">التحكم في الإصدارات — ضروري لكل مبرمج من اليوم الأول. احفظ مشاريعك وتعاون مع الآخرين. تعلم commits، branches، merge، وكيفية رفع مشاريعك على GitHub.</p>
+                        <a href="#" class="go-to-btn" style="background: linear-gradient(45deg,#f05033,#de4c36);">
+                            <i class="fab fa-git-alt"></i> ابدأ دورة Git & GitHub
+                        </a>
+                        <div class="path-resources">
+                            <a href="https://learngitbranching.js.org/" class="resource" target="_blank">Learn Git Branching</a>
+                            <a href="https://github.com/" class="resource" target="_blank">GitHub</a>
+                            <a href="https://www.w3schools.com/git/" class="resource" target="_blank">W3Schools Git</a>
+                        </div>
+                        <button class="complete-btn" onclick="completeStep(3)">تم الإكمال</button>
+                        
+                        <div class="project-footer">
+                            <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                                <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-                            <div class="programs-filter">
-                                <button class="filter-btn active" data-filter="all">جميع المسارات</button>
-                                <button class="filter-btn" data-filter="networking">🌐 الشبكات</button>
-                                <button class="filter-btn" data-filter="professional">🏢 المهارات المكتبية</button>
-                                <button class="filter-btn" data-filter="programming">💻 البرمجة</button>
-                                <button class="filter-btn" data-filter="business">💼 الأعمال</button>
-                                <button class="filter-btn" data-filter="english">🇬🇧 اللغة الإنجليزية</button>
-                            </div>
+                <!-- المرحلة 4 -->
+                <div class="path-item" data-step="4">
+                    <span class="status-badge">مكتمل</span>
+                    <div class="path-icon"><i class="fas fa-code"></i></div>
+                    <div class="path-content">
+                        <h3 class="path-title">تطوير الويب</h3>
+                        <p class="path-description">تعلم أساسيات تطوير الويب: HTML لبنية الصفحة، CSS للتنسيق والتزيين، JavaScript لإضافة التفاعل. ثم انتقل إلى تعلم إطار عمل مثل React أو Vue.js.</p>
+                        <a href="#" class="go-to-btn">
+                            <i class="fas fa-arrow-left"></i> ابدأ دورة تطوير الويب
+                        </a>
+                        <div class="path-resources">
+                            <a href="https://developer.mozilla.org/" class="resource" target="_blank">MDN Web Docs</a>
+                            <a href="https://frontendmasters.com/" class="resource" target="_blank">Frontend Masters</a>
+                            <a href="https://www.theodinproject.com/" class="resource" target="_blank">The Odin Project</a>
+                        </div>
+                        <button class="complete-btn" onclick="completeStep(4)">تم الإكمال</button>
+                        
+                        <div class="project-footer">
+                            <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                                <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-                            <div class="programs-grid" id="programsGrid">
+                <!-- المرحلة 5 -->
+                <div class="path-item" data-step="5">
+                    <span class="status-badge">مكتمل</span>
+                    <div class="path-icon"><i class="fas fa-database"></i></div>
+                    <div class="path-content">
+                        <h3 class="path-title">قواعد البيانات</h3>
+                        <p class="path-description">افهم كيفية تخزين البيانات واسترجاعها باستخدام قواعد البيانات. تعلم SQL للتعامل مع قواعد البيانات العلائقية، وNoSQL للقواعد غير العلائقية مثل MongoDB.</p>
+                        <a href="#" class="go-to-btn">
+                            <i class="fas fa-arrow-left"></i> ابدأ دورة قواعد البيانات
+                        </a>
+                        <div class="path-resources">
+                            <a href="https://sqlzoo.net/" class="resource" target="_blank">SQLZoo</a>
+                            <a href="https://university.mongodb.com/" class="resource" target="_blank">MongoDB University</a>
+                            <a href="https://www.postgresqltutorial.com/" class="resource" target="_blank">PostgreSQL Tutorial</a>
+                        </div>
+                        <button class="complete-btn" onclick="completeStep(5)">تم الإكمال</button>
+                        
+                        <div class="project-footer">
+                            <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                                <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-                                <!-- ===== قسم الشبكات (8 دورات) ===== -->
-                                <div class="program-card" data-category="networking">
-                                    <div class="program-icon networking"><i class="fas fa-network-wired"></i></div>
-                                    <h3 class="program-title">CCNA</h3>
-                                    <p class="program-subtitle">أساسيات الشبكات من سيسكو</p>
-                                    <p class="program-description">دروس مبسطة في أساسيات الشبكات: مفاهيم routing وswitching، عناوين IP، وأمن الشبكات للمبتدئين.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 25 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
+                <!-- المرحلة 6 -->
+                <div class="path-item" data-step="6">
+                    <span class="status-badge">مكتمل</span>
+                    <div class="path-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="path-content">
+                        <h3 class="path-title">📊 تحليل البيانات (Data Analyst)</h3>
+                        <p class="path-description">تعلم تحليل البيانات باستخدام الأدوات الأكثر طلباً: Excel، SQL، Power BI، Python (Pandas, Matplotlib). ستتمكن من تنظيف البيانات وتحليلها وتصورها واستخراج رؤى قيمة.</p>
+                        <a href="data-analyst-course.html" class="go-to-btn" style="background: linear-gradient(45deg,#10b981,#059669);">
+                            <i class="fas fa-chart-line"></i> ابدأ دورة تحليل البيانات
+                        </a>
+                        <div class="path-resources">
+                            <a href="https://www.kaggle.com/" class="resource" target="_blank">Kaggle</a>
+                            <a href="https://www.datacamp.com/" class="resource" target="_blank">DataCamp</a>
+                            <a href="https://pandas.pydata.org/" class="resource" target="_blank">Pandas</a>
+                            <a href="https://powerbi.microsoft.com/" class="resource" target="_blank">Power BI</a>
+                        </div>
+                        <button class="complete-btn" onclick="completeStep(6)">تم الإكمال</button>
+                        
+                        <div class="project-footer">
+                            <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                                <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-                                <div class="program-card" data-category="networking">
-                                    <div class="program-icon networking"><i class="fas fa-project-diagram"></i></div>
-                                    <h3 class="program-title">CCNP</h3>
-                                    <p class="program-subtitle">شبكات متقدمة</p>
-                                    <p class="program-description">مفاهيم متقدمة في تصميم الشبكات، بروتوكولات routing المتقدمة، واستكشاف الأخطاء وإصلاحها.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 30 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 6 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
+                <!-- المرحلة 7 -->
+                <div class="path-item" data-step="7">
+                    <span class="status-badge">مكتمل</span>
+                    <div class="path-icon"><i class="fas fa-brain"></i></div>
+                    <div class="path-content">
+                        <h3 class="path-title">🔬 علم البيانات (Data Scientist)</h3>
+                        <p class="path-description">تعلم علم البيانات المتقدم: الإحصاء، التعلم الآلي، الشبكات العصبية، باستخدام Python ومكتبات Scikit-learn، TensorFlow.</p>
+                        <a href="data-scientist-course.html" class="go-to-btn" style="background: linear-gradient(45deg,#8b5cf6,#6d28d9);">
+                            <i class="fas fa-brain"></i> ابدأ دورة علم البيانات
+                        </a>
+                        <div class="path-resources">
+                            <a href="https://www.tensorflow.org/" class="resource" target="_blank">TensorFlow</a>
+                            <a href="https://pytorch.org/" class="resource" target="_blank">PyTorch</a>
+                            <a href="https://scikit-learn.org/" class="resource" target="_blank">Scikit-learn</a>
+                        </div>
+                        <button class="complete-btn" onclick="completeStep(7)">تم الإكمال</button>
+                        
+                        <div class="project-footer">
+                            <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                                <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-                                <div class="program-card" data-category="networking">
-                                    <div class="program-icon networking"><i class="fab fa-microsoft"></i></div>
-                                    <h3 class="program-title">MCSA</h3>
-                                    <p class="program-subtitle">أنظمة تشغيل Windows Server</p>
-                                    <p class="program-description">تعلم إدارة أنظمة Windows Server، Active Directory، وإدارة المستخدمين والمجموعات.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 20 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 4 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a> 
-                                
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
+                <!-- المرحلة 8 -->
+                <div class="path-item" data-step="8">
+                    <span class="status-badge">مكتمل</span>
+                    <div class="path-icon"><i class="fas fa-project-diagram"></i></div>
+                    <div class="path-content">
+                        <h3 class="path-title">مشاريع عملية</h3>
+                        <p class="path-description">طبق ما تعلمته في مشاريع حقيقية. ابدأ بمشاريع صغيرة ثم تدرج إلى مشاريع أكثر تعقيداً. أنشئ محفظة أعمال (Portfolio) تعرض مهاراتك وإنجازاتك.</p>
+                        <a href="#" class="go-to-btn">
+                            <i class="fas fa-arrow-left"></i> ابدأ المشاريع العملية
+                        </a>
+                        <div class="path-resources">
+                            <a href="https://github.com/" class="resource" target="_blank">GitHub</a>
+                            <a href="https://devchallenges.io/" class="resource" target="_blank">DevChallenges</a>
+                            <a href="https://www.frontendmentor.io/" class="resource" target="_blank">Frontend Mentor</a>
+                        </div>
+                        <button class="complete-btn" onclick="completeStep(8)">تم الإكمال</button>
+                        
+                        <div class="project-footer">
+                            <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                                <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                                <div class="program-card" data-category="networking">
-                                    <div class="program-icon networking"><i class="fas fa-server"></i></div>
-                                    <h3 class="program-title">MCSE</h3>
-                                    <p class="program-subtitle">البنية التحتية لأنظمة Microsoft</p>
-                                    <p class="program-description">دروس في تصميم وتنفيذ البنية التحتية للشبكات باستخدام تقنيات Microsoft.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 25 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
+        <!-- ===== مسارات التعلم المتكاملة ===== -->
+        <div class="programs-container">
+            <h2 class="section-title">📚 مسارات التعلم المتكاملة</h2>
+            <p class="section-subtitle">+60 دورة تعليمية مجانية — دروس تفاعلية، تمارين، ومشاريع عملية لكل المستويات</p>
 
-                                <div class="program-card" data-category="networking">
-                                    <div class="program-icon networking"><i class="fas fa-shield-alt"></i></div>
-                                    <h3 class="program-title">Cyber Security</h3>
-                                    <p class="program-subtitle">الأمن السيبراني للمبتدئين</p>
-                                    <p class="program-description">مفاهيم أساسية في أمن المعلومات، حماية الشبكات، التشفير، وكيفية حماية نفسك من الاختراقات.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 30 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
+            <div class="programs-filter">
+                <button class="filter-btn active" data-filter="all">جميع المسارات</button>
+                <button class="filter-btn" data-filter="networking">🌐 الشبكات</button>
+                <button class="filter-btn" data-filter="professional">🏢 المهارات المكتبية</button>
+                <button class="filter-btn" data-filter="programming">💻 البرمجة</button>
+                <button class="filter-btn" data-filter="business">💼 الأعمال</button>
+                <button class="filter-btn" data-filter="english">🇬🇧 اللغة الإنجليزية</button>
+            </div>
 
-                                <div class="program-card" data-category="networking">
-                                    <div class="program-icon networking"><i class="fab fa-aws"></i></div>
-                                    <h3 class="program-title">AWS Cloud</h3>
-                                    <p class="program-subtitle">الحوسبة السحابية</p>
-                                    <p class="program-description">مقدمة في خدمات AWS السحابية: EC2، S3، قواعد البيانات، والشبكات الافتراضية.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 20 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 4 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
+            <div class="programs-grid" id="programsGrid">
 
-                                <div class="program-card" data-category="networking">
-                                    <div class="program-icon networking"><i class="fas fa-fire"></i></div>
-                                    <h3 class="program-title">CompTIA Network+</h3>
-                                    <p class="program-subtitle">شهادة الشبكات الدولية</p>
-                                    <p class="program-description">التحضير لشهادة CompTIA Network+: أساسيات الشبكات، البروتوكولات، الأمان، واستكشاف الأخطاء.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 30 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
-
-                                <div class="program-card" data-category="networking">
-                                    <div class="program-icon networking"><i class="fas fa-user-shield"></i></div>
-                                    <h3 class="program-title">CompTIA Security+</h3>
-                                    <p class="program-subtitle">شهادة الأمن السيبراني</p>
-                                    <p class="program-description">التحضير لشهادة Security+: مفاهيم الأمن، التشفير، إدارة المخاطر، واستجابة الحوادث.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 28 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
-
-                                <!-- ===== قسم المهارات المكتبية (7 دورات) ===== -->
-                                <div class="program-card" data-category="professional">
-                                    <div class="program-icon professional"><i class="fas fa-file-excel"></i></div>
-                                    <h3 class="program-title">Microsoft Office</h3>
-                                    <p class="program-subtitle">دورة Office الشاملة</p>
-                                    <p class="program-description">تعلم Word، Excel، PowerPoint، وOutlook من الصفر حتى الاحتراف مع أمثلة عملية.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 40 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 8 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="Microsoft_Office.html" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="Microsoft_Office.html" class="program-btn">ابدأ التعلم</a>
-                                </div>
-
-                                <div class="program-card" data-category="professional">
-                                    <div class="program-icon professional"><i class="fas fa-chart-bar"></i></div>
-                                    <h3 class="program-title">تحليل البيانات</h3>
-                                    <p class="program-subtitle">Excel - Power BI - Python - SQL</p>
-                                    <p class="program-description">دروس شاملة في تحليل البيانات باستخدام أحدث الأدوات مع تطبيقات عملية.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 60 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 10 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="data-analyst-course.html" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="data-analyst-course.html" class="program-btn">ابدأ التعلم</a>
-                                </div>
-
-                                <div class="program-card" data-category="professional">
-                                    <div class="program-icon professional"><i class="fas fa-table"></i></div>
-                                    <h3 class="program-title">Power BI</h3>
-                                    <p class="program-subtitle">لوحات البيانات التفاعلية</p>
-                                    <p class="program-description">إنشاء تقارير ولوحات تحكم تفاعلية باستخدام Power BI: استيراد البيانات، DAX، العلاقات، والمرئيات.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 30 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 6 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
-
-                                <div class="program-card" data-category="professional">
-                                    <div class="program-icon professional"><i class="fas fa-ad"></i></div>
-                                    <h3 class="program-title">التسويق الرقمي</h3>
-                                    <p class="program-subtitle">Digital Marketing</p>
-                                    <p class="program-description">أساسيات SEO، إعلانات فيسبوك وجوجل، تحليلات التسويق، واستراتيجيات المحتوى.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 35 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
-
-                                <div class="program-card" data-category="professional">
-                                    <div class="program-icon professional"><i class="fas fa-calculator"></i></div>
-                                    <h3 class="program-title">المحاسبة</h3>
-                                    <p class="program-subtitle">Accounting</p>
-                                    <p class="program-description">مبادئ المحاسبة، القوائم المالية، المحاسبة الإدارية، ودورة المحاسبة كاملة.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 40 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 6 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
-
-                                <div class="program-card" data-category="professional">
-                                    <div class="program-icon professional"><i class="fas fa-paint-brush"></i></div>
-                                    <h3 class="program-title">التصميم الجرافيكي</h3>
-                                    <p class="program-subtitle">Graphic Design</p>
-                                    <p class="program-description">دروس في Photoshop، Illustrator، أساسيات التصميم، نظرية الألوان والطباعة.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 30 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 8 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
-
-                                <div class="program-card" data-category="professional">
-                                    <div class="program-icon professional"><i class="fas fa-edit"></i></div>
-                                    <h3 class="program-title">Canva</h3>
-                                    <p class="program-subtitle">تصميم بدون خبرة سابقة</p>
-                                    <p class="program-description">تعلم Canva من الصفر: تصميم المنشورات، البروشورات، العروض التقديمية، وصور السوشيال ميديا باحترافية.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 20 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
-
-                                <!-- ===== قسم البرمجة (12 دورة) ===== -->
-                                <div class="program-card" data-category="programming">
-                                    <div class="program-icon programming"><i class="fas fa-code"></i></div>
-                                    <h3 class="program-title">Front End</h3>
-                                    <p class="program-subtitle">تطوير واجهات المستخدم</p>
-                                    <p class="program-description">HTML، CSS، JavaScript، React - تعلم بناء مواقع وتطبيقات ويب تفاعلية.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 50 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 10 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
-
-                                <div class="program-card" data-category="programming">
-                                    <div class="program-icon programming"><i class="fas fa-server"></i></div>
-                                    <h3 class="program-title">Back End</h3>
-                                    <p class="program-subtitle">تطوير الخوادم</p>
-                                    <p class="program-description">Node.js، Python، PHP، قواعد البيانات، وبناء APIs لتطبيقات الويب.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 45 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 8 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
-
-                                <div class="program-card" data-category="programming">
-                                    <div class="program-icon programming"><i class="fas fa-code-branch"></i></div>
-                                    <h3 class="program-title">Git & GitHub</h3>
-                                    <p class="program-subtitle">التحكم في الإصدارات</p>
-                                    <p class="program-description">تعلم Git من الصفر: commits، branches، merge، وكيفية العمل على مشاريع جماعية عبر GitHub. مهارة أساسية لكل مبرمج.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 20 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
-
-                                <div class="program-card" data-category="programming">
-                                    <div class="program-icon programming"><i class="fab fa-python"></i></div>
-                                    <h3 class="program-title">Python</h3>
-                                    <p class="program-subtitle">لغة البرمجة Python</p>
-                                    <p class="program-description">تعلم Python من الصفر: أساسيات، برمجة كائنية، تطوير ويب، وأتمتة المهام.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 40 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 8 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
-
-                                <div class="program-card" data-category="programming">
-                                    <div class="program-icon programming"><i class="fab fa-react"></i></div>
-                                    <h3 class="program-title">React.js</h3>
-                                    <p class="program-subtitle">مكتبة واجهات المستخدم</p>
-                                    <p class="program-description">دورة شاملة في React.js: Components، State، Hooks، Context API، React Router، وبناء تطبيقات SPA احترافية.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 40 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 8 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
-
-                                <div class="program-card" data-category="programming">
-                                    <div class="program-icon programming"><i class="fab fa-node-js"></i></div>
-                                    <h3 class="program-title">Node.js & Express</h3>
-                                    <p class="program-subtitle">تطوير الخادم بـ JavaScript</p>
-                                    <p class="program-description">بناء تطبيقات Backend باستخدام Node.js وExpress: routing، Middleware، قواعد البيانات، Authentication، وبناء APIs.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 35 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 7 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
-
-                                <div class="program-card" data-category="programming">
-                                    <div class="program-icon programming"><i class="fas fa-cloud"></i></div>
-                                    <h3 class="program-title">APIs & REST</h3>
-                                    <p class="program-subtitle">بناء واستهلاك الـ APIs</p>
-                                    <p class="program-description">تعلم بناء RESTful APIs واستهلاكها. Postman، JSON، Authentication، وأفضل ممارسات التصميم.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 22 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
-
-                                <div class="program-card" data-category="programming">
-                                    <div class="program-icon programming"><i class="fas fa-database"></i></div>
-                                    <h3 class="program-title">SQL من الصفر للاحتراف</h3>
-                                    <p class="program-subtitle">قواعد البيانات العلائقية</p>
-                                    <p class="program-description">دورة متكاملة في SQL: SELECT، JOIN، GROUP BY، Subqueries، Indexes، وتصميم قواعد البيانات.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 30 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 8 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
-                                        <a href="#" class="resource-link">📄 المحتوى</a>
-                                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
-                                    </div>
-                                    <a href="#" class="program-btn">قريباً</a>
-                                </div>
-
-                                <div class="program-card" data-category="programming">
-                                    <div class="program-icon programming"><i class="fas fa-code"></i></div>
-                                    <h3 class="program-title">.Net (C#)</h3>
-                                    <p class="program-subtitle">تطوير تطبيقات .NET</p>
-                                    <p class="program-description">تعلم لغة C#، ASP.NET Core، Entity Framework، وبناء تطبيقات ويب متكاملة.</p>
-                                    <div class="program-details">
-                                        <span class="detail-badge"><i class="fas fa-video"></i> 40 درس</span>
-                                        <span class="detail-badge"><i class="fas fa-tasks"></i> 7 مشاريع</span>
-                                    </div>
-                                    <div class="program-resources">
+                <!-- ===== 1. قسم الشبكات (8 دورات) ===== -->
+                <div class="program-card" data-category="networking">
+                    <div class="program-icon networking"><i class="fas fa-network-wired"></i></div>
+                    <h3 class="program-title">CCNA</h3>
+                    <p class="program-subtitle">أساسيات الشبكات من سيسكو</p>
+                    <p class="program-description">دروس مبسطة في أساسيات الشبكات: مفاهيم routing وswitching، عناوين IP، وأمن الشبكات للمبتدئين.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 25 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="networking">
+                    <div class="program-icon networking"><i class="fas fa-project-diagram"></i></div>
+                    <h3 class="program-title">CCNP</h3>
+                    <p class="program-subtitle">شبكات متقدمة</p>
+                    <p class="program-description">مفاهيم متقدمة في تصميم الشبكات، بروتوكولات routing المتقدمة، واستكشاف الأخطاء وإصلاحها.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 30 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 6 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="networking">
+                    <div class="program-icon networking"><i class="fab fa-microsoft"></i></div>
+                    <h3 class="program-title">MCSA</h3>
+                    <p class="program-subtitle">أنظمة تشغيل Windows Server</p>
+                    <p class="program-description">تعلم إدارة أنظمة Windows Server، Active Directory، وإدارة المستخدمين والمجموعات.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 20 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 4 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="networking">
+                    <div class="program-icon networking"><i class="fas fa-server"></i></div>
+                    <h3 class="program-title">MCSE</h3>
+                    <p class="program-subtitle">البنية التحتية لأنظمة Microsoft</p>
+                    <p class="program-description">دروس في تصميم وتنفيذ البنية التحتية للشبكات باستخدام تقنيات Microsoft.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 25 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="networking">
+                    <div class="program-icon networking"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="program-title">Cyber Security</h3>
+                    <p class="program-subtitle">الأمن السيبراني للمبتدئين</p>
+                    <p class="program-description">مفاهيم أساسية في أمن المعلومات، حماية الشبكات، التشفير، وكيفية حماية نفسك من الاختراقات.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 30 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="networking">
+                    <div class="program-icon networking"><i class="fab fa-aws"></i></div>
+                    <h3 class="program-title">AWS Cloud</h3>
+                    <p class="program-subtitle">الحوسبة السحابية</p>
+                    <p class="program-description">مقدمة في خدمات AWS السحابية: EC2، S3، قواعد البيانات، والشبكات الافتراضية.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 20 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 4 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="networking">
+                    <div class="program-icon networking"><i class="fas fa-fire"></i></div>
+                    <h3 class="program-title">CompTIA Network+</h3>
+                    <p class="program-subtitle">شهادة الشبكات الدولية</p>
+                    <p class="program-description">التحضير لشهادة CompTIA Network+: أساسيات الشبكات، البروتوكولات، الأمان، واستكشاف الأخطاء.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 30 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="networking">
+                    <div class="program-icon networking"><i class="fas fa-user-shield"></i></div>
+                    <h3 class="program-title">CompTIA Security+</h3>
+                    <p class="program-subtitle">شهادة الأمن السيبراني</p>
+                    <p class="program-description">التحضير لشهادة Security+: مفاهيم الأمن، التشفير، إدارة المخاطر، واستجابة الحوادث.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 28 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <!-- ===== 2. قسم المهارات المكتبية (7 دورات) ===== -->
+                <div class="program-card" data-category="professional">
+                    <div class="program-icon professional"><i class="fas fa-file-excel"></i></div>
+                    <h3 class="program-title">Microsoft Office</h3>
+                    <p class="program-subtitle">دورة Office الشاملة</p>
+                    <p class="program-description">تعلم Word، Excel، PowerPoint، وOutlook من الصفر حتى الاحتراف مع أمثلة عملية.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 40 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 8 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="Microsoft_Office.html" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="Microsoft_Office.html" class="program-btn">ابدأ التعلم</a>
+                </div>
+
+                <div class="program-card" data-category="professional">
+                    <div class="program-icon professional"><i class="fas fa-chart-bar"></i></div>
+                    <h3 class="program-title">تحليل البيانات</h3>
+                    <p class="program-subtitle">Excel - Power BI - Python - SQL</p>
+                    <p class="program-description">دروس شاملة في تحليل البيانات باستخدام أحدث الأدوات مع تطبيقات عملية.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 60 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 10 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="data-analyst-course.html" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="data-analyst-course.html" class="program-btn">ابدأ التعلم</a>
+                </div>
+
+                <div class="program-card" data-category="professional">
+                    <div class="program-icon professional"><i class="fas fa-table"></i></div>
+                    <h3 class="program-title">Power BI</h3>
+                    <p class="program-subtitle">لوحات البيانات التفاعلية</p>
+                    <p class="program-description">إنشاء تقارير ولوحات تحكم تفاعلية باستخدام Power BI: استيراد البيانات، DAX، العلاقات، والمرئيات.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 30 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 6 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="professional">
+                    <div class="program-icon professional"><i class="fas fa-ad"></i></div>
+                    <h3 class="program-title">التسويق الرقمي</h3>
+                    <p class="program-subtitle">Digital Marketing</p>
+                    <p class="program-description">أساسيات SEO، إعلانات فيسبوك وجوجل، تحليلات التسويق، واستراتيجيات المحتوى.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 35 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="professional">
+                    <div class="program-icon professional"><i class="fas fa-calculator"></i></div>
+                    <h3 class="program-title">المحاسبة</h3>
+                    <p class="program-subtitle">Accounting</p>
+                    <p class="program-description">مبادئ المحاسبة، القوائم المالية، المحاسبة الإدارية، ودورة المحاسبة كاملة.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 40 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 6 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="professional">
+                    <div class="program-icon professional"><i class="fas fa-paint-brush"></i></div>
+                    <h3 class="program-title">التصميم الجرافيكي</h3>
+                    <p class="program-subtitle">Graphic Design</p>
+                    <p class="program-description">دروس في Photoshop، Illustrator، أساسيات التصميم، نظرية الألوان والطباعة.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 30 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 8 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="professional">
+                    <div class="program-icon professional"><i class="fas fa-edit"></i></div>
+                    <h3 class="program-title">Canva</h3>
+                    <p class="program-subtitle">تصميم بدون خبرة سابقة</p>
+                    <p class="program-description">تعلم Canva من الصفر: تصميم المنشورات، البروشورات، العروض التقديمية، وصور السوشيال ميديا باحترافية.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 20 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <!-- ===== 3. قسم البرمجة (12 دورة) ===== -->
+                <div class="program-card" data-category="programming">
+                    <div class="program-icon programming"><i class="fas fa-code"></i></div>
+                    <h3 class="program-title">Front End</h3>
+                    <p class="program-subtitle">تطوير واجهات المستخدم</p>
+                    <p class="program-description">HTML، CSS، JavaScript، React - تعلم بناء مواقع وتطبيقات ويب تفاعلية.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 50 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 10 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="programming">
+                    <div class="program-icon programming"><i class="fas fa-server"></i></div>
+                    <h3 class="program-title">Back End</h3>
+                    <p class="program-subtitle">تطوير الخوادم</p>
+                    <p class="program-description">Node.js، Python، PHP، قواعد البيانات، وبناء APIs لتطبيقات الويب.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 45 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 8 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="programming">
+                    <div class="program-icon programming"><i class="fas fa-code-branch"></i></div>
+                    <h3 class="program-title">Git & GitHub</h3>
+                    <p class="program-subtitle">التحكم في الإصدارات</p>
+                    <p class="program-description">تعلم Git من الصفر: commits، branches، merge، وكيفية العمل على مشاريع جماعية عبر GitHub. مهارة أساسية لكل مبرمج.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 20 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="programming">
+                    <div class="program-icon programming"><i class="fab fa-python"></i></div>
+                    <h3 class="program-title">Python</h3>
+                    <p class="program-subtitle">لغة البرمجة Python</p>
+                    <p class="program-description">تعلم Python من الصفر: أساسيات، برمجة كائنية، تطوير ويب، وأتمتة المهام.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 40 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 8 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="programming">
+                    <div class="program-icon programming"><i class="fab fa-react"></i></div>
+                    <h3 class="program-title">React.js</h3>
+                    <p class="program-subtitle">مكتبة واجهات المستخدم</p>
+                    <p class="program-description">دورة شاملة في React.js: Components، State، Hooks، Context API، React Router، وبناء تطبيقات SPA احترافية.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 40 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 8 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="programming">
+                    <div class="program-icon programming"><i class="fab fa-node-js"></i></div>
+                    <h3 class="program-title">Node.js & Express</h3>
+                    <p class="program-subtitle">تطوير الخادم بـ JavaScript</p>
+                    <p class="program-description">بناء تطبيقات Backend باستخدام Node.js وExpress: routing، Middleware، قواعد البيانات، Authentication، وبناء APIs.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 35 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 7 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="programming">
+                    <div class="program-icon programming"><i class="fas fa-cloud"></i></div>
+                    <h3 class="program-title">APIs & REST</h3>
+                    <p class="program-subtitle">بناء واستهلاك الـ APIs</p>
+                    <p class="program-description">تعلم بناء RESTful APIs واستهلاكها. Postman، JSON، Authentication، وأفضل ممارسات التصميم.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 22 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="programming">
+                    <div class="program-icon programming"><i class="fas fa-database"></i></div>
+                    <h3 class="program-title">SQL من الصفر للاحتراف</h3>
+                    <p class="program-subtitle">قواعد البيانات العلائقية</p>
+                    <p class="program-description">دورة متكاملة في SQL: SELECT، JOIN، GROUP BY، Subqueries، Indexes، وتصميم قواعد البيانات.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 30 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 8 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
+                    <a href="#" class="program-btn">قريباً</a>
+                </div>
+
+                <div class="program-card" data-category="programming">
+                    <div class="program-icon programming"><i class="fas fa-code"></i></div>
+                    <h3 class="program-title">.Net (C#)</h3>
+                    <p class="program-subtitle">تطوير تطبيقات .NET</p>
+                    <p class="program-description">تعلم لغة C#، ASP.NET Core، Entity Framework، وبناء تطبيقات ويب متكاملة.</p>
+                    <div class="program-details">
+                        <span class="detail-badge"><i class="fas fa-video"></i> 40 درس</span>
+                        <span class="detail-badge"><i class="fas fa-tasks"></i> 7 مشاريع</span>
+                    </div>
+                    <div class="program-resources">
+                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
                     </div>
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
@@ -638,6 +1021,11 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
                     </div>
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
@@ -657,6 +1045,11 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
 
@@ -673,10 +1066,15 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
 
-                <!-- ===== قسم الأعمال (6 دورات) ===== -->
+                <!-- ===== 4. قسم الأعمال (6 دورات) ===== -->
                 <div class="program-card" data-category="business">
                     <div class="program-icon business"><i class="fas fa-tasks"></i></div>
                     <h3 class="program-title">إدارة المشاريع</h3>
@@ -689,6 +1087,11 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
                     </div>
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
@@ -706,6 +1109,11 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
 
@@ -721,6 +1129,11 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
                     </div>
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
@@ -738,6 +1151,11 @@
                         <a href="#" target="_blank" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
 
@@ -753,6 +1171,11 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
                     </div>
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
@@ -770,10 +1193,15 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
 
-                <!-- ===== قسم اللغة الإنجليزية (3 دورات) ===== -->
+                <!-- ===== 5. قسم اللغة الإنجليزية (3 دورات) ===== -->
                 <div class="program-card" data-category="english">
                     <div class="program-icon english"><i class="fas fa-comments"></i></div>
                     <h3 class="program-title">محادثة إنجليزية</h3>
@@ -786,6 +1214,11 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
                     </div>
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
@@ -803,6 +1236,11 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
 
@@ -818,6 +1256,11 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
                     </div>
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
@@ -844,6 +1287,11 @@
                         <a href="#" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
                         <a href="https://www.linkedin.com/jobs/search/?keywords=devops" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
                     </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
                     <span class="career-badge">مطلوب بشدة</span>
                 </div>
 
@@ -861,6 +1309,11 @@
                     <div class="career-links">
                         <a href="data-scientist-course.html" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
                         <a href="https://www.linkedin.com/jobs/search/?keywords=machine+learning" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
                     </div>
                     <span class="career-badge">متقدم</span>
                 </div>
@@ -880,6 +1333,11 @@
                         <a href="#" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
                         <a href="https://www.linkedin.com/jobs/search/?keywords=blockchain" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
                     </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
                     <span class="career-badge">قريباً</span>
                 </div>
 
@@ -897,6 +1355,11 @@
                     <div class="career-links">
                         <a href="#" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
                         <a href="https://www.linkedin.com/jobs/search/?keywords=product+manager" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
                     </div>
                     <span class="career-badge">إداري</span>
                 </div>
@@ -916,6 +1379,11 @@
                         <a href="#" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
                         <a href="https://www.linkedin.com/jobs/search/?keywords=ar+vr" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
                     </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
                     <span class="career-badge">قريباً</span>
                 </div>
 
@@ -934,6 +1402,11 @@
                         <a href="#" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
                         <a href="https://www.linkedin.com/jobs/search/?keywords=technical+writer" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
                     </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
+                    </div>
                     <span class="career-badge">مناسب لك</span>
                 </div>
 
@@ -951,6 +1424,11 @@
                     <div class="career-links">
                         <a href="data-analyst-course.html" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
                         <a href="https://www.linkedin.com/jobs/search/?keywords=data+engineer" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
+                            <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
+                        </a>
                     </div>
                     <span class="career-badge">مطلوب</span>
                 </div>
@@ -1028,7 +1506,7 @@
             </div>
         </div>
 
-        <!-- ===== أزرار التحميل ===== -->
+        <!-- ===== أزرار التحميل مع زر مستقل ===== -->
         <div class="download-buttons">
             <a href="#" class="download-btn" onclick="downloadPlan(); return false;"><i class="fas fa-file-pdf"></i> تحميل خطة التعلم</a>
             <a href="#" class="download-btn" onclick="downloadSchedule(); return false;"><i class="fas fa-calendar-alt"></i> جدول التعلم الأسبوعي</a>
@@ -1038,13 +1516,19 @@
             <a href="https://www.instagram.com/mohamedabotasa/" class="download-btn" target="_blank" style="background:linear-gradient(45deg,#e1306c,#833ab4)"><i class="fab fa-instagram"></i> Instagram</a>
             <a href="https://www.facebook.com/profile.php?id=61550839582471" class="download-btn" target="_blank" style="background:linear-gradient(45deg,#1877f2,#0d5ec9)"><i class="fab fa-facebook"></i> Facebook</a>
             <a href="https://wa.me/201060828627" class="download-btn" target="_blank" style="background:linear-gradient(45deg,#25D366,#128C7E)"><i class="fab fa-whatsapp"></i> واتساب</a>
+            
+            <!-- زر مستقل في التحميل -->
+            <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="download-btn mostaql-download-btn">
+                <i class="fas fa-briefcase"></i> اعرض مشروعك على مستقل
+            </a>
+            
             <a href="Microsoft_Office.html" class="download-btn" style="background:linear-gradient(45deg,#4caf50,#2e7d32)"><i class="fas fa-arrow-left"></i> Microsoft Office</a>
             <a href="data-analyst-course.html" class="download-btn" style="background:linear-gradient(45deg,#10b981,#059669)"><i class="fas fa-chart-line"></i> Data Analyst</a>
             <a href="data-scientist-course.html" class="download-btn" style="background:linear-gradient(45deg,#8b5cf6,#6d28d9)"><i class="fas fa-brain"></i> Data Scientist</a>
         </div>
     </div>
 
-    <!-- ===== الفوتر ===== -->
+    <!-- ===== الفوتر مع أيقونة مستقل ===== -->
     <footer id="contact">
         <div class="social-icons">
             <a href="https://www.linkedin.com/in/mohamed-ala-a-2b333533a" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
@@ -1053,9 +1537,15 @@
             <a href="https://www.instagram.com/mohamedabotasa/" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://www.facebook.com/profile.php?id=61550839582471" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
             <a href="https://wa.me/201060828627" class="social-icon" target="_blank" style="background:linear-gradient(45deg,#25D366,#128C7E)"><i class="fab fa-whatsapp"></i></a>
+            
+            <!-- أيقونة مستقل -->
+            <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="social-icon mostaql-footer-icon">
+                <i class="fas fa-briefcase"></i>
+            </a>
+            
             <a href="mailto:mohamedalaaaldinabotasa@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
         </div>
-        <p class="copyright">© 2025 مسار التطور التقني | تم التصميم بواسطة Mohamed Alaa</p>
+        <p class="copyright">© 2025 مسار التطور التقني | تم التصميم بواسطة محمد علاء - متاح للعمل على مستقل</p>
     </footer>
 
     <!-- ===== أزرار ثابتة ===== -->
@@ -1082,24 +1572,24 @@
             }
         });
 
-        // دوال التحميل
+        // دوال التحميل مع رابط مستقل
         function downloadPlan() {
-            const content = "خطة التعلم - مسار التطور التقني\nتم إعدادها بواسطة Mohamed Alaa";
+            const content = "خطة التعلم - مسار التطور التقني\nتم إعدادها بواسطة محمد علاء\n\n📌 للتوظيف والاستشارات: https://mostaql.com/u/MohamedAlaa2003/portfolio\n\nمحتوى الخطة:\n1. أساسيات الحاسوب (2-4 أسابيع)\n2. أساسيات البرمجة (4-8 أسابيع)\n3. Git & GitHub (1-2 أسبوع)\n4. تطوير الويب (8-12 أسبوع)\n5. قواعد البيانات (4-6 أسابيع)\n6. تحليل البيانات (6-10 أسابيع)\n7. علم البيانات (10-14 أسبوع)\n8. مشاريع عملية (مستمر)";
             const blob = new Blob([content], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'خطة_التعلم.txt';
+            a.download = 'خطة_التعلم_محمد_علاء.txt';
             a.click();
         }
 
         function downloadSchedule() {
-            const content = "جدول التعلم الأسبوعي - مسار التطور التقني";
+            const content = "جدول التعلم الأسبوعي - مسار التطور التقني\nتم إعدادها بواسطة محمد علاء\n\n📌 للتوظيف والاستشارات: https://mostaql.com/u/MohamedAlaa2003/portfolio\n\nالأحد: نظرية + قراءة (ساعتان)\nالاثنين: تمارين + كود (ساعتان)\nالثلاثاء: مراجعة (ساعة)\nالأربعاء: مشروع (ساعتان)\nالخميس: تمارين إضافية (ساعة)\nالجمعة: اختبار ذاتي (ساعة)\nالسبت: راحة / محتوى خفيف\n\nالمجموع: 9-10 ساعات أسبوعياً";
             const blob = new Blob([content], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'جدول_التعلم.txt';
+            a.download = 'جدول_التعلم_محمد_علاء.txt';
             a.click();
         }
 
