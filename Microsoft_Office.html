@@ -3,21 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Microsoft Office | MY WEBSITE</title>
+    <title>Microsoft Office | مسار التطور التقني</title>
     <link rel="icon" href="icons mohamed.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="Microsoft_Office.css">
-    <style></style>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            margin: 0;
+            padding: 0;
+        }
+        .app-details {
+            display: none;
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .app-details.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
-    <!-- ===== شريط التنقل الموحد ===== -->
     <nav class="nav-container">
         <div class="nav-content">
             <a href="index.html" class="nav-logo">Mohamed Alaa</a>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">الرئيسية</a>
                 <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
-                <a href="programming-basics.html" class="nav-link active">أساسيات البرمجة</a>
+                <a href="programming-basics.html" class="nav-link">أساسيات البرمجة</a>
                 <a href="Microsoft_Office.html" class="nav-link active">Microsoft Office</a>
                 <a href="data-analyst-course.html" class="nav-link">📊 Data Analyst</a>
                 <a href="data-scientist-course.html" class="nav-link">🔬 Data Scientist</a>
@@ -27,7 +50,6 @@
         </div>
     </nav>
 
-    <!-- ===== الحاوية الرئيسية ===== -->
     <div class="container">
         <header>
             <div class="logo">Microsoft Office</div>
@@ -35,7 +57,6 @@
             <p class="subtitle">مسار تعليمي متكامل يغطي جميع تطبيقات Microsoft Office الأساسية مع التركيز على Excel كأداة تحليل بيانات قوية.</p>
         </header>
 
-        <!-- ===== بطاقات التطبيقات ===== -->
         <div class="office-apps">
             <div class="app-card" data-app="excel">
                 <div class="app-icon excel-icon"><i class="fas fa-file-excel"></i></div>
@@ -78,388 +99,148 @@
             </div>
         </div>
 
-        <!-- ===== تفاصيل Excel ===== -->
         <div id="excel-details" class="app-details">
-            <h2 style="color: #4cc9f0; text-align: center; margin-bottom: 30px;">
-                <i class="fas fa-file-excel"></i> دليل شامل لتعلم Microsoft Excel
-            </h2>
-
+            <h2 style="color: #4cc9f0; text-align: center; margin-bottom: 30px;"><i class="fas fa-file-excel"></i> دليل شامل لتعلم Microsoft Excel</h2>
             <div class="app-section">
                 <h3><i class="fas fa-layer-group"></i> مستويات التعلم</h3>
-                
                 <div class="skill-level">
-                    <div class="level-card">
-                        <h4 class="level-title">المستوى المبتدئ (2-4 أسابيع)</h4>
-                        <ul class="skill-list">
-                            <li>أساسيات واجهة Excel</li>
-                            <li>إدخال البيانات والتنسيق</li>
-                            <li>العمليات الحسابية البسيطة</li>
-                            <li>إنشاء الجداول</li>
-                            <li>استخدام القوالب</li>
-                            <li>طباعة وحفظ الملفات</li>
-                        </ul>
-                    </div>
-
-                    <div class="level-card">
-                        <h4 class="level-title">المستوى المتوسط (4-6 أسابيع)</h4>
-                        <ul class="skill-list">
-                            <li>الدوال المتقدمة (VLOOKUP, IF, SUMIF)</li>
-                            <li>إنشاء الرسوم البيانية</li>
-                            <li>التنسيق الشرطي</li>
-                            <li>فرز وتصفية البيانات</li>
-                            <li>التحقق من صحة البيانات</li>
-                            <li>حماية أوراق العمل</li>
-                        </ul>
-                    </div>
-
-                    <div class="level-card">
-                        <h4 class="level-title">المستوى المتقدم (6-8 أسابيع)</h4>
-                        <ul class="skill-list">
-                            <li>الجداول المحورية (Pivot Tables)</li>
-                            <li>تحليل البيانات المتقدم</li>
-                            <li>الماكرو والأتمتة</li>
-                            <li>Power Query و Power Pivot</li>
-                            <li>لوحات المعلومات (Dashboards)</li>
-                            <li>ربط البيانات من مصادر متعددة</li>
-                        </ul>
-                    </div>
+                    <div class="level-card"><h4>المستوى المبتدئ (2-4 أسابيع)</h4><ul><li>أساسيات واجهة Excel</li><li>إدخال البيانات والتنسيق</li><li>العمليات الحسابية البسيطة</li><li>إنشاء الجداول</li></ul></div>
+                    <div class="level-card"><h4>المستوى المتوسط (4-6 أسابيع)</h4><ul><li>الدوال المتقدمة (VLOOKUP, IF, SUMIF)</li><li>إنشاء الرسوم البيانية</li><li>التنسيق الشرطي</li><li>فرز وتصفية البيانات</li></ul></div>
+                    <div class="level-card"><h4>المستوى المتقدم (6-8 أسابيع)</h4><ul><li>الجداول المحورية (Pivot Tables)</li><li>تحليل البيانات المتقدم</li><li>الماكرو والأتمتة</li><li>Power Query و Power Pivot</li></ul></div>
                 </div>
             </div>
-
             <div class="app-section">
                 <h3><i class="fas fa-tools"></i> الأدوات والميزات الأساسية</h3>
-                <p style="color: #e0e1dd; line-height: 1.6; margin-bottom: 20px;">
-                    تعلم كيفية استخدام الأدوات المختلفة في Excel لتحسين إنتاجيتك وإنشاء تقارير احترافية. 
-                    من الدوال الأساسية إلى تحليل البيانات المتقدم، ستتمكن من التعامل مع أي نوع من البيانات بكفاءة عالية.
-                </p>
+                <p>تعلم كيفية استخدام الأدوات المختلفة في Excel لتحسين إنتاجيتك وإنشاء تقارير احترافية.</p>
             </div>
-
             <div class="app-section">
                 <h3><i class="fas fa-graduation-cap"></i> مصادر التعلم الموصى بها</h3>
                 <div class="app-resources" style="justify-content: flex-start;">
                     <a href="https://support.microsoft.com/ar-sa/excel" class="app-resource" target="_blank">دعم Microsoft الرسمي</a>
                     <a href="https://exceljet.net/" class="app-resource" target="_blank">ExcelJet</a>
-                    <a href="https://www.excel-university.com/" class="app-resource" target="_blank">Excel University</a>
-                    <a href="https://chandoo.org/" class="app-resource" target="_blank">Chandoo.org</a>
                     <a href="https://www.youtube.com/user/ExcelIsFun" class="app-resource" target="_blank">ExcelIsFun YouTube</a>
                 </div>
             </div>
         </div>
 
-        <!-- ===== تفاصيل Word ===== -->
         <div id="word-details" class="app-details">
-            <h2 style="color: #4cc9f0; text-align: center; margin-bottom: 30px;">
-                <i class="fas fa-file-word"></i> دليل شامل لتعلم Microsoft Word
-            </h2>
-
-            <div class="app-section">
-                <h3><i class="fas fa-layer-group"></i> مستويات التعلم</h3>
-                
+            <h2 style="color: #4cc9f0; text-align: center; margin-bottom: 30px;"><i class="fas fa-file-word"></i> دليل شامل لتعلم Microsoft Word</h2>
+            <div class="app-section"><h3>مستويات التعلم</h3>
                 <div class="skill-level">
-                    <div class="level-card">
-                        <h4 class="level-title">المستوى المبتدئ (1-3 أسابيع)</h4>
-                        <ul class="skill-list">
-                            <li>أساسيات واجهة Word</li>
-                            <li>إدخال النص وتنسيقه</li>
-                            <li>إدارة الفقرات والمحاذاة</li>
-                            <li>إدراج الصور والجداول</li>
-                            <li>التدقيق الإملائي والنحوي</li>
-                            <li>حفظ وتصدير المستندات</li>
-                        </ul>
-                    </div>
-
-                    <div class="level-card">
-                        <h4 class="level-title">المستوى المتوسط (3-5 أسابيع)</h4>
-                        <ul class="skill-list">
-                            <li>أنماط النص والفقرات</li>
-                            <li>إنشاء القوالب والنماذج</li>
-                            <li>الجداول المتقدمة والرسوم البيانية</li>
-                            <li>الرؤوس والتذييلات وأرقام الصفحات</li>
-                            <li>الفهرس والمراجع</li>
-                            <li>دمج المراسلات</li>
-                        </ul>
-                    </div>
-
-                    <div class="level-card">
-                        <h4 class="level-title">المستوى المتقدم (4-6 أسابيع)</h4>
-                        <ul class="skill-list">
-                            <li>المستندات الرئيسية</li>
-                            <li>الحماية وتقييد التحرير</li>
-                            <li>الماكرو والأتمتة</li>
-                            <li>التعاون والمقارنة بين المستندات</li>
-                            <li>إعدادات الطباعة المتقدمة</li>
-                            <li>التكامل مع التطبيقات الأخرى</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="app-section">
-                <h3><i class="fas fa-tools"></i> الأدوات والميزات الأساسية</h3>
-                <p style="color: #e0e1dd; line-height: 1.6; margin-bottom: 20px;">
-                    اكتشف قوة Microsoft Word في إنشاء مستندات احترافية. تعلم كيفية استخدام الأدوات المتقدمة 
-                    لتحسين إنتاجيتك وإنشاء تقارير ومستندات معقدة بسهولة وكفاءة.
-                </p>
-            </div>
-
-            <div class="app-section">
-                <h3><i class="fas fa-graduation-cap"></i> مصادر التعلم الموصى بها</h3>
-                <div class="app-resources" style="justify-content: flex-start;">
-                    <a href="https://support.microsoft.com/ar-sa/word" class="app-resource" target="_blank">دعم Microsoft الرسمي</a>
-                    <a href="https://www.wordtemplates.org/" class="app-resource" target="_blank">Word Templates</a>
-                    <a href="https://www.msofficeforums.com/word/" class="app-resource" target="_blank">MS Office Forums</a>
-                    <a href="https://www.youtube.com/user/Office" class="app-resource" target="_blank">Office YouTube</a>
+                    <div class="level-card"><h4>المبتدئ</h4><ul><li>أساسيات واجهة Word</li><li>إدخال النص وتنسيقه</li><li>إدراج الصور والجداول</li></ul></div>
+                    <div class="level-card"><h4>المتوسط</h4><ul><li>أنماط النص والفقرات</li><li>الجداول المتقدمة</li><li>الرؤوس والتذييلات</li></ul></div>
+                    <div class="level-card"><h4>المتقدم</h4><ul><li>المستندات الرئيسية</li><li>الماكرو والأتمتة</li><li>التعاون والمقارنة</li></ul></div>
                 </div>
             </div>
         </div>
 
-        <!-- ===== تفاصيل PowerPoint ===== -->
         <div id="powerpoint-details" class="app-details">
-            <h2 style="color: #4cc9f0; text-align: center; margin-bottom: 30px;">
-                <i class="fas fa-file-powerpoint"></i> دليل شامل لتعلم Microsoft PowerPoint
-            </h2>
-
-            <div class="app-section">
-                <h3><i class="fas fa-layer-group"></i> مستويات التعلم</h3>
-                
+            <h2 style="color: #4cc9f0; text-align: center; margin-bottom: 30px;"><i class="fas fa-file-powerpoint"></i> دليل شامل لتعلم Microsoft PowerPoint</h2>
+            <div class="app-section"><h3>مستويات التعلم</h3>
                 <div class="skill-level">
-                    <div class="level-card">
-                        <h4 class="level-title">المستوى المبتدئ (1-2 أسابيع)</h4>
-                        <ul class="skill-list">
-                            <li>أساسيات واجهة PowerPoint</li>
-                            <li>إنشاء شرائح جديدة وتخطيطها</li>
-                            <li>إضافة النص وتنسيقه</li>
-                            <li>إدراج الصور والأشكال</li>
-                            <li>التصميمات والسمات</li>
-                            <li>عرض تقديمي أساسي</li>
-                        </ul>
-                    </div>
-
-                    <div class="level-card">
-                        <h4 class="level-title">المستوى المتوسط (2-4 أسابيع)</h4>
-                        <ul class="skill-list">
-                            <li>الحركات والتحويلات</li>
-                            <li>تنسيق متقدم للوسائط</li>
-                            <li>المخططات والرسوم البيانية</li>
-                            <li>إنشاء القوالب المخصصة</li>
-                            <li>التوقيت والمؤقت</li>
-                            <li>التعليقات التوضيحية أثناء العرض</li>
-                        </ul>
-                    </div>
-
-                    <div class="level-card">
-                        <h4 class="level-title">المستوى المتقدم (3-5 أسابيع)</h4>
-                        <ul class="skill-list">
-                            <li>دمج الوسائط المتعددة</li>
-                            <li>الحركات المتقدمة والمؤثرات</li>
-                            <li>التعاون والعروض التقديمية المشتركة</li>
-                            <li>إنشاء عروض تفاعلية</li>
-                            <li>التكامل مع Office الأخرى</li>
-                            <li>نصائح لتقديم عروض مؤثرة</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="app-section">
-                <h3><i class="fas fa-tools"></i> الأدوات والميزات الأساسية</h3>
-                <p style="color: #e0e1dd; line-height: 1.6; margin-bottom: 20px;">
-                    استفد من كامل إمكانيات PowerPoint لإنشاء عروض تقديمية مذهلة وجذابة. تعلم كيفية استخدام 
-                    الأدوات المتقدمة لتحويل أفكارك إلى عروض تقديمية احترافية تترك انطباعاً قوياً.
-                </p>
-            </div>
-
-            <div class="app-section">
-                <h3><i class="fas fa-graduation-cap"></i> مصادر التعلم الموصى بها</h3>
-                <div class="app-resources" style="justify-content: flex-start;">
-                    <a href="https://support.microsoft.com/ar-sa/powerpoint" class="app-resource" target="_blank">دعم Microsoft الرسمي</a>
-                    <a href="https://24slides.com/presentbetter/" class="app-resource" target="_blank">Present Better</a>
-                    <a href="https://www.presentationload.com/" class="app-resource" target="_blank">PresentationLoad</a>
-                    <a href="https://www.youtube.com/user/Office" class="app-resource" target="_blank">Office YouTube</a>
+                    <div class="level-card"><h4>المبتدئ</h4><ul><li>أساسيات واجهة PowerPoint</li><li>إنشاء شرائح جديدة</li><li>إضافة النص وتنسيقه</li></ul></div>
+                    <div class="level-card"><h4>المتوسط</h4><ul><li>الحركات والتحويلات</li><li>المخططات والرسوم البيانية</li><li>إنشاء القوالب المخصصة</li></ul></div>
+                    <div class="level-card"><h4>المتقدم</h4><ul><li>دمج الوسائط المتعددة</li><li>الحركات المتقدمة</li><li>إنشاء عروض تفاعلية</li></ul></div>
                 </div>
             </div>
         </div>
 
-        <!-- ===== تفاصيل Outlook ===== -->
         <div id="outlook-details" class="app-details">
-            <h2 style="color: #4cc9f0; text-align: center; margin-bottom: 30px;">
-                <i class="fas fa-envelope"></i> دليل شامل لتعلم Microsoft Outlook
-            </h2>
-
-            <div class="app-section">
-                <h3><i class="fas fa-layer-group"></i> مستويات التعلم</h3>
-                
+            <h2 style="color: #4cc9f0; text-align: center; margin-bottom: 30px;"><i class="fas fa-envelope"></i> دليل شامل لتعلم Microsoft Outlook</h2>
+            <div class="app-section"><h3>مستويات التعلم</h3>
                 <div class="skill-level">
-                    <div class="level-card">
-                        <h4 class="level-title">المستوى المبتدئ (1-2 أسابيع)</h4>
-                        <ul class="skill-list">
-                            <li>إعداد الحساب والتكوين</li>
-                            <li>إرسال واستقبال البريد الإلكتروني</li>
-                            <li>تنظيم البريد في المجلدات</li>
-                            <li>إدارة جهات الاتصال</li>
-                            <li>استخدام التقويم الأساسي</li>
-                            <li>إنشاء المهام والتذكيرات</li>
-                        </ul>
-                    </div>
-
-                    <div class="level-card">
-                        <h4 class="level-title">المستوى المتوسط (2-3 أسابيع)</h4>
-                        <ul class="skill-list">
-                            <li>القواعد والتنظيم المتقدم للبريد</li>
-                            <li>التصنيفات والألوان</li>
-                            <li>إدارة التقويم المتقدمة</li>
-                            <li>المجموعات والتعاون</li>
-                            <li>البحث المتقدم والتصفية</li>
-                            <li>تخصيص واجهة المستخدم</li>
-                        </ul>
-                    </div>
-
-                    <div class="level-card">
-                        <h4 class="level-title">المستوى المتقدم (2-4 أسابيع)</h4>
-                        <ul class="skill-list">
-                            <li>أتمتة المهام باستخدام القواعد</li>
-                            <li>إدارة المشاريع باستخدام Outlook</li>
-                            <li>التكامل مع التطبيقات الأخرى</li>
-                            <li>الأمان وإعدادات الخصوصية</li>
-                            <li>استكشاف الأخطاء وإصلاحها</li>
-                            <li>نصائح للإنتاجية المتقدمة</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="app-section">
-                <h3><i class="fas fa-tools"></i> الأدوات والميزات الأساسية</h3>
-                <p style="color: #e0e1dd; line-height: 1.6; margin-bottom: 20px;">
-                    استفد من كامل إمكانيات Outlook لتنظيم عملك وزيادة إنتاجيتك. تعلم كيفية إدارة بريدك الإلكتروني، 
-                    وتقويمك، ومهامك، وجهات اتصالك في مكان واحد لتحقيق أقصى استفادة من وقتك.
-                </p>
-            </div>
-
-            <div class="app-section">
-                <h3><i class="fas fa-graduation-cap"></i> مصادر التعلم الموصى بها</h3>
-                <div class="app-resources" style="justify-content: flex-start;">
-                    <a href="https://support.microsoft.com/ar-sa/outlook" class="app-resource" target="_blank">دعم Microsoft الرسمي</a>
-                    <a href="https://www.slipstick.com/" class="app-resource" target="_blank">Slipstick</a>
-                    <a href="https://www.howto-outlook.com/" class="app-resource" target="_blank">HowTo-Outlook</a>
-                    <a href="https://www.youtube.com/user/Office" class="app-resource" target="_blank">Office YouTube</a>
+                    <div class="level-card"><h4>المبتدئ</h4><ul><li>إعداد الحساب</li><li>إرسال واستقبال البريد</li><li>إدارة جهات الاتصال</li></ul></div>
+                    <div class="level-card"><h4>المتوسط</h4><ul><li>القواعد والتنظيم المتقدم</li><li>إدارة التقويم المتقدمة</li><li>البحث المتقدم</li></ul></div>
+                    <div class="level-card"><h4>المتقدم</h4><ul><li>أتمتة المهام</li><li>التكامل مع التطبيقات الأخرى</li><li>الأمان وإعدادات الخصوصية</li></ul></div>
                 </div>
             </div>
         </div>
 
-        <!-- ===== أزرار التنقل ===== -->
         <div class="download-buttons">
-            <a href="index.html" class="download-btn back-to-main">
-                <i class="fas fa-arrow-left"></i> العودة للصفحة الرئيسية
-            </a>
-            <a href="#" class="download-btn">
-                <i class="fas fa-file-pdf"></i> تحميل دليل Excel (PDF)
-            </a>
-            <a href="#" class="download-btn">
-                <i class="fas fa-calendar-alt"></i> جدول تعلم Office
-            </a>
-            <a href="https://github.com/muham-ed/skills-github-pages" class="download-btn" target="_blank">
-                <i class="fab fa-github"></i> مشروع GitHub
-            </a>
-            <a href="https://www.youtube.com/channel/UCS5vFLuP5h1NTgvHiM2oJHQ" class="download-btn" target="_blank">
-                <i class="fab fa-youtube"></i> قناتي على YouTube
-            </a>
-            <a href="https://wa.me/201060828627" class="download-btn" target="_blank" style="background: linear-gradient(45deg, #25D366, #128C7E);">
-                <i class="fab fa-whatsapp"></i> التواصل عبر واتساب
-            </a>
+            <a href="index.html" class="download-btn back-to-main"><i class="fas fa-arrow-left"></i> العودة للرئيسية</a>
+            <a href="#" class="download-btn" onclick="downloadExcelGuide(); return false;"><i class="fas fa-file-pdf"></i> تحميل دليل Excel</a>
+            <a href="#" class="download-btn" onclick="downloadOfficeSchedule(); return false;"><i class="fas fa-calendar-alt"></i> جدول تعلم Office</a>
+            <a href="https://github.com/muham-ed/skills-github-pages" class="download-btn" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://www.youtube.com/channel/UCS5vFLuP5h1NTgvHiM2oJHQ" class="download-btn" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="https://wa.me/201060828627" class="download-btn" target="_blank" style="background: linear-gradient(45deg, #25D366, #128C7E);"><i class="fab fa-whatsapp"></i> واتساب</a>
         </div>
     </div>
 
-    <!-- ===== الفوتر ===== -->
     <footer id="contact">
         <div class="social-icons">
             <a href="https://www.linkedin.com/in/mohamed-ala-a-2b333533a" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
             <a href="https://github.com/muham-ed/skills-github-pages" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
             <a href="https://www.youtube.com/channel/UCS5vFLuP5h1NTgvHiM2oJHQ" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.instagram.com/mohamedabotasa/" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.instagram.com/mohmedalaaaldin/?" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://www.facebook.com/profile.php?id=61550839582471&locale=ar_AR" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
             <a href="https://wa.me/201060828627" class="social-icon" target="_blank" style="background: linear-gradient(45deg, #25D366, #128C7E);"><i class="fab fa-whatsapp"></i></a>
             <a href="mailto:mohamedalaaaldinabotasa@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
         </div>
-        <p class="copyright">© 2025 MY WEBSITE | تم التصميم بواسطة Mohamed Alaa</p>
+        <p class="copyright">© 2025 مسار التطور التقني | تم التصميم بواسطة Mohamed Alaa</p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // تأثيرات للبطاقات
             const appCards = document.querySelectorAll('.app-card');
+            const viewDetailsButtons = document.querySelectorAll('.view-details');
+            const appDetailsSections = document.querySelectorAll('.app-details');
+            
             appCards.forEach(card => {
                 card.addEventListener('mouseenter', () => {
                     const icon = card.querySelector('.app-icon');
-                    icon.style.transform = 'scale(1.1)';
+                    if(icon) icon.style.transform = 'scale(1.1)';
                 });
-                
                 card.addEventListener('mouseleave', () => {
                     const icon = card.querySelector('.app-icon');
-                    icon.style.transform = 'scale(1)';
+                    if(icon) icon.style.transform = 'scale(1)';
                 });
             });
-
-            // إظهار وإخفاء التفاصيل
-            const viewDetailsButtons = document.querySelectorAll('.view-details');
-            const appDetailsSections = document.querySelectorAll('.app-details');
             
             viewDetailsButtons.forEach(button => {
                 button.addEventListener('click', function(e) {
                     e.preventDefault();
                     const appName = this.getAttribute('data-app');
-                    
-                    // إخفاء جميع الأقسام
-                    appDetailsSections.forEach(section => {
-                        section.classList.remove('active');
-                    });
-                    
-                    // إظهار القسم المطلوب
+                    appDetailsSections.forEach(section => section.classList.remove('active'));
                     const targetSection = document.getElementById(`${appName}-details`);
                     if (targetSection) {
                         targetSection.classList.add('active');
-                        
-                        // التمرير إلى القسم
-                        targetSection.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                 });
             });
-
-            // تأثيرات الظهور عند التمرير
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-            // تطبيق التأثيرات على البطاقات
+            
             appCards.forEach(card => {
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(30px)';
                 card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(card);
-            });
-
-            // تطبيق التأثيرات على أقسام التفاصيل
-            const detailsSections = document.querySelectorAll('.app-details');
-            detailsSections.forEach(section => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(30px)';
-                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                observer.observe(section);
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100);
             });
         });
+        
+        function downloadExcelGuide() {
+            const content = "دليل تعلم Excel الشامل\n\nالمستوى المبتدئ:\n- أساسيات الواجهة\n- إدخال البيانات\n- العمليات الحسابية\n\nالمستوى المتوسط:\n- الدوال المتقدمة\n- الرسوم البيانية\n- التنسيق الشرطي\n\nالمستوى المتقدم:\n- Pivot Tables\n- Power Query\n- الماكرو والأتمتة\n\nتم إعداد الدليل بواسطة: Mohamed Alaa";
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'دليل_تعلم_Excel.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+        
+        function downloadOfficeSchedule() {
+            const content = "جدول تعلم Microsoft Office (8 أسابيع)\n\nالأسبوع 1-2: Excel الأساسيات\nالأسبوع 3-4: Excel المتوسط والمتقدم\nالأسبوع 5: Word الأساسيات والمتوسط\nالأسبوع 6: PowerPoint الأساسيات والمتوسط\nالأسبوع 7: Outlook الأساسيات\nالأسبوع 8: مشروع متكامل\n\nتم إعداد الجدول بواسطة: Mohamed Alaa";
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'جدول_تعلم_Office.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
     </script>
 </body>
 </html>

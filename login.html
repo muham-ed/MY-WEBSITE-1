@@ -6,9 +6,11 @@
     <title>تسجيل الدخول | Mohamed Alaa</title>
     <link rel="icon" href="icons mohamed.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="login.css">
-    <style>
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
     <div class="login-card">
@@ -32,13 +34,12 @@
         
         <button class="btn btn-primary" id="mainBtn">دخول</button>
         
-        <div style="margin: 20px 0; position: relative;">
-            <hr style="border: 1px solid rgba(255,255,255,0.1);">
-            <span style="position: relative; top: -12px; background: rgba(27, 38, 59, 0.95); padding: 0 10px; color: #888;">أو</span>
+        <div class="divider">
+            <span>أو</span>
         </div>
         
         <button class="btn btn-google" id="googleBtn">
-            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" width="20">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" width="20" alt="Google">
             الدخول بواسطة Google
         </button>
         
@@ -52,300 +53,15 @@
             </a>
         </div>
         
-        <!-- ملاحظة صغيرة عن النطاق (اختياري) -->
         <div class="domain-note">
             <i class="fas fa-shield-alt"></i> نطاق آمن: GitHub Pages
         </div>
     </div>
 
+    <!-- JavaScript Files -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-
-    <script>
-        // ===== بيانات Firebase الصحيحة من مشروعك =====
-        const firebaseConfig = {
-            apiKey: "AIzaSyDG3CAjOyNDqNF5ISkUnFz5ZGHlSwCicq8",
-            authDomain: "my-website-1-93d68.firebaseapp.com",
-            projectId: "my-website-1-93d68",
-            storageBucket: "my-website-1-93d68.firebasestorage.app",
-            messagingSenderId: "811350331643",
-            appId: "1:811350331643:web:4fa42821093d629d1f605e",
-            measurementId: "G-P4J6584N2T"
-        };
-
-        // تهيئة Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        
-        // عناصر DOM
-        const messageDiv = document.getElementById('message');
-        const title = document.getElementById('title');
-        const mainBtn = document.getElementById('mainBtn');
-        const toggleMode = document.getElementById('toggleMode');
-        const nameField = document.getElementById('nameField');
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
-        
-        let isSignUp = false;
-
-        // ===== عرض الرسائل =====
-        function showMessage(type, text) {
-            messageDiv.style.display = 'block';
-            messageDiv.className = `message ${type}`;
-            messageDiv.textContent = text;
-            
-            // إخفاء الرسالة بعد 5 ثوان
-            setTimeout(() => {
-                messageDiv.style.display = 'none';
-            }, 5000);
-        }
-
-        // ===== التبديل بين تسجيل الدخول وإنشاء حساب =====
-        toggleMode.addEventListener('click', () => {
-            isSignUp = !isSignUp;
-            
-            if (isSignUp) {
-                title.textContent = 'إنشاء حساب جديد';
-                mainBtn.textContent = 'إنشاء الحساب';
-                toggleMode.textContent = 'لديك حساب؟ سجل دخول';
-                nameField.classList.add('show');
-            } else {
-                title.textContent = 'تسجيل الدخول';
-                mainBtn.textContent = 'دخول';
-                toggleMode.textContent = 'ليس لديك حساب؟ سجل الآن';
-                nameField.classList.remove('show');
-            }
-        });
-
-        // ===== التحقق من المدخلات =====
-        function validateInputs() {
-            const email = emailInput.value.trim();
-            const password = passwordInput.value.trim();
-
-            if (!email || !password) {
-                showMessage('error', '❌ الرجاء ملء جميع الحقول');
-                return false;
-            }
-
-            if (!email.includes('@') || !email.includes('.')) {
-                showMessage('error', '❌ البريد الإلكتروني غير صالح');
-                return false;
-            }
-
-            if (password.length < 6) {
-                showMessage('error', '❌ كلمة المرور يجب أن تكون 6 أحرف على الأقل');
-                return false;
-            }
-
-            if (isSignUp) {
-                const name = nameInput.value.trim();
-                if (!name) {
-                    showMessage('error', '❌ الرجاء إدخال الاسم الكامل');
-                    return false;
-                }
-                if (name.split(' ').length < 2) {
-                    showMessage('error', '❌ الرجاء إدخال الاسم الثلاثي على الأقل');
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        // ===== حفظ بيانات المستخدم =====
-        function saveUserData(user) {
-            localStorage.setItem('userId', user.uid);
-            localStorage.setItem('userEmail', user.email);
-            localStorage.setItem('userName', user.displayName || nameInput.value.trim() || 'مستخدم');
-            
-            // يمكنك أيضاً حفظ المستخدم في Firestore إذا أردت
-            // saveUserToFirestore(user);
-        }
-
-        // ===== (اختياري) حفظ المستخدم في Firestore =====
-        /*
-        function saveUserToFirestore(user) {
-            const db = firebase.firestore();
-            db.collection('users').doc(user.uid).set({
-                name: user.displayName || nameInput.value.trim(),
-                email: user.email,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            }).catch(error => console.error('خطأ في حفظ المستخدم:', error));
-        }
-        */
-
-        // ===== تسجيل الدخول =====
-        async function signIn() {
-            if (!validateInputs()) return;
-
-            const email = emailInput.value.trim();
-            const password = passwordInput.value.trim();
-
-            try {
-                mainBtn.disabled = true;
-                mainBtn.textContent = 'جاري...';
-
-                const userCredential = await auth.signInWithEmailAndPassword(email, password);
-                saveUserData(userCredential.user);
-                
-                showMessage('success', '✅ تم تسجيل الدخول بنجاح! جاري التوجيه...');
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 1500);
-
-            } catch (error) {
-                mainBtn.disabled = false;
-                mainBtn.textContent = 'دخول';
-                
-                let errorMessage = '❌ ';
-                switch(error.code) {
-                    case 'auth/user-not-found':
-                        errorMessage += 'لا يوجد حساب بهذا البريد الإلكتروني';
-                        break;
-                    case 'auth/wrong-password':
-                        errorMessage += 'كلمة المرور غير صحيحة';
-                        break;
-                    case 'auth/invalid-credential':
-                        errorMessage += 'بيانات الدخول غير صالحة';
-                        break;
-                    case 'auth/too-many-requests':
-                        errorMessage += 'تم حظر الوصول مؤقتاً لكثرة المحاولات';
-                        break;
-                    default:
-                        errorMessage += error.message;
-                }
-                showMessage('error', errorMessage);
-            }
-        }
-
-        // ===== إنشاء حساب جديد =====
-        async function signUp() {
-            if (!validateInputs()) return;
-
-            const email = emailInput.value.trim();
-            const password = passwordInput.value.trim();
-            const name = nameInput.value.trim();
-
-            try {
-                mainBtn.disabled = true;
-                mainBtn.textContent = 'جاري...';
-
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                const user = userCredential.user;
-
-                await user.updateProfile({
-                    displayName: name
-                });
-
-                saveUserData(user);
-                showMessage('success', '✅ تم إنشاء الحساب بنجاح! جاري التوجيه...');
-                
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 1500);
-
-            } catch (error) {
-                mainBtn.disabled = false;
-                mainBtn.textContent = 'إنشاء الحساب';
-                
-                let errorMessage = '❌ ';
-                switch(error.code) {
-                    case 'auth/email-already-in-use':
-                        errorMessage += 'البريد الإلكتروني مستخدم بالفعل';
-                        break;
-                    case 'auth/invalid-email':
-                        errorMessage += 'بريد إلكتروني غير صالح';
-                        break;
-                    case 'auth/weak-password':
-                        errorMessage += 'كلمة المرور ضعيفة جداً';
-                        break;
-                    default:
-                        errorMessage += error.message;
-                }
-                showMessage('error', errorMessage);
-            }
-        }
-
-        // ===== تسجيل الدخول بـ Google =====
-        document.getElementById('googleBtn').onclick = () => {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            
-            // إضافة نطاق الموقع (اختياري لكن مفيد)
-            provider.setCustomParameters({
-                prompt: 'select_account'
-            });
-            
-            // تعطيل الزر مؤقتاً لمنع الضغط المتكرر
-            const googleBtn = document.getElementById('googleBtn');
-            googleBtn.disabled = true;
-            googleBtn.innerHTML = '<span class="fa-spinner"></span> جاري...';
-            
-            auth.signInWithPopup(provider)
-                .then((result) => {
-                    saveUserData(result.user);
-                    showMessage('success', '✅ تم تسجيل الدخول بنجاح! جاري التوجيه...');
-                    setTimeout(() => {
-                        window.location.href = "index.html";
-                    }, 1500);
-                })
-                .catch((error) => {
-                    googleBtn.disabled = false;
-                    googleBtn.innerHTML = '<img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" width="20"> الدخول بواسطة Google';
-                    
-                    let errorMessage = '❌ ';
-                    if (error.code === 'auth/popup-closed-by-user') {
-                        errorMessage += 'تم إغلاق نافذة التسجيل';
-                    } else if (error.code === 'auth/unauthorized-domain') {
-                        errorMessage += 'هذا النطاق غير مصرح به. لكنك أضفت النطاقات الصحيحة ✅';
-                        // رسالة تشجيعية لأنك أضفت النطاقات بالفعل
-                        setTimeout(() => {
-                            showMessage('info', 'حاول مرة أخرى، النطاقات مضافة بشكل صحيح');
-                        }, 1000);
-                    } else {
-                        errorMessage += error.message;
-                    }
-                    showMessage('error', errorMessage);
-                });
-        };
-
-        // ===== الحدث الرئيسي للزر =====
-        mainBtn.addEventListener('click', () => {
-            if (isSignUp) {
-                signUp();
-            } else {
-                signIn();
-            }
-        });
-
-        // ===== تسجيل الدخول بضغط Enter =====
-        document.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                if (isSignUp) {
-                    signUp();
-                } else {
-                    signIn();
-                }
-            }
-        });
-
-        // ===== التحقق من حالة تسجيل الدخول =====
-        auth.onAuthStateChanged((user) => {
-            if (user && window.location.pathname.includes('login.html')) {
-                showMessage('info', '👋 أنت مسجل الدخول بالفعل! جاري التوجيه...');
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 2000);
-            }
-        });
-
-        // ===== رسالة ترحيب عند تحميل الصفحة =====
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                showMessage('info', '👋 مرحباً بك! سجل دخولك لمتابعة تقدمك');
-            }, 500);
-        });
-    </script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>

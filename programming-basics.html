@@ -4,126 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أساسيات البرمجة - الدورة الشاملة | Mohamed Alaa</title>
-        <link rel="icon" href="icons mohamed.png" type="image/png">
+    <link rel="icon" href="icons mohamed.png" type="image/png">
+    <link rel="stylesheet" href="programming-basics.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="programming-basics.css">
+    <style>
+    </style>
 </head>
 <body>
-    <nav class="nav-container">
-        <div class="nav-content">
-            <a href="index.html" class="nav-logo">Mohamed Alaa</a>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link">الرئيسية</a>
-                <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
-                <a href="programming-basics.html" class="nav-link active">أساسيات البرمجة</a>
-                <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
-               
-                <a href="data-analyst-course.html" class="nav-link">📊 Data Analyst</a>
-                <a href="data-scientist-course.html" class="nav-link">🔬 Data Scientist</a>
-                <a href="blogs.html" class="nav-link">المقالات</a>
-                <a href="login.html" class="nav-link">دخول</a>
-            </div>
-        </div>
-    </nav>
 
-    <div class="container">
-        <!-- الهيدر -->
-        <div class="page-header">
-            <div class="logo">👨‍💻 أساسيات البرمجة</div>
-            <h1>الدورة الشاملة من الصفر إلى الاحتراف</h1>
-            <p>4 مستويات تعليمية | 15 درس متقدم | 8 مشاريع عملية | شهادة معتمدة</p>
+<nav class="nav-container">
+    <div class="nav-content">
+        <a href="index.html" class="nav-logo">Mohamed Alaa</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">الرئيسية</a>
+            <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
+            <a href="programming-basics.html" class="nav-link active">أساسيات البرمجة</a>
+            <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
+            <a href="data-analyst-course.html" class="nav-link">📊 Data Analyst</a>
+            <a href="data-scientist-course.html" class="nav-link">🔬 Data Scientist</a>
+            <a href="blogs.html" class="nav-link">المقالات</a>
+            <a href="login.html" class="nav-link">دخول</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <!-- الهيدر -->
+    <div class="page-header">
+        <div class="logo">👨‍💻 أساسيات البرمجة</div>
+        <h1>الدورة الشاملة من الصفر إلى الاحتراف</h1>
+        <p>4 مستويات تعليمية | 15 درس متقدم | 8 مشاريع عملية | شهادة معتمدة</p>
+        <div>
+            <span class="badge"><i class="fas fa-layer-group"></i> 4 مستويات</span>
+            <span class="badge"><i class="fas fa-book-open"></i> 15 درس</span>
+            <span class="badge"><i class="fas fa-tasks"></i> 8 مشاريع</span>
+            <span class="badge"><i class="fas fa-code"></i> Python - JavaScript</span>
+            <span class="badge"><i class="fas fa-certificate"></i> شهادة معتمدة</span>
+        </div>
+    </div>
+
+    <!-- إحصائيات سريعة -->
+    <div class="stats-section">
+        <div class="stat-card">
+            <div class="stat-number" id="completedLessonsCount">0</div>
+            <div class="stat-label">الدروس المكتملة</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="earnedBadgesCount">0</div>
+            <div class="stat-label">الشارات المكتسبة</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="quizHighScore">0</div>
+            <div class="stat-label">أعلى نتيجة في الاختبار</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="studyTime">0</div>
+            <div class="stat-label">دقيقة تعلم</div>
+        </div>
+    </div>
+
+    <!-- شريط التقدم العام -->
+    <div class="progress-container">
+        <div class="progress-header">
+            <div class="progress-title"><i class="fas fa-chart-line"></i> تقدمك العام في الدورة</div>
             <div>
-                <span class="badge"><i class="fas fa-layer-group"></i> 4 مستويات</span>
-                <span class="badge"><i class="fas fa-book-open"></i> 15 درس</span>
-                <span class="badge"><i class="fas fa-tasks"></i> 8 مشاريع</span>
-                <span class="badge"><i class="fas fa-code"></i> Python - JavaScript</span>
-                <span class="badge"><i class="fas fa-certificate"></i> شهادة معتمدة</span>
+                <span id="progressPercent">0%</span> | <span id="completedCount">0/15</span>
+                <button onclick="resetAllProgress()" class="reset-btn"><i class="fas fa-redo-alt"></i> إعادة تعيين</button>
             </div>
         </div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar"></div></div>
+    </div>
 
-        <!-- إحصائيات سريعة -->
-        <div class="stats-section">
-            <div class="stat-card">
-                <div class="stat-number" id="completedLessonsCount">0</div>
-                <div class="stat-label">الدروس المكتملة</div>
+    <!-- المستويات التعليمية -->
+    <div id="levelsContainer"></div>
+
+    <!-- المشاريع العملية -->
+    <div class="projects-section">
+        <h2 class="section-title">🚀 المشاريع العملية</h2>
+        <div class="projects-grid" id="projectsGrid"></div>
+    </div>
+
+    <!-- شارات الإنجاز -->
+    <div class="achievements-section">
+        <h2 class="section-title">🏆 إنجازاتك</h2>
+        <div class="badges-grid" id="badgesGrid">
+            <div class="badge-item" data-badge="level1">
+                <div class="badge-icon"><i class="fas fa-seedling"></i></div>
+                <div class="badge-title">مبتدئ</div>
+                <div class="badge-desc">أكمل المستوى الأول</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="earnedBadgesCount">0</div>
-                <div class="stat-label">الشارات المكتسبة</div>
+            <div class="badge-item" data-badge="level2">
+                <div class="badge-icon"><i class="fas fa-code-branch"></i></div>
+                <div class="badge-title">متوسط</div>
+                <div class="badge-desc">أكمل المستوى الثاني</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="quizHighScore">0</div>
-                <div class="stat-label">أعلى نتيجة في الاختبار</div>
+            <div class="badge-item" data-badge="level3">
+                <div class="badge-icon"><i class="fas fa-crown"></i></div>
+                <div class="badge-title">متقدم</div>
+                <div class="badge-desc">أكمل المستوى الثالث</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="studyTime">0</div>
-                <div class="stat-label">دقيقة تعلم</div>
+            <div class="badge-item" data-badge="level4">
+                <div class="badge-icon"><i class="fas fa-project-diagram"></i></div>
+                <div class="badge-title">محترف</div>
+                <div class="badge-desc">أكمل كل المستويات</div>
+            </div>
+            <div class="badge-item" data-badge="quiz-master">
+                <div class="badge-icon"><i class="fas fa-brain"></i></div>
+                <div class="badge-title">عبقري</div>
+                <div class="badge-desc">100% في الاختبار</div>
             </div>
         </div>
+    </div>
 
-        <!-- شريط التقدم العام -->
-        <div class="progress-container">
-            <div class="progress-header">
-                <div class="progress-title"><i class="fas fa-chart-line"></i> تقدمك العام في الدورة</div>
-                <div>
-                    <span id="progressPercent">0%</span> | <span id="completedCount">0/15</span>
-                    <button onclick="resetAllProgress()" class="reset-btn"><i class="fas fa-redo-alt"></i> إعادة تعيين</button>
-                </div>
-            </div>
-            <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar"></div></div>
+    <!-- محرر الكود التفاعلي -->
+    <div class="editor-section">
+        <h2 style="color:#4cc9f0; margin-bottom:20px;">💻 جرب بنفسك - محرر تفاعلي</h2>
+        <div class="editor-tabs">
+            <div class="editor-tab active" onclick="switchEditor('python')">Python</div>
+            <div class="editor-tab" onclick="switchEditor('javascript')">JavaScript</div>
+            <div class="editor-tab" onclick="switchEditor('html')">HTML</div>
         </div>
-
-        <!-- المستويات التعليمية -->
-        <div id="levelsContainer"></div>
-
-        <!-- المشاريع العملية -->
-        <div class="projects-section">
-            <h2 class="section-title" style="color:#4cc9f0; margin-bottom:20px;">🚀 المشاريع العملية</h2>
-            <div class="projects-grid" id="projectsGrid"></div>
-        </div>
-
-        <!-- شارات الإنجاز -->
-        <div class="achievements-section">
-            <h2 class="section-title" style="color:#4cc9f0; margin-bottom:20px;">🏆 إنجازاتك</h2>
-            <div class="badges-grid" id="badgesGrid">
-                <div class="badge-item" data-badge="level1">
-                    <div class="badge-icon"><i class="fas fa-seedling"></i></div>
-                    <div class="badge-title">مبتدئ</div>
-                    <div class="badge-desc">أكمل المستوى الأول</div>
-                </div>
-                <div class="badge-item" data-badge="level2">
-                    <div class="badge-icon"><i class="fas fa-code-branch"></i></div>
-                    <div class="badge-title">متوسط</div>
-                    <div class="badge-desc">أكمل المستوى الثاني</div>
-                </div>
-                <div class="badge-item" data-badge="level3">
-                    <div class="badge-icon"><i class="fas fa-crown"></i></div>
-                    <div class="badge-title">متقدم</div>
-                    <div class="badge-desc">أكمل المستوى الثالث</div>
-                </div>
-                <div class="badge-item" data-badge="level4">
-                    <div class="badge-icon"><i class="fas fa-project-diagram"></i></div>
-                    <div class="badge-title">محترف</div>
-                    <div class="badge-desc">أكمل كل المستويات</div>
-                </div>
-                <div class="badge-item" data-badge="quiz-master">
-                    <div class="badge-icon"><i class="fas fa-brain"></i></div>
-                    <div class="badge-title">عبقري</div>
-                    <div class="badge-desc">100% في الاختبار</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- محرر الكود التفاعلي -->
-        <div class="editor-section">
-            <h2 style="color:#4cc9f0; margin-bottom:20px;">💻 جرب بنفسك - محرر تفاعلي</h2>
-            <div class="editor-tabs">
-                <div class="editor-tab active" onclick="switchEditor('python')">Python</div>
-                <div class="editor-tab" onclick="switchEditor('javascript')">JavaScript</div>
-                <div class="editor-tab" onclick="switchEditor('html')">HTML</div>
-            </div>
-            <div id="pythonEditor" class="editor-panel" contenteditable="true"># اكتب كود Python هنا
+        <div id="pythonEditor" class="editor-panel" contenteditable="true"># اكتب كود Python هنا
 print("مرحباً بالعالم!")
 
 name = "محمد"
@@ -131,7 +133,7 @@ print(f"اسمي {name}")
 
 for i in range(5):
     print(f"العدد: {i}")</div>
-            <div id="javascriptEditor" class="editor-panel" style="display:none;" contenteditable="true">// اكتب كود JavaScript هنا
+        <div id="javascriptEditor" class="editor-panel" style="display:none;" contenteditable="true">// اكتب كود JavaScript هنا
 console.log("مرحباً بالعالم!");
 
 let name = "محمد";
@@ -140,176 +142,177 @@ console.log(`اسمي ${name}`);
 for (let i = 0; i < 5; i++) {
     console.log(`العدد: ${i}`);
 }</div>
-            <div id="htmlEditor" class="editor-panel" style="display:none;" contenteditable="true"><!-- اكتب كود HTML هنا -->
+        <div id="htmlEditor" class="editor-panel" style="display:none;" contenteditable="true"><!-- اكتب كود HTML هنا -->
 <h1>مرحباً بالعالم!</h1>
 <p>هذه صفحة تجريبية</p>
 <button onclick="alert('مرحباً')">اضغط هنا</button></div>
-            <div style="display: flex; gap: 10px; margin-top: 10px;">
-                <button onclick="runCode()" class="lesson-btn download-lesson-btn" style="width:auto;"><i class="fas fa-play"></i> تشغيل</button>
-                <button onclick="copyCode()" class="lesson-btn complete-lesson-btn" style="width:auto;"><i class="fas fa-copy"></i> نسخ</button>
-            </div>
-            <div id="editorOutput" class="editor-output">// النتيجة ستظهر هنا</div>
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <button onclick="runCode()" class="lesson-btn download-lesson-btn" style="width:auto;"><i class="fas fa-play"></i> تشغيل</button>
+            <button onclick="copyCode()" class="lesson-btn complete-lesson-btn" style="width:auto;"><i class="fas fa-copy"></i> نسخ</button>
         </div>
+        <div id="editorOutput" class="editor-output">// النتيجة ستظهر هنا</div>
+    </div>
 
-        <!-- الاختبار النهائي -->
-        <div class="quiz-container">
-            <h2 style="color:#4cc9f0; margin-bottom:20px;">📝 اختبار المعلومات الشامل</h2>
-            <div class="quiz-header">
-                <span>15 سؤالاً في البرمجة</span>
-                <span id="quizScore">0/15</span>
-            </div>
-            <div class="quiz-progress-bar">
-                <div class="quiz-progress-fill" id="quizProgress" style="width:0%"></div>
-            </div>
-            <div id="quizQuestion" class="quiz-question"></div>
-            <div id="quizOptions" class="quiz-options"></div>
-            <div style="text-align:center; margin-top:20px;">
-                <button onclick="resetQuiz()" class="lesson-btn complete-lesson-btn" style="background: linear-gradient(45deg, #f59e0b, #d97706); width:auto; padding:10px 30px;">
-                    <i class="fas fa-redo-alt"></i> إعادة الاختبار
-                </button>
-            </div>
+    <!-- الاختبار النهائي -->
+    <div class="quiz-container">
+        <h2 style="color:#4cc9f0; margin-bottom:20px;">📝 اختبار المعلومات الشامل</h2>
+        <div class="quiz-header">
+            <span>15 سؤالاً في البرمجة</span>
+            <span id="quizScore">0/15</span>
         </div>
-
-        <!-- شهادة الإتمام -->
-        <div id="certificateSection" class="certificate-section">
-            <h2 style="color:#4cc9f0; margin-bottom:20px;">🎓 شهادة إتمام الدورة</h2>
-            <div class="certificate-preview">
-                <div class="certificate-title">مسار التطور التقني</div>
-                <div class="certificate-name" id="certificateName">محمد علاء</div>
-                <div class="certificate-desc">لإتمام الدورة الشاملة في البرمجة بنجاح</div>
-                <div class="certificate-date" id="certificateDate"></div>
-            </div>
-            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
-                <button onclick="downloadCertificate()" class="lesson-btn complete-lesson-btn" style="background: linear-gradient(45deg, #10b981, #047857); width:auto; padding:10px 30px;">
-                    <i class="fas fa-download"></i> تحميل الشهادة
-                </button>
-                <button onclick="shareAchievement()" class="share-btn">
-                    <i class="fab fa-whatsapp"></i> مشاركة الإنجاز
-                </button>
-            </div>
+        <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quizProgress" style="width:0%"></div>
+        </div>
+        <div id="quizQuestion" class="quiz-question"></div>
+        <div id="quizOptions" class="quiz-options"></div>
+        <div style="text-align:center; margin-top:20px;">
+            <button onclick="resetQuiz()" class="lesson-btn complete-lesson-btn" style="background: linear-gradient(45deg, #f59e0b, #d97706); width:auto; padding:10px 30px;">
+                <i class="fas fa-redo-alt"></i> إعادة الاختبار
+            </button>
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="social-icons">
-            <a href="https://www.linkedin.com/in/mohamed-ala-a-2b333533a" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://github.com/muham-ed" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://www.youtube.com/@MohamedAlaa-tech" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.instagram.com/mohamedabotasa/" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=61550839582471" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://wa.me/201060828627" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:mohamedalaaaldinabotasa@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+    <!-- شهادة الإتمام -->
+    <div id="certificateSection" class="certificate-section">
+        <h2 style="color:#4cc9f0; margin-bottom:20px;">🎓 شهادة إتمام الدورة</h2>
+        <div class="certificate-preview">
+            <div class="certificate-title">مسار التطور التقني</div>
+            <div class="certificate-name" id="certificateName">محمد علاء</div>
+            <div class="certificate-desc">لإتمام الدورة الشاملة في البرمجة بنجاح</div>
+            <div class="certificate-date" id="certificateDate"></div>
         </div>
-        <p class="copyright">© 2025 مسار التطور التقني | تم التصميم بواسطة Mohamed Alaa</p>
-    </footer>
-
-    <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-sun"></i></button>
-
-    <div id="rewardModal" class="reward-modal">
-        <div class="reward-content">
-            <div class="reward-icon"><i class="fas fa-trophy"></i></div>
-            <h2 id="rewardTitle" style="color:#4cc9f0;">مبروك!</h2>
-            <p id="rewardDesc" style="margin:20px 0;">لقد حصلت على إنجاز جديد</p>
-            <button onclick="closeReward()" class="lesson-btn complete-lesson-btn" style="width:auto; padding:10px 30px;">متابعة</button>
+        <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+            <button onclick="downloadCertificate()" class="lesson-btn complete-lesson-btn" style="background: linear-gradient(45deg, #10b981, #047857); width:auto; padding:10px 30px;">
+                <i class="fas fa-download"></i> تحميل الشهادة
+            </button>
+            <button onclick="shareAchievement()" class="share-btn">
+                <i class="fab fa-whatsapp"></i> مشاركة الإنجاز
+            </button>
         </div>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
-    <script>
-        // ===== بيانات الدروس (15 درس) =====
-        const lessonsData = {
-            1: { title: "مقدمة في البرمجة", level: 1, topics: ["ما هي البرمجة؟", "كيف تعمل لغات البرمجة", "أنواع اللغات", "بيئة التطوير IDE"] },
-            2: { title: "المتغيرات", level: 1, topics: ["تعريف المتغيرات", "أنواع البيانات", "قواعد التسمية", "الثوابت"] },
-            3: { title: "العمليات", level: 1, topics: ["العمليات الحسابية", "العمليات المنطقية", "عمليات المقارنة", "أسبقية العمليات"] },
-            4: { title: "الجمل الشرطية", level: 2, topics: ["if - else", "else if", "الجمل المتداخلة", "Ternary Operator"] },
-            5: { title: "الحلقات التكرارية", level: 2, topics: ["for loop", "while loop", "do-while", "break - continue"] },
-            6: { title: "الدوال", level: 2, topics: ["تعريف الدوال", "المعاملات", "القيمة المُرجعة", "الدوال السهمية"] },
-            7: { title: "المصفوفات", level: 2, topics: ["إنشاء المصفوفات", "الوصول للعناصر", "طرق المصفوفات", "المصفوفات متعددة الأبعاد"] },
-            8: { title: "البرمجة الكائنية - الجزء 1", level: 3, topics: ["Class vs Object", "الخصائص", "الطرق", "البناء"] },
-            9: { title: "البرمجة الكائنية - الجزء 2", level: 3, topics: ["الوراثة", "التغليف", "تعدد الأشكال", "الفئات المجردة"] },
-            10: { title: "التعامل مع الملفات", level: 3, topics: ["قراءة الملفات", "كتابة الملفات", "التعامل مع JSON", "التعامل مع CSV"] },
-            11: { title: "إدارة الأخطاء", level: 3, topics: ["Try - Except", "أنواع الأخطاء", "رفع الأخطاء", "Finally"] },
-            12: { title: "الخوارزميات - البحث", level: 4, topics: ["Big O Notation", "البحث الخطي", "البحث الثنائي", "مقارنة الأداء"] },
-            13: { title: "الخوارزميات - الترتيب", level: 4, topics: ["Bubble Sort", "Selection Sort", "Insertion Sort", "Merge Sort"] },
-            14: { title: "هياكل البيانات", level: 4, topics: ["القوائم المرتبطة", "المكدس", "الطابور", "الأشجار"] },
-            15: { title: "مقدمة في الذكاء الاصطناعي", level: 4, topics: ["ما هو الذكاء الاصطناعي؟", "تعلم الآلة", "الشبكات العصبية", "تطبيقات عملية"] }
-        };
+<footer class="footer">
+    <div class="social-icons">
+        <a href="https://www.linkedin.com/in/mohamed-ala-a-2b333533a" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/muham-ed" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.youtube.com/@MohamedAlaa-tech" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/mohmedalaaaldin/?" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=61550839582471" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://wa.me/201060828627" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="mailto:mohamedalaaaldinabotasa@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p class="copyright">© 2025 مسار التطور التقني | تم التصميم بواسطة Mohamed Alaa</p>
+</footer>
 
-        // ===== المشاريع العملية =====
-        const projectsData = [
-            { title: "نظام إدارة بنكي", icon: "fa-university", desc: "تطبيق كامل باستخدام OOP", link: "#" },
-            { title: "تطبيق Notes", icon: "fa-sticky-note", desc: "حفظ الملاحظات مع JSON", link: "#" },
-            { title: "مولد كلمات المرور", icon: "fa-lock", desc: "كلمات مرور عشوائية قوية", link: "#" },
-            { title: "محلل بيانات", icon: "fa-chart-pie", desc: "تحليل CSV وإحصائيات", link: "#" },
-            { title: "تطبيق الطقس", icon: "fa-cloud-sun", desc: "استخدام API للطقس", link: "#" },
-            { title: "محرر نصوص", icon: "fa-edit", desc: "محرر نصوص بسيط", link: "#" },
-            { title: "آلة حاسبة", icon: "fa-calculator", desc: "حاسبة علمية متقدمة", link: "#" },
-            { title: "لعبة تخمين الأرقام", icon: "fa-gamepad", desc: "لعبة تفاعلية مع المستخدم", link: "#" }
-        ];
+<button id="themeToggle" class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-sun"></i></button>
 
-        const levelNames = {
-            1: "المستوى الأول: الأساسيات",
-            2: "المستوى الثاني: التحكم في التدفق",
-            3: "المستوى الثالث: البرمجة المتقدمة",
-            4: "المستوى الرابع: الخوارزميات والذكاء الاصطناعي"
-        };
+<div id="rewardModal" class="reward-modal">
+    <div class="reward-content">
+        <div class="reward-icon"><i class="fas fa-trophy"></i></div>
+        <h2 id="rewardTitle" style="color:#4cc9f0;">مبروك!</h2>
+        <p id="rewardDesc" style="margin:20px 0;">لقد حصلت على إنجاز جديد</p>
+        <button onclick="closeReward()" class="lesson-btn complete-lesson-btn" style="width:auto; padding:10px 30px;">متابعة</button>
+    </div>
+</div>
 
-        const levelIcons = {
-            1: "fa-seedling",
-            2: "fa-code-branch",
-            3: "fa-crown",
-            4: "fa-robot"
-        };
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+<script>
+    // ===== بيانات الدروس (15 درس) =====
+    const lessonsData = {
+        1: { title: "مقدمة في البرمجة", level: 1, topics: ["ما هي البرمجة؟", "كيف تعمل لغات البرمجة", "أنواع اللغات", "بيئة التطوير IDE"] },
+        2: { title: "المتغيرات", level: 1, topics: ["تعريف المتغيرات", "أنواع البيانات", "قواعد التسمية", "الثوابت"] },
+        3: { title: "العمليات", level: 1, topics: ["العمليات الحسابية", "العمليات المنطقية", "عمليات المقارنة", "أسبقية العمليات"] },
+        4: { title: "الجمل الشرطية", level: 2, topics: ["if - else", "else if", "الجمل المتداخلة", "Ternary Operator"] },
+        5: { title: "الحلقات التكرارية", level: 2, topics: ["for loop", "while loop", "do-while", "break - continue"] },
+        6: { title: "الدوال", level: 2, topics: ["تعريف الدوال", "المعاملات", "القيمة المُرجعة", "الدوال السهمية"] },
+        7: { title: "المصفوفات", level: 2, topics: ["إنشاء المصفوفات", "الوصول للعناصر", "طرق المصفوفات", "المصفوفات متعددة الأبعاد"] },
+        8: { title: "البرمجة الكائنية - الجزء 1", level: 3, topics: ["Class vs Object", "الخصائص", "الطرق", "البناء"] },
+        9: { title: "البرمجة الكائنية - الجزء 2", level: 3, topics: ["الوراثة", "التغليف", "تعدد الأشكال", "الفئات المجردة"] },
+        10: { title: "التعامل مع الملفات", level: 3, topics: ["قراءة الملفات", "كتابة الملفات", "التعامل مع JSON", "التعامل مع CSV"] },
+        11: { title: "إدارة الأخطاء", level: 3, topics: ["Try - Except", "أنواع الأخطاء", "رفع الأخطاء", "Finally"] },
+        12: { title: "الخوارزميات - البحث", level: 4, topics: ["Big O Notation", "البحث الخطي", "البحث الثنائي", "مقارنة الأداء"] },
+        13: { title: "الخوارزميات - الترتيب", level: 4, topics: ["Bubble Sort", "Selection Sort", "Insertion Sort", "Merge Sort"] },
+        14: { title: "هياكل البيانات", level: 4, topics: ["القوائم المرتبطة", "المكدس", "الطابور", "الأشجار"] },
+        15: { title: "مقدمة في الذكاء الاصطناعي", level: 4, topics: ["ما هو الذكاء الاصطناعي؟", "تعلم الآلة", "الشبكات العصبية", "تطبيقات عملية"] }
+    };
 
-        // ===== تحميل التقدم المحفوظ =====
-        let completedLessons = JSON.parse(localStorage.getItem('prog_completed')) || [];
-        let earnedBadges = JSON.parse(localStorage.getItem('prog_badges')) || [];
-        let quizHighScore = parseInt(localStorage.getItem('quizHighScore')) || 0;
-        let startTime = parseInt(localStorage.getItem('studyStartTime')) || Date.now();
-        let totalStudyTime = parseInt(localStorage.getItem('totalStudyTime')) || 0;
+    // ===== المشاريع العملية =====
+    const projectsData = [
+        { title: "نظام إدارة بنكي", icon: "fa-university", desc: "تطبيق كامل باستخدام OOP" },
+        { title: "تطبيق Notes", icon: "fa-sticky-note", desc: "حفظ الملاحظات مع JSON" },
+        { title: "مولد كلمات المرور", icon: "fa-lock", desc: "كلمات مرور عشوائية قوية" },
+        { title: "محلل بيانات", icon: "fa-chart-pie", desc: "تحليل CSV وإحصائيات" },
+        { title: "تطبيق الطقس", icon: "fa-cloud-sun", desc: "استخدام API للطقس" },
+        { title: "محرر نصوص", icon: "fa-edit", desc: "محرر نصوص بسيط" },
+        { title: "آلة حاسبة", icon: "fa-calculator", desc: "حاسبة علمية متقدمة" },
+        { title: "لعبة تخمين الأرقام", icon: "fa-gamepad", desc: "لعبة تفاعلية مع المستخدم" }
+    ];
 
-        // ===== عرض المستويات والدروس =====
-        function renderLevels() {
-            const container = document.getElementById('levelsContainer');
-            container.innerHTML = '';
+    const levelNames = {
+        1: "المستوى الأول: الأساسيات",
+        2: "المستوى الثاني: التحكم في التدفق",
+        3: "المستوى الثالث: البرمجة المتقدمة",
+        4: "المستوى الرابع: الخوارزميات والذكاء الاصطناعي"
+    };
 
-            for (let level = 1; level <= 4; level++) {
-                const levelLessons = Object.entries(lessonsData).filter(([id, data]) => data.level === level);
+    const levelIcons = {
+        1: "fa-seedling",
+        2: "fa-code-branch",
+        3: "fa-crown",
+        4: "fa-robot"
+    };
+
+    // ===== تحميل التقدم المحفوظ =====
+    let completedLessons = JSON.parse(localStorage.getItem('prog_completed')) || [];
+    let earnedBadges = JSON.parse(localStorage.getItem('prog_badges')) || [];
+    let quizHighScore = parseInt(localStorage.getItem('quizHighScore')) || 0;
+    let startTime = parseInt(localStorage.getItem('studyStartTime')) || Date.now();
+    let totalStudyTime = parseInt(localStorage.getItem('totalStudyTime')) || 0;
+
+    // ===== عرض المستويات والدروس =====
+    function renderLevels() {
+        const container = document.getElementById('levelsContainer');
+        container.innerHTML = '';
+
+        for (let level = 1; level <= 4; level++) {
+            const levelLessons = Object.entries(lessonsData).filter(([id, data]) => data.level === level);
+            
+            const levelDiv = document.createElement('div');
+            levelDiv.className = `level-card level-${level}`;
+            levelDiv.innerHTML = `
+                <div class="level-header">
+                    <div class="level-icon"><i class="fas ${levelIcons[level]}"></i></div>
+                    <h2>${levelNames[level]}</h2>
+                </div>
+                <div class="level-progress-bar">
+                    <div class="level-progress-fill" id="level${level}Progress" style="width: 0%;"></div>
+                </div>
+                <div class="lessons-grid" id="level${level}Lessons"></div>
+            `;
+            
+            container.appendChild(levelDiv);
+            
+            const lessonsContainer = document.getElementById(`level${level}Lessons`);
+            
+            levelLessons.forEach(([id, data]) => {
+                const lessonId = parseInt(id);
+                const isCompleted = completedLessons.includes(lessonId);
                 
-                const levelDiv = document.createElement('div');
-                levelDiv.className = `level-card level-${level}`;
-                levelDiv.innerHTML = `
-                    <div class="level-header">
-                        <div class="level-icon"><i class="fas ${levelIcons[level]}"></i></div>
-                        <h2>${levelNames[level]}</h2>
-                    </div>
-                    <div class="level-progress-bar">
-                        <div class="level-progress-fill" id="level${level}Progress" style="width: 0%;"></div>
-                    </div>
-                    <div class="lessons-grid" id="level${level}Lessons"></div>
-                `;
+                const lessonCard = document.createElement('div');
+                lessonCard.className = `lesson-card ${isCompleted ? 'completed' : ''}`;
+                lessonCard.id = `lesson${lessonId}`;
                 
-                container.appendChild(levelDiv);
+                let topicsHTML = '';
+                data.topics.forEach(topic => {
+                    topicsHTML += `<li><i class="fas fa-check-circle"></i> ${topic}</li>`;
+                });
                 
-                const lessonsContainer = document.getElementById(`level${level}Lessons`);
-                
-                levelLessons.forEach(([id, data]) => {
-                    const lessonId = parseInt(id);
-                    const isCompleted = completedLessons.includes(lessonId);
-                    
-                    const lessonCard = document.createElement('div');
-                    lessonCard.className = `lesson-card ${isCompleted ? 'completed' : ''}`;
-                    lessonCard.id = `lesson${lessonId}`;
-                    
-                    let topicsHTML = '';
-                    data.topics.forEach(topic => {
-                        topicsHTML += `<li><i class="fas fa-check-circle"></i> ${topic}</li>`;
-                    });
-                    
-                    lessonCard.innerHTML = `
-                        <div class="lesson-number">الدرس ${lessonId.toString().padStart(2, '0')}</div>
-                        <h3 class="lesson-title">${data.title}</h3>
-                        <ul class="lesson-topics">${topicsHTML}</ul>
+                lessonCard.innerHTML = `
+                    <div class="lesson-number">الدرس ${lessonId.toString().padStart(2, '0')}</div>
+                    <h3 class="lesson-title">${data.title}</h3>
+                    <ul class="lesson-topics">${topicsHTML}</ul>
+                    <div class="lesson-actions">
                         <button class="lesson-btn download-lesson-btn" onclick="downloadLesson(${lessonId})">
                             <i class="fas fa-download"></i> تحميل
                         </button>
@@ -318,403 +321,389 @@ for (let i = 0; i < 5; i++) {
                             <i class="fas ${isCompleted ? 'fa-check-circle' : 'fa-circle'}"></i> 
                             ${isCompleted ? 'مكتمل' : 'إكمال'}
                         </button>
-                    `;
-                    
-                    lessonsContainer.appendChild(lessonCard);
-                });
-            }
-            
-            updateProgress();
-            updateStats();
-        }
-
-        // ===== عرض المشاريع =====
-        function renderProjects() {
-            const container = document.getElementById('projectsGrid');
-            container.innerHTML = '';
-            
-            projectsData.forEach(project => {
-                const projectCard = document.createElement('div');
-                projectCard.className = 'project-card';
-                projectCard.innerHTML = `
-                    <div class="project-icon"><i class="fas ${project.icon}"></i></div>
-                    <div class="project-title">${project.title}</div>
-                    <div class="project-desc">${project.desc}</div>
-                    <a href="${project.link}" class="project-link"><i class="fas fa-download"></i> تحميل المشروع</a>
+                    </div>
                 `;
-                container.appendChild(projectCard);
-            });
-        }
-
-        // ===== تحديث الإحصائيات =====
-        function updateStats() {
-            document.getElementById('completedLessonsCount').innerText = completedLessons.length;
-            document.getElementById('earnedBadgesCount').innerText = earnedBadges.length;
-            document.getElementById('quizHighScore').innerText = quizHighScore;
-            
-            // حساب وقت الدراسة
-            const now = Date.now();
-            const sessionTime = Math.floor((now - startTime) / 60000); // دقائق
-            document.getElementById('studyTime').innerText = totalStudyTime + sessionTime;
-        }
-
-        // ===== تبديل حالة الدرس =====
-        function toggleLesson(id) {
-            const index = completedLessons.indexOf(id);
-            
-            if (index === -1) {
-                completedLessons.push(id);
-                showReward('أحسنت!', `لقد أكملت درس: ${lessonsData[id].title}`);
-                celebrate();
                 
-                // تحديث وقت الدراسة
-                totalStudyTime += 5; // إضافة 5 دقائق لكل درس
-                localStorage.setItem('totalStudyTime', totalStudyTime);
-            } else {
-                completedLessons.splice(index, 1);
-            }
-            
-            localStorage.setItem('prog_completed', JSON.stringify(completedLessons));
-            
-            // تحديث واجهة الدرس
-            const card = document.getElementById(`lesson${id}`);
-            const btn = document.getElementById(`btn-${id}`);
-            
-            if (completedLessons.includes(id)) {
-                card.classList.add('completed');
-                btn.innerHTML = '<i class="fas fa-check-circle"></i> مكتمل';
-                btn.classList.add('completed');
-            } else {
-                card.classList.remove('completed');
-                btn.innerHTML = '<i class="fas fa-circle"></i> إكمال';
-                btn.classList.remove('completed');
-            }
-            
-            updateProgress();
-            checkBadges();
-            updateStats();
-        }
-
-        // ===== تحديث كل أشرطة التقدم =====
-        function updateProgress() {
-            const totalLessons = Object.keys(lessonsData).length;
-            const percent = (completedLessons.length / totalLessons) * 100;
-            document.getElementById('progressBar').style.width = percent + '%';
-            document.getElementById('progressPercent').innerText = Math.round(percent) + '%';
-            document.getElementById('completedCount').innerText = completedLessons.length + '/' + totalLessons;
-
-            for (let level = 1; level <= 4; level++) {
-                const levelLessons = Object.entries(lessonsData).filter(([id, data]) => data.level === level).map(([id]) => parseInt(id));
-                const completedInLevel = levelLessons.filter(id => completedLessons.includes(id)).length;
-                const levelPercent = (completedInLevel / levelLessons.length) * 100;
-                const progressBar = document.getElementById(`level${level}Progress`);
-                if (progressBar) progressBar.style.width = levelPercent + '%';
-            }
-        }
-
-        // ===== التحقق من الشارات =====
-        function checkBadges() {
-            const levels = [1, 2, 3, 4];
-            
-            levels.forEach(level => {
-                const levelLessons = Object.entries(lessonsData).filter(([id, data]) => data.level === level).map(([id]) => parseInt(id));
-                const completedInLevel = levelLessons.filter(id => completedLessons.includes(id)).length;
-                
-                if (completedInLevel === levelLessons.length && !earnedBadges.includes(`level${level}`)) {
-                    earnedBadges.push(`level${level}`);
-                    showReward('إنجاز جديد!', `حصلت على شارة المستوى ${level === 1 ? 'الأول' : level === 2 ? 'الثاني' : level === 3 ? 'الثالث' : 'الرابع'}`);
-                }
-            });
-            
-            if (completedLessons.length === Object.keys(lessonsData).length && !earnedBadges.includes('complete')) {
-                earnedBadges.push('complete');
-                showReward('تهانينا! 🏆', 'لقد أكملت جميع الدروس!');
-                showCertificate();
-            }
-            
-            localStorage.setItem('prog_badges', JSON.stringify(earnedBadges));
-            updateBadgesDisplay();
-        }
-
-        function updateBadgesDisplay() {
-            document.querySelectorAll('.badge-item').forEach(badge => {
-                const badgeType = badge.dataset.badge;
-                if (earnedBadges.includes(badgeType) || 
-                    (badgeType === 'quiz-master' && quizHighScore === 15) ||
-                    (badgeType === 'complete' && completedLessons.length === Object.keys(lessonsData).length)) {
-                    badge.classList.add('earned');
-                }
+                lessonsContainer.appendChild(lessonCard);
             });
         }
+        
+        updateProgress();
+        updateStats();
+    }
 
-        // ===== نظام المكافآت =====
-        function showReward(title, desc) {
-            document.getElementById('rewardTitle').innerText = title;
-            document.getElementById('rewardDesc').innerText = desc;
-            document.getElementById('rewardModal').style.display = 'flex';
-        }
-
-        function closeReward() {
-            document.getElementById('rewardModal').style.display = 'none';
-        }
-
-        function celebrate() {
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-        }
-
-        // ===== تحميل الدرس =====
-        function downloadLesson(id) {
-            const lesson = lessonsData[id];
-            const content = `الدرس ${id}: ${lesson.title}\n\n${lesson.topics.join('\n')}\n\n📥 تم التحميل من موقع Mohamed Alaa - مسار التطور التقني`;
-            
-            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `الدرس_${id}_${lesson.title}.txt`;
-            a.click();
-            
-            showReward('تم التحميل', '✅ تم تحميل الدرس بنجاح');
-        }
-
-        // ===== نظام الاختبار (15 سؤال) =====
-        const quizQuestions = [
-            { q: "ما هي أفضل لغة للمبتدئين؟", a: ["Java", "C++", "Python", "JavaScript"], c: 2 },
-            { q: "ما ناتج 2 + 3 * 4 في البرمجة؟", a: ["20", "14", "24", "10"], c: 1 },
-            { q: "أي جملة تستخدم لاتخاذ القرارات؟", a: ["for", "while", "if-else", "print"], c: 2 },
-            { q: "ما هي دالة الطباعة في Python؟", a: ["console.log()", "print()", "System.out.println()", "echo"], c: 1 },
-            { q: "ما هو نوع البيانات 'True' أو 'False'؟", a: ["نصي", "رقمي", "منطقي", "قائمة"], c: 2 },
-            { q: "أي من هذه الحلقات تنفذ مرة واحدة على الأقل؟", a: ["for", "while", "do-while", "foreach"], c: 2 },
-            { q: "ما هو OOP في البرمجة؟", a: ["البرمجة الكائنية", "البرمجة الإجرائية", "البرمجة الوظيفية", "البرمجة المنطقية"], c: 0 },
-            { q: "ما هو JSON؟", a: ["لغة برمجة", "صيغة بيانات", "قاعدة بيانات", "متصفح"], c: 1 },
-            { q: "أي جملة تستخدم للتعامل مع الأخطاء؟", a: ["if-else", "try-catch", "for-loop", "switch"], c: 1 },
-            { q: "ما هو Big O Notation؟", a: ["مكتبة برمجية", "قياس كفاءة الخوارزميات", "نوع بيانات", "إطار عمل"], c: 1 },
-            { q: "ما هي الخوارزمية الأسرع للبحث في مصفوفة مرتبة؟", a: ["بحث خطي", "بحث ثنائي", "بحث عشوائي", "بحث تراجعي"], c: 1 },
-            { q: "ما هو الـ API؟", a: ["واجهة برمجة التطبيقات", "لغة برمجة", "قاعدة بيانات", "نظام تشغيل"], c: 0 },
-            { q: "ما هو Git؟", a: ["لغة برمجة", "نظام تحكم بالنسخ", "محرر نصوص", "متصفح"], c: 1 },
-            { q: "ما هو الـ Framework؟", a: ["لغة برمجة", "إطار عمل", "قاعدة بيانات", "نظام تشغيل"], c: 1 },
-            { q: "ما هي الذاكرة العشوائية؟", a: ["RAM", "CPU", "SSD", "HDD"], c: 0 }
-        ];
-
-        let currentQuiz = 0;
-        let quizScore = 0;
-
-        function loadQuiz() {
-            if (currentQuiz >= quizQuestions.length) {
-                showQuizResults();
-                return;
-            }
-
-            const q = quizQuestions[currentQuiz];
-            document.getElementById('quizQuestion').innerText = `سؤال ${currentQuiz + 1}/${quizQuestions.length}: ${q.q}`;
-            document.getElementById('quizScore').innerText = `${quizScore}/${quizQuestions.length}`;
-            
-            const optionsDiv = document.getElementById('quizOptions');
-            optionsDiv.innerHTML = '';
-            
-            q.a.forEach((opt, idx) => {
-                const div = document.createElement('div');
-                div.className = 'quiz-option';
-                div.innerHTML = `<span class="quiz-option-letter">${String.fromCharCode(65 + idx)}</span><span>${opt}</span>`;
-                div.onclick = () => selectQuizOption(idx);
-                optionsDiv.appendChild(div);
-            });
-
-            document.getElementById('quizProgress').style.width = ((currentQuiz + 1) / quizQuestions.length * 100) + '%';
-        }
-
-        function selectQuizOption(index) {
-            const q = quizQuestions[currentQuiz];
-            const options = document.querySelectorAll('.quiz-option');
-            
-            options.forEach(opt => opt.classList.remove('selected'));
-            options[index].classList.add('selected');
-            
-            setTimeout(() => {
-                if (index === q.c) {
-                    quizScore++;
-                    options[index].classList.add('correct');
-                    celebrate();
-                } else {
-                    options[index].classList.add('wrong');
-                    options[q.c].classList.add('correct');
-                }
-                
-                currentQuiz++;
-                document.getElementById('quizScore').innerText = `${quizScore}/${quizQuestions.length}`;
-                setTimeout(loadQuiz, 1500);
-            }, 500);
-        }
-
-        function showQuizResults() {
-            const percentage = (quizScore / quizQuestions.length) * 100;
-            
-            if (quizScore > quizHighScore) {
-                quizHighScore = quizScore;
-                localStorage.setItem('quizHighScore', quizHighScore);
-                updateStats();
-            }
-            
-            if (quizScore === quizQuestions.length && !earnedBadges.includes('quiz-master')) {
-                earnedBadges.push('quiz-master');
-                localStorage.setItem('prog_badges', JSON.stringify(earnedBadges));
-                showReward('عبقري! 🧠', 'أجبت على جميع الأسئلة بشكل صحيح');
-            }
-            
-            const resultHTML = `
-                <div style="text-align: center; padding: 30px;">
-                    <div style="font-size: 3rem;">${percentage >= 70 ? '🎉' : '📚'}</div>
-                    <div style="font-size: 2rem; color: ${percentage >= 70 ? '#10b981' : '#ef4444'};">${quizScore}/${quizQuestions.length}</div>
-                    <div style="font-size: 1.2rem; margin: 20px;">${percentage.toFixed(1)}%</div>
-                    <button onclick="resetQuiz()" class="lesson-btn complete-lesson-btn" style="background: #4361ee; width:auto; padding:10px 30px;">
-                        <i class="fas fa-redo-alt"></i> حاول مرة أخرى
-                    </button>
-                </div>
+    // ===== عرض المشاريع =====
+    function renderProjects() {
+        const container = document.getElementById('projectsGrid');
+        container.innerHTML = '';
+        
+        projectsData.forEach(project => {
+            const projectCard = document.createElement('div');
+            projectCard.className = 'project-card';
+            projectCard.innerHTML = `
+                <div class="project-icon"><i class="fas ${project.icon}"></i></div>
+                <div class="project-title">${project.title}</div>
+                <div class="project-desc">${project.desc}</div>
+                <a href="#" class="project-link" onclick="downloadProject('${project.title}'); return false;"><i class="fas fa-download"></i> تحميل المشروع</a>
             `;
-            
-            document.getElementById('quizQuestion').innerHTML = '🎯 انتهى الاختبار!';
-            document.getElementById('quizOptions').innerHTML = resultHTML;
-            updateBadgesDisplay();
-        }
+            container.appendChild(projectCard);
+        });
+    }
 
-        function resetQuiz() {
-            currentQuiz = 0;
-            quizScore = 0;
-            loadQuiz();
-        }
+    function downloadProject(title) {
+        const content = `مشروع: ${title}\n\nهذا المشروع قيد الإعداد.\n\nسيتم إضافة المحتوى قريباً.\n\nتابعونا على YouTube للمزيد: https://www.youtube.com/@MohamedAlaa-tech`;
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `مشروع_${title}.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+        showReward('تم التحميل', '✅ جاري إعداد المشروع، سيتم إضافته قريباً');
+    }
 
-        // ===== محرر الكود =====
-        let currentEditor = 'python';
+    // ===== تحديث الإحصائيات =====
+    function updateStats() {
+        document.getElementById('completedLessonsCount').innerText = completedLessons.length;
+        document.getElementById('earnedBadgesCount').innerText = earnedBadges.length;
+        document.getElementById('quizHighScore').innerText = quizHighScore;
         
-        function switchEditor(lang) {
-            document.querySelectorAll('.editor-tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.editor-panel').forEach(panel => panel.style.display = 'none');
-            
-            document.querySelector(`.editor-tab[onclick*="${lang}"]`).classList.add('active');
-            document.getElementById(`${lang}Editor`).style.display = 'block';
-            currentEditor = lang;
-        }
+        const now = Date.now();
+        const sessionTime = Math.floor((now - startTime) / 60000);
+        document.getElementById('studyTime').innerText = totalStudyTime + sessionTime;
+    }
+
+    // ===== تبديل حالة الدرس =====
+    function toggleLesson(id) {
+        const index = completedLessons.indexOf(id);
         
-        function runCode() {
-            const code = document.getElementById(`${currentEditor}Editor`).innerText;
-            document.getElementById('editorOutput').innerHTML = `✅ تم تنفيذ كود ${currentEditor}\n--------------------\n${code}\n--------------------\n(محاكاة - للتنفيذ الفعلي يلزم Pyodide)`;
+        if (index === -1) {
+            completedLessons.push(id);
+            showReward('أحسنت!', `لقد أكملت درس: ${lessonsData[id].title}`);
             celebrate();
+            
+            totalStudyTime += 5;
+            localStorage.setItem('totalStudyTime', totalStudyTime);
+        } else {
+            completedLessons.splice(index, 1);
         }
         
-        function copyCode() {
-            const code = document.getElementById(`${currentEditor}Editor`).innerText;
-            navigator.clipboard.writeText(code);
-            showReward('تم النسخ', '✅ تم نسخ الكود بنجاح');
+        localStorage.setItem('prog_completed', JSON.stringify(completedLessons));
+        
+        const card = document.getElementById(`lesson${id}`);
+        const btn = document.getElementById(`btn-${id}`);
+        
+        if (completedLessons.includes(id)) {
+            card.classList.add('completed');
+            btn.innerHTML = '<i class="fas fa-check-circle"></i> مكتمل';
+            btn.classList.add('completed');
+        } else {
+            card.classList.remove('completed');
+            btn.innerHTML = '<i class="fas fa-circle"></i> إكمال';
+            btn.classList.remove('completed');
+        }
+        
+        updateProgress();
+        checkBadges();
+        updateStats();
+    }
+
+    // ===== تحديث كل أشرطة التقدم =====
+    function updateProgress() {
+        const totalLessons = Object.keys(lessonsData).length;
+        const percent = (completedLessons.length / totalLessons) * 100;
+        document.getElementById('progressBar').style.width = percent + '%';
+        document.getElementById('progressPercent').innerText = Math.round(percent) + '%';
+        document.getElementById('completedCount').innerText = completedLessons.length + '/' + totalLessons;
+
+        for (let level = 1; level <= 4; level++) {
+            const levelLessons = Object.entries(lessonsData).filter(([id, data]) => data.level === level).map(([id]) => parseInt(id));
+            const completedInLevel = levelLessons.filter(id => completedLessons.includes(id)).length;
+            const levelPercent = (completedInLevel / levelLessons.length) * 100;
+            const progressBar = document.getElementById(`level${level}Progress`);
+            if (progressBar) progressBar.style.width = levelPercent + '%';
+        }
+    }
+
+    // ===== التحقق من الشارات =====
+    function checkBadges() {
+        const levels = [1, 2, 3, 4];
+        
+        levels.forEach(level => {
+            const levelLessons = Object.entries(lessonsData).filter(([id, data]) => data.level === level).map(([id]) => parseInt(id));
+            const completedInLevel = levelLessons.filter(id => completedLessons.includes(id)).length;
+            
+            if (completedInLevel === levelLessons.length && !earnedBadges.includes(`level${level}`)) {
+                earnedBadges.push(`level${level}`);
+                showReward('إنجاز جديد!', `حصلت على شارة ${levelNames[level]}`);
+            }
+        });
+        
+        if (completedLessons.length === Object.keys(lessonsData).length && !earnedBadges.includes('complete')) {
+            earnedBadges.push('complete');
+            showReward('تهانينا! 🏆', 'لقد أكملت جميع الدروس!');
+            showCertificate();
+        }
+        
+        localStorage.setItem('prog_badges', JSON.stringify(earnedBadges));
+        updateBadgesDisplay();
+    }
+
+    function updateBadgesDisplay() {
+        document.querySelectorAll('.badge-item').forEach(badge => {
+            const badgeType = badge.dataset.badge;
+            if (earnedBadges.includes(badgeType) || 
+                (badgeType === 'quiz-master' && quizHighScore === 15) ||
+                (badgeType === 'complete' && completedLessons.length === Object.keys(lessonsData).length)) {
+                badge.classList.add('earned');
+            }
+        });
+    }
+
+    // ===== نظام المكافآت =====
+    function showReward(title, desc) {
+        document.getElementById('rewardTitle').innerText = title;
+        document.getElementById('rewardDesc').innerText = desc;
+        document.getElementById('rewardModal').style.display = 'flex';
+        setTimeout(() => {
+            document.getElementById('rewardModal').style.display = 'none';
+        }, 3000);
+    }
+
+    function closeReward() {
+        document.getElementById('rewardModal').style.display = 'none';
+    }
+
+    function celebrate() {
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    }
+
+    // ===== تحميل الدرس =====
+    function downloadLesson(id) {
+        const lesson = lessonsData[id];
+        const content = `الدرس ${id}: ${lesson.title}\n\n${lesson.topics.join('\n')}\n\n📥 تم التحميل من موقع Mohamed Alaa - مسار التطور التقني`;
+        
+        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `الدرس_${id}_${lesson.title}.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+        
+        showReward('تم التحميل', '✅ تم تحميل الدرس بنجاح');
+    }
+
+    // ===== نظام الاختبار (15 سؤال) =====
+    const quizQuestions = [
+        { q: "ما هي أفضل لغة للمبتدئين؟", a: ["Java", "C++", "Python", "JavaScript"], c: 2 },
+        { q: "ما ناتج 2 + 3 * 4 في البرمجة؟", a: ["20", "14", "24", "10"], c: 1 },
+        { q: "أي جملة تستخدم لاتخاذ القرارات؟", a: ["for", "while", "if-else", "print"], c: 2 },
+        { q: "ما هي دالة الطباعة في Python؟", a: ["console.log()", "print()", "System.out.println()", "echo"], c: 1 },
+        { q: "ما هو نوع البيانات 'True' أو 'False'؟", a: ["نصي", "رقمي", "منطقي", "قائمة"], c: 2 },
+        { q: "أي من هذه الحلقات تنفذ مرة واحدة على الأقل؟", a: ["for", "while", "do-while", "foreach"], c: 2 },
+        { q: "ما هو OOP في البرمجة؟", a: ["البرمجة الكائنية", "البرمجة الإجرائية", "البرمجة الوظيفية", "البرمجة المنطقية"], c: 0 },
+        { q: "ما هو JSON؟", a: ["لغة برمجة", "صيغة بيانات", "قاعدة بيانات", "متصفح"], c: 1 },
+        { q: "أي جملة تستخدم للتعامل مع الأخطاء؟", a: ["if-else", "try-catch", "for-loop", "switch"], c: 1 },
+        { q: "ما هو Big O Notation؟", a: ["مكتبة برمجية", "قياس كفاءة الخوارزميات", "نوع بيانات", "إطار عمل"], c: 1 },
+        { q: "ما هي الخوارزمية الأسرع للبحث في مصفوفة مرتبة؟", a: ["بحث خطي", "بحث ثنائي", "بحث عشوائي", "بحث تراجعي"], c: 1 },
+        { q: "ما هو الـ API؟", a: ["واجهة برمجة التطبيقات", "لغة برمجة", "قاعدة بيانات", "نظام تشغيل"], c: 0 },
+        { q: "ما هو Git؟", a: ["لغة برمجة", "نظام تحكم بالنسخ", "محرر نصوص", "متصفح"], c: 1 },
+        { q: "ما هو الـ Framework؟", a: ["لغة برمجة", "إطار عمل", "قاعدة بيانات", "نظام تشغيل"], c: 1 },
+        { q: "ما هي الذاكرة العشوائية؟", a: ["RAM", "CPU", "SSD", "HDD"], c: 0 }
+    ];
+
+    let currentQuiz = 0;
+    let quizScore = 0;
+
+    function loadQuiz() {
+        if (currentQuiz >= quizQuestions.length) {
+            showQuizResults();
+            return;
         }
 
-        // ===== الشهادة =====
-        function showCertificate() {
-            document.getElementById('certificateSection').style.display = 'block';
-            
-            const userName = localStorage.getItem('userName') || 'محمد علاء';
-            document.getElementById('certificateName').innerText = userName;
-            
-            const today = new Date();
-            document.getElementById('certificateDate').innerText = today.toLocaleDateString('ar-EG');
-        }
+        const q = quizQuestions[currentQuiz];
+        document.getElementById('quizQuestion').innerText = `سؤال ${currentQuiz + 1}/${quizQuestions.length}: ${q.q}`;
+        document.getElementById('quizScore').innerText = `${quizScore}/${quizQuestions.length}`;
+        
+        const optionsDiv = document.getElementById('quizOptions');
+        optionsDiv.innerHTML = '';
+        
+        q.a.forEach((opt, idx) => {
+            const div = document.createElement('div');
+            div.className = 'quiz-option';
+            div.innerHTML = `<span class="quiz-option-letter">${String.fromCharCode(65 + idx)}</span><span>${opt}</span>`;
+            div.onclick = () => selectQuizOption(idx);
+            optionsDiv.appendChild(div);
+        });
 
-        function downloadCertificate() {
-            const userName = localStorage.getItem('userName') || 'محمد علاء';
-            const today = new Date().toLocaleDateString('ar-EG');
-            const content = `
-╔══════════════════════════════════════════════════════════╗
-║                                                          ║
-║              مسار التطور التقني                          ║
-║         Mohamed Alaa - Technical Development Path        ║
-║                                                          ║
-║                    شهادة إتمام                           ║
-║                                                          ║
-║   تمنح هذه الشهادة إلى                                    ║
-║                                                          ║
-║              ${userName}                                  ║
-║                                                          ║
-║   لإتمامه بنجاح الدورة الشاملة                           ║
-║                                                          ║
-║         "أساسيات البرمجة - Programming Basics"           ║
-║                                                          ║
-║   4 مستويات | 15 درس | 8 مشاريع عملية                    ║
-║                                                          ║
-║   التاريخ: ${today}                                       ║
-║                                                          ║
-║                                   محمد علاء               ║
-║                                   Mohamed Alaa           ║
-║                                                          ║
-╚══════════════════════════════════════════════════════════╝
-            `;
-            
-            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `شهادة_${userName}.txt`;
-            a.click();
-            
-            showReward('تم التحميل', '✅ تم تحميل الشهادة');
-        }
+        document.getElementById('quizProgress').style.width = ((currentQuiz + 1) / quizQuestions.length * 100) + '%';
+    }
 
-        // ===== مشاركة الإنجاز =====
-        function shareAchievement() {
-            const text = `🎓 لقد أكملت ${completedLessons.length} درس في دورة أساسيات البرمجة على منصة مسار التطور التقني!`;
-            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-        }
-
-        // ===== الوضع الليلي/النهاري =====
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            const btn = document.getElementById('themeToggle');
-            if (document.body.classList.contains('light-mode')) {
-                btn.innerHTML = '<i class="fas fa-moon"></i>';
+    function selectQuizOption(index) {
+        const q = quizQuestions[currentQuiz];
+        const options = document.querySelectorAll('.quiz-option');
+        
+        options.forEach(opt => opt.classList.remove('selected'));
+        options[index].classList.add('selected');
+        
+        setTimeout(() => {
+            if (index === q.c) {
+                quizScore++;
+                options[index].classList.add('correct');
+                celebrate();
             } else {
-                btn.innerHTML = '<i class="fas fa-sun"></i>';
+                options[index].classList.add('wrong');
+                options[q.c].classList.add('correct');
             }
-        }
+            
+            currentQuiz++;
+            document.getElementById('quizScore').innerText = `${quizScore}/${quizQuestions.length}`;
+            setTimeout(loadQuiz, 1500);
+        }, 500);
+    }
 
-        // ===== إعادة تعيين الكل =====
-        function resetAllProgress() {
-            if (confirm('⚠️ هل أنت متأكد من إعادة تعيين كل التقدم؟')) {
-                completedLessons = [];
-                earnedBadges = [];
-                startTime = Date.now();
-                totalStudyTime = 0;
-                localStorage.removeItem('prog_completed');
-                localStorage.removeItem('prog_badges');
-                localStorage.removeItem('totalStudyTime');
-                localStorage.removeItem('studyStartTime');
-                location.reload();
-            }
-        }
-
-        // ===== حفظ وقت البدء =====
-        localStorage.setItem('studyStartTime', startTime);
-
-        // ===== التهيئة =====
-        window.onload = function() {
-            renderLevels();
-            renderProjects();
-            loadQuiz();
-            updateBadgesDisplay();
+    function showQuizResults() {
+        const percentage = (quizScore / quizQuestions.length) * 100;
+        
+        if (quizScore > quizHighScore) {
+            quizHighScore = quizScore;
+            localStorage.setItem('quizHighScore', quizHighScore);
             updateStats();
-            
-            if (completedLessons.length === Object.keys(lessonsData).length) {
-                showCertificate();
-            }
-            
-            // حفظ وقت الدراسة كل دقيقة
-            setInterval(() => {
-                const now = Date.now();
-                const sessionTime = Math.floor((now - startTime) / 60000);
-                document.getElementById('studyTime').innerText = totalStudyTime + sessionTime;
-            }, 60000);
-        };
-    </script>
+        }
+        
+        if (quizScore === quizQuestions.length && !earnedBadges.includes('quiz-master')) {
+            earnedBadges.push('quiz-master');
+            localStorage.setItem('prog_badges', JSON.stringify(earnedBadges));
+            showReward('عبقري! 🧠', 'أجبت على جميع الأسئلة بشكل صحيح');
+        }
+        
+        const resultHTML = `
+            <div style="text-align: center; padding: 30px;">
+                <div style="font-size: 3rem;">${percentage >= 70 ? '🎉' : '📚'}</div>
+                <div style="font-size: 2rem; color: ${percentage >= 70 ? '#10b981' : '#ef4444'};">${quizScore}/${quizQuestions.length}</div>
+                <div style="font-size: 1.2rem; margin: 20px;">${percentage.toFixed(1)}%</div>
+                <button onclick="resetQuiz()" class="lesson-btn complete-lesson-btn" style="background: #4361ee; width:auto; padding:10px 30px;">
+                    <i class="fas fa-redo-alt"></i> حاول مرة أخرى
+                </button>
+            </div>
+        `;
+        
+        document.getElementById('quizQuestion').innerHTML = '🎯 انتهى الاختبار!';
+        document.getElementById('quizOptions').innerHTML = resultHTML;
+        updateBadgesDisplay();
+    }
+
+    function resetQuiz() {
+        currentQuiz = 0;
+        quizScore = 0;
+        loadQuiz();
+    }
+
+    // ===== محرر الكود =====
+    let currentEditor = 'python';
+    
+    function switchEditor(lang) {
+        document.querySelectorAll('.editor-tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.editor-panel').forEach(panel => panel.style.display = 'none');
+        
+        document.querySelector(`.editor-tab[onclick*="${lang}"]`).classList.add('active');
+        document.getElementById(`${lang}Editor`).style.display = 'block';
+        currentEditor = lang;
+    }
+    
+    function runCode() {
+        const code = document.getElementById(`${currentEditor}Editor`).innerText;
+        document.getElementById('editorOutput').innerHTML = `✅ تم تنفيذ كود ${currentEditor}\n--------------------\n${code}\n--------------------\n(محاكاة - للتنفيذ الفعلي يلزم Pyodide)`;
+        celebrate();
+    }
+    
+    function copyCode() {
+        const code = document.getElementById(`${currentEditor}Editor`).innerText;
+        navigator.clipboard.writeText(code);
+        showReward('تم النسخ', '✅ تم نسخ الكود بنجاح');
+    }
+
+    // ===== الشهادة =====
+    function showCertificate() {
+        document.getElementById('certificateSection').style.display = 'block';
+        
+        const userName = localStorage.getItem('userName') || 'محمد علاء';
+        document.getElementById('certificateName').innerText = userName;
+        
+        const today = new Date();
+        document.getElementById('certificateDate').innerText = today.toLocaleDateString('ar-EG');
+    }
+
+    function downloadCertificate() {
+        const userName = localStorage.getItem('userName') || 'محمد علاء';
+        const today = new Date().toLocaleDateString('ar-EG');
+        const content = `شهادة إتمام دورة أساسيات البرمجة\n\nالطالب: ${userName}\nالتاريخ: ${today}\n\nتم إكمال 15 درس بنجاح\n\nمحمد علاء - مسار التطور التقني`;
+        
+        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `شهادة_${userName}.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+        
+        showReward('تم التحميل', '✅ تم تحميل الشهادة');
+    }
+
+    // ===== مشاركة الإنجاز =====
+    function shareAchievement() {
+        const text = `🎓 لقد أكملت ${completedLessons.length} درس في دورة أساسيات البرمجة على منصة مسار التطور التقني!`;
+        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    // ===== الوضع الليلي/النهاري =====
+    function toggleTheme() {
+        document.body.classList.toggle('light-mode');
+        const btn = document.getElementById('themeToggle');
+        if (document.body.classList.contains('light-mode')) {
+            btn.innerHTML = '<i class="fas fa-moon"></i>';
+        } else {
+            btn.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+    }
+
+    // ===== إعادة تعيين الكل =====
+    function resetAllProgress() {
+        if (confirm('⚠️ هل أنت متأكد من إعادة تعيين كل التقدم؟')) {
+            completedLessons = [];
+            earnedBadges = [];
+            startTime = Date.now();
+            totalStudyTime = 0;
+            localStorage.removeItem('prog_completed');
+            localStorage.removeItem('prog_badges');
+            localStorage.removeItem('totalStudyTime');
+            localStorage.removeItem('studyStartTime');
+            location.reload();
+        }
+    }
+
+    // ===== حفظ وقت البدء =====
+    localStorage.setItem('studyStartTime', startTime);
+
+    // ===== التهيئة =====
+    window.onload = function() {
+        renderLevels();
+        renderProjects();
+        loadQuiz();
+        updateBadgesDisplay();
+        updateStats();
+        
+        if (completedLessons.length === Object.keys(lessonsData).length) {
+            showCertificate();
+        }
+        
+        setInterval(() => {
+            const now = Date.now();
+            const sessionTime = Math.floor((now - startTime) / 60000);
+            document.getElementById('studyTime').innerText = totalStudyTime + sessionTime;
+        }, 60000);
+    };
+</script>
 </body>
 </html>
