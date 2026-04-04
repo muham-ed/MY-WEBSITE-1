@@ -17,7 +17,26 @@
     <link rel="icon" href="icons mohamed.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="index.css">
+    
+    <!-- canvas-confetti library for celebration effect -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+    
     <style>
+    /* Additional responsive fixes */
+    @media(max-width:768px){
+        .path-item{flex-direction:column!important;padding:18px 14px!important}
+        .go-to-btn{display:block!important;text-align:center!important;width:100%!important;box-sizing:border-box}
+        .complete-btn{display:block!important;width:100%!important;margin-top:10px}
+        .program-card:hover,.career-card:hover,.path-item:hover{transform:none!important}
+        .roadmap-module{flex-direction:column!important}
+        .packages-grid,.projects-grid{grid-template-columns:1fr!important}
+        .package-card.featured{transform:scale(1)!important}
+    }
+    @media(max-width:480px){
+        .stats-container{grid-template-columns:1fr 1fr!important}
+        .download-buttons{grid-template-columns:1fr!important}
+        .mostaql-btn span{display:none}
+    }
     </style>
 </head>
 
@@ -42,6 +61,7 @@
                 <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
                 <a href="data-analyst-course.html" class="nav-link">📊 Data Analyst</a>
                 <a href="data-scientist-course.html" class="nav-link">🔬 Data Scientist</a>
+                 <a href="frontend-roadmap.html" class="nav-link">🎨 Frontend Roadmap</a>
                 <a href="blogs.html" class="nav-link">المقالات</a>
                 <a href="login.html" class="nav-link">دخول</a>
             </div>
@@ -269,7 +289,7 @@
                     <div class="path-content">
                         <h3 class="path-title">مشاريع عملية</h3>
                         <p class="path-description">طبق ما تعلمته في مشاريع حقيقية. ابدأ بمشاريع صغيرة ثم تدرج إلى مشاريع أكثر تعقيداً. أنشئ محفظة أعمال (Portfolio) تعرض مهاراتك وإنجازاتك.</p>
-                        <a href="#" class="go-to-btn">
+                        <a href="https://github.com/muham-ed" target="_blank" class="go-to-btn">
                             <i class="fas fa-arrow-left"></i> ابدأ المشاريع العملية
                         </a>
                         <div class="path-resources">
@@ -584,7 +604,7 @@
                     <div class="program-icon professional"><i class="fas fa-paint-brush"></i></div>
                     <h3 class="program-title">التصميم الجرافيكي</h3>
                     <p class="program-subtitle">Graphic Design</p>
-                    <p class="program-description">دروس في Photoshop، Illustrator، أساسيات التصميم، نظرية الألوان والطباعة.</p>
+                    <p class="program-description">دروس في Photoshop， Illustrator， أساسيات التصميم， نظرية الألوان والطباعة.</p>
                     <div class="program-details">
                         <span class="detail-badge"><i class="fas fa-video"></i> 30 درس</span>
                         <span class="detail-badge"><i class="fas fa-tasks"></i> 8 مشاريع</span>
@@ -633,7 +653,7 @@
                         <span class="detail-badge"><i class="fas fa-tasks"></i> 10 مشاريع</span>
                     </div>
                     <div class="program-resources">
-                        <a href="#" class="resource-link">📄 المحتوى</a>
+                        <a href="frontend-roadmap.html" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
                     <div class="project-footer">
@@ -641,7 +661,7 @@
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
                         </a>
                     </div>
-                    <a href="#" class="program-btn">قريباً</a>
+                    <a href="frontend-roadmap.html" class="program-btn">قريباً</a>
                 </div>
 
                 <div class="program-card" data-category="programming">
@@ -747,7 +767,7 @@
                         </a>
                     </div>
                     <a href="#" class="program-btn">قريباً</a>
-                </div>
+                  </div>
 
                 <div class="program-card" data-category="programming">
                     <div class="program-icon programming"><i class="fas fa-cloud"></i></div>
@@ -951,7 +971,7 @@
                         <span class="detail-badge"><i class="fas fa-tasks"></i> 5 مشاريع</span>
                     </div>
                     <div class="program-resources">
-                        <a href="#" target="_blank" class="resource-link">📄 المحتوى</a>
+                        <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
                     <div class="project-footer">
@@ -1087,7 +1107,7 @@
                         <span class="skill-tag">AWS/Azure</span>
                     </div>
                     <div class="career-links">
-                        <a href="#" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
+                        <a href="index.html#programming-path" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
                         <a href="https://www.linkedin.com/jobs/search/?keywords=devops" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
                     </div>
                     <div class="project-footer">
@@ -1133,7 +1153,7 @@
                         <span class="skill-tag">Smart Contracts</span>
                     </div>
                     <div class="career-links">
-                        <a href="#" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
+                        <a href="index.html#programming-path" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
                         <a href="https://www.linkedin.com/jobs/search/?keywords=blockchain" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
                     </div>
                     <div class="project-footer">
@@ -1156,7 +1176,7 @@
                         <span class="skill-tag">Strategy</span>
                     </div>
                     <div class="career-links">
-                        <a href="#" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
+                        <a href="index.html#programming-path" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
                         <a href="https://www.linkedin.com/jobs/search/?keywords=product+manager" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
                     </div>
                     <div class="project-footer">
@@ -1179,7 +1199,7 @@
                         <span class="skill-tag">3D Modeling</span>
                     </div>
                     <div class="career-links">
-                        <a href="#" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
+                        <a href="index.html#programming-path" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
                         <a href="https://www.linkedin.com/jobs/search/?keywords=ar+vr" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
                     </div>
                     <div class="project-footer">
@@ -1202,7 +1222,7 @@
                         <span class="skill-tag">Git</span>
                     </div>
                     <div class="career-links">
-                        <a href="#" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
+                        <a href="index.html#programming-path" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
                         <a href="https://www.linkedin.com/jobs/search/?keywords=technical+writer" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
                     </div>
                     <div class="project-footer">
@@ -1358,68 +1378,5 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="index.js"></script>
-
-    <script>
-        // دالة العودة للأعلى
-        document.getElementById('backToTop').addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // إظهار/إخفاء زر العودة للأعلى
-        window.addEventListener('scroll', function() {
-            const btn = document.getElementById('backToTop');
-            if (window.pageYOffset > 300) {
-                btn.style.display = 'block';
-            } else {
-                btn.style.display = 'none';
-            }
-        });
-
-        // دوال التحميل مع رابط مستقل
-        function downloadPlan() {
-            const content = "خطة التعلم - مسار التطور التقني\nتم إعدادها بواسطة محمد علاء\n\n📌 للتوظيف والاستشارات: https://mostaql.com/u/MohamedAlaa2003/portfolio\n\nمحتوى الخطة:\n1. أساسيات الحاسوب (2-4 أسابيع)\n2. أساسيات البرمجة (4-8 أسابيع)\n3. Git & GitHub (1-2 أسبوع)\n4. تطوير الويب (8-12 أسبوع)\n5. قواعد البيانات (4-6 أسابيع)\n6. تحليل البيانات (6-10 أسابيع)\n7. علم البيانات (10-14 أسبوع)\n8. مشاريع عملية (مستمر)";
-            const blob = new Blob([content], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'خطة_التعلم_محمد_علاء.txt';
-            a.click();
-        }
-
-        function downloadSchedule() {
-            const content = "جدول التعلم الأسبوعي - مسار التطور التقني\nتم إعدادها بواسطة محمد علاء\n\n📌 للتوظيف والاستشارات: https://mostaql.com/u/MohamedAlaa2003/portfolio\n\nالأحد: نظرية + قراءة (ساعتان)\nالاثنين: تمارين + كود (ساعتان)\nالثلاثاء: مراجعة (ساعة)\nالأربعاء: مشروع (ساعتان)\nالخميس: تمارين إضافية (ساعة)\nالجمعة: اختبار ذاتي (ساعة)\nالسبت: راحة / محتوى خفيف\n\nالمجموع: 9-10 ساعات أسبوعياً";
-            const blob = new Blob([content], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'جدول_التعلم_محمد_علاء.txt';
-            a.click();
-        }
-
-        // فلترة الدورات
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                const filter = this.dataset.filter;
-                document.querySelectorAll('.program-card').forEach(card => {
-                    if (filter === 'all' || card.dataset.category === filter) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-        // الأسئلة الشائعة
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', function() {
-                const item = this.parentElement;
-                item.classList.toggle('active');
-            });
-        });
-    </script>
 </body>
 </html>
