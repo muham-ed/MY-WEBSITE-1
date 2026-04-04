@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Microsoft Office | مسار التطور التقني</title>
     <link rel="icon" href="icons mohamed.png" type="image/png">
+    <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="Microsoft_Office.css">
     <style>
@@ -44,6 +45,7 @@
                 <a href="Microsoft_Office.html" class="nav-link active">Microsoft Office</a>
                 <a href="data-analyst-course.html" class="nav-link">📊 Data Analyst</a>
                 <a href="data-scientist-course.html" class="nav-link">🔬 Data Scientist</a>
+                <a href="frontend-roadmap.html" class="nav-link">🎨 Frontend Roadmap</a>
                 <a href="blogs.html" class="nav-link">المقالات</a>
                 <a href="login.html" class="nav-link">دخول</a>
             </div>
@@ -237,10 +239,38 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
+// ===== إكمال الكود الناقص في Microsoft_Office.html =====
+
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+        
+        // ===== تحميل دليل Office =====
+        function downloadOfficeSchedule() {
+            const content = "جدول تعلم Microsoft Office (8 أسابيع)\n\nالأسبوع 1-2: Excel الأساسيات\nالأسبوع 3-4: Excel المتوسط والمتقدم\nالأسبوع 5: Word الأساسيات والمتوسط\nالأسبوع 6: PowerPoint الأساسيات والمتوسط\nالأسبوع 7: Outlook الأساسيات\nالأسبوع 8: مشروع متكامل\n\nتم إعداد الجدول بواسطة: Mohamed Alaa";
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
             a.download = 'جدول_تعلم_Office.txt';
             a.click();
             URL.revokeObjectURL(url);
         }
-    </script>
+        
+        // ===== زر العودة للأعلى =====
+        const backBtn = document.createElement('button');
+        backBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        backBtn.className = 'back-to-top';
+        backBtn.style.cssText = 'position:fixed;bottom:20px;right:20px;width:45px;height:45px;border-radius:50%;background:linear-gradient(45deg,#4361ee,#3a0ca3);color:white;border:none;cursor:pointer;display:none;z-index:999;';
+        backBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.body.appendChild(backBtn);
+        
+        window.addEventListener('scroll', () => {
+            backBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+        });
+        
+        console.log('تم تحميل صفحة Microsoft Office بنجاح');
+    ;
+</script>
 </body>
 </html>
