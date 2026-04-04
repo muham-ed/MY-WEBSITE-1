@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مقالاتي | مسار التطور التقني - محمد علاء</title>
     <link rel="icon" href="icons mohamed.png" type="image/png">
+      <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="blogs.css">
     <style>
@@ -18,11 +19,12 @@
             <div class="nav-links">
                 <a href="index.html" class="nav-link">الرئيسية</a>
                 <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
-                <a href="programming-basics.html" class="nav-link active">أساسيات البرمجة</a>
+                <a href="programming-basics.html" class="nav-link">أساسيات البرمجة</a>
                 <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
                 <a href="data-analyst-course.html" class="nav-link">📊 Data Analyst</a>
-                <a href="data-scientist-course.html" class="nav-link active">🔬 Data Scientist</a>
-                <a href="blogs.html" class="nav-link">المقالات</a>
+                <a href="data-scientist-course.html" class="nav-link">🔬 Data Scientist</a>
+                <a href="frontend-roadmap.html" class="nav-link">🎨 Frontend Roadmap</a>
+                <a href="blogs.html" class="nav-link active">المقالات</a>
                 <a href="login.html" class="nav-link">دخول</a>
             </div>
         </div>
@@ -78,7 +80,7 @@
                         <p>
                             كثيرًا ما نسمع أن "البيانات هي النفط الجديد"، لكن قليلون من يدركون أن هذا النفط يكون في البداية خامًا وعشوائيًا. هذه كانت بداية رحلتي في أول مشروع تحليل بيانات حقيقي لمتجر إلكتروني. اكتشفت كيف يمكن تحويل فوضى الأرقام إلى رؤى تغير من استراتيجية العمل...
                         </p>
-                        <a href="#" class="read-more" data-article="data-science">
+                        <a href="data-scientist-course.html" class="read-more" data-article="data-science">
                             اقرأ المقال كاملاً <i class="fas fa-arrow-left"></i>
                         </a>
                     </div>
@@ -103,7 +105,7 @@
                         <p>
                             كثير من الناس يعتقدون أن البرمجة تحتاج إلى شهادة جامعية أو عقلية رياضية معقدة. في هذا المقال، أشارككم رحلتي الشخصية وكيف بدأت من الصفر، مع نصائح عملية لاختيار المسار المناسب وأفضل المصادر المجانية للتعلم.
                         </p>
-                        <a href="#" class="read-more" data-article="programming">
+                        <a href="programming-basics.html" class="read-more" data-article="programming">
                             اقرأ المزيد <i class="fas fa-arrow-left"></i>
                         </a>
                     </div>
@@ -128,7 +130,7 @@
                         <p>
                             بناءً على أبحاث سوق العمل وتحليل عروض التوظيف، أقدم لكم أهم المهارات التقنية التي ستكون مطلوبة بشدة في السنوات القادمة، وكيف يمكنك تطويرها بنفسك دون الحاجة إلى دورات مكلفة.
                         </p>
-                        <a href="#" class="read-more" data-article="career">
+                        <a href="coming-soon.html?course=career" class="read-more" data-article="career">
                             اقرأ المزيد <i class="fas fa-arrow-left"></i>
                         </a>
                     </div>
@@ -153,7 +155,7 @@
                         <p>
                             مقارنة مفصلة بين أداتي تحليل البيانات الأشهر، مع إجابات عملية على أسئلة مثل: متى تستخدم Excel ومتى تنتقل إلى Python؟ وما هي مزايا وعيوب كل أداة بالنسبة للمبتدئين والمحترفين؟
                         </p>
-                        <a href="#" class="read-more" data-article="excel-python">
+                        <a href="data-analyst-course.html" class="read-more" data-article="excel-python">
                             اقرأ المزيد <i class="fas fa-arrow-left"></i>
                         </a>
                     </div>
@@ -178,7 +180,7 @@
                         <p>
                             قصة مفصلة عن رحلة بناء موقع "مسار التطور التقني"، التحديات التي واجهتها، الأخطاء التي ارتكبتها، والدروس القيمة التي تعلمتها والتي يمكن أن تفيد أي شخص يبدأ في مجال تطوير الويب.
                         </p>
-                        <a href="#" class="read-more" data-article="website-project">
+                        <a href="Computer_basics.html" class="read-more" data-article="website-project">
                             اقرأ المزيد <i class="fas fa-arrow-left"></i>
                         </a>
                     </div>
@@ -203,7 +205,7 @@
                         <p>
                             قائمة بأهم الأدوات المجانية التي استخدمها شخصيًا في عملي اليومي، من أدوات البرمجة إلى أدوات الإنتاجية والتصميم، مع شرح مبسط لكيفية استخدام كل أداة.
                         </p>
-                        <a href="#" class="read-more" data-article="tools">
+                        <a href="coming-soon.html?course=tools" class="read-more" data-article="tools">
                             اقرأ المزيد <i class="fas fa-arrow-left"></i>
                         </a>
                     </div>
@@ -749,11 +751,47 @@
                     shareUrl = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
                     break;
             }
-            
-            if (shareUrl) {
-                window.open(shareUrl, '_blank', 'width=600,height=400');
-            }
-        }
-    </script>
+            // ===== إغلاق الدوال الناقصة في blogs.html =====
+
+            };
+        
+        
+        // ===== إضافة تأثيرات الظهور =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.article-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+        
+        // ===== زر العودة للأعلى =====
+        const backBtn = document.createElement('button');
+        backBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        backBtn.className = 'back-to-top';
+        backBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.body.appendChild(backBtn);
+        
+        window.addEventListener('scroll', () => {
+            backBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+        });
+        
+        console.log('تم تحميل صفحة المقالات بنجاح');
+    ;
+</script>
 </body>
 </html>
+
