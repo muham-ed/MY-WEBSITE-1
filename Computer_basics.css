@@ -1,5 +1,4 @@
-
-        /* جميع الأنماط الأساسية */
+/* جميع الأنماط الأساسية */
         * {
             margin: 0;
             padding: 0;
@@ -1519,3 +1518,94 @@
                 flex-direction: column;
             }
         }
+
+/* ================================================================
+   RESPONSIVE - Mobile First
+   ================================================================ */
+@media (max-width: 1024px) {
+    .nav-content { padding: 0 16px; }
+    .container { padding: 20px; }
+}
+
+@media (max-width: 768px) {
+    .nav-container { padding: 8px 0; }
+    .nav-content { flex-direction: column; gap: 8px; padding: 0 10px; }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: 4px; width: 100%; }
+    .nav-link { font-size: 0.75rem; padding: 5px 9px; }
+    .container { padding: 12px; }
+    .section-title { font-size: 1.4rem !important; text-align: center; }
+    .section-subtitle { font-size: 0.9rem !important; }
+    
+    /* Grid fixes */
+    .programs-grid, .career-grid, .stats-container,
+    .time-estimates, .download-buttons, .packages-grid, .projects-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Cards */
+    .program-card, .career-card, .stat-card, .time-card { padding: 16px !important; }
+    .program-card:hover, .career-card:hover, .path-item:hover,
+    .stat-card:hover, .time-card:hover { transform: none !important; }
+    
+    /* path items */
+    .path-item { flex-direction: column !important; padding: 16px !important; gap: 12px !important; }
+    .path-icon { width: 55px !important; height: 55px !important; font-size: 1.3rem !important; }
+    .go-to-btn { display: block !important; text-align: center !important; width: 100% !important; }
+    .complete-btn { width: 100% !important; margin-top: 10px !important; }
+    .learning-path::before { display: none !important; }
+    
+    /* Images & icons */
+    .program-icon { width: 50px !important; height: 50px !important; font-size: 1.3rem !important; }
+    .career-icon { width: 55px !important; height: 55px !important; }
+    .career-badge { position: static !important; display: inline-block !important; margin-bottom: 12px !important; }
+    
+    /* footer */
+    .social-icons { gap: 8px !important; }
+    .social-icon { width: 38px !important; height: 38px !important; font-size: 0.95rem !important; }
+    footer { padding: 24px 12px !important; }
+    
+    /* progress */
+    .progress-header { flex-direction: column !important; text-align: center !important; }
+    .progress-container { padding: 18px 14px !important; }
+    
+    /* programs container */
+    .programs-container, .career-paths-container { 
+        padding: 16px 12px !important; border-radius: 20px !important; margin: 30px 0 !important;
+    }
+    .filter-btn { font-size: 0.78rem !important; padding: 6px 12px !important; }
+    
+    /* float button */
+    .floating-mostaql-btn { bottom: 16px !important; left: 10px !important; }
+    .mostaql-btn { padding: 10px 14px !important; font-size: 0.82rem !important; gap: 6px !important; }
+    .mostaql-btn span { display: none !important; }
+    .hero-mostaql-btn { padding: 12px 20px !important; font-size: 0.92rem !important; }
+    .back-to-top { bottom: 16px !important; right: 14px !important; width: 40px !important; height: 40px !important; }
+    
+    /* roadmap specific */
+    .roadmap-module { flex-direction: column !important; }
+    .module-header { flex-direction: column !important; align-items: flex-start !important; }
+    .packages-grid { grid-template-columns: 1fr !important; }
+    .package-card.featured { transform: scale(1) !important; }
+    
+    /* user welcome */
+    .user-welcome { padding: 10px 16px !important; font-size: 0.85rem !important; flex-wrap: wrap !important; justify-content: center !important; }
+}
+
+@media (max-width: 480px) {
+    .nav-link { font-size: 0.7rem !important; padding: 4px 7px !important; }
+    .container { padding: 8px !important; }
+    header h1, .page-header h1 { font-size: 1.3rem !important; }
+    .subtitle { font-size: 0.85rem !important; }
+    .stats-container { grid-template-columns: 1fr 1fr !important; }
+    .time-estimates { grid-template-columns: 1fr 1fr !important; }
+    .download-buttons { grid-template-columns: 1fr !important; }
+    .section-title { font-size: 1.2rem !important; }
+    .programs-container, .career-paths-container { padding: 12px 10px !important; }
+}
+
+@media (max-width: 360px) {
+    .nav-link { font-size: 0.65rem !important; padding: 3px 6px !important; }
+    .container { padding: 6px !important; }
+    header h1, .page-header h1 { font-size: 1.1rem !important; }
+    .stats-container, .time-estimates { grid-template-columns: 1fr !important; }
+}

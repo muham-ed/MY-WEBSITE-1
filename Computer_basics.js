@@ -1,4 +1,4 @@
-   // ===== إعدادات Firebase الصحيحة =====
+// ===== إعدادات Firebase الصحيحة =====
     const firebaseConfig = {
         apiKey: "AIzaSyDG3CAjOyNDqNF5ISkUnFz5ZGHlSwCicq8",
         authDomain: "my-website-1-93d68.firebaseapp.com",
@@ -681,3 +681,370 @@ https://muham-ed.github.io/MY-WEBSITE-1/
             document.getElementById('studyTime').innerText = totalStudyTime + sessionTime;
         }, 60000);
     });
+
+    // ===== تحميل مشاريع الدورة =====
+    window.downloadProject = function(key, name) {
+        const projects = {
+            'laptop-vs-desktop': `مشروع: مقارنة أداء لابتوب ومكتبي
+==========================================
+
+المهمة: قارن بين جهاز لابتوب وجهاز مكتبي
+
+📋 جدول المقارنة:
+┌─────────────┬──────────────┬──────────────┐
+│ المعيار     │ اللابتوب     │ المكتبي      │
+├─────────────┼──────────────┼──────────────┤
+│ السعر       │ أغلى         │ أرخص        │
+│ الأداء      │ متوسط        │ أعلى         │
+│ التنقل      │ ممتاز        │ ثابت         │
+│ الترقية     │ محدودة       │ سهلة         │
+│ عمر البطارية│ 4-10 ساعات  │ لا يوجد      │
+│ الشاشة      │ مدمجة        │ خارجية       │
+└─────────────┴──────────────┴──────────────┘
+
+📝 خطوات المشروع:
+1. اكتب مواصفات كلا الجهازين
+2. ابحث عن الأسعار في السوق المحلي
+3. حدد الاستخدام المناسب لكل جهاز
+4. اكتب توصيتك النهائية مع السبب
+
+✅ أرسل نتائجك عبر واتساب: +201060828627`,
+
+            'ram-test': `مشروع: اختبار RAM والتخزين
+==========================================
+
+🧪 التجربة العملية:
+
+الخطوة 1 - اختبار RAM:
+• افتح Task Manager (Ctrl+Shift+Esc)
+• اذهب لتبويب Performance
+• انظر استخدام الذاكرة مع 1 برنامج مفتوح
+• ثم افتح 5 برامج وقارن
+• سجل النتائج
+
+الخطوة 2 - اختبار التخزين:
+• افتح برنامج CrystalDiskMark (مجاني)
+• شغّل اختبار السرعة
+• سجل: سرعة القراءة Sequential
+• سجل: سرعة الكتابة Sequential
+
+📊 سجّل نتائجك:
+┌──────────────────┬──────────┐
+│ RAM المستخدمة   │          │
+│ أقصى استخدام RAM│          │
+│ سرعة القراءة   │          │
+│ سرعة الكتابة   │          │
+└──────────────────┴──────────┘
+
+✅ قارن نتائجك مع المعدلات الطبيعية:
+• SSD جيد: 500+ MB/s
+• HDD عادي: 80-160 MB/s`,
+
+            'shortcuts': `مشروع: دليل الاختصارات الشخصي
+==========================================
+
+⌨️ أهم اختصارات Windows:
+
+📁 إدارة الملفات:
+Ctrl+C     → نسخ
+Ctrl+X     → قص
+Ctrl+V     → لصق
+Ctrl+Z     → تراجع
+Ctrl+Y     → إعادة
+Ctrl+A     → تحديد الكل
+Ctrl+S     → حفظ
+Delete     → حذف للسلة
+Shift+Del  → حذف نهائي
+
+🪟 إدارة النوافذ:
+Win+D      → إظهار سطح المكتب
+Win+E      → فتح File Explorer
+Win+L      → قفل الشاشة
+Win+←/→   → تقسيم الشاشة
+Alt+Tab    → التبديل بين النوافذ
+Alt+F4     → إغلاق البرنامج
+
+🌐 تصفح الإنترنت:
+Ctrl+T     → تبويب جديد
+Ctrl+W     → إغلاق التبويب
+Ctrl+R     → تحديث الصفحة
+Ctrl+F     → بحث في الصفحة
+Ctrl+L     → الذهاب لشريط العنوان
+Ctrl+H     → سجل التصفح
+
+📝 تحرير النصوص:
+Ctrl+B     → غامق
+Ctrl+I     → مائل
+Ctrl+U     → تسطير
+Ctrl+Home  → بداية المستند
+Ctrl+End   → نهاية المستند
+
+✅ تدرّب على 3 اختصارات كل يوم!`,
+
+            'specs-analysis': `مشروع: تحليل مواصفات جهازك
+==========================================
+
+🔍 كيف تعرف مواصفات جهازك:
+
+الطريقة 1 - Windows:
+• اضغط Win+R
+• اكتب: msinfo32
+• اضغط OK
+• ستجد كل المواصفات
+
+الطريقة 2 - Settings:
+• Settings → System → About
+• ستجد: المعالج، الذاكرة، النظام
+
+📋 سجّل مواصفات جهازك:
+┌─────────────────┬──────────────────┐
+│ المواصفة        │ جهازك            │
+├─────────────────┼──────────────────┤
+│ المعالج (CPU)  │                  │
+│ سرعة المعالج   │                  │
+│ عدد الأنوية    │                  │
+│ الذاكرة (RAM)  │                  │
+│ نظام التشغيل   │                  │
+│ سعة التخزين    │                  │
+│ بطاقة الرسومات │                  │
+└─────────────────┴──────────────────┘
+
+📊 تقييم جهازك:
+• 4GB RAM = مناسب للمكتب فقط
+• 8GB RAM = مناسب للاستخدام العام
+• 16GB+ RAM = مثالي للبرمجة والتصميم`,
+
+            'home-network': `مشروع: إعداد شبكة منزلية
+==========================================
+
+🌐 خطوات إعداد الراوتر:
+
+المرحلة 1 - التوصيل الفيزيائي:
+□ وصّل كابل الإنترنت من الموديم للراوتر (WAN Port)
+□ وصّل الراوتر بالكهرباء
+□ انتظر 2-3 دقائق للتشغيل
+
+المرحلة 2 - الدخول للإعدادات:
+□ افتح المتصفح
+□ اكتب: 192.168.1.1 أو 192.168.0.1
+□ Username: admin | Password: admin
+   (راجع الملصق خلف الراوتر)
+
+المرحلة 3 - الإعدادات الأساسية:
+□ غيّر اسم الشبكة (SSID) لاسم واضح
+□ غيّر كلمة مرور الواي فاي لكلمة قوية
+□ غيّر كلمة مرور الراوتر الافتراضية
+□ اختر تشفير WPA3 أو WPA2
+
+المرحلة 4 - الأمان:
+□ فعّل Firewall
+□ أخفِ اسم الشبكة (Hide SSID) - اختياري
+□ راجع الأجهزة المتصلة
+
+📝 سجّل معلومات شبكتك:
+اسم الشبكة:     ________________
+كلمة المرور:   ________________
+IP الراوتر:    ________________
+DNS الأساسي:   ________________`
+        };
+
+        const text = projects[key] || 'المحتوى قيد الإعداد';
+        const blob = new Blob([text], {type: 'text/plain;charset=utf-8'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `مشروع_${name}.txt`;
+        a.click();
+    };
+
+    // ===== تحميل جدول الاختصارات =====
+    window.downloadShortcuts = function() {
+        window.downloadProject('shortcuts', 'اختصارات الكيبورد');
+    };
+    // ===== استكمال الدوال الناقصة =====
+
+// دالة toggleFaq للأسئلة الشائعة
+window.toggleFaq = function(id) {
+    const faqItem = event.currentTarget;
+    faqItem.classList.toggle('active');
+};
+
+// دالة rateCourse للتقييم
+window.rateCourse = function(stars) {
+    document.getElementById('ratingMessage').innerHTML = `شكراً لتقييمك! (${stars} نجوم)`;
+    localStorage.setItem('comp_courseRating', stars);
+    
+    const allStars = document.querySelectorAll('.star');
+    allStars.forEach((star, index) => {
+        if (index < stars) {
+            star.style.opacity = '1';
+        } else {
+            star.style.opacity = '0.5';
+        }
+    });
+};
+
+// دالة resetQuiz لإعادة الاختبار
+window.resetQuiz = function() {
+    currentQuiz = 0;
+    quizScore = 0;
+    loadQuiz();
+};
+
+// دالة closeReward لإغلاق مودال المكافآت
+window.closeReward = function() {
+    document.getElementById('rewardModal').classList.remove('show');
+};
+
+// دالة shareAchievement لمشاركة الإنجاز
+window.shareAchievement = function() {
+    const completedCount = document.getElementById('completedLessonsCount').innerText;
+    const text = `🎓 لقد أكملت ${completedCount} دروس في دورة أساسيات الحاسوب على منصة مسار التطور التقني!`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+};
+
+// دالة downloadCertificate لتحميل الشهادة
+window.downloadCertificate = function() {
+    const name = localStorage.getItem('userName') || 'محمد علاء';
+    const today = new Date().toLocaleDateString('ar-EG');
+    const content = `شهادة إتمام دورة أساسيات الحاسوب\n\nالطالب: ${name}\nالتاريخ: ${today}\n\nتم إكمال 6 دروس بنجاح\n\nمحمد علاء - مسار التطور التقني`;
+    
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `شهادة_${name}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+    
+    showReward('تم التحميل', '✅ تم تحميل الشهادة');
+};
+
+// دالة downloadProject لتحميل المشاريع
+window.downloadProject = function(key, name) {
+    const projects = {
+        'laptop-vs-desktop': 'مشروع مقارنة أداء لابتوب ومكتبي...',
+        'ram-test': 'مشروع اختبار RAM والتخزين...',
+        'shortcuts': 'مشروع دليل الاختصارات الشخصي...',
+        'specs-analysis': 'مشروع تحليل مواصفات جهازك...',
+        'home-network': 'مشروع إعداد شبكة منزلية...'
+    };
+    
+    const text = projects[key] || `مشروع: ${name}\n\nالمحتوى قيد الإعداد.\n\nسيتم إضافته قريباً.`;
+    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `مشروع_${name}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+    
+    showReward('تم التحميل', `✅ تم تحميل مشروع ${name}`);
+};
+
+// دالة downloadShortcuts لتحميل جدول الاختصارات
+window.downloadShortcuts = function() {
+    window.downloadProject('shortcuts', 'اختصارات الكيبورد');
+};
+
+// دالة logout لتسجيل الخروج
+window.logout = async function() {
+    try {
+        await firebase.auth().signOut();
+        localStorage.clear();
+        window.location.reload();
+    } catch (error) {
+        console.error('خطأ في تسجيل الخروج:', error);
+    }
+};
+
+// دالة resetCourse لإعادة تعيين الدورة
+window.resetCourse = function() {
+    if (confirm('⚠️ هل أنت متأكد من إعادة تعيين تقدم الدورة؟')) {
+        completedLessons = [];
+        earnedBadges = [];
+        quizHighScore = 0;
+        totalStudyTime = 0;
+        startTime = Date.now();
+        
+        localStorage.setItem('comp_completedLessons', JSON.stringify(completedLessons));
+        localStorage.setItem('comp_earnedBadges', JSON.stringify(earnedBadges));
+        localStorage.setItem('comp_quizHighScore', quizHighScore);
+        localStorage.setItem('comp_totalStudyTime', totalStudyTime);
+        localStorage.setItem('comp_studyStartTime', startTime);
+        
+        updateProgress();
+        updateLessonButtons();
+        updateBadgesDisplay();
+        document.getElementById('certificateSection').style.display = 'none';
+        showReward('تم', '✅ تم إعادة تعيين الدورة');
+    }
+};
+
+// دالة toggleTheme لتبديل الوضع
+window.toggleTheme = function() {
+    document.body.classList.toggle('light-mode');
+    const btn = document.getElementById('themeToggle');
+    if (document.body.classList.contains('light-mode')) {
+        btn.innerHTML = '<i class="fas fa-moon"></i>';
+        localStorage.setItem('comp_theme', 'light');
+    } else {
+        btn.innerHTML = '<i class="fas fa-sun"></i>';
+        localStorage.setItem('comp_theme', 'dark');
+    }
+};
+
+// دالة toggleLesson لإكمال الدرس
+window.toggleLesson = function(lessonId) {
+    const index = completedLessons.indexOf(lessonId);
+    
+    if (index === -1) {
+        completedLessons.push(lessonId);
+        celebrateLesson(lessonId);
+        totalStudyTime += 5;
+        localStorage.setItem('comp_totalStudyTime', totalStudyTime);
+    } else {
+        completedLessons.splice(index, 1);
+    }
+    
+    localStorage.setItem('comp_completedLessons', JSON.stringify(completedLessons));
+    updateProgress();
+    updateLessonButtons();
+    checkBadges();
+    updateStats();
+};
+
+// دالة downloadLesson لتحميل الدرس
+window.downloadLesson = function(lessonNumber) {
+    const lessons = {
+        1: { title: "مقدمة في الحاسوب", content: "الدرس الأول: مقدمة في الحاسوب\n\nتعريف الحاسوب ووظائفه الأساسية\nLaptop vs Desktop vs Server\nأهم المصطلحات للمبتدئين" },
+        2: { title: "وحدة المعالجة CPU", content: "الدرس الثاني: وحدة المعالجة المركزية (CPU)\n\nدور المعالج كـ 'العقل المدبر'\nالفرق بين عدد الأنوية والسرعة\nاختيار المعالج المناسب" },
+        3: { title: "الذاكرة العشوائية RAM", content: "الدرس الثالث: الذاكرة العشوائية (RAM)\n\nمفهوم مساحة العمل المؤقتة\nالفرق بين DDR4 و DDR5\n8GB vs 16GB vs 32GB" },
+        4: { title: "وحدات التخزين SSD HDD", content: "الدرس الرابع: وحدات التخزين\n\nالفرق بين SSD و HDD\nNVMe vs SATA\nاختيار التخزين المناسب" },
+        5: { title: "الشاشة Monitor", content: "الدرس الخامس: الشاشة\n\nالدقة: Full HD, 4K, 8K\nمعدل التحديث 60Hz - 240Hz\nIPS vs OLED vs TN" },
+        6: { title: "اختصارات الكيبورد", content: "الدرس السادس: اختصارات الكيبورد\n\nأهم الاختصارات اليومية\nنصائح لتسريع العمل\nمحرر تجريبي للتدريب" }
+    };
+    
+    const lesson = lessons[lessonNumber];
+    if (lessonNumber === 1) {
+        const link = document.createElement('a');
+        link.href = 'اول درس.pptx';
+        link.download = 'الدرس_الاول_مقدمة_في_الحاسوب.pptx';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showReward('تم التحميل', '✅ تم تحميل ملف العرض التقديمي');
+        return;
+    }
+    
+    const content = `${lesson.content}\n\n📥 تم التحميل من موقع Mohamed Alaa - مسار التطور التقني`;
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `الدرس_${lessonNumber}_${lesson.title}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+    
+    showReward('تم التحميل', `✅ تم تحميل الدرس ${lessonNumber}`);
+};
+
+console.log('تم تحميل Computer_basics.js بنجاح');
