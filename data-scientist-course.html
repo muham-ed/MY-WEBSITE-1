@@ -3,37 +3,678 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-    <title>دورة Data Scientist - علم البيانات والذكاء الاصطناعي</title>
+    <title>دورة Data Scientist - علم البيانات والذكاء الاصطناعي | Mohamed Alaa</title>
     <link rel="icon" href="icons mohamed.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- CodeMirror -->
-      <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/dracula.min.css">
-    <link rel="stylesheet" href="data-scientist-course.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
     <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
     
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.1) 0%, transparent 20%),
+                        radial-gradient(circle at 90% 80%, rgba(247, 37, 133, 0.1) 0%, transparent 20%);
+            z-index: -1;
+        }
+
+        /* ===== شريط التنقل الموحد ===== */
+        .nav-container {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 12px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container.scrolled {
+            padding: 8px 0;
+            background: rgba(15, 23, 42, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            position: relative;
+        }
+
+        .nav-logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4cc9f0, #4361ee, #3a0ca3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.02);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-link {
+            color: #e0e1dd;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 18px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(67, 97, 238, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link i {
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            transition: width 0.3s ease;
+            z-index: -1;
+            border-radius: 12px;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== الحاوية الرئيسية ===== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            margin-top: 80px;
+        }
+
+        /* ===== الهيدر ===== */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(58, 12, 163, 0.1));
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3, #4cc9f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #e0e1dd;
+        }
+
+        /* ===== شريط التقدم ===== */
+        .progress-container {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .progress-title {
+            color: #4cc9f0;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            height: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(45deg, #4361ee, #4cc9f0);
+            width: 0%;
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        /* ===== القائمة الجانبية ===== */
+        .lessons-sidebar {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lessons-sidebar h3 {
+            margin-bottom: 20px;
+            color: #4cc9f0;
+        }
+
+        .units-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .unit-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .unit-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .unit-lessons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .lesson-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .lesson-item:hover {
+            background: rgba(67, 97, 238, 0.5);
+        }
+
+        .lesson-item.active {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+        }
+
+        .lesson-item.completed {
+            border-right: 3px solid #10b981;
+            background: rgba(16, 185, 129, 0.2);
+        }
+
+        /* ===== محتوى الدرس ===== */
+        .lesson-content {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lesson-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lesson-title {
+            color: #4cc9f0;
+            font-size: 1.5rem;
+        }
+
+        .lesson-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ===== النقاط الرئيسية ===== */
+        .key-points {
+            background: rgba(67, 97, 238, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-right: 3px solid #4361ee;
+        }
+
+        .key-points h4 {
+            color: #4cc9f0;
+            margin-bottom: 15px;
+        }
+
+        .key-points ul {
+            padding-right: 20px;
+        }
+
+        .key-points li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        /* ===== محرر الكود ===== */
+        .code-section {
+            margin-bottom: 25px;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .code-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4cc9f0;
+        }
+
+        .code-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .code-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .code-btn:hover {
+            background: rgba(67, 97, 238, 0.8);
+        }
+
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .editor-panel, .output-panel {
+            background: #1e1e1e;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            background: #2d2d2d;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #3d3d3d;
+        }
+
+        .CodeMirror {
+            height: 300px;
+        }
+
+        .output-content {
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #4cc9f0;
+            white-space: pre-wrap;
+            min-height: 300px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        /* ===== الاختبار ===== */
+        .quiz-section {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .quiz-question {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            background: rgba(67, 97, 238, 0.3);
+        }
+
+        .quiz-option.selected {
+            background: rgba(67, 97, 238, 0.5);
+        }
+
+        .quiz-option.correct {
+            background: #10b981;
+        }
+
+        .quiz-option.wrong {
+            background: #ef4444;
+        }
+
+        .quiz-feedback {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .quiz-feedback.success {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            display: block;
+        }
+
+        .quiz-feedback.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            display: block;
+        }
+
+        .quiz-submit {
+            background: linear-gradient(45deg, #f59e0b, #d97706);
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .quiz-submit:hover {
+            transform: translateY(-2px);
+        }
+
+        .complete-btn {
+            background: linear-gradient(45deg, #10b981, #059669);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .complete-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .complete-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ===== الفوتر ===== */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icon:hover {
+            background: #4361ee;
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            color: #e0e1dd;
+            font-size: 0.9rem;
+        }
+
+        /* ===== متجاوب ===== */
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 280px;
+                height: calc(100vh - 70px);
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 20px;
+                gap: 10px;
+                transition: right 0.3s ease;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-link {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 20px;
+            }
+            
+            .nav-content {
+                padding: 0 20px;
+            }
+            
+            .container {
+                margin-top: 100px;
+            }
+            
+            .editor-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .lesson-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .lesson-title {
+                font-size: 1.2rem;
+            }
+        }
     </style>
 </head>
 <body>
+
     <!-- ===== شريط التنقل الموحد ===== -->
     <nav class="nav-container">
         <div class="nav-content">
-            <a href="index.html" class="nav-logo">Mohamed Alaa</a>
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🚀</span>
+                Mohamed Alaa
+            </a>
             <div class="nav-links">
-                <a href="index.html" class="nav-link">الرئيسية</a>
-                <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
-                 <a href="programming-basics.html" class="nav-link">أساسيات البرمجة</a>
-                <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
-                <a href="data-analyst-course.html" class="nav-link">📊 Data Analyst</a>
-                <a href="data-scientist-course.html" class="nav-link active">🔬 Data Scientist</a>
-                <a href="frontend-roadmap.html" class="nav-link">🎨 Frontend Roadmap</a>
-                <a href="blogs.html" class="nav-link">المقالات</a>
-                <a href="login.html" class="nav-link">دخول</a>
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i><span>الرئيسية</span></a>
+                <a href="Computer_basics.html" class="nav-link"><i class="fas fa-desktop"></i><span>أساسيات الحاسوب</span></a>
+                <a href="programming-basics.html" class="nav-link"><i class="fas fa-code"></i><span>أساسيات البرمجة</span></a>
+                <a href="Microsoft_Office.html" class="nav-link"><i class="fas fa-file-excel"></i><span>Microsoft Office</span></a>
+                <a href="data-analyst-course.html" class="nav-link"><i class="fas fa-chart-line"></i><span>Data Analyst</span></a>
+                <a href="data-scientist-course.html" class="nav-link active"><i class="fas fa-brain"></i><span>Data Scientist</span></a>
+                <a href="frontend-roadmap.html" class="nav-link"><i class="fas fa-palette"></i><span>Frontend</span></a>
+                <a href="blogs.html" class="nav-link"><i class="fas fa-blog"></i><span>المقالات</span></a>
+                <a href="login.html" class="nav-link"><i class="fas fa-user"></i><span>دخول</span></a>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
     </nav>
@@ -105,7 +746,7 @@
             </div>
 
             <div class="quiz-section">
-                <h4 style="color: var(--primary); margin-bottom: 15px;">📝 اختبر فهمك</h4>
+                <h4 style="color: #4cc9f0; margin-bottom: 15px;">📝 اختبر فهمك</h4>
                 <div class="quiz-question" id="quizQuestion"></div>
                 <div class="quiz-options" id="quizOptions"></div>
                 <div class="quiz-feedback" id="quizFeedback"></div>
@@ -116,29 +757,15 @@
         </div>
     </div>
 
-     <footer id="contact">
+    <footer id="contact">
         <div class="social-icons">
-            <a href="https://www.linkedin.com/in/mohamed-ala-a-2b333533a" class="social-icon" target="_blank">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://github.com/muham-ed/skills-github-pages" class="social-icon" target="_blank">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://www.youtube.com/channel/UCS5vFLuP5h1NTgvHiM2oJHQ" class="social-icon" target="_blank">
-                <i class="fab fa-youtube"></i>
-            </a>
-            <a href="https://www.instagram.com/mohmedalaaaldin/?" class="social-icon" target="_blank">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.facebook.com/profile.php?id=61550839582471&locale=ar_AR" class="social-icon" target="_blank">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://wa.me/201060828627" class="social-icon" target="_blank" style="background: linear-gradient(45deg, #25D366, #128C7E);">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="mailto:mohamedalaaaldinabotasa@gmail.com" class="social-icon">
-                <i class="fas fa-envelope"></i>
-            </a>
+            <a href="https://www.linkedin.com/in/mohamed-ala-a-2b333533a" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/muham-ed/skills-github-pages" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.youtube.com/channel/UCS5vFLuP5h1NTgvHiM2oJHQ" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/mohmedalaaaldin/?" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61550839582471&locale=ar_AR" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://wa.me/201060828627" class="social-icon" target="_blank" style="background: linear-gradient(45deg, #25D366, #128C7E);"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:mohamedalaaaldinabotasa@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
         </div>
         <p class="copyright">© 2025 مسار التطور التقني | تم التصميم بواسطة Mohamed Alaa</p>
     </footer>
@@ -160,7 +787,6 @@
                 code: `# الدرس 1.1: مقدمة في علم البيانات
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
 print("=" * 60)
 print("🔬 مقدمة في علم البيانات")
@@ -185,16 +811,7 @@ if correlation > 0.7:
     print("🔍 هناك علاقة قوية إيجابية: كلما زادت ساعات الدراسة، زادت الدرجة")
     
 print("\\n✅ علم البيانات يساعد في اكتشاف العلاقات والأنماط في البيانات")`,
-                quiz: {
-                    question: "ما هو الفرق الرئيسي بين تحليل البيانات وعلم البيانات؟",
-                    options: [
-                        "لا يوجد فرق",
-                        "علم البيانات يشمل بناء نماذج تنبؤية باستخدام التعلم الآلي",
-                        "تحليل البيانات أصعب من علم البيانات",
-                        "علم البيانات لا يستخدم البرمجة"
-                    ],
-                    correct: 1
-                }
+                quiz: { question: "ما هو الفرق الرئيسي بين تحليل البيانات وعلم البيانات؟", options: ["لا يوجد فرق", "علم البيانات يشمل بناء نماذج تنبؤية", "تحليل البيانات أصعب", "علم البيانات لا يستخدم البرمجة"], correct: 1 }
             },
             {
                 id: 2,
@@ -203,62 +820,35 @@ print("\\n✅ علم البيانات يساعد في اكتشاف العلاق�
                 keyPoints: [
                     "الإحصاء الوصفي: تلخيص البيانات (المتوسط، الوسيط، الانحراف المعياري)",
                     "الإحصاء الاستدلالي: استخلاص استنتاجات عن المجتمع من عينة",
-                    "اختبار الفرضيات (Hypothesis Testing) وتحديد مستويات الدلالة",
+                    "اختبار الفرضيات وتحديد مستويات الدلالة",
                     "فهم التوزيعات الاحتمالية وتطبيقاتها"
                 ],
                 code: `# الدرس 1.2: الإحصاء الوصفي والاستدلالي
 import numpy as np
 import scipy.stats as stats
-import matplotlib.pyplot as plt
 
 print("=" * 60)
 print("📊 الإحصاء الوصفي والاستدلالي")
 print("=" * 60)
 
-# توليد بيانات عينة (درجات اختبار)
+# توليد بيانات عينة
 np.random.seed(42)
-data = np.random.normal(loc=75, scale=10, size=100)  # 100 درجة بمتوسط 75 وانحراف معياري 10
+data = np.random.normal(loc=75, scale=10, size=100)
 
 print("\\n1️⃣ الإحصاء الوصفي:")
-print(f"المتوسط (Mean): {np.mean(data):.2f}")
-print(f"الوسيط (Median): {np.median(data):.2f}")
-print(f"المنوال (Mode): {stats.mode(data, keepdims=True).mode[0]:.2f}")
-print(f"الانحراف المعياري (Std): {np.std(data):.2f}")
-print(f"التباين (Variance): {np.var(data):.2f}")
+print(f"المتوسط: {np.mean(data):.2f}")
+print(f"الوسيط: {np.median(data):.2f}")
+print(f"الانحراف المعياري: {np.std(data):.2f}")
 print(f"الحد الأدنى: {np.min(data):.2f}")
 print(f"الحد الأقصى: {np.max(data):.2f}")
-print(f"المدى (Range): {np.max(data) - np.min(data):.2f}")
 
-print("\\n2️⃣ الإحصاء الاستدلالي - اختبار T:")
-# اختبار ما إذا كان المتوسط الحقيقي = 75
+print("\\n2️⃣ الإحصاء الاستدلالي:")
 t_stat, p_value = stats.ttest_1samp(data, 75)
-print(f"قيمة T (T-statistic): {t_stat:.2f}")
-print(f"قيمة p (P-value): {p_value:.4f}")
+print(f"قيمة p: {p_value:.4f}")
 
-alpha = 0.05  # مستوى الدلالة
-if p_value < alpha:
-    print(f"🔍 يوجد فرق معنوي (نرفض الفرضية الصفرية) - p < {alpha}")
-else:
-    print(f"🔍 لا يوجد فرق معنوي (نقبل الفرضية الصفرية) - p > {alpha}")
-
-print("\\n3️⃣ فترات الثقة (Confidence Intervals):")
-confidence_level = 0.95
-degrees_freedom = len(data) - 1
-sample_mean = np.mean(data)
-sample_standard_error = stats.sem(data)
-
-confidence_interval = stats.t.interval(confidence_level, degrees_freedom, sample_mean, sample_standard_error)
-print(f"فاصل الثقة 95%: ({confidence_interval[0]:.2f}, {confidence_interval[1]:.2f})")`,
-                quiz: {
-                    question: "ما هو الانحراف المعياري؟",
-                    options: [
-                        "متوسط القيم",
-                        "مقياس لتشتت البيانات حول المتوسط",
-                        "القيمة الأكثر تكراراً",
-                        "الفرق بين أكبر وأصغر قيمة"
-                    ],
-                    correct: 1
-                }
+if p_value < 0.05:
+    print("🔍 يوجد فرق معنوي إحصائيًا")`,
+                quiz: { question: "ما هو الانحراف المعياري؟", options: ["متوسط القيم", "مقياس لتشتت البيانات حول المتوسط", "القيمة الأكثر تكراراً", "الفرق بين أكبر وأصغر قيمة"], correct: 1 }
             },
             {
                 id: 3,
@@ -266,74 +856,40 @@ print(f"فاصل الثقة 95%: ({confidence_interval[0]:.2f}, {confidence_inte
                 title: "الاحتمالات والتوزيعات",
                 keyPoints: [
                     "أساسيات نظرية الاحتمالات: الأحداث المستقلة، الاحتمال الشرطي",
-                    "التوزيع الطبيعي (Normal Distribution) وخصائصه",
-                    "التوزيع ذو الحدين (Binomial Distribution) وتطبيقاته",
-                    "قانون بايز وتطبيقاته في التعلم الآلي والتشخيص"
+                    "التوزيع الطبيعي وخصائصه",
+                    "التوزيع ذو الحدين وتطبيقاته",
+                    "قانون بايز وتطبيقاته في التعلم الآلي"
                 ],
                 code: `# الدرس 1.3: الاحتمالات والتوزيعات
 import numpy as np
-import matplotlib.pyplot as plt
 from scipy import stats
 
 print("=" * 60)
 print("🎲 الاحتمالات والتوزيعات")
 print("=" * 60)
 
-# 1. التوزيع الطبيعي
-print("\\n1️⃣ التوزيع الطبيعي (Normal Distribution):")
+# التوزيع الطبيعي
 normal_data = np.random.normal(loc=0, scale=1, size=1000)
+print(f"\\n1️⃣ التوزيع الطبيعي:")
 print(f"متوسط العينة: {np.mean(normal_data):.2f}")
 print(f"انحراف معياري: {np.std(normal_data):.2f}")
-print(f"نسبة البيانات ضمن انحراف معياري واحد: {np.sum(np.abs(normal_data) < 1) / 1000 * 100:.1f}%")
-print(f"نسبة البيانات ضمن انحرافين معياريين: {np.sum(np.abs(normal_data) < 2) / 1000 * 100:.1f}%")
 
-# 2. التوزيع ذو الحدين
-print("\\n2️⃣ التوزيع ذو الحدين (Binomial Distribution):")
-# احتمال الحصول على 6 ظهورات لصورة عند رمي قطعة نقود 10 مرات
-n, p = 10, 0.5
-binom_prob = stats.binom.pmf(6, n, p)
+# التوزيع ذو الحدين
+print("\\n2️⃣ التوزيع ذو الحدين:")
+binom_prob = stats.binom.pmf(6, 10, 0.5)
 print(f"احتمال الحصول على 6 صور من 10 رميات: {binom_prob:.3f}")
 
-# حساب التوزيع الكامل
-x = np.arange(0, 11)
-binom_dist = stats.binom.pmf(x, n, p)
-print("توزيع الاحتمالات:")
-for i, prob in zip(x, binom_dist):
-    print(f"  {i} صور: {prob:.3f}")
-
-# 3. قانون بايز
-print("\\n3️⃣ قانون بايز (Bayes' Theorem):")
-# مثال: اختبار مرض نادر (نسبة الإصابة 1%)
-# دقة الاختبار 99% (حساسية وخصوصية)
-prior = 0.01  # احتمال الإصابة مسبقاً
-sensitivity = 0.99  # حساسية الاختبار (إذا كان مريضاً، يظهر إيجابي)
-specificity = 0.99  # خصوصية الاختبار (إذا كان سليماً، يظهر سلبي)
-
-# احتمال إيجابي كلي
-p_positive = sensitivity * prior + (1 - specificity) * (1 - prior)
-
-# احتمال الإصابة إذا كانت النتيجة إيجابية
+# قانون بايز
+print("\\n3️⃣ قانون بايز:")
+prior = 0.01
+sensitivity = 0.99
+p_positive = sensitivity * prior + (1 - 0.99) * (1 - prior)
 posterior = (sensitivity * prior) / p_positive
-
-print(f"احتمال الإصابة مسبقاً: {prior}")
-print(f"حساسية الاختبار: {sensitivity}")
-print(f"خصوصية الاختبار: {specificity}")
-print(f"إذا ظهرت نتيجة إيجابية، احتمال أن يكون الشخص مريضاً: {posterior:.2f}")
-
-print("\\n✅ هذا يوضح أهمية الاحتمال الشرطي في التشخيص الطبي")`,
-                quiz: {
-                    question: "ما هو التوزيع الطبيعي؟",
-                    options: [
-                        "توزيع متماثل على شكل جرس",
-                        "توزيع غير متماثل",
-                        "توزيع لبيانات منفصلة فقط",
-                        "توزيع لا نهائي"
-                    ],
-                    correct: 0
-                }
+print(f"احتمال الإصابة إذا كانت النتيجة إيجابية: {posterior:.2f}")`,
+                quiz: { question: "ما هو التوزيع الطبيعي؟", options: ["توزيع متماثل على شكل جرس", "توزيع غير متماثل", "توزيع لبيانات منفصلة فقط", "توزيع لا نهائي"], correct: 0 }
             },
 
-            // ===== الوحدة 2: التعلم الآلي (Machine Learning) - الدروس 4-6 =====
+            // ===== الوحدة 2: التعلم الآلي (الدروس 4-6) =====
             {
                 id: 4,
                 unit: 2,
@@ -342,201 +898,116 @@ print("\\n✅ هذا يوضح أهمية الاحتمال الشرطي في ال
                     "ما هو التعلم الآلي؟ تعريف وأهمية",
                     "أنواع التعلم: خاضع للإشراف، غير خاضع للإشراف، تعلم معزز",
                     "مجموعات البيانات: تدريب، تحقق، اختبار",
-                    "تقييم النماذج: الدقة، مصفوفة الارتباك، منحنيات ROC"
+                    "تقييم النماذج: الدقة، مصفوفة الارتباك"
                 ],
                 code: `# الدرس 2.1: مقدمة في التعلم الآلي
-import numpy as np
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.metrics import accuracy_score
 
 print("=" * 60)
 print("🤖 مقدمة في التعلم الآلي")
-print("=" * 60)
-
-# تحميل بيانات القزحية (Iris dataset)
-iris = datasets.load_iris()
-X = iris.data  # الميزات
-y = iris.target  # الهدف
-
-print(f"عدد العينات: {len(X)}")
-print(f"عدد الميزات: {X.shape[1]}")
-print(f"عدد الفئات: {len(np.unique(y))}")
-print(f"أسماء الفئات: {iris.target_names}")
-
-# تقسيم البيانات
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-print(f"\\nحجم مجموعة التدريب: {len(X_train)} ({len(X_train)/len(X)*100:.0f}%)")
-print(f"حجم مجموعة الاختبار: {len(X_test)} ({len(X_test)/len(X)*100:.0f}%)")
-
-# تدريب نموذج بسيط
-knn = KNeighborsClassifier(n_neighbors=3)
-knn.fit(X_train, y_train)
-
-# توقع وتقييم
-y_pred = knn.predict(X_test)
-accuracy = accuracy_score(y_test, y_pred)
-
-print(f"\\n🎯 دقة النموذج: {accuracy:.2f}")
-
-print("\\n📊 مصفوفة الارتباك:")
-print(confusion_matrix(y_test, y_pred))
-
-print("\\n📋 تقرير التصنيف:")
-print(classification_report(y_test, y_pred, target_names=iris.target_names))`,
-                quiz: {
-                    question: "ما هو التعلم الخاضع للإشراف؟",
-                    options: [
-                        "تعلم بدون بيانات مصنفة",
-                        "تعلم ببيانات مصنفة (معروفة النتائج)",
-                        "تعلم من خلال التفاعل مع البيئة",
-                        "تعلم عميق فقط"
-                    ],
-                    correct: 1
-                }
-            },
-            {
-                id: 5,
-                unit: 2,
-                title: "الانحدار الخطي (Linear Regression)",
-                keyPoints: [
-                    "الانحدار الخطي: توقع قيمة مستمرة",
-                    "معادلة الخط: y = mx + b",
-                    "تقييم النموذج: MSE, RMSE, MAE, R²",
-                    "تطبيقات: توقع الأسعار، المبيعات، درجات الحرارة"
-                ],
-                code: `# الدرس 2.2: الانحدار الخطي
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
-
-print("=" * 60)
-print("📈 الانحدار الخطي (Linear Regression)")
-print("=" * 60)
-
-# إنشاء بيانات وهمية
-np.random.seed(42)
-X = np.random.rand(100, 1) * 10  # 0-10
-y = 3 * X.squeeze() + 5 + np.random.randn(100) * 2  # y = 3x + 5 + noise
-
-print("البيانات: العلاقة بين X و Y")
-
-# تدريب النموذج
-model = LinearRegression()
-model.fit(X, y)
-
-# معاملات النموذج
-print(f"\\n📐 معاملات النموذج:")
-print(f"معامل الانحدار (الوزن - Slope): {model.coef_[0]:.2f}")
-print(f"التقاطع (Intercept): {model.intercept_:.2f}")
-print(f"المعادلة: y = {model.coef_[0]:.2f}x + {model.intercept_:.2f}")
-
-# توقع
-y_pred = model.predict(X)
-
-# تقييم
-mse = mean_squared_error(y, y_pred)
-rmse = np.sqrt(mse)
-mae = mean_absolute_error(y, y_pred)
-r2 = r2_score(y, y_pred)
-
-print(f"\\n📊 مقاييس التقييم:")
-print(f"MSE (متوسط مربعات الأخطاء): {mse:.2f}")
-print(f"RMSE (جذر متوسط مربعات الأخطاء): {rmse:.2f}")
-print(f"MAE (متوسط الأخطاء المطلقة): {mae:.2f}")
-print(f"R² (معامل التحديد): {r2:.2f} (كلما اقترب من 1 كان أفضل)")
-
-print("\\n🔍 تفسير R²:")
-print(f"النموذج يفسر {r2*100:.1f}% من التباين في البيانات")`,
-                quiz: {
-                    question: "ما هي دالة MSE؟",
-                    options: [
-                        "متوسط الأخطاء المطلقة",
-                        "متوسط مربعات الأخطاء",
-                        "جذر متوسط مربعات الأخطاء",
-                        "معامل التحديد"
-                    ],
-                    correct: 1
-                }
-            },
-            {
-                id: 6,
-                unit: 2,
-                title: "التصنيف باستخدام K-Nearest Neighbors",
-                keyPoints: [
-                    "خوارزمية الجيران الأقرب (KNN): مبدأ العمل",
-                    "اختيار قيمة K المناسبة (التحيز والتباين)",
-                    "تطبيقات: تصنيف الصور، توصيات المنتجات، تشخيص طبي",
-                    "مقارنة مع خوارزميات تصنيف أخرى"
-                ],
-                code: `# الدرس 2.3: تصنيف K-Nearest Neighbors (KNN)
-import numpy as np
-from sklearn import datasets
-from sklearn.model_selection import train_test_split, cross_val_score
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
-
-print("=" * 60)
-print("🎯 تصنيف باستخدام K-Nearest Neighbors (KNN)")
 print("=" * 60)
 
 # تحميل بيانات Iris
 iris = datasets.load_iris()
 X, y = iris.data, iris.target
 
-print("بيانات Iris:")
-print(f"- 150 عينة من زهور القزحية")
-print(f"- 4 ميزات: طول وعرض الكأس، طول وعرض البتلة")
-print(f"- 3 فئات: Setosa, Versicolor, Virginica")
+print(f"عدد العينات: {len(X)}")
+print(f"عدد الميزات: {X.shape[1]}")
+print(f"عدد الفئات: {len(set(y))}")
 
 # تقسيم البيانات
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# تجربة قيم K مختلفة
-print("\\n📊 تجربة قيم K مختلفة:")
-k_values = [1, 3, 5, 7, 9, 11, 15]
-accuracies = []
+# تدريب نموذج KNN
+knn = KNeighborsClassifier(n_neighbors=3)
+knn.fit(X_train, y_train)
 
+# تقييم
+y_pred = knn.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"\\n🎯 دقة النموذج: {accuracy:.2f}")`,
+                quiz: { question: "ما هو التعلم الخاضع للإشراف؟", options: ["تعلم بدون بيانات مصنفة", "تعلم ببيانات مصنفة", "تعلم من خلال التفاعل", "تعلم عميق فقط"], correct: 1 }
+            },
+            {
+                id: 5,
+                unit: 2,
+                title: "الانحدار الخطي",
+                keyPoints: [
+                    "الانحدار الخطي: توقع قيمة مستمرة",
+                    "معادلة الخط: y = mx + b",
+                    "تقييم النموذج: MSE, RMSE, R²",
+                    "تطبيقات: توقع الأسعار، المبيعات"
+                ],
+                code: `# الدرس 2.2: الانحدار الخطي
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+print("=" * 60)
+print("📈 الانحدار الخطي")
+print("=" * 60)
+
+# إنشاء بيانات
+np.random.seed(42)
+X = np.random.rand(100, 1) * 10
+y = 3 * X.squeeze() + 5 + np.random.randn(100) * 2
+
+# تدريب النموذج
+model = LinearRegression()
+model.fit(X, y)
+
+print(f"المعادلة: y = {model.coef_[0]:.2f}x + {model.intercept_:.2f}")
+
+# تقييم
+y_pred = model.predict(X)
+r2 = r2_score(y, y_pred)
+rmse = np.sqrt(mean_squared_error(y, y_pred))
+
+print(f"R²: {r2:.2f}")
+print(f"RMSE: {rmse:.2f}")`,
+                quiz: { question: "ما هي دالة MSE؟", options: ["متوسط الأخطاء المطلقة", "متوسط مربعات الأخطاء", "جذر متوسط مربعات الأخطاء", "معامل التحديد"], correct: 1 }
+            },
+            {
+                id: 6,
+                unit: 2,
+                title: "تصنيف K-Nearest Neighbors",
+                keyPoints: [
+                    "خوارزمية الجيران الأقرب (KNN): مبدأ العمل",
+                    "اختيار قيمة K المناسبة",
+                    "تطبيقات: تصنيف الصور، توصيات المنتجات",
+                    "مقارنة مع خوارزميات تصنيف أخرى"
+                ],
+                code: `# الدرس 2.3: تصنيف KNN
+from sklearn import datasets
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.neighbors import KNeighborsClassifier
+import numpy as np
+
+print("=" * 60)
+print("🎯 تصنيف KNN")
+print("=" * 60)
+
+# تحميل البيانات
+iris = datasets.load_iris()
+X, y = iris.data, iris.target
+
+# تجربة قيم K مختلفة
+k_values = [1, 3, 5, 7, 9, 11]
+print("قيم K المختلفة:")
 for k in k_values:
     knn = KNeighborsClassifier(n_neighbors=k)
-    # استخدام التحقق المتقاطع لتقييم أفضل
-    scores = cross_val_score(knn, X_train, y_train, cv=5)
-    mean_acc = scores.mean()
-    accuracies.append(mean_acc)
-    print(f"K = {k}: دقة تحقق متقاطع {mean_acc:.3f} (+/- {scores.std()*2:.3f})")
+    scores = cross_val_score(knn, X, y, cv=5)
+    print(f"K = {k}: دقة {scores.mean():.3f} (+/- {scores.std()*2:.3f})")
 
-# اختيار أفضل K
-best_k = k_values[np.argmax(accuracies)]
-print(f"\\n✅ أفضل قيمة K: {best_k}")
-
-# تدريب النموذج النهائي
+# أفضل قيمة K
+best_k = 3
 best_knn = KNeighborsClassifier(n_neighbors=best_k)
-best_knn.fit(X_train, y_train)
-
-# تقييم على مجموعة الاختبار
-y_pred = best_knn.predict(X_test)
-test_accuracy = accuracy_score(y_test, y_pred)
-
-print(f"\\n🎯 دقة النموذج على مجموعة الاختبار: {test_accuracy:.3f}")
-
-print("\\n📊 مصفوفة الارتباك:")
-print(confusion_matrix(y_test, y_pred))
-
-print("\\n📋 تقرير التصنيف:")
-print(classification_report(y_test, y_pred, target_names=iris.target_names))`,
-                quiz: {
-                    question: "ما تأثير اختيار قيمة K صغيرة جداً في خوارزمية KNN؟",
-                    options: [
-                        "نموذج بسيط جداً (تحت الملاءمة - Underfitting)",
-                        "نموذج معقد جداً (فرط الملاءمة - Overfitting)",
-                        "لا تأثير",
-                        "النموذج يصبح أبطأ فقط"
-                    ],
-                    correct: 1
-                }
+best_knn.fit(X, y)
+print(f"\\n✅ أفضل قيمة K هي {best_k}")`,
+                quiz: { question: "ما تأثير اختيار قيمة K صغيرة جداً في KNN؟", options: ["نموذج بسيط جداً", "نموذج معقد جداً (Overfitting)", "لا تأثير", "النموذج يصبح أبطأ"], correct: 1 }
             },
 
             // ===== الوحدة 3: التعلم الآلي المتقدم (الدروس 7-9) =====
@@ -546,71 +1017,38 @@ print(classification_report(y_test, y_pred, target_names=iris.target_names))`,
                 title: "أشجار القرار والغابات العشوائية",
                 keyPoints: [
                     "شجرة القرار: هيكل شجري لاتخاذ القرارات",
-                    "معايير تقسيم العقد: Gini، Entropy (Information Gain)",
+                    "معايير تقسيم العقد: Gini، Entropy",
                     "الغابات العشوائية: مجموعة من أشجار القرار",
-                    "مزايا الغابات العشوائية: تقليل فرط الملاءمة، أهمية الميزات"
+                    "مزايا الغابات العشوائية: تقليل فرط الملاءمة"
                 ],
                 code: `# الدرس 3.1: أشجار القرار والغابات العشوائية
-from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import make_classification
-from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-import numpy as np
 
 print("=" * 60)
-print("🌳 أشجار القرار والغابات العشوائية")
+print("🌳 الغابات العشوائية")
 print("=" * 60)
 
-# إنشاء بيانات تصنيف
-X, y = make_classification(n_samples=1000, n_features=10, n_classes=2, random_state=42)
+# إنشاء بيانات
+X, y = make_classification(n_samples=1000, n_features=10, random_state=42)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-print(f"عدد العينات: {len(X)}")
-print(f"عدد الميزات: {X.shape[1]}")
-print(f"عدد الفئات: {len(np.unique(y))}")
-
-# 1. شجرة قرار واحدة
-print("\\n1️⃣ شجرة القرار (Decision Tree):")
-tree = DecisionTreeClassifier(max_depth=5, random_state=42)
-tree.fit(X_train, y_train)
-
-tree_pred = tree.predict(X_test)
-tree_acc = accuracy_score(y_test, tree_pred)
-
-# التحقق المتقاطع
-tree_cv_scores = cross_val_score(tree, X_train, y_train, cv=5)
-print(f"دقة على مجموعة الاختبار: {tree_acc:.3f}")
-print(f"دقة تحقق متقاطع: {tree_cv_scores.mean():.3f} (+/- {tree_cv_scores.std()*2:.3f})")
-
-# 2. غابة عشوائية
-print("\\n2️⃣ غابة عشوائية (Random Forest):")
-rf = RandomForestClassifier(n_estimators=100, max_depth=5, random_state=42, n_jobs=-1)
+# تدريب الغابة العشوائية
+rf = RandomForestClassifier(n_estimators=100, max_depth=5, random_state=42)
 rf.fit(X_train, y_train)
 
-rf_pred = rf.predict(X_test)
-rf_acc = accuracy_score(y_test, rf_pred)
-
-rf_cv_scores = cross_val_score(rf, X_train, y_train, cv=5)
-print(f"دقة على مجموعة الاختبار: {rf_acc:.3f}")
-print(f"دقة تحقق متقاطع: {rf_cv_scores.mean():.3f} (+/- {rf_cv_scores.std()*2:.3f})")
-
-print("\\n✅ الغابات العشوائية تعطي عادةً دقة أفضل وتقلل من فرط الملاءمة")
+# تقييم
+y_pred = rf.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"دقة النموذج: {accuracy:.3f}")
 
 # أهمية الميزات
-print("\\n📊 أهمية الميزات (Feature Importance):")
-for i, importance in enumerate(rf.feature_importances_):
-    print(f"الميزة {i+1}: {importance:.3f}")`,
-                quiz: {
-                    question: "ما هي ميزة الغابات العشوائية على شجرة قرار واحدة؟",
-                    options: [
-                        "أسرع في التدريب",
-                        "تقلل فرط الملاءمة وتحسن الدقة",
-                        "تستخدم بيانات أقل",
-                        "أسهل في الفهم والتفسير"
-                    ],
-                    correct: 1
-                }
+print("\\nأهمية الميزات:")
+for i, imp in enumerate(rf.feature_importances_):
+    print(f"الميزة {i+1}: {imp:.3f}")`,
+                quiz: { question: "ما هي ميزة الغابات العشوائية على شجرة قرار واحدة؟", options: ["أسرع في التدريب", "تقلل فرط الملاءمة وتحسن الدقة", "تستخدم بيانات أقل", "أسهل في الفهم"], correct: 1 }
             },
             {
                 id: 8,
@@ -618,187 +1056,83 @@ for i, importance in enumerate(rf.feature_importances_):
                 title: "آلات المتجهات الداعمة (SVM)",
                 keyPoints: [
                     "مبدأ SVM: إيجاد أفضل مستوى فاصل بين الفئات",
-                    "المتجهات الداعمة (Support Vectors): النقاط الأقرب لحدود القرار",
-                    "تطبيقات: تصنيف النصوص، الصور، التعرف على الوجوه",
-                    "دوال النواة (Kernels) للبيانات غير الخطية: RBF, Polynomial, Sigmoid"
+                    "المتجهات الداعمة: النقاط الأقرب لحدود القرار",
+                    "دوال النواة للبيانات غير الخطية",
+                    "تطبيقات: تصنيف النصوص، الصور"
                 ],
-                code: `# الدرس 3.2: آلات المتجهات الداعمة (SVM)
+                code: `# الدرس 3.2: آلات المتجهات الداعمة SVM
 from sklearn import svm
-from sklearn.datasets import make_classification, make_blobs
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.metrics import accuracy_score, classification_report
-import numpy as np
+from sklearn.datasets import make_blobs
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
 print("=" * 60)
-print("📐 آلات المتجهات الداعمة (SVM)")
+print("📐 آلات المتجهات الداعمة SVM")
 print("=" * 60)
 
-# إنشاء بيانات قابلة للفصل خطياً
+# إنشاء بيانات
 X, y = make_blobs(n_samples=200, centers=2, random_state=42, cluster_std=1.5)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-print("البيانات: فئتان مع فصل واضح")
+# SVM بنواة خطية
+svm_model = svm.SVC(kernel='linear', C=1.0)
+svm_model.fit(X_train, y_train)
 
-# 1. SVM بنواة خطية
-print("\\n1️⃣ SVM بنواة خطية (Linear Kernel):")
-svm_linear = svm.SVC(kernel='linear', C=1.0)
-svm_linear.fit(X_train, y_train)
-linear_pred = svm_linear.predict(X_test)
-linear_acc = accuracy_score(y_test, linear_pred)
-
-print(f"الدقة: {linear_acc:.3f}")
-print(f"عدد المتجهات الداعمة: {len(svm_linear.support_vectors_)}")
-
-# 2. SVM بنواة RBF (للبيانات غير الخطية)
-print("\\n2️⃣ SVM بنواة RBF (RBF Kernel):")
-svm_rbf = svm.SVC(kernel='rbf', C=1.0, gamma='scale')
-svm_rbf.fit(X_train, y_train)
-rbf_pred = svm_rbf.predict(X_test)
-rbf_acc = accuracy_score(y_test, rbf_pred)
-
-print(f"الدقة: {rbf_acc:.3f}")
-print(f"عدد المتجهات الداعمة: {len(svm_rbf.support_vectors_)}")
-
-# 3. تحسين المعلمات باستخدام Grid Search
-print("\\n3️⃣ تحسين المعلمات (Hyperparameter Tuning):")
-param_grid = {
-    'C': [0.1, 1, 10, 100],
-    'gamma': ['scale', 'auto', 0.01, 0.1, 1],
-    'kernel': ['rbf', 'poly', 'sigmoid']
-}
-
-grid_search = GridSearchCV(svm.SVC(), param_grid, cv=5, scoring='accuracy', n_jobs=-1)
-grid_search.fit(X_train, y_train)
-
-print(f"أفضل المعلمات: {grid_search.best_params_}")
-print(f"أفضل دقة: {grid_search.best_score_:.3f}")
-
-best_model = grid_search.best_estimator_
-best_pred = best_model.predict(X_test)
-best_acc = accuracy_score(y_test, best_pred)
-print(f"دقة النموذج المحسن على الاختبار: {best_acc:.3f}")`,
-                quiz: {
-                    question: "ما هي وظيفة المتجهات الداعمة في SVM؟",
-                    options: [
-                        "جميع نقاط البيانات",
-                        "النقاط الأقرب لحدود القرار",
-                        "النقاط الأبعد عن الحدود",
-                        "النقاط العشوائية"
-                    ],
-                    correct: 1
-                }
+y_pred = svm_model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"دقة SVM: {accuracy:.3f}")
+print(f"عدد المتجهات الداعمة: {len(svm_model.support_vectors_)}")`,
+                quiz: { question: "ما هي وظيفة المتجهات الداعمة في SVM؟", options: ["جميع نقاط البيانات", "النقاط الأقرب لحدود القرار", "النقاط الأبعد عن الحدود", "نقاط عشوائية"], correct: 1 }
             },
             {
                 id: 9,
                 unit: 3,
-                title: "التجميع باستخدام K-Means",
+                title: "تجميع K-Means",
                 keyPoints: [
                     "التعلم غير الخاضع للإشراف: لا توجد تسميات مسبقة",
                     "خوارزمية K-Means: تجميع البيانات المتشابهة معاً",
-                    "اختيار قيمة K المناسبة (طريقة الكوع - Elbow Method)",
-                    "تطبيقات: تجزئة العملاء (Customer Segmentation)، ضغط الصور"
+                    "اختيار قيمة K المناسبة (طريقة الكوع)",
+                    "تطبيقات: تجزئة العملاء"
                 ],
                 code: `# الدرس 3.3: تجميع K-Means
 from sklearn.cluster import KMeans
 from sklearn.datasets import make_blobs
-from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import silhouette_score
-import numpy as np
-import matplotlib.pyplot as plt
 
 print("=" * 60)
-print("🔵 تجميع K-Means (Clustering)")
+print("🔵 تجميع K-Means")
 print("=" * 60)
 
-# إنشاء بيانات عنقودية
-X, y_true = make_blobs(n_samples=500, centers=4, cluster_std=1.5, random_state=42)
-
-# توحيد البيانات (Standardization)
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
-
-print(f"عدد العينات: {len(X)}")
-print("البيانات تتكون من 4 عناقيد حقيقية")
+# إنشاء بيانات
+X, _ = make_blobs(n_samples=300, centers=4, cluster_std=0.8, random_state=42)
 
 # تطبيق K-Means
-print("\\n1️⃣ تطبيق K-Means:")
 kmeans = KMeans(n_clusters=4, random_state=42, n_init=10)
-kmeans.fit(X_scaled)
-y_pred = kmeans.labels_
+kmeans.fit(X)
 
-print("✅ تم تجميع البيانات")
+# تقييم
+silhouette_avg = silhouette_score(X, kmeans.labels_)
+print(f"معامل الصورة الظلية: {silhouette_avg:.3f}")
 
-# مراكز العناقيد
-centers = kmeans.cluster_centers_
-print("\\nمراكز العناقيد (بعد التوحيد):")
-for i, center in enumerate(centers):
-    print(f"عنقود {i+1}: ({center[0]:.2f}, {center[1]:.2f})")
-
-# تقييم التجميع
-silhouette_avg = silhouette_score(X_scaled, y_pred)
-print(f"\\n📊 معامل الصورة الظلية (Silhouette Score): {silhouette_avg:.3f}")
-print("(القرب من 1 يعني تجميع جيد، القرب من -1 يعني تجميع سيء)")
-
-# 2. طريقة الكوع لاختيار K
-print("\\n2️⃣ طريقة الكوع (Elbow Method) لاختيار K:")
-inertias = []
-silhouette_scores = []
-K_range = range(2, 9)
-
-for k in K_range:
-    kmeans_temp = KMeans(n_clusters=k, random_state=42, n_init=10)
-    kmeans_temp.fit(X_scaled)
-    inertias.append(kmeans_temp.inertia_)
-    silhouette_scores.append(silhouette_score(X_scaled, kmeans_temp.labels_))
-
-print("K\t| Inertia\t| Silhouette")
-print("-" * 40)
-for k, inert, sil in zip(K_range, inertias, silhouette_scores):
-    print(f"K={k}\t| {inert:.0f}\t| {sil:.3f}")
-
-best_k = K_range[np.argmax(silhouette_scores)]
-print(f"\\n✅ أفضل قيمة K حسب معامل الصورة الظلية: {best_k}")
-
-# 3. تطبيق تجزئة العملاء
-print("\\n3️⃣ تطبيق عملي: تجزئة العملاء")
-print("""
-يمكن استخدام K-Means لتجزئة العملاء بناءً على:
-- عمر العميل
-- الدخل السنوي
-- عدد المشتريات
-- متوسط قيمة المشتريات
-
-هذا يساعد في:
-- استهداف كل فئة بحملات تسويقية مخصصة
-- فهم سلوك العملاء بشكل أفضل
-- تحسين خدمة العملاء
-""")`,
-                quiz: {
-                    question: "ما هو الهدف من خوارزمية K-Means؟",
-                    options: [
-                        "تصنيف بيانات مصنفة",
-                        "تقسيم البيانات غير المصنفة إلى مجموعات متشابهة",
-                        "توقع قيم مستمرة",
-                        "تقليل أبعاد البيانات"
-                    ],
-                    correct: 1
-                }
+print("مراكز العناقيد:")
+for i, center in enumerate(kmeans.cluster_centers_):
+    print(f"عنقود {i+1}: ({center[0]:.2f}, {center[1]:.2f})")`,
+                quiz: { question: "ما هو الهدف من خوارزمية K-Means؟", options: ["تصنيف بيانات مصنفة", "تقسيم البيانات غير المصنفة إلى مجموعات", "توقع قيم مستمرة", "تقليل أبعاد البيانات"], correct: 1 }
             },
 
-            // ===== الوحدة 4: الشبكات العصبية والتعلم العميق (الدروس 10-12) =====
+            // ===== الوحدة 4: الشبكات العصبية (الدروس 10-12) =====
             {
                 id: 10,
                 unit: 4,
                 title: "مقدمة في الشبكات العصبية",
                 keyPoints: [
-                    "الخلية العصبية الاصطناعية (Perceptron): تشبه الخلية العصبية البيولوجية",
-                    "الطبقات: طبقة الإدخال، طبقات مخفية، طبقة الإخراج",
+                    "الخلية العصبية الاصطناعية (Perceptron)",
+                    "الطبقات: الإدخال، المخفية، الإخراج",
                     "دوال التنشيط: Sigmoid, ReLU, Tanh, Softmax",
-                    "الانتشار الأمامي (Forward Propagation) والخلفي (Backpropagation)"
+                    "الانتشار الأمامي والخلفي"
                 ],
                 code: `# الدرس 4.1: مقدمة في الشبكات العصبية
 import numpy as np
-import matplotlib.pyplot as plt
 
 print("=" * 60)
 print("🧠 مقدمة في الشبكات العصبية")
@@ -814,219 +1148,89 @@ def relu(x):
 def tanh(x):
     return np.tanh(x)
 
-def softmax(x):
-    exp_x = np.exp(x - np.max(x))
-    return exp_x / exp_x.sum()
-
-print("1️⃣ دوال التنشيط (Activation Functions):")
+# اختبار الدوال
 x_values = [-5, -2, 0, 2, 5]
-print("x\t| Sigmoid\t| ReLU\t| Tanh")
-print("-" * 45)
+print("دوال التنشيط:")
+print("x\\t| Sigmoid\\t| ReLU\\t| Tanh")
 for x in x_values:
-    print(f"{x}\t| {sigmoid(x):.3f}\t\t| {relu(x)}\t| {tanh(x):.3f}")
+    print(f"{x}\\t| {sigmoid(x):.3f}\\t\\t| {relu(x)}\\t| {tanh(x):.3f}")
 
-# مثال على Softmax
-print("\\n2️⃣ Softmax للتوزيع الاحتمالي:")
-logits = np.array([2.0, 1.0, 0.1])
-probs = softmax(logits)
-print(f"المدخلات (logits): {logits}")
-print(f"الاحتمالات: {probs}")
-print(f"مجموع الاحتمالات: {np.sum(probs):.1f}")
-
-# نموذج Perceptron بسيط
-print("\\n3️⃣ نموذج Perceptron:")
+# Perceptron بسيط
 class Perceptron:
-    def __init__(self, n_features, learning_rate=0.01):
+    def __init__(self, n_features):
         self.weights = np.random.randn(n_features) * 0.1
         self.bias = 0
-        self.lr = learning_rate
     
-    def forward(self, X):
-        z = np.dot(X, self.weights) + self.bias
-        return 1 if z > 0 else 0
-    
-    def train(self, X, y, epochs=10):
-        for epoch in range(epochs):
-            total_error = 0
-            for xi, target in zip(X, y):
-                prediction = self.forward(xi)
-                error = target - prediction
-                total_error += abs(error)
-                
-                # تحديث الوزنات
-                self.weights += self.lr * error * xi
-                self.bias += self.lr * error
-            
-            if epoch % 2 == 0:
-                print(f"Epoch {epoch}, الخطأ: {total_error}")
+    def predict(self, X):
+        return 1 if np.dot(X, self.weights) + self.bias > 0 else 0
 
-# بيانات بسيطة للتدريب
-X_train = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
-y_train = np.array([0, 0, 0, 1])  # AND gate
-
-perceptron = Perceptron(2)
-print("تدريب Perceptron على بوابة AND:")
-perceptron.train(X_train, y_train, epochs=5)
-
-print("\\nالنتائج بعد التدريب:")
-for xi in X_train:
-    pred = perceptron.forward(xi)
-    print(f"المدخلات: {xi}, التوقع: {pred}")`,
-                quiz: {
-                    question: "ما وظيفة دالة التنشيط في الشبكة العصبية؟",
-                    options: [
-                        "تحديد وزن الاتصالات",
-                        "إضافة لا خطية للنموذج",
-                        "تسريع التدريب",
-                        "تقليل الأبعاد"
-                    ],
-                    correct: 1
-                }
+p = Perceptron(2)
+print("\\n✅ تم إنشاء نموذج Perceptron")`,
+                quiz: { question: "ما وظيفة دالة التنشيط في الشبكة العصبية؟", options: ["تحديد وزن الاتصالات", "إضافة لا خطية للنموذج", "تسريع التدريب", "تقليل الأبعاد"], correct: 1 }
             },
             {
                 id: 11,
                 unit: 4,
                 title: "بناء شبكة عصبية بسيطة",
                 keyPoints: [
-                    "تصنيف الصور باستخدام شبكة عصبية متعددة الطبقات",
-                    "مجموعة بيانات MNIST للأرقام المكتوبة بخط اليد",
-                    "تدريب الشبكة: نزول التدرج (Gradient Descent)",
-                    "تحسين الأداء: ضبط المعلمات، منع فرط الملاءمة"
+                    "تصنيف الصور باستخدام شبكة عصبية",
+                    "مجموعة بيانات MNIST",
+                    "تدريب الشبكة: نزول التدرج",
+                    "تحسين الأداء: منع فرط الملاءمة"
                 ],
                 code: `# الدرس 4.2: بناء شبكة عصبية بسيطة
-import numpy as np
 from sklearn.datasets import load_digits
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
-from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import accuracy_score
 
 print("=" * 60)
 print("🔨 بناء شبكة عصبية بسيطة")
 print("=" * 60)
 
-# تحميل بيانات الأرقام المكتوبة بخط اليد
+# تحميل بيانات الأرقام
 digits = load_digits()
 X, y = digits.data, digits.target
 
 print(f"عدد الصور: {len(X)}")
-print(f"أبعاد كل صورة: 8x8 بيكسل (64 ميزة)")
-print(f"عدد الفئات: {len(np.unique(y))}")
-
-# عرض صورة كمثال
-print("\\nمثال على صورة رقمية:")
-print(digits.images[0])
-print(f"التسمية: {y[0]}")
-
-# تطبيع البيانات
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
+print(f"أبعاد كل صورة: 8x8 بيكسل")
 
 # تقسيم البيانات
-X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-print(f"\\nحجم التدريب: {len(X_train)}")
-print(f"حجم الاختبار: {len(X_test)}")
-
-# بناء شبكة عصبية
-print("\\n1️⃣ بناء نموذج بطبقة مخفية واحدة:")
-mlp1 = MLPClassifier(
-    hidden_layer_sizes=(100,),
-    activation='relu',
-    solver='adam',
-    max_iter=500,
-    random_state=42
-)
-
-print("🔄 جاري تدريب الشبكة...")
-mlp1.fit(X_train, y_train)
+# بناء الشبكة
+mlp = MLPClassifier(hidden_layer_sizes=(100,), max_iter=500, random_state=42)
+mlp.fit(X_train, y_train)
 
 # تقييم
-y_pred1 = mlp1.predict(X_test)
-accuracy1 = accuracy_score(y_test, y_pred1)
-print(f"دقة النموذج: {accuracy1:.3f}")
-print(f"عدد التكرارات: {mlp1.n_iter_}")
-
-print("\\n2️⃣ بناء نموذج بطبقتين مخفيتين:")
-mlp2 = MLPClassifier(
-    hidden_layer_sizes=(100, 50),
-    activation='relu',
-    solver='adam',
-    max_iter=500,
-    random_state=42
-)
-
-mlp2.fit(X_train, y_train)
-y_pred2 = mlp2.predict(X_test)
-accuracy2 = accuracy_score(y_test, y_pred2)
-print(f"دقة النموذج: {accuracy2:.3f}")
-
-print("\\n3️⃣ تجربة معاملات مختلفة:")
-configs = [
-    ((50,), 0.001),
-    ((100,), 0.01),
-    ((100,50), 0.001),
-    ((100,50), 0.01)
-]
-
-for i, (layers, lr) in enumerate(configs):
-    mlp = MLPClassifier(
-        hidden_layer_sizes=layers,
-        learning_rate_init=lr,
-        max_iter=300,
-        random_state=42
-    )
-    mlp.fit(X_train, y_train)
-    acc = mlp.score(X_test, y_test)
-    print(f"تكوين {i+1}: طبقات {layers}, معدل تعلم {lr} -> دقة {acc:.3f}")
-
-print("\\n📊 مصفوفة الارتباك لأفضل نموذج:")
-print(confusion_matrix(y_test, y_pred2))`,
-                quiz: {
-                    question: "ما هي وظيفة الطبقات المخفية في الشبكة العصبية؟",
-                    options: [
-                        "إدخال البيانات فقط",
-                        "إخراج النتائج فقط",
-                        "استخراج الميزات المعقدة من البيانات",
-                        "لا فائدة منها"
-                    ],
-                    correct: 2
-                }
+y_pred = mlp.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"دقة النموذج: {accuracy:.3f}")`,
+                quiz: { question: "ما هي وظيفة الطبقات المخفية في الشبكة العصبية؟", options: ["إدخال البيانات", "إخراج النتائج", "استخراج الميزات المعقدة", "لا فائدة منها"], correct: 2 }
             },
             {
                 id: 12,
                 unit: 4,
-                title: "التعلم العميق باستخدام TensorFlow/Keras",
+                title: "التعلم العميق باستخدام TensorFlow",
                 keyPoints: [
-                    "مقدمة إلى TensorFlow و Keras: مكتبات التعلم العميق",
-                    "بناء نماذج متعددة الطبقات (Sequential API)",
-                    "منع فرط الملاءمة: Dropout, Early Stopping, Regularization",
-                    "حفظ وتحميل النماذج المدربة"
+                    "مقدمة إلى TensorFlow و Keras",
+                    "بناء نماذج متعددة الطبقات",
+                    "منع فرط الملاءمة: Dropout, Early Stopping",
+                    "حفظ وتحميل النماذج"
                 ],
-                code: `# الدرس 4.3: التعلم العميق باستخدام TensorFlow/Keras
-# ملاحظة: هذا مثال توضيحي، يتطلب تثبيت TensorFlow للتشغيل الفعلي
-
+                code: `# الدرس 4.3: التعلم العميق باستخدام TensorFlow
 print("=" * 60)
-print("🤖 التعلم العميق باستخدام TensorFlow/Keras")
+print("🤖 التعلم العميق باستخدام TensorFlow")
 print("=" * 60)
 
 print("""
-مثال على نموذج TensorFlow / Keras لتصنيف الأرقام:
+مثال على نموذج TensorFlow/Keras:
 
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 
-# 1️⃣ تحميل بيانات MNIST
-(x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
-
-# 2️⃣ معالجة البيانات
-x_train = x_train.astype('float32') / 255.0
-x_test = x_test.astype('float32') / 255.0
-x_train = x_train.reshape(-1, 28*28)
-x_test = x_test.reshape(-1, 28*28)
-
-# 3️⃣ بناء النموذج
+# بناء النموذج
 model = keras.Sequential([
     layers.Dense(128, activation='relu', input_shape=(784,)),
     layers.Dropout(0.2),
@@ -1035,64 +1239,23 @@ model = keras.Sequential([
     layers.Dense(10, activation='softmax')
 ])
 
-# 4️⃣ تجميع النموذج
+# تجميع النموذج
 model.compile(
     optimizer='adam',
     loss='sparse_categorical_crossentropy',
     metrics=['accuracy']
 )
 
-print(model.summary())
-
-# 5️⃣ تدريب النموذج مع Early Stopping
-early_stopping = keras.callbacks.EarlyStopping(
-    monitor='val_loss',
-    patience=3,
-    restore_best_weights=True
-)
-
-history = model.fit(
-    x_train, y_train,
-    epochs=20,
-    validation_split=0.2,
-    callbacks=[early_stopping],
-    verbose=1
-)
-
-# 6️⃣ تقييم النموذج
-test_loss, test_acc = model.evaluate(x_test, y_test)
-print(f"دقة الاختبار: {test_acc:.4f}")
-
-# 7️⃣ حفظ النموذج
-model.save('mnist_model.h5')
-print("تم حفظ النموذج")
-
-# 8️⃣ تحميل النموذج
-loaded_model = keras.models.load_model('mnist_model.h5')
+# تدريب النموذج
+history = model.fit(x_train, y_train, epochs=10, validation_split=0.2)
 """)
 
 print("\\n📊 مميزات TensorFlow:")
-print("- بناء نماذج معقدة بسهولة باستخدام Keras API")
-print("- تدريب على GPU و TPU لتسريع التدريب")
-print("- دعم واسع للنماذج الجاهزة (Transfer Learning)")
-print("- نشر النماذج على أجهزة متعددة (Mobile, Web, Cloud)")
-print("- مجتمع كبير ومكتبات غنية")
-
-print("\\n📋 تقنيات تحسين النماذج:")
-print("1. Dropout: تعطيل عشوائي للخلايا العصبية أثناء التدريب")
-print("2. Batch Normalization: توحيد مخرجات الطبقات")
-print("3. Early Stopping: إيقاف التدريب عند عدم تحسن الأداء")
-print("4. Data Augmentation: زيادة البيانات بتعديلات بسيطة")`,
-                quiz: {
-                    question: "ما هي وظيفة Dropout في الشبكات العصبية؟",
-                    options: [
-                        "تسريع التدريب",
-                        "منع فرط الملاءمة",
-                        "زيادة دقة التدريب",
-                        "تقليل حجم النموذج"
-                    ],
-                    correct: 1
-                }
+print("- بناء نماذج معقدة بسهولة")
+print("- تدريب على GPU و TPU")
+print("- دعم Transfer Learning")
+print("- نشر النماذج على أجهزة متعددة")`,
+                quiz: { question: "ما هي وظيفة Dropout في الشبكات العصبية؟", options: ["تسريع التدريب", "منع فرط الملاءمة", "زيادة دقة التدريب", "تقليل حجم النموذج"], correct: 1 }
             },
 
             // ===== الوحدة 5: تقنيات متقدمة (الدروس 13-15) =====
@@ -1101,789 +1264,292 @@ print("4. Data Augmentation: زيادة البيانات بتعديلات بسي
                 unit: 5,
                 title: "معالجة اللغة الطبيعية (NLP)",
                 keyPoints: [
-                    "تمثيل النصوص: Bag of Words, TF-IDF, Word Embeddings",
-                    "تحليل المشاعر (Sentiment Analysis)، تصنيف النصوص",
-                    "نماذج Transformer و BERT: ثورة في معالجة اللغة",
-                    "تطبيقات: ترجمة آلية، تلخيص نصوص، روبوتات محادثة"
+                    "تمثيل النصوص: Bag of Words, TF-IDF",
+                    "تحليل المشاعر، تصنيف النصوص",
+                    "نماذج Transformer و BERT",
+                    "تطبيقات: ترجمة، تلخيص، روبوتات محادثة"
                 ],
-                code: `# الدرس 5.1: معالجة اللغة الطبيعية (NLP)
-import numpy as np
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+                code: `# الدرس 5.1: معالجة اللغة الطبيعية
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
 print("=" * 60)
-print("📝 معالجة اللغة الطبيعية (NLP)")
+print("📝 معالجة اللغة الطبيعية")
 print("=" * 60)
 
-# بيانات نصية للتجربة
+# بيانات نصية
 texts = [
-    "هذا المنتج رائع جداً، أنصح بشرائه",
-    "الخدمة سيئة للغاية، لن أتعامل معهم مرة أخرى",
-    "أحب هذا التطبيق، سهل الاستخدام",
-    "لا أنصح به أبداً، تجربة سيئة",
-    "تجربة ممتازة وسعر مناسب",
-    "خيبة أمل كبيرة، لا يستحق الشراء",
-    "جودة عالية وسرعة في التوصيل",
-    "سيء جداً، لا يعمل كما يجب"
+    "هذا المنتج رائع جداً",
+    "الخدمة سيئة للغاية",
+    "أحب هذا التطبيق",
+    "لا أنصح به أبداً"
 ]
+labels = [1, 0, 1, 0]  # 1: إيجابي، 0: سلبي
 
-labels = [1, 0, 1, 0, 1, 0, 1, 0]  # 1: إيجابي، 0: سلبي
+# تحويل النصوص إلى متجهات
+vectorizer = TfidfVectorizer()
+X = vectorizer.fit_transform(texts)
 
-print("البيانات النصية:")
-for text, label in zip(texts, labels):
-    sentiment = "🔵 إيجابي" if label == 1 else "🔴 سلبي"
-    print(f"- {sentiment}: {text}")
+# تدريب مصنف
+clf = MultinomialNB()
+clf.fit(X, labels)
 
-# 1. تمثيل Bag of Words
-print("\\n1️⃣ تمثيل Bag of Words:")
-vectorizer = CountVectorizer()
-X_bow = vectorizer.fit_transform(texts)
-feature_names = vectorizer.get_feature_names_out()
-print(f"عدد الميزات (الكلمات الفريدة): {len(feature_names)}")
-print(f"عينة من الميزات: {feature_names[:15]}")
-
-# 2. تمثيل TF-IDF
-print("\\n2️⃣ تمثيل TF-IDF (Term Frequency-Inverse Document Frequency):")
-tfidf_vectorizer = TfidfVectorizer()
-X_tfidf = tfidf_vectorizer.fit_transform(texts)
-
-print(f"شكل المصفوفة: {X_tfidf.shape}")
-print("TF-IDF يعطي وزناً أقل للكلمات الشائعة في كل المستندات")
-
-# 3. تدريب مصنف
-print("\\n3️⃣ تدريب مصنف Naive Bayes:")
-X_train, X_test, y_train, y_test = train_test_split(X_tfidf, labels, test_size=0.3, random_state=42)
-
-nb = MultinomialNB()
-nb.fit(X_train, y_train)
-
-# تقييم
-y_pred = nb.predict(X_test)
-accuracy = accuracy_score(y_test, y_pred)
-
-print(f"دقة التصنيف: {accuracy:.2f}")
-
-# 4. تطبيق على نص جديد
-print("\\n4️⃣ تصنيف نص جديد:")
-new_texts = [
-    "منتج ممتاز وسعر رائع",
-    "سيء جداً لا يعمل"
-]
-
-for text in new_texts:
-    X_new = tfidf_vectorizer.transform([text])
-    pred = nb.predict(X_new)[0]
-    proba = nb.predict_proba(X_new)[0]
-    sentiment = "إيجابي" if pred == 1 else "سلبي"
-    print(f"النص: '{text}'")
-    print(f"التصنيف: {sentiment} (ثقة: {max(proba):.2f})")
-
-print("\\n✅ معالجة اللغة الطبيعية تمكن الآلات من فهم وتوليد النصوص")`,
-                quiz: {
-                    question: "ما هو تمثيل TF-IDF؟",
-                    options: [
-                        "عدد تكرار الكلمات فقط",
-                        "وزن الكلمات بناءً على تكرارها في المستند والمجموعة",
-                        "تمثيل الكلمات كأرقام عشوائية",
-                        "تشفير النصوص"
-                    ],
-                    correct: 1
-                }
+# اختبار نص جديد
+new_text = ["منتج ممتاز وسعر رائع"]
+X_new = vectorizer.transform(new_text)
+pred = clf.predict(X_new)[0]
+sentiment = "إيجابي" if pred == 1 else "سلبي"
+print(f"النص: {new_text[0]}")
+print(f"التصنيف: {sentiment}")`,
+                quiz: { question: "ما هو تمثيل TF-IDF؟", options: ["عدد تكرار الكلمات فقط", "وزن الكلمات بناءً على تكرارها", "تمثيل الكلمات كأرقام عشوائية", "تشفير النصوص"], correct: 1 }
             },
             {
                 id: 14,
                 unit: 5,
-                title: "رؤية الكمبيوتر (Computer Vision)",
+                title: "رؤية الكمبيوتر",
                 keyPoints: [
                     "معالجة الصور باستخدام الشبكات العصبية",
-                    "الشبكات العصبية التلافيفية (CNN): استخراج الميزات",
-                    "تصنيف الصور، كشف الأشياء، تجزئة الصور",
-                    "نقل التعلم (Transfer Learning): استخدام نماذج مدربة مسبقاً"
+                    "الشبكات العصبية التلافيفية (CNN)",
+                    "تصنيف الصور، كشف الأشياء",
+                    "نقل التعلم (Transfer Learning)"
                 ],
-                code: `# الدرس 5.2: رؤية الكمبيوتر (Computer Vision)
+                code: `# الدرس 5.2: رؤية الكمبيوتر
 import numpy as np
 
 print("=" * 60)
-print("👁️ رؤية الكمبيوتر (Computer Vision)")
+print("👁️ رؤية الكمبيوتر")
 print("=" * 60)
 
 print("""
-الشبكات العصبية التلافيفية (CNN) تتكون من:
+مكونات الشبكات العصبية التلافيفية (CNN):
 
-1️⃣ الطبقات التلافيفية (Convolutional Layers):
-   - استخراج الميزات من الصور (حواف، أشكال، أنماط)
-   - استخدام مرشحات (Filters) متعددة تتعلم تلقائياً
-   - إخراج: Feature Maps
+1️⃣ الطبقات التلافيفية (Convolutional):
+   - استخراج الميزات من الصور
+   - استخدام مرشحات متعددة
 
-2️⃣ طبقات التجميع (Pooling Layers):
-   - تقليل أبعاد الصور (Downsampling)
-   - الاحتفاظ بالمعلومات المهمة
-   - أنواع: Max Pooling, Average Pooling
+2️⃣ طبقات التجميع (Pooling):
+   - تقليل أبعاد الصور
+   - Max Pooling, Average Pooling
 
-3️⃣ طبقات متصلة بالكامل (Fully Connected):
-   - التصنيف النهائي بناءً على الميزات المستخلصة
-   - غالباً مع Dropout لمنع فرط الملاءمة
+3️⃣ طبقات متصلة بالكامل:
+   - التصنيف النهائي
 """)
 
 # مثال على مرشح كشف الحواف
-edge_detector = np.array([[-1, -1, -1],
-                          [-1,  8, -1],
-                          [-1, -1, -1]])
-
-print("\\nمثال على مرشح كشف الحواف (Edge Detection Filter):")
-print(edge_detector)
-
-# مثال على مرشح blur
-blur_filter = np.ones((3,3)) / 9
-print("\\nمثال على مرشح التمويه (Blur Filter):")
-print(blur_filter)
-
-print("""
-تطبيقات رؤية الكمبيوتر:
-- تصنيف الصور (Image Classification): تحديد محتوى الصورة
-- كشف الأشياء (Object Detection): تحديد موقع الأشياء في الصورة
-- تجزئة الصور (Image Segmentation): تقسيم الصورة إلى أجزاء
-- توليد الصور (Image Generation): إنشاء صور جديدة
-- التعرف على الوجوه (Face Recognition)
-- السيارات ذاتية القيادة (Autonomous Vehicles)
-""")
+edge_filter = np.array([[-1, -1, -1],
+                        [-1,  8, -1],
+                        [-1, -1, -1]])
+print("مرشح كشف الحواف:")
+print(edge_filter)
 
 print("\\n📚 نماذج CNN شهيرة:")
-models = [
-    ("LeNet-5", "1998", "تعرف على الأرقام المكتوبة بخط اليد"),
-    ("AlexNet", "2012", "أول نموذج عميق يفوز بمسابقة ImageNet"),
-    ("VGGNet", "2014", "بساطة التصميم باستخدام مرشحات 3x3"),
-    ("ResNet", "2015", "وصلات الاختصار (Skip Connections) لتدريب شبكات أعمق"),
-    ("Inception", "2014", "مرشحات بأحجام متعددة في نفس الطبقة"),
-    ("EfficientNet", "2019", "توازن بين العمق والعرض والدقة")
-]
-
-for name, year, desc in models:
-    print(f"\\n🔹 {name} ({year}):")
-    print(f"   {desc}")
-
-print("\\n✅ نقل التعلم (Transfer Learning):")
-print("استخدام نماذج مدربة مسبقاً على مجموعات بيانات ضخمة")
-print("ثم إعادة تدريب الطبقات الأخيرة لمهمة محددة")
-print("هذا يوفر وقتاً وجهداً كبيرين ويحسن الأداء")`,
-                quiz: {
-                    question: "ما وظيفة الطبقات التلافيفية في CNN؟",
-                    options: [
-                        "تصغير حجم الصورة",
-                        "استخراج الميزات من الصورة",
-                        "تصنيف الصورة",
-                        "تلوين الصورة"
-                    ],
-                    correct: 1
-                }
+print("- LeNet-5 (1998): التعرف على الأرقام")
+print("- AlexNet (2012): أول نموذج عميق")
+print("- ResNet (2015): وصلات الاختصار")`,
+                quiz: { question: "ما وظيفة الطبقات التلافيفية في CNN؟", options: ["تصغير حجم الصورة", "استخراج الميزات من الصورة", "تصنيف الصورة", "تلوين الصورة"], correct: 1 }
             },
             {
                 id: 15,
                 unit: 5,
-                title: "البيانات الضخمة (Big Data)",
+                title: "البيانات الضخمة",
                 keyPoints: [
-                    "مفهوم البيانات الضخمة: 4Vs (Volume, Velocity, Variety, Veracity)",
-                    "أدوات معالجة البيانات الضخمة: Hadoop, Spark, Flink",
-                    "توزيع المعالجة على مجموعات من الأجهزة (Clusters)",
-                    "تطبيقات: تحليل سجلات الويب، بيانات الاستشعار، وسائل التواصل"
+                    "مفهوم البيانات الضخمة: 4Vs",
+                    "أدوات: Hadoop, Spark, Flink",
+                    "توزيع المعالجة على مجموعات",
+                    "تطبيقات: تحليل سجلات الويب"
                 ],
-                code: `# الدرس 5.3: البيانات الضخمة (Big Data)
-import random
-
+                code: `# الدرس 5.3: البيانات الضخمة
 print("=" * 60)
-print("🌐 البيانات الضخمة (Big Data)")
+print("🌐 البيانات الضخمة")
 print("=" * 60)
 
 print("""
 خصائص البيانات الضخمة (4Vs):
 
-1️⃣ الحجم (Volume): كميات هائلة من البيانات
-   - من تيرابايت إلى بيتابايت
-   - مثال: فيسبوك يولد 4 بيتابايت بيانات يومياً
-
-2️⃣ السرعة (Velocity): سرعة توليد البيانات
-   - بيانات حية، تدفقات مستمرة
-   - مثال: ملايين التغريدات يومياً
-
+1️⃣ الحجم (Volume): كميات هائلة
+2️⃣ السرعة (Velocity): تدفق سريع
 3️⃣ التنوع (Variety): أنواع متعددة
-   - منظمة: قواعد بيانات SQL
-   - غير منظمة: نصوص، صور، فيديو
-   - شبه منظمة: JSON, XML
+4️⃣ المصداقية (Veracity): جودة البيانات
 
-4️⃣ المصداقية (Veracity): جودة ودقة البيانات
-   - التعامل مع الضوضاء والشوائب
-   - التحقق من صحة البيانات
-""")
+أدوات معالجة البيانات الضخمة:
 
-# محاكاة معالجة موزعة
-print("\\n🔧 أدوات معالجة البيانات الضخمة:")
+📌 Apache Hadoop:
+   - HDFS للتخزين الموزع
+   - MapReduce للمعالجة
 
-tools = [
-    ("Apache Hadoop", "تخزين ومعالجة موزعة (MapReduce)", "2006"),
-    ("Apache Spark", "معالجة سريعة في الذاكرة (In-memory)", "2014"),
-    ("Apache Flink", "معالجة تدفقات البيانات (Stream Processing)", "2015"),
-    ("Apache Kafka", "منصة تدفق الأحداث (Event Streaming)", "2011"),
-    ("Apache Hive", "استعلامات SQL على البيانات الضخمة", "2010"),
-    ("Apache HBase", "قاعدة بيانات NoSQL موزعة", "2008")
-]
+📌 Apache Spark:
+   - معالجة سريعة في الذاكرة
+   - أسرع 100 مرة من Hadoop
 
-for tool, desc, year in tools:
-    print(f"\\n📌 {tool} ({year}):")
-    print(f"   {desc}")
+📌 Apache Kafka:
+   - منصة تدفق الأحداث
 
-print("\\n📊 مثال على توزيع المعالجة:")
-data_chunks = 1000000
-nodes = 10
-data_per_node = data_chunks // nodes
-
-print(f"- إجمالي البيانات: {data_chunks:,} قطعة")
-print(f"- عدد العقد: {nodes}")
-print(f"- بيانات كل عقدة: {data_per_node:,} قطعة")
-print(f"- وقت المعالجة التسلسلي: {data_chunks * 0.001:.0f} ثانية")
-print(f"- وقت المعالجة الموزع: {data_per_node * 0.001:.0f} ثانية (مع إهمال وقت الاتصال)")
-
-print("""
-🏗️ Apache Hadoop Ecosystem:
-- HDFS: نظام الملفات الموزع
-- MapReduce: نموذج البرمجة للمعالجة الموزعة
-- YARN: إدارة الموارد وجدولة المهام
-
-⚡ Apache Spark:
-- معالجة أسرع 100 مرة من Hadoop (في الذاكرة)
-- يدعم SQL، تدفقات البيانات، تعلم آلي
-- واجهات برمجة بلغات متعددة
-
-📈 تطبيقات البيانات الضخمة:
+تطبيقات البيانات الضخمة:
 - تحليل سلوك المستخدمين
-- توصيات المنتجات
 - كشف الاحتيال في الوقت الفعلي
-- تحليل مشاعر وسائل التواصل
 - إنترنت الأشياء (IoT)
 """)`,
-                quiz: {
-                    question: "ما هو Apache Spark؟",
-                    options: [
-                        "قاعدة بيانات",
-                        "منصة معالجة بيانات سريعة في الذاكرة",
-                        "لغة برمجة",
-                        "نظام تخزين فقط"
-                    ],
-                    correct: 1
-                }
+                quiz: { question: "ما هو Apache Spark؟", options: ["قاعدة بيانات", "منصة معالجة بيانات سريعة", "لغة برمجة", "نظام تخزين فقط"], correct: 1 }
             },
 
-            // ===== الوحدة 6: مشاريع عملية وخاتمة (الدروس 16-18) =====
+            // ===== الوحدة 6: مشاريع عملية (الدروس 16-18) =====
             {
                 id: 16,
                 unit: 6,
-                title: "مشروع 1: توقعات أسعار المنازل",
+                title: "مشروع توقعات أسعار المنازل",
                 keyPoints: [
                     "تحليل بيانات أسعار المنازل",
-                    "معالجة القيم المفقودة والبيانات الشاذة",
-                    "اختيار الميزات المناسبة وهندسة الميزات",
-                    "بناء وتقييم نماذج انحدار متعددة"
+                    "معالجة القيم المفقودة",
+                    "اختيار الميزات المناسبة",
+                    "بناء وتقييم نماذج انحدار"
                 ],
                 code: `# الدرس 6.1: مشروع توقعات أسعار المنازل
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split, cross_val_score
-from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
-from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
 
-print("=" * 70)
-print("🏠 مشروع 1: توقعات أسعار المنازل")
-print("=" * 70)
+print("=" * 60)
+print("🏠 مشروع توقعات أسعار المنازل")
+print("=" * 60)
 
-# إنشاء بيانات وهمية لمنازل
+# إنشاء بيانات
 np.random.seed(42)
-n_samples = 1000
-
-print("1️⃣ إنشاء بيانات المنازل:")
+n = 500
 data = {
-    'المساحة': np.random.normal(150, 50, n_samples),  # متر مربع
-    'الغرف': np.random.randint(2, 7, n_samples),
-    'الحمامات': np.random.randint(1, 4, n_samples),
-    'العمر': np.random.randint(0, 50, n_samples),  # سنة
-    'المسافة_من_المركز': np.random.uniform(0, 20, n_samples),  # كم
-    'حديقة': np.random.choice([0, 1], n_samples),  # 0: لا, 1: نعم
-    'طابق': np.random.randint(1, 10, n_samples),
-    'واجهة_نهر': np.random.choice([0, 1], n_samples, p=[0.9, 0.1])
+    'المساحة': np.random.normal(150, 50, n),
+    'الغرف': np.random.randint(2, 6, n),
+    'العمر': np.random.randint(0, 40, n),
+    'المسافة_من_المركز': np.random.uniform(0, 15, n)
 }
-
-# إنشاء السعر (الهدف)
 df = pd.DataFrame(data)
-price = (
-    8000 * df['المساحة'] + 
-    25000 * df['الغرف'] + 
-    15000 * df['الحمامات'] - 
-    2000 * df['العمر'] - 
-    5000 * df['المسافة_من_المركز'] + 
-    75000 * df['حديقة'] + 
-    3000 * df['طابق'] + 
-    200000 * df['واجهة_نهر'] + 
-    np.random.normal(0, 50000, n_samples)
-)
-df['السعر'] = price
 
-print(f"تم إنشاء {len(df)} سجل")
+# إنشاء السعر
+df['السعر'] = (8000 * df['المساحة'] + 
+               25000 * df['الغرف'] - 
+               2000 * df['العمر'] - 
+               5000 * df['المسافة_من_المركز'] +
+               np.random.normal(0, 30000, n))
+
+print(f"عدد العينات: {len(df)}")
 print(df.head())
 
-# إضافة بعض القيم المفقودة عمداً
-df.loc[np.random.choice(n_samples, 50), 'المساحة'] = np.nan
-df.loc[np.random.choice(n_samples, 30), 'العمر'] = np.nan
-
-print(f"\\n2️⃣ معالجة القيم المفقودة:")
-print(f"قيم مفقودة قبل المعالجة:\\n{df.isnull().sum()}")
-
-# معالجة القيم المفقودة
-df['المساحة'].fillna(df['المساحة'].mean(), inplace=True)
-df['العمر'].fillna(df['العمر'].median(), inplace=True)
-
-print(f"\\nقيم مفقودة بعد المعالجة:\\n{df.isnull().sum()}")
-
-# تحضير البيانات
+# تدريب النموذج
 X = df.drop('السعر', axis=1)
 y = df['السعر']
-
-# تقسيم البيانات
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# توحيد البيانات
-scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)
-X_test_scaled = scaler.transform(X_test)
+rf = RandomForestRegressor(n_estimators=100, random_state=42)
+rf.fit(X_train, y_train)
 
-print("\\n3️⃣ تدريب نماذج مختلفة:")
+# تقييم
+y_pred = rf.predict(X_test)
+rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+r2 = r2_score(y_test, y_pred)
 
-models = {
-    'Linear Regression': LinearRegression(),
-    'Ridge Regression': Ridge(alpha=1.0),
-    'Lasso Regression': Lasso(alpha=0.1),
-    'Random Forest': RandomForestRegressor(n_estimators=100, max_depth=10, random_state=42)
-}
-
-results = []
-
-for name, model in models.items():
-    model.fit(X_train_scaled, y_train)
-    y_pred = model.predict(X_test_scaled)
-    
-    mse = mean_squared_error(y_test, y_pred)
-    rmse = np.sqrt(mse)
-    mae = mean_absolute_error(y_test, y_pred)
-    r2 = r2_score(y_test, y_pred)
-    
-    # التحقق المتقاطع
-    cv_scores = cross_val_score(model, X_train_scaled, y_train, cv=5, scoring='r2')
-    
-    results.append({
-        'النموذج': name,
-        'RMSE': rmse,
-        'MAE': mae,
-        'R²': r2,
-        'CV R² mean': cv_scores.mean(),
-        'CV R² std': cv_scores.std()
-    })
-    
-    print(f"\\n{name}:")
-    print(f"  RMSE: {rmse:.0f}")
-    print(f"  MAE: {mae:.0f}")
-    print(f"  R²: {r2:.3f}")
-
-# عرض النتائج كجدول
-print("\\n4️⃣ مقارنة النتائج:")
-print("-" * 70)
-print(f"{'النموذج':<20} {'RMSE':<10} {'MAE':<10} {'R²':<8} {'CV R²':<10}")
-print("-" * 70)
-for res in results:
-    print(f"{res['النموذج']:<20} {res['RMSE']:<10.0f} {res['MAE']:<10.0f} {res['R²']:<8.3f} {res['CV R² mean']:<10.3f}")
-
-print("\\n✅ أفضل نموذج هو Random Forest بأعلى R²")
-
-# أهمية الميزات
-rf = models['Random Forest']
-feature_importance = pd.DataFrame({
-    'الميزة': X.columns,
-    'الأهمية': rf.feature_importances_
-}).sort_values('الأهمية', ascending=False)
-
-print("\\n📊 أهمية الميزات:")
-print(feature_importance)`,
-                quiz: {
-                    question: "ما هو أفضل مقياس لتقييم نموذج الانحدار؟",
-                    options: [
-                        "الدقة (Accuracy)",
-                        "جذر متوسط مربعات الخطأ (RMSE) أو R²",
-                        "مصفوفة الارتباك",
-                        "معدل الخطأ"
-                    ],
-                    correct: 1
-                }
+print(f"\\n📊 نتائج النموذج:")
+print(f"RMSE: {rmse:.0f}")
+print(f"R²: {r2:.3f}")`,
+                quiz: { question: "ما هو أفضل مقياس لتقييم نموذج الانحدار؟", options: ["الدقة", "RMSE أو R²", "مصفوفة الارتباك", "معدل الخطأ"], correct: 1 }
             },
             {
                 id: 17,
                 unit: 6,
-                title: "مشروع 2: نظام توصية المنتجات",
+                title: "مشروع نظام توصية المنتجات",
                 keyPoints: [
-                    "أنظمة التوصية: أنواعها وتطبيقاتها",
-                    "التصفية التعاونية (Collaborative Filtering)",
-                    "التصفية القائمة على المحتوى (Content-Based)",
+                    "أنظمة التوصية وأنواعها",
+                    "التصفية التعاونية",
+                    "التصفية القائمة على المحتوى",
                     "تقييم نظام التوصية"
                 ],
-                code: `# الدرس 6.2: مشروع 2 - نظام توصية المنتجات
+                code: `# الدرس 6.2: نظام توصية المنتجات
 import numpy as np
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.feature_extraction.text import TfidfVectorizer
 
-print("=" * 70)
-print("🎯 مشروع 2: نظام توصية المنتجات")
-print("=" * 70)
+print("=" * 60)
+print("🎯 نظام توصية المنتجات")
+print("=" * 60)
 
-# إنشاء بيانات وهمية للمنتجات
-print("1️⃣ بيانات المنتجات:")
-products = [
-    {"id": 1, "اسم": "لابتوب", "فئة": "إلكترونيات", "وصف": "كمبيوتر محمول عالي الأداء للعمل والألعاب"},
-    {"id": 2, "اسم": "هاتف ذكي", "فئة": "إلكترونيات", "وصف": "هاتف بشاشة كبيرة وكاميرا ممتازة"},
-    {"id": 3, "اسم": "سماعات لاسلكية", "فئة": "إلكترونيات", "وصف": "سماعات بلوتوث مع عزل للضوضاء"},
-    {"id": 4, "اسم": "كتاب تعلم بايثون", "فئة": "كتب", "وصف": "دليل شامل لتعلم لغة بايثون من الصفر"},
-    {"id": 5, "اسم": "كتاب علم البيانات", "فئة": "كتب", "وصف": "مقدمة في علم البيانات وتحليلها"},
-    {"id": 6, "اسم": "حقيبة ظهر", "فئة": "اكسسوارات", "وصف": "حقيبة متعددة الجيوب مناسبة للسفر"},
-    {"id": 7, "اسم": "ساعة ذكية", "فئة": "إلكترونيات", "وصف": "ساعة تتبع اللياقة البدنية والتنبيهات"},
-    {"id": 8, "اسم": "كاميرا رقمية", "فئة": "إلكترونيات", "وصف": "كاميرا عالية الدقة للتصوير الفوتوغرافي"}
-]
+# بيانات التقييمات
+ratings = np.array([
+    [5, 4, 0, 0, 3],  # مستخدم 1
+    [4, 0, 5, 0, 4],  # مستخدم 2
+    [0, 3, 0, 5, 0],  # مستخدم 3
+    [3, 0, 4, 0, 5],  # مستخدم 4
+])
 
-df_products = pd.DataFrame(products)
-print(df_products)
+# حساب التشابه بين المستخدمين
+similarity = cosine_similarity(ratings)
 
-# بيانات تقييمات المستخدمين
-print("\\n2️⃣ بيانات تقييمات المستخدمين:")
-ratings_data = [
-    {"user_id": 1, "product_id": 1, "rating": 5},
-    {"user_id": 1, "product_id": 2, "rating": 4},
-    {"user_id": 1, "product_id": 5, "rating": 3},
-    {"user_id": 2, "product_id": 1, "rating": 4},
-    {"user_id": 2, "product_id": 3, "rating": 5},
-    {"user_id": 2, "product_id": 7, "rating": 4},
-    {"user_id": 3, "product_id": 4, "rating": 5},
-    {"user_id": 3, "product_id": 5, "rating": 4},
-    {"user_id": 3, "product_id": 8, "rating": 3},
-    {"user_id": 4, "product_id": 2, "rating": 5},
-    {"user_id": 4, "product_id": 3, "rating": 4},
-    {"user_id": 4, "product_id": 6, "rating": 4},
-    {"user_id": 5, "product_id": 1, "rating": 3},
-    {"user_id": 5, "product_id": 4, "rating": 4},
-    {"user_id": 5, "product_id": 7, "rating": 5},
-]
+print("مصفوفة التشابه بين المستخدمين:")
+print(np.round(similarity, 2))
 
-df_ratings = pd.DataFrame(ratings_data)
-print(df_ratings)
-
-print("\\n3️⃣ نظام التوصية القائم على المحتوى (Content-Based):")
-
-# تحويل وصف المنتجات إلى متجهات باستخدام TF-IDF
-tfidf = TfidfVectorizer(stop_words='english')
-tfidf_matrix = tfidf.fit_transform(df_products['وصف'])
-
-# حساب التشابه بين المنتجات
-cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
-
-def get_recommendations(product_id, cosine_sim=cosine_sim):
-    idx = product_id - 1  # معرف المنتج يبدأ من 1
-    sim_scores = list(enumerate(cosine_sim[idx]))
-    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-    sim_scores = sim_scores[1:4]  # أفضل 3 توصيات (باستثناء نفسه)
-    product_indices = [i[0] for i in sim_scores]
-    return df_products.iloc[product_indices]
-
-print("\\nتوصيات لمنتج 'لابتوب' (id=1):")
-recommendations = get_recommendations(1)
-print(recommendations[['اسم', 'فئة']])
-
-print("\\n4️⃣ نظام التوصية التعاوني (Collaborative Filtering):")
-
-# بناء مصفوفة المستخدمين والمنتجات
-user_product_matrix = df_ratings.pivot_table(index='user_id', columns='product_id', values='rating').fillna(0)
-print("مصفوفة المستخدمين-المنتجات:")
-print(user_product_matrix)
-
-# حساب تشابه المستخدمين
-user_similarity = cosine_similarity(user_product_matrix)
-user_similarity_df = pd.DataFrame(user_similarity, index=user_product_matrix.index, columns=user_product_matrix.index)
-
-print("\\nتشابه المستخدمين:")
-print(user_similarity_df.round(2))
-
-def collaborative_recommendations(user_id, n_recommendations=3):
-    # العثور على مستخدمين مشابهين
-    similar_users = user_similarity_df[user_id].sort_values(ascending=False)[1:3]
-    
-    # المنتجات التي قيمها المستخدم
-    user_ratings = user_product_matrix.loc[user_id]
-    rated_products = user_ratings[user_ratings > 0].index
-    
-    # حساب التوصيات
+def recommend(user_id, n=2):
+    similar_users = similarity[user_id].argsort()[::-1][1:3]
+    user_ratings = ratings[user_id]
     recommendations = []
-    for product_id in user_product_matrix.columns:
-        if product_id not in rated_products:
-            # متوسط مرجح لتقييمات المستخدمين المشابهين
-            weighted_sum = 0
-            similarity_sum = 0
-            for sim_user, similarity in similar_users.items():
-                if user_product_matrix.loc[sim_user, product_id] > 0:
-                    weighted_sum += similarity * user_product_matrix.loc[sim_user, product_id]
-                    similarity_sum += similarity
-            
-            if similarity_sum > 0:
-                pred_rating = weighted_sum / similarity_sum
-                recommendations.append((product_id, pred_rating))
+    
+    for product in range(ratings.shape[1]):
+        if user_ratings[product] == 0:
+            score = 0
+            for su in similar_users:
+                score += similarity[user_id][su] * ratings[su][product]
+            recommendations.append((product, score))
     
     recommendations.sort(key=lambda x: x[1], reverse=True)
-    return recommendations[:n_recommendations]
+    return recommendations[:n]
 
-print("\\nتوصيات للمستخدم 1 (باستخدام التصفية التعاونية):")
-user1_recs = collaborative_recommendations(1)
-for prod_id, rating in user1_recs:
-    product_name = df_products[df_products['id'] == prod_id]['اسم'].values[0]
-    print(f"  - {product_name} (تقييم متوقع: {rating:.2f})")
-
-print("\\n✅ أنظمة التوصية تستخدم في: أمازون، نتفلكس، يوتيوب، سبوتيفاي")`,
-                quiz: {
-                    question: "ما الفرق بين التصفية التعاونية والتوصية القائمة على المحتوى؟",
-                    options: [
-                        "لا يوجد فرق",
-                        "التصفية التعاونية تستخدم سلوك المستخدمين، والمحتوى يستخدم خصائص المنتج",
-                        "التصفية التعاونية أسرع",
-                        "المحتوى أكثر دقة"
-                    ],
-                    correct: 1
-                }
+print("\\nتوصيات للمستخدم 0:")
+recs = recommend(0)
+for product, score in recs:
+    print(f"المنتج {product+1}: درجة {score:.2f}")`,
+                quiz: { question: "ما الفرق بين التصفية التعاونية والتوصية القائمة على المحتوى؟", options: ["لا يوجد فرق", "التصفية التعاونية تستخدم سلوك المستخدمين، والمحتوى يستخدم خصائص المنتج", "التصفية التعاونية أسرع", "المحتوى أكثر دقة"], correct: 1 }
             },
             {
                 id: 18,
                 unit: 6,
                 title: "خاتمة الدورة والمسارات المهنية",
                 keyPoints: [
-                    "مراجعة شاملة لما تعلمته في 18 درس",
-                    "المسارات المهنية في علم البيانات والذكاء الاصطناعي",
-                    "نصائح لبناء محفظة أعمال (Portfolio) قوية",
-                    "الاستعداد لمقابلات العمل في مجال البيانات"
+                    "مراجعة شاملة لما تعلمته",
+                    "المسارات المهنية في علم البيانات",
+                    "نصائح لبناء محفظة أعمال قوية",
+                    "الاستعداد لمقابلات العمل"
                 ],
                 code: `# الدرس 6.3: خاتمة الدورة والمسارات المهنية
-
-print("=" * 70)
-print("🎓 تهانينا! لقد أكملت دورة علم البيانات")
-print("=" * 70)
-
-# 1️⃣ ملخص الدورة
-print("\\n📚 ملخص ما تعلمته في 18 درس:")
-print("-" * 60)
-
-summary = """
-الوحدة 1: أساسيات علم البيانات والإحصاء (3 دروس)
-✓ مفاهيم علم البيانات ودورة حياة المشروع
-✓ الإحصاء الوصفي والاستدلالي
-✓ الاحتمالات والتوزيعات
-
-الوحدة 2: التعلم الآلي (3 دروس)
-✓ مقدمة في التعلم الآلي وأنواعه
-✓ الانحدار الخطي (Linear Regression)
-✓ تصنيف KNN
-
-الوحدة 3: التعلم الآلي المتقدم (3 دروس)
-✓ أشجار القرار والغابات العشوائية
-✓ آلات المتجهات الداعمة (SVM)
-✓ تجميع K-Means
-
-الوحدة 4: الشبكات العصبية والتعلم العميق (3 دروس)
-✓ أساسيات الشبكات العصبية
-✓ بناء شبكة عصبية بسيطة
-✓ التعلم العميق باستخدام TensorFlow
-
-الوحدة 5: تقنيات متقدمة (3 دروس)
-✓ معالجة اللغة الطبيعية (NLP)
-✓ رؤية الكمبيوتر (Computer Vision)
-✓ البيانات الضخمة (Big Data)
-
-الوحدة 6: مشاريع عملية (3 دروس)
-✓ مشروع توقعات أسعار المنازل
-✓ مشروع نظام توصية المنتجات
-✓ خاتمة ومسارات مهنية
-"""
-
-print(summary)
-
-# 2️⃣ المسارات المهنية
-print("\\n" + "=" * 70)
-print("💼 المسارات المهنية في علم البيانات:")
-print("=" * 70)
-
-careers = [
-    {
-        'title': 'عالم بيانات (Data Scientist)',
-        'skills': ['Python', 'R', 'Machine Learning', 'Deep Learning', 'Statistics', 'Big Data'],
-        'description': 'بناء نماذج تنبؤية وتطبيقات ذكاء اصطناعي لحل مشاكل الأعمال',
-        'salary': '80,000 - 150,000 $'
-    },
-    {
-        'title': 'مهندس تعلم آلة (ML Engineer)',
-        'skills': ['Python', 'TensorFlow', 'PyTorch', 'MLOps', 'Cloud Computing', 'Docker'],
-        'description': 'تطوير ونشر نماذج التعلم الآلي في الإنتاج (Production)',
-        'salary': '90,000 - 160,000 $'
-    },
-    {
-        'title': 'مهندس بيانات (Data Engineer)',
-        'skills': ['SQL', 'Python', 'Spark', 'Hadoop', 'Airflow', 'Data Warehousing'],
-        'description': 'بناء وصيانة البنية التحتية للبيانات وخطوط الأنابيب (Pipelines)',
-        'salary': '85,000 - 140,000 $'
-    },
-    {
-        'title': 'محلل بيانات (Data Analyst)',
-        'skills': ['SQL', 'Excel', 'Tableau', 'Power BI', 'Python', 'Statistics'],
-        'description': 'تحليل البيانات وتقديم التقارير والرؤى',
-        'salary': '60,000 - 100,000 $'
-    },
-    {
-        'title': 'باحث في الذكاء الاصطناعي (AI Researcher)',
-        'skills': ['Deep Learning', 'Mathematics', 'Research', 'Publications', 'PhD'],
-        'description': 'تطوير خوارزميات وتقنيات جديدة في الذكاء الاصطناعي',
-        'salary': '100,000 - 180,000 $'
-    }
-]
-
-for career in careers:
-    print(f"\\n🔹 {career['title']}")
-    print(f"   {career['description']}")
-    print(f"   المهارات: {', '.join(career['skills'])}")
-    print(f"   الراتب التقريبي: {career['salary']}")
-
-# 3️⃣ بناء محفظة أعمال
-print("\\n" + "=" * 70)
-print("📁 بناء محفظة أعمال (Portfolio):")
-print("=" * 70)
+print("=" * 60)
+print("🎓 تهانينا! لقد أكملت الدورة")
+print("=" * 60)
 
 print("""
-مشاريع مقترحة لمحفظتك:
+📚 ما تعلمته في 18 درس:
 
-1️⃣ تحليل بيانات ومشاريع تعلم آلي:
-   - تحليل مبيعات متجر إلكتروني
-   - توقعات أسعار المنازل (مشروعنا)
-   - تصنيف رسائل البريد الإلكتروني (Spam Detection)
+✓ الوحدة 1: أساسيات علم البيانات والإحصاء
+✓ الوحدة 2: التعلم الآلي
+✓ الوحدة 3: التعلم الآلي المتقدم
+✓ الوحدة 4: الشبكات العصبية والتعلم العميق
+✓ الوحدة 5: تقنيات متقدمة (NLP, CV, Big Data)
+✓ الوحدة 6: مشاريع عملية
 
-2️⃣ مشاريع تعلم عميق:
-   - تصنيف الصور باستخدام CNN
-   - تحليل المشاعر للنصوص
-   - توليد الصور باستخدام GANs
+💼 المسارات المهنية:
 
-3️⃣ مشاريع بيانات ضخمة:
-   - تحليل سجلات الويب باستخدام Spark
-   - نظام توصية للمنتجات (مشروعنا)
+1. عالم بيانات (Data Scientist)
+2. مهندس تعلم آلة (ML Engineer)
+3. مهندس بيانات (Data Engineer)
+4. محلل بيانات (Data Analyst)
+5. باحث في الذكاء الاصطناعي
 
-4️⃣ منصات لنشر أعمالك:
-   • GitHub: لنشر الأكواد (https://github.com)
-   • Kaggle: المشاركة في مسابقات (https://kaggle.com)
-   • LinkedIn: عرض المشاريع والتواصل المهني
-   • Medium: كتابة مقالات تقنية
-   • موقع شخصي: عرض جميع مشاريعك
-""")
+📁 بناء محفظة أعمال:
+- GitHub: نشر الأكواد
+- Kaggle: المشاركة في مسابقات
+- LinkedIn: عرض المشاريع
+- مدونة شخصية: كتابة مقالات
 
-# 4️⃣ نصائح للاستمرار
-print("\\n" + "=" * 70)
-print("💡 نصائح للاستمرار في التعلم والتطوير:")
-print("=" * 70)
-
-print("""
-1. تدرب يومياً على Kaggle وشارك في المسابقات
-2. اقرأ أبحاثاً حديثة على arXiv.org
-3. تابع خبراء المجال على LinkedIn و Twitter
-4. انضم لمجتمعات علم البيانات (Stack Overflow, Reddit)
-5. طبق ما تعلمته على مشاريع حقيقية
-6. تعلم أدوات MLOps لنشر النماذج (Docker, Kubernetes)
-7. احضر مؤتمرات وندوات متخصصة (NeurIPS, ICML, KDD)
-8. ساهم في مشاريع مفتوحة المصدر
-9. اكتب مقالات وشارك معرفتك
-10. كن على اطلاع دائم بالتقنيات الجديدة
-""")
-
-# 5️⃣ موارد مفيدة
-print("\\n" + "=" * 70)
-print("📚 موارد مفيدة للاستمرار:")
-print("=" * 70)
-
-print("""
-📖 كتب:
-- "Introduction to Statistical Learning" - مجاني
-- "Pattern Recognition and Machine Learning" - Bishop
-- "Deep Learning" - Goodfellow, Bengio, Courville
-
-🎓 دورات مجانية:
-- Andrew Ng's Machine Learning (Coursera)
-- fast.ai (تعلم عميق)
-- Google's Machine Learning Crash Course
-
-🌐 مواقع:
-- Kaggle: مسابقات ومجموعات بيانات
-- Towards Data Science: مقالات تقنية
-- Papers with Code: أوراق بحثية مع كود
-- Machine Learning Mastery: شروحات عملية
-""")
-
-# 6️⃣ شهادة الإتمام
-from datetime import datetime
-today = datetime.now().strftime("%d/%m/%Y")
-
-print("\\n" + "=" * 70)
-print("🏆 شهادة إتمام الدورة")
-print("=" * 70)
-
-print(f"""
-┌─────────────────────────────────────────────────────┐
-│                                                     │
-│      🎓 شهادة إتمام دورة علم البيانات              │
-│              (Data Scientist)                       │
-│                                                     │
-│   تمنح هذه الشهادة إلى:                             │
-│                                                     │
-│           [اسم المستخدم]                            │
-│                                                     │
-│   لإكماله بنجاح 18 درس في                           │
-│   دورة علم البيانات والذكاء الاصطناعي الشاملة       │
-│                                                     │
-│   المهارات المتقنة:                                 │
-│   ✓ الإحصاء المتقدم والاحتمالات                     │
-│   ✓ التعلم الآلي (Machine Learning)                 │
-│   ✓ الشبكات العصبية والتعلم العميق                  │
-│   ✓ معالجة اللغة الطبيعية (NLP)                     │
-│   ✓ رؤية الكمبيوتر (Computer Vision)                │
-│   ✓ البيانات الضخمة (Big Data)                      │
-│   ✓ مشاريع عملية (توقعات، توصيات)                   │
-│                                                     │
-│   التاريخ: {today}                                      │
-│                                                     │
-│      [توقيع] محمد علاء                              │
-│                                                     │
-└─────────────────────────────────────────────────────┘
-""")
-
-print("\\n" + "=" * 70)
-print("🎉 ألف مبروك! أنت الآن عالم بيانات معتمد")
-print("=" * 70)
-print("✨ استمر في التعلم والتطوير، المستقبل في البيانات!")`,
-                quiz: {
-                    question: "ما هي أفضل طريقة لعرض مهاراتك كعالم بيانات؟",
-                    options: [
-                        "شهادة فقط",
-                        "محفظة أعمال بمشاريع عملية على GitHub",
-                        "السيرة الذاتية فقط",
-                        "شهادة + دورة واحدة"
-                    ],
-                    correct: 1
-                }
-            },
+🎉 استمر في التعلم والتطوير! المستقبل في البيانات
+""")`,
+                quiz: { question: "ما هي أفضل طريقة لعرض مهاراتك كعالم بيانات؟", options: ["شهادة فقط", "محفظة أعمال بمشاريع عملية", "السيرة الذاتية فقط", "شهادة + دورة واحدة"], correct: 1 }
+            }
         ];
 
         // ==================== متغيرات عامة ====================
@@ -1894,14 +1560,54 @@ print("✨ استمر في التعلم والتطوير، المستقبل في
         let quizSelected = null;
         let quizAnswered = false;
 
+        // قائمة الجوال
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 900 && navLinks) {
+                    navLinks.classList.remove('active');
+                    if (menuToggle) {
+                        const icon = menuToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+
+        // تأثير التمرير
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav-container');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
         // ==================== تهيئة Pyodide ====================
         async function initPyodide() {
             document.getElementById('outputStatus').textContent = '🔄 جاري تحميل Python...';
             try {
                 pyodide = await loadPyodide();
-                // تحميل المكتبات الإضافية
-                await pyodide.loadPackage(['pandas', 'numpy', 'matplotlib', 'scipy', 'scikit-learn']);
-                document.getElementById('outputStatus').textContent = '✅ Python جاهز (Pandas, NumPy, Matplotlib, Scipy, Scikit-learn)';
+                await pyodide.loadPackage(['pandas', 'numpy', 'scipy', 'scikit-learn']);
+                document.getElementById('outputStatus').textContent = '✅ Python جاهز (Pandas, NumPy, Scikit-learn)';
             } catch (error) {
                 document.getElementById('outputContent').textContent = 'خطأ في تحميل Python: ' + error;
                 document.getElementById('outputStatus').textContent = '❌ خطأ';
@@ -1936,7 +1642,6 @@ print("✨ استمر في التعلم والتطوير، المستقبل في
             }
             
             try {
-                // إعادة توجيه الإخراج
                 pyodide.runPython(`
 import sys
 from io import StringIO
@@ -1959,26 +1664,13 @@ sys.stdout = StringIO()
             container.innerHTML = '';
             
             const units = [...new Set(lessons.map(l => l.unit))];
-            
-            const unitNames = {
-                1: 'أساسيات علم البيانات والإحصاء',
-                2: 'التعلم الآلي',
-                3: 'التعلم الآلي المتقدم',
-                4: 'الشبكات العصبية والتعلم العميق',
-                5: 'تقنيات متقدمة',
-                6: 'مشاريع عملية وخاتمة'
-            };
+            const unitNames = { 1: 'أساسيات علم البيانات والإحصاء', 2: 'التعلم الآلي', 3: 'التعلم الآلي المتقدم', 4: 'الشبكات العصبية', 5: 'تقنيات متقدمة', 6: 'مشاريع عملية' };
             
             units.forEach(unit => {
                 const unitLessons = lessons.filter(l => l.unit === unit);
-                
                 const unitDiv = document.createElement('div');
                 unitDiv.className = 'unit-card';
-                unitDiv.innerHTML = `
-                    <div class="unit-title">📚 الوحدة ${unit}: ${unitNames[unit]}</div>
-                    <div class="unit-lessons" id="unit-${unit}"></div>
-                `;
-                
+                unitDiv.innerHTML = `<div class="unit-title">📚 الوحدة ${unit}: ${unitNames[unit]}</div><div class="unit-lessons" id="unit-${unit}"></div>`;
                 container.appendChild(unitDiv);
                 
                 const unitContainer = document.getElementById(`unit-${unit}`);
@@ -1998,7 +1690,7 @@ sys.stdout = StringIO()
             currentLessonIndex = index;
             const lesson = lessons[currentLessonIndex];
             
-            document.getElementById('lessonTitle').textContent = `الدرس ${lesson.id}.${lesson.unit}: ${lesson.title}`;
+            document.getElementById('lessonTitle').textContent = `الدرس ${lesson.id}: ${lesson.title}`;
             
             const pointsList = document.getElementById('keyPointsList');
             pointsList.innerHTML = '';
@@ -2058,14 +1750,12 @@ sys.stdout = StringIO()
             if (isCorrect) {
                 feedback.className = 'quiz-feedback success';
                 feedback.innerHTML = '<i class="fas fa-check-circle"></i> إجابة صحيحة! أحسنت.';
-                
                 document.querySelectorAll('.quiz-option').forEach((opt, idx) => {
                     if (idx === lesson.quiz.correct) opt.classList.add('correct');
                 });
             } else {
                 feedback.className = 'quiz-feedback error';
                 feedback.innerHTML = '<i class="fas fa-times-circle"></i> إجابة خاطئة. حاول مرة أخرى.';
-                
                 document.querySelectorAll('.quiz-option').forEach((opt, idx) => {
                     if (idx === lesson.quiz.correct) opt.classList.add('correct');
                     else if (idx === quizSelected) opt.classList.add('wrong');
@@ -2131,10 +1821,10 @@ sys.stdout = StringIO()
             editor.setValue(lesson.code);
         }
 
+        // ==================== بدء التشغيل ====================
         document.addEventListener('DOMContentLoaded', function() {
             initEditor();
             initPyodide();
-            
             renderUnitList();
             changeLesson(0);
             
@@ -2148,7 +1838,7 @@ sys.stdout = StringIO()
             });
             
             document.getElementById('nextLesson').addEventListener('click', () => {
-                               if (currentLessonIndex < lessons.length - 1) changeLesson(currentLessonIndex + 1);
+                if (currentLessonIndex < lessons.length - 1) changeLesson(currentLessonIndex + 1);
             });
         });
     </script>
