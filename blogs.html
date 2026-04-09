@@ -441,6 +441,11 @@
             margin: 30px 0 15px;
         }
 
+        .article-detail-body h4 {
+            color: #10b981;
+            margin: 20px 0 10px;
+        }
+
         .article-detail-body ul, .article-detail-body ol {
             padding-right: 30px;
             margin: 15px 0;
@@ -448,6 +453,22 @@
 
         .article-detail-body li {
             margin: 8px 0;
+        }
+
+        .article-detail-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .article-detail-body th, .article-detail-body td {
+            padding: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: right;
+        }
+
+        .article-detail-body th {
+            background: rgba(67, 97, 238, 0.3);
         }
 
         .section-title {
@@ -534,6 +555,9 @@
             .featured-article .article-image {
                 height: 250px;
             }
+            .article-detail-title {
+                font-size: 1.5rem;
+            }
         }
 
         @media (max-width: 900px) {
@@ -574,6 +598,9 @@
             .container {
                 margin-top: 100px;
             }
+            .article-detail-content {
+                padding: 20px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -598,10 +625,7 @@
                 align-items: flex-start;
             }
             .article-detail-title {
-                font-size: 1.5rem;
-            }
-            .article-detail-content {
-                padding: 20px;
+                font-size: 1.3rem;
             }
         }
 
@@ -620,6 +644,11 @@
                 width: 40px;
                 height: 40px;
                 font-size: 16px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .article-detail-body {
+                font-size: 0.95rem;
             }
         }
 
@@ -640,42 +669,15 @@
                 Mohamed Alaa
             </a>
             <div class="nav-links">
-                <a href="index.html" class="nav-link">
-                    <i class="fas fa-home"></i>
-                    <span>الرئيسية</span>
-                </a>
-                <a href="Computer_basics.html" class="nav-link">
-                    <i class="fas fa-desktop"></i>
-                    <span>أساسيات الحاسوب</span>
-                </a>
-                <a href="programming-basics.html" class="nav-link">
-                    <i class="fas fa-code"></i>
-                    <span>أساسيات البرمجة</span>
-                </a>
-                <a href="Microsoft_Office.html" class="nav-link">
-                    <i class="fas fa-file-excel"></i>
-                    <span>Microsoft Office</span>
-                </a>
-                <a href="data-analyst-course.html" class="nav-link">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Data Analyst</span>
-                </a>
-                <a href="data-scientist-course.html" class="nav-link">
-                    <i class="fas fa-database"></i>
-                    <span>Data Scientist</span>
-                </a>
-                <a href="frontend-roadmap.html" class="nav-link">
-                    <i class="fas fa-palette"></i>
-                    <span>Frontend</span>
-                </a>
-                <a href="blogs.html" class="nav-link active">
-                    <i class="fas fa-blog"></i>
-                    <span>المقالات</span>
-                </a>
-                <a href="login.html" class="nav-link login-btn">
-                    <i class="fas fa-user"></i>
-                    <span>دخول</span>
-                </a>
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i><span>الرئيسية</span></a>
+                <a href="Computer_basics.html" class="nav-link"><i class="fas fa-desktop"></i><span>أساسيات الحاسوب</span></a>
+                <a href="programming-basics.html" class="nav-link"><i class="fas fa-code"></i><span>أساسيات البرمجة</span></a>
+                <a href="Microsoft_Office.html" class="nav-link"><i class="fas fa-file-excel"></i><span>Microsoft Office</span></a>
+                <a href="data-analyst-course.html" class="nav-link"><i class="fas fa-chart-line"></i><span>Data Analyst</span></a>
+                <a href="data-scientist-course.html" class="nav-link"><i class="fas fa-database"></i><span>Data Scientist</span></a>
+                <a href="frontend-roadmap.html" class="nav-link"><i class="fas fa-palette"></i><span>Frontend</span></a>
+                <a href="blogs.html" class="nav-link active"><i class="fas fa-blog"></i><span>المقالات</span></a>
+                <a href="login.html" class="nav-link login-btn"><i class="fas fa-user"></i><span>دخول</span></a>
             </div>
             <div class="menu-toggle" id="mobile-menu">
                 <i class="fas fa-bars"></i>
@@ -994,33 +996,265 @@
                 });
             });
             
+            // ===== محتوى المقالات الكامل =====
+            const articlesData = {
+                'data-science': {
+                    title: 'رحلة في عالم تحليل البيانات – من الأرقام العشوائية إلى القرارات الذكية',
+                    date: '١٢ مارس ٢٠٢٥',
+                    readTime: '٥ دقائق قراءة',
+                    views: '١,٢٤٥ مشاهدة',
+                    category: 'علم البيانات',
+                    tags: ['#تحليل_البيانات', '#Python', '#قصص_نجاح', '#مشاريع_عملية'],
+                    content: `
+                        <div class="article-detail-header">
+                            <div>
+                                <h2 class="article-detail-title">رحلة في عالم تحليل البيانات – من الأرقام العشوائية إلى القرارات الذكية</h2>
+                                <div class="article-detail-meta">
+                                    <span><i class="far fa-calendar"></i> ١٢ مارس ٢٠٢٥</span>
+                                    <span><i class="far fa-clock"></i> ٥ دقائق قراءة</span>
+                                    <span><i class="far fa-eye"></i> ١,٢٤٥ مشاهدة</span>
+                                </div>
+                            </div>
+                            <span class="article-detail-category">علم البيانات</span>
+                        </div>
+                        <div class="article-detail-body">
+                            <h3>📊 من الفوضى إلى النظام: رحلتي في اكتشاف أسرار البيانات</h3>
+                            <p>كثيرًا ما نسمع أن "البيانات هي النفط الجديد"، لكن قليلون من يدركون أن هذا النفط يكون في البداية خامًا وعشوائيًا، ينتظر من يحوله إلى وقود للقرارات الذكية. هذه كانت بداية رحلتي في أول مشروع تحليل بيانات حقيقي لمتجر إلكتروني.</p>
+                            <p>واجهت مجموعة بيانات ضخمة عن أنماط التسوق لمتجر إلكتروني - كانت تبدو كفوضى من الأرقام والتواريخ والرموز. لكنني آمنت بأن وراء كل رقم قصة، ووراء كل عمود إحصائي قرار يمكن أن يغير مسار عمل.</p>
+                            <h3>🔍 التحليل العملي: خطوة بخطوة</h3>
+                            <p>اتبعت منهجية علم البيانات المنظمة:</p>
+                            <ul>
+                                <li><strong>تنظيف البيانات:</strong> قضيت ساعات في إزالة التناقضات وتصحيح الأخطاء. تعلمت أن 80% من وقت عالم البيانات يضيع في تنظيف البيانات!</li>
+                                <li><strong>الاستكشاف:</strong> باستخدام Python وJupyter Notebook، بحثت عن العلاقات المخفية بين المتغيرات المختلفة.</li>
+                                <li><strong>التصور:</strong> حولت الأرقام إلى رسوم بيانية تكشف الأنماط والاتجاهات الخفية.</li>
+                                <li><strong>الاستخلاص:</strong> اكتشفت رؤى قيمة مثل تأثير توقيت الشراء على قيمة السلة.</li>
+                            </ul>
+                            <div style="margin: 30px 0; padding: 25px; background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(58, 12, 163, 0.1)); border-radius: 10px; border-right: 4px solid #4361ee;">
+                                <h4 style="color: #4cc9f0; margin-bottom: 15px;">💡 اكتشاف رئيسي:</h4>
+                                <p style="font-size: 1.2rem; font-style: italic;">العملاء الذين يشترون في الصباح الباكر ينفقون 30% أكثر من أولئك الذين يشترون في أوقات أخرى!</p>
+                            </div>
+                            <h3>💡 التحول الحقيقي: من التحليل إلى التطبيق</h3>
+                            <p>لم يكن الإنجاز في التحليل التقني فقط، بل في تحويل البصائر إلى قرارات:</p>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
+                                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px;"><h4>🕒 تحسين التوقيت</h4><p>تغيير ساعات العروض لتصبح في الصباح الباكر</p></div>
+                                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px;"><h4>🎁 تحسين العروض</h4><p>تجميع المنتجات التي تُشترى معًا في عروض مشتركة</p></div>
+                                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px;"><h4>👥 تخصيص الخدمات</h4><p>تصميم برامج ولاء مخصصة لفئات معينة من العملاء</p></div>
+                            </div>
+                            <h3>🎯 الدرس المستفاد</h3>
+                            <p>هذا المشروع علمني أن مهارة تحليل البيانات ليست مجرد برمجة أو إحصاء، بل هي <strong>فن تحويل الفوضى إلى نظام، والأرقام إلى قصص، والمعلومات إلى حكمة</strong>. إنها الجسر الذي يربط بين عالم البيانات الصماء وعالم القرارات الذكية.</p>
+                        </div>
+                    `
+                },
+                'programming': {
+                    title: 'كيف تبدأ في البرمجة بدون خلفية تقنية؟',
+                    date: '٨ مارس ٢٠٢٥',
+                    readTime: '٤ دقائق قراءة',
+                    category: 'تقنية',
+                    tags: ['#برمجة', '#للمبتدئين', '#نصائح'],
+                    content: `
+                        <div class="article-detail-header">
+                            <div>
+                                <h2 class="article-detail-title">كيف تبدأ في البرمجة بدون خلفية تقنية؟</h2>
+                                <div class="article-detail-meta">
+                                    <span><i class="far fa-calendar"></i> ٨ مارس ٢٠٢٥</span>
+                                    <span><i class="far fa-clock"></i> ٤ دقائق قراءة</span>
+                                </div>
+                            </div>
+                            <span class="article-detail-category">تقنية</span>
+                        </div>
+                        <div class="article-detail-body">
+                            <p>كنت مثلك تماماً، أظن أن البرمجة تحتاج إلى عقل رياضي معقد أو شهادة جامعية في علوم الحاسوب. لكن الحقيقة مختلفة تماماً!</p>
+                            <h3>🚀 رحلتي الشخصية</h3>
+                            <p>بدأت رحلتي في البرمجة من الصفر المطلق. لم أكن أعرف شيئاً عن الأكواد أو الخوارزميات. كل ما كان لدي هو فضول شديد ورغبة في تعلم شيء جديد.</p>
+                            <h3>📚 الخطوات العملية للبداية</h3>
+                            <ol>
+                                <li><strong>اختر لغة برمجة سهلة:</strong> أنصح دائماً بـPython كبداية، لأنها بسيطة وقريبة من اللغة الإنجليزية.</li>
+                                <li><strong>ابدأ بمشاريع صغيرة:</strong> لا تحاول بناء تطبيق كامل من اليوم الأول. ابدأ ببرنامج بسيط مثل آلة حاسبة.</li>
+                                <li><strong>استخدم المصادر المجانية:</strong> هناك كنوز مجانية على YouTube ومواقع مثل freeCodeCamp.</li>
+                                <li><strong>مارس يومياً:</strong> حتى لو لمدة 30 دقيقة فقط، الممارسة اليومية هي سر التقدم.</li>
+                                <li><strong>لا تخاف من الأخطاء:</strong> الأخطاء جزء من التعلم، كل مبرمج محترف كان يوماً ما مبتدئاً يرتكب أخطاء.</li>
+                            </ol>
+                            <div style="margin: 30px 0; padding: 20px; background: rgba(16, 185, 129, 0.1); border-radius: 10px; border-right: 3px solid #10b981;">
+                                <h4 style="color: #10b981;">🌟 رسالة تحفيزية</h4>
+                                <p>تذكر: كل مبرمج عظيم بدأ من حيث أنت الآن. المهم هو البداية والاستمرار. لا تستسلم عند أول عقبة، فكل خطأ يجعلك أقرب إلى الاحتراف.</p>
+                            </div>
+                            <h3>💡 نصائح ذهبية للمبتدئين</h3>
+                            <ul>
+                                <li>لا تقارن نفسك بالمبرمجين المحترفين</li>
+                                <li>ركز على تعلم أساسيات البرمجة قبل التعمق في التقنيات المتقدمة</li>
+                                <li>انضم لمجتمعات المبرمجين على Discord أو Reddit</li>
+                                <li>حاول أن تعيد كتابة الأكواد التي تراها بدلاً من نسخها فقط</li>
+                            </ul>
+                            <p>تذكر: كل مبرمج عظيم بدأ من حيث أنت الآن. المهم هو البداية والاستمرار.</p>
+                        </div>
+                    `
+                },
+                'career': {
+                    title: 'أهم ٥ مهارات تقنية مطلوبة في سوق العمل ٢٠٢٥',
+                    date: '٣ مارس ٢٠٢٥',
+                    readTime: '٦ دقائق قراءة',
+                    category: 'المسيرة المهنية',
+                    tags: ['#سوق_العمل', '#مهارات', '#مستقبل_التقنية'],
+                    content: `
+                        <div class="article-detail-header">
+                            <div>
+                                <h2 class="article-detail-title">أهم ٥ مهارات تقنية مطلوبة في سوق العمل ٢٠٢٥</h2>
+                                <div class="article-detail-meta">
+                                    <span><i class="far fa-calendar"></i> ٣ مارس ٢٠٢٥</span>
+                                    <span><i class="far fa-clock"></i> ٦ دقائق قراءة</span>
+                                </div>
+                            </div>
+                            <span class="article-detail-category">المسيرة المهنية</span>
+                        </div>
+                        <div class="article-detail-body">
+                            <p>بناءً على أبحاث سوق العمل وتحليل المئات من عروض التوظيف، إليك أهم المهارات التقنية التي ستكون مطلوبة بشدة في السنوات القادمة:</p>
+                            <h3>1. تحليل البيانات (Data Analysis)</h3>
+                            <p>لم تعد الشركات تبحث فقط عن أشخاص يجيدون جمع البيانات، بل عن من يستطيع تحويل هذه البيانات إلى رؤى قابلة للتنفيذ. المهارات المطلوبة: Excel المتقدم، Python أو R، Power BI أو Tableau، SQL.</p>
+                            <h3>2. الذكاء الاصطناعي وتعلم الآلة</h3>
+                            <p>أصبح الذكاء الاصطناعي جزءاً أساسياً من كل الصناعات. حتى لو لم تكن متخصصاً، المعرفة الأساسية أصبحت ضرورية.</p>
+                            <h3>3. الأمن السيبراني</h3>
+                            <p>مع زيادة الهجمات الإلكترونية، أصبحت حماية البيانات أولوية قصوى للشركات.</p>
+                            <h3>4. تطوير تطبيقات الويب والجوال</h3>
+                            <p>لا تزال مهارات التطوير مطلوبة بشدة، خاصة مع انتشار تطبيقات SaaS.</p>
+                            <h3>5. إدارة المشاريع التقنية (Agile & Scrum)</h3>
+                            <p>القدرة على إدارة المشاريع التقنية أصبحت مهارة مطلوبة حتى للمطورين أنفسهم.</p>
+                            <div style="margin: 30px 0; padding: 20px; background: rgba(245, 158, 11, 0.1); border-radius: 10px;">
+                                <h4 style="color: #f59e0b;">🎯 كيف تطور هذه المهارات مجاناً؟</h4>
+                                <p>دورات Google المجانية على Coursera، قنوات YouTube المتخصصة، منصات مثل freeCodeCamp، المشاريع العملية والتطوع.</p>
+                            </div>
+                        </div>
+                    `
+                },
+                'excel-python': {
+                    title: 'Excel vs Python: أيهما تتعلم أولاً لتحليل البيانات؟',
+                    date: '٢٥ فبراير ٢٠٢٥',
+                    readTime: '٧ دقائق قراءة',
+                    category: 'علم البيانات',
+                    tags: ['#Excel', '#Python', '#مقارنة'],
+                    content: `
+                        <div class="article-detail-header">
+                            <div>
+                                <h2 class="article-detail-title">Excel vs Python: أيهما تتعلم أولاً لتحليل البيانات؟</h2>
+                                <div class="article-detail-meta">
+                                    <span><i class="far fa-calendar"></i> ٢٥ فبراير ٢٠٢٥</span>
+                                    <span><i class="far fa-clock"></i> ٧ دقائق قراءة</span>
+                                </div>
+                            </div>
+                            <span class="article-detail-category">علم البيانات</span>
+                        </div>
+                        <div class="article-detail-body">
+                            <p>هذا السؤال من أكثر الأسئلة التي تصلني: هل أبدأ بـExcel أم أتخطاه وأذهب مباشرة إلى Python؟</p>
+                            <h3>📊 متى تستخدم Excel؟</h3>
+                            <p>Excel مثالي عندما: بياناتك صغيرة إلى متوسطة الحجم، تحتاج إلى نتائج سريعة، تعمل في بيئة عمل تستخدم Excel كأداة أساسية.</p>
+                            <h3>🐍 متى تنتقل إلى Python؟</h3>
+                            <p>Python تصبح ضرورية عندما: بياناتك كبيرة جداً، تحتاج إلى أتمتة عمليات متكررة، تريد بناء نماذج تعلم آلي متقدمة.</p>
+                            <div style="overflow-x: auto; margin: 20px 0;">
+                                <table style="width:100%; border-collapse:collapse;">
+                                    <tr style="background:rgba(67,97,238,0.3);"><th style="padding:12px;">المعيار</th><th style="padding:12px;">Excel</th><th style="padding:12px;">Python</th></tr>
+                                    <tr><td style="padding:10px;">حجم البيانات</td><td style="padding:10px;">حتى 1M صف</td><td style="padding:10px;">مليارات الصفوف</td></tr>
+                                    <tr><td style="padding:10px;">سرعة التعلم</td><td style="padding:10px;">سريعة (أيام)</td><td style="padding:10px;">متوسطة (أسابيع)</td></tr>
+                                    <tr><td style="padding:10px;">الأتمتة</td><td style="padding:10px;">محدودة (VBA)</td><td style="padding:10px;">قوية جداً</td></tr>
+                                </table>
+                            </div>
+                            <h3>🚀 توصيتي الشخصية</h3>
+                            <p>ابدأ بـExcel حتى تتقن الأساسيات، ثم انتقل إلى Python للأتمتة والتحليل المتقدم. تذكر: Excel وPython ليسا بديلين، بل مكملين.</p>
+                        </div>
+                    `
+                },
+                'website-project': {
+                    title: 'كيف بنيت أول موقع لي من الصفر: التحديات والدروس',
+                    date: '١٨ فبراير ٢٠٢٥',
+                    readTime: '٨ دقائق قراءة',
+                    category: 'المشاريع',
+                    tags: ['#تطوير_الويب', '#HTML_CSS', '#تجربة_شخصية'],
+                    content: `
+                        <div class="article-detail-header">
+                            <div>
+                                <h2 class="article-detail-title">كيف بنيت أول موقع لي من الصفر: التحديات والدروس</h2>
+                                <div class="article-detail-meta">
+                                    <span><i class="far fa-calendar"></i> ١٨ فبراير ٢٠٢٥</span>
+                                    <span><i class="far fa-clock"></i> ٨ دقائق قراءة</span>
+                                </div>
+                            </div>
+                            <span class="article-detail-category">المشاريع</span>
+                        </div>
+                        <div class="article-detail-body">
+                            <p>قبل عام، لم أكن أعرف شيئاً عن تطوير الويب. اليوم، لدي موقع متكامل (مسار التطور التقني) بنيته من الصفر. هذه قصة الرحلة:</p>
+                            <h3>🎯 لماذا قررت بناء موقع؟</h3>
+                            <p>كنت أريد مكاناً أشارك فيه معرفتي مع الآخرين، وأمارس ما أتعلمه بشكل عملي. لم أجد طريقة أفضل من بناء موقعي الخاص.</p>
+                            <h3>🚧 التحديات التي واجهتها</h3>
+                            <ol>
+                                <li><strong>الارتباك في البداية:</strong> كنت أعرف HTML وCSS نظرياً، لكن تطبيقها كان تحدياً مختلفاً.</li>
+                                <li><strong>التصميم المتجاوب:</strong> جعل الموقع يعمل بشكل جيد على جميع الشاشات كان أصعب مما توقعت.</li>
+                                <li><strong>التنظيم:</strong> مع زيادة صفحات الموقع، أصبح تنظيم الملفات والأكواد فوضوي.</li>
+                                <li><strong>الأداء:</strong> كيف أجعل الموقع سريعاً مع كل هذه الصور والتأثيرات؟</li>
+                            </ol>
+                            <h3>💡 الدروس المستفادة</h3>
+                            <ul>
+                                <li><strong>ابدأ بسيطاً:</strong> لا تحاول بناء موقع كامل من اليوم الأول.</li>
+                                <li><strong>تعلم أثناء العمل:</strong> أفضل طريقة للتعلم هي حل مشاكل حقيقية.</li>
+                                <li><strong>استخدم GitHub:</strong> حفظ نسخ احتياطية من المشروع أنقذني مرات عديدة.</li>
+                                <li><strong>اطلب المساعدة:</strong> مجتمعات المطورين على Discord كانت كنزاً.</li>
+                                <li><strong>اختبر باستمرار:</strong> اختبر موقعك على أجهزة مختلفة قبل النشر.</li>
+                            </ul>
+                            <div style="margin: 30px 0; padding: 20px; background: rgba(16, 185, 129, 0.1); border-radius: 10px;">
+                                <h4 style="color: #10b981;">🛠️ الأدوات التي استخدمتها</h4>
+                                <p>VS Code، Git & GitHub، Figma، Unsplash، Font Awesome، Google Fonts، GitHub Pages</p>
+                            </div>
+                            <h3>🎉 النتيجة</h3>
+                            <p>بعد 3 أشهر من العمل (بمعدل ساعة يومياً)، كان لدي موقع يعمل بكفاءة. الأهم من ذلك، أنني اكتسبت ثقة في قدراتي كمطور ويب.</p>
+                            <p>إذا كنت تفكر في بناء موقعك الخاص، نصيحتي: <strong>ابدأ الآن</strong>. لن يكون مثالي، لكنك ستتعلم أكثر مما تتخيل.</p>
+                        </div>
+                    `
+                },
+                'tools': {
+                    title: '١٠ أدوات مجانية يحتاجها كل متعلم تقني',
+                    date: '١٠ فبراير ٢٠٢٥',
+                    readTime: '٣ دقائق قراءة',
+                    category: 'نصائح عملية',
+                    tags: ['#أدوات', '#مجانية', '#إنتاجية'],
+                    content: `
+                        <div class="article-detail-header">
+                            <div>
+                                <h2 class="article-detail-title">١٠ أدوات مجانية يحتاجها كل متعلم تقني</h2>
+                                <div class="article-detail-meta">
+                                    <span><i class="far fa-calendar"></i> ١٠ فبراير ٢٠٢٥</span>
+                                    <span><i class="far fa-clock"></i> ٣ دقائق قراءة</span>
+                                </div>
+                            </div>
+                            <span class="article-detail-category">نصائح عملية</span>
+                        </div>
+                        <div class="article-detail-body">
+                            <p>هذه الأدوات المجانية ساعدتني شخصياً في رحلتي التعليمية، وأستخدمها يومياً:</p>
+                            <ul>
+                                <li><strong>Visual Studio Code</strong> - محرر الأكواد الأقوى</li>
+                                <li><strong>GitHub</strong> - لحفظ ومشاركة الأكواد</li>
+                                <li><strong>Canva</strong> - لتصميم الصور والعروض</li>
+                                <li><strong>Notion</strong> - لتنظيم الملاحظات والمشاريع</li>
+                                <li><strong>OBS Studio</strong> - لتسجيل الشاشة</li>
+                                <li><strong>Google Colab</strong> - لتشغيل Python في السحابة</li>
+                                <li><strong>Figma</strong> - لتصميم واجهات المواقع</li>
+                                <li><strong>Postman</strong> - لاختبار APIs</li>
+                                <li><strong>draw.io</strong> - لرسم المخططات</li>
+                                <li><strong>ChatGPT / DeepSeek</strong> - المساعد الذكي</li>
+                            </ul>
+                            <div style="margin: 30px 0; padding: 20px; background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(58, 12, 163, 0.1)); border-radius: 10px;">
+                                <h4 style="color: #4cc9f0;">💡 كيف تبدأ مع هذه الأدوات؟</h4>
+                                <p>لا تحاول تعلم كل الأدوات مرة واحدة. اختر أداة واحدة، استخدمها لمدة أسبوع، ثم انتقل إلى التالية. الأهم هو كيفية دمج هذه الأدوات في سير عملك اليومي.</p>
+                            </div>
+                            <h3>🎁 أدوات إضافية</h3>
+                            <p>Coolors (لاختيار الألوان)، Unsplash (صور مجانية)، Font Awesome (أيقونات)، Google Fonts (خطوط)، Netlify/Vercel (نشر المواقع).</p>
+                        </div>
+                    `
+                }
+            };
+            
             // ===== عرض تفاصيل المقال =====
             const readMoreLinks = document.querySelectorAll('.read-more');
             const articlesSection = document.getElementById('articles-list');
             const articleDetailsSection = document.getElementById('article-details');
             const backToArticlesBtn = document.getElementById('back-to-articles');
             const articleContent = document.getElementById('article-content');
-            
-            const articlesData = {
-                'data-science': {
-                    content: `<div class="article-detail-header"><div><h2 class="article-detail-title">رحلة في عالم تحليل البيانات</h2><div class="article-detail-meta"><span><i class="far fa-calendar"></i> ١٢ مارس ٢٠٢٥</span><span><i class="far fa-clock"></i> ٥ دقائق قراءة</span></div></div><span class="article-detail-category">علم البيانات</span></div><div class="article-detail-body"><h3>📊 من الفوضى إلى النظام</h3><p>كثيرًا ما نسمع أن "البيانات هي النفط الجديد"، لكن قليلون من يدركون أن هذا النفط يكون في البداية خامًا وعشوائيًا. هذه كانت بداية رحلتي في أول مشروع تحليل بيانات حقيقي.</p><p>اكتشفت أن مهارة تحليل البيانات ليست مجرد برمجة أو إحصاء، بل هي فن تحويل الفوضى إلى نظام، والأرقام إلى قصص، والمعلومات إلى حكمة.</p></div>`
-                },
-                'programming': {
-                    content: `<div class="article-detail-header"><div><h2 class="article-detail-title">كيف تبدأ في البرمجة بدون خلفية تقنية؟</h2><div class="article-detail-meta"><span><i class="far fa-calendar"></i> ٨ مارس ٢٠٢٥</span><span><i class="far fa-clock"></i> ٤ دقائق قراءة</span></div></div><span class="article-detail-category">تقنية</span></div><div class="article-detail-body"><h3>🚀 رحلتي الشخصية</h3><p>بدأت رحلتي في البرمجة من الصفر المطلق. كنت أظن أن البرمجة تحتاج إلى عقل رياضي معقد، لكن الحقيقة مختلفة تمامًا!</p><p>كل مبرمج عظيم بدأ من حيث أنت الآن. المهم هو البداية والاستمرار.</p></div>`
-                },
-                'career': {
-                    content: `<div class="article-detail-header"><div><h2 class="article-detail-title">أهم ٥ مهارات تقنية مطلوبة في سوق العمل ٢٠٢٥</h2><div class="article-detail-meta"><span><i class="far fa-calendar"></i> ٣ مارس ٢٠٢٥</span><span><i class="far fa-clock"></i> ٦ دقائق قراءة</span></div></div><span class="article-detail-category">المسيرة المهنية</span></div><div class="article-detail-body"><h3>📊 تحليل البيانات</h3><p>لم تعد الشركات تبحث فقط عن أشخاص يجيدون جمع البيانات، بل عن من يستطيع تحويل هذه البيانات إلى رؤى قابلة للتنفيذ.</p></div>`
-                },
-                'excel-python': {
-                    content: `<div class="article-detail-header"><div><h2 class="article-detail-title">Excel vs Python</h2><div class="article-detail-meta"><span><i class="far fa-calendar"></i> ٢٥ فبراير ٢٠٢٥</span><span><i class="far fa-clock"></i> ٧ دقائق قراءة</span></div></div><span class="article-detail-category">علم البيانات</span></div><div class="article-detail-body"><h3>📊 متى تستخدم Excel؟</h3><p>Excel مثالي للبيانات الصغيرة والنتائج السريعة. Python تصبح ضرورية للبيانات الضخمة والأتمتة.</p></div>`
-                },
-                'website-project': {
-                    content: `<div class="article-detail-header"><div><h2 class="article-detail-title">كيف بنيت أول موقع لي من الصفر</h2><div class="article-detail-meta"><span><i class="far fa-calendar"></i> ١٨ فبراير ٢٠٢٥</span><span><i class="far fa-clock"></i> ٨ دقائق قراءة</span></div></div><span class="article-detail-category">المشاريع</span></div><div class="article-detail-body"><h3>🎯 لماذا قررت بناء موقع؟</h3><p>كنت أريد مكاناً أشارك فيه معرفتي مع الآخرين، وأمارس ما أتعلمه بشكل عملي.</p></div>`
-                },
-                'tools': {
-                    content: `<div class="article-detail-header"><div><h2 class="article-detail-title">١٠ أدوات مجانية يحتاجها كل متعلم تقني</h2><div class="article-detail-meta"><span><i class="far fa-calendar"></i> ١٠ فبراير ٢٠٢٥</span><span><i class="far fa-clock"></i> ٣ دقائق قراءة</span></div></div><span class="article-detail-category">نصائح عملية</span></div><div class="article-detail-body"><h3>🛠️ Visual Studio Code</h3><p>محرر الأكواد الأقوى والأكثر مرونة. يحتوي على آلاف الإضافات المجانية.</p></div>`
-                }
-            };
             
             readMoreLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
@@ -1035,7 +1269,13 @@
                     } else {
                         articlesSection.style.display = 'none';
                         articleDetailsSection.style.display = 'block';
-                        articleContent.innerHTML = `<div style="text-align:center;padding:50px;"><h2 style="color:#4cc9f0;">المقال قيد الإعداد</h2><p>نحن نعمل على إعداد المحتوى الكامل لهذا المقال</p><button onclick="location.reload()" class="filter-btn">العودة</button></div>`;
+                        articleContent.innerHTML = `
+                            <div style="text-align: center; padding: 50px;">
+                                <h2 style="color: #4cc9f0; margin-bottom: 20px;">المقال قيد الإعداد</h2>
+                                <p style="color: #e0e1dd;">نحن نعمل على إعداد المحتوى الكامل لهذا المقال، يرجى زيارة الموقع لاحقاً.</p>
+                                <button onclick="location.reload()" class="filter-btn" style="margin-top: 20px;">العودة</button>
+                            </div>
+                        `;
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     }
                 });
