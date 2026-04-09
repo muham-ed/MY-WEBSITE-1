@@ -2,64 +2,687 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     <title>مقالاتي | مسار التطور التقني - محمد علاء</title>
+    <meta name="description" content="مدونة محمد علاء التقنية - مقالات في عالم البرمجة، تحليل البيانات، الذكاء الاصطناعي، وتطوير الويب">
     <link rel="icon" href="icons mohamed.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="blogs.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-    </style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <style>
-  
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.1) 0%, transparent 20%),
+                        radial-gradient(circle at 90% 80%, rgba(247, 37, 133, 0.1) 0%, transparent 20%);
+            z-index: -1;
+        }
+
+        /* ===== شريط التنقل الموحد ===== */
+        .nav-container {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 12px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container.scrolled {
+            padding: 8px 0;
+            background: rgba(15, 23, 42, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            position: relative;
+        }
+
+        .nav-logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4cc9f0, #4361ee, #3a0ca3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            color: #4cc9f0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-link {
+            color: #e0e1dd;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 18px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(67, 97, 238, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link i {
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            transition: width 0.3s ease;
+            z-index: -1;
+            border-radius: 12px;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .login-btn {
+            background: linear-gradient(45deg, #10b981, #059669);
+            border-color: transparent;
+            color: white;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== الحاوية الرئيسية ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            margin-top: 80px;
+        }
+
+        /* ===== هيدر الصفحة ===== */
+        .page-header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(58, 12, 163, 0.1));
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .page-header .logo {
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3, #4cc9f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .page-header .subtitle {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #e0e1dd;
+            line-height: 1.6;
+        }
+
+        /* ===== فلتر المقالات ===== */
+        .articles-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e0e1dd;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            transform: translateY(-3px);
+            border-color: transparent;
+        }
+
+        /* ===== شبكة المقالات ===== */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .article-card {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(67, 97, 238, 0.2);
+            border-color: #4361ee;
+        }
+
+        .article-image {
+            height: 200px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .article-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .article-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .featured-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: #888;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .article-meta i {
+            margin-left: 5px;
+        }
+
+        .article-content h3, .featured-content h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .article-content p, .featured-content p {
+            color: #e0e1dd;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .article-tag {
+            background: rgba(67, 97, 238, 0.1);
+            color: #4cc9f0;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(67, 97, 238, 0.3);
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #4cc9f0;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: auto;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 15px;
+            color: #fff;
+        }
+
+        /* ===== مقال مميز ===== */
+        .featured-article {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(58, 12, 163, 0.1));
+            border: 2px solid #4361ee;
+        }
+
+        .featured-article .article-image {
+            height: 100%;
+            min-height: 350px;
+        }
+
+        .featured-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            align-self: flex-start;
+        }
+
+        /* ===== تفاصيل المقال ===== */
+        .article-detail-content {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 15px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .article-detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .article-detail-title {
+            color: #4cc9f0;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .article-detail-meta {
+            display: flex;
+            gap: 20px;
+            color: #888;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .article-detail-category {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .article-detail-body {
+            line-height: 1.8;
+            color: #e0e1dd;
+        }
+
+        .article-detail-body h3 {
+            color: #4cc9f0;
+            margin: 30px 0 15px;
+        }
+
+        .article-detail-body ul, .article-detail-body ol {
+            padding-right: 30px;
+            margin: 15px 0;
+        }
+
+        .article-detail-body li {
+            margin: 8px 0;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #4cc9f0;
+            border-right: 4px solid #4361ee;
+            padding-right: 15px;
+        }
+
+        /* ===== الفوتر ===== */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icon:hover {
+            background: #4361ee;
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            color: #e0e1dd;
+            font-size: 0.9rem;
+        }
+
+        /* ===== زر العودة للأعلى ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+        }
+
+        /* ===== متجاوب ===== */
+        @media (max-width: 992px) {
+            .featured-article {
+                grid-template-columns: 1fr;
+            }
+            .featured-article .article-image {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 280px;
+                height: calc(100vh - 70px);
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 20px;
+                gap: 10px;
+                transition: right 0.3s ease;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-link {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 20px;
+            }
+            
+            .nav-content {
+                padding: 0 20px;
+            }
+            
+            .container {
+                margin-top: 100px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header .logo {
+                font-size: 2rem;
+            }
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            .articles-filter {
+                gap: 10px;
+            }
+            .filter-btn {
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+            .article-detail-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .article-detail-title {
+                font-size: 1.5rem;
+            }
+            .article-detail-content {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .article-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .featured-content {
+                padding: 25px;
+            }
+            .article-content h3, .featured-content h3 {
+                font-size: 1.2rem;
+            }
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
+
+        /* ===== أنيميشن ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
-    <!-- ===== شريط التنقل الموحد ===== -->
-  <!-- ===== شريط التنقل الموحد ===== -->
-<nav class="nav-container">
 
-        <a href="index.html" class="nav-logo">
-            <span class="logo-icon">🚀</span>
-            Mohamed Alaa
-        </a>
-        <div class="nav-links">
-            <a href="index.html" class="nav-link">
-                <i class="fas fa-home"></i>
-                <span>الرئيسية</span>
+    <!-- ===== شريط التنقل الموحد ===== -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🚀</span>
+                Mohamed Alaa
             </a>
-            <a href="Computer_basics.html" class="nav-link">
-                <i class="fas fa-desktop"></i>
-                <span>أساسيات الحاسوب</span>
-            </a>
-            <a href="programming-basics.html" class="nav-link">
-                <i class="fas fa-code"></i>
-                <span>أساسيات البرمجة</span>
-            </a>
-            <a href="Microsoft_Office.html" class="nav-link">
-                <i class="fas fa-file-excel"></i>
-                <span>Microsoft Office</span>
-            </a>
-            <a href="data-scientist-course.html" class="nav-link">
-                <i class="fas fa-chart-line"></i>
-                <span>Data Scientist</span>
-            </a>
-            <a href="data-analyst-course.html" class="nav-link">
-                <i class="fas fa-database"></i>
-                <span>Data Analyst</span>
-            </a>
-            <a href="blogs.html" class="nav-link">
-                <i class="fas fa-blog"></i>
-                <span>المقالات</span>
-            </a>
-            <a href="login.html" class="nav-link login-btn">
-                <i class="fas fa-user"></i>
-                <span>دخول</span>
-            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>الرئيسية</span>
+                </a>
+                <a href="Computer_basics.html" class="nav-link">
+                    <i class="fas fa-desktop"></i>
+                    <span>أساسيات الحاسوب</span>
+                </a>
+                <a href="programming-basics.html" class="nav-link">
+                    <i class="fas fa-code"></i>
+                    <span>أساسيات البرمجة</span>
+                </a>
+                <a href="Microsoft_Office.html" class="nav-link">
+                    <i class="fas fa-file-excel"></i>
+                    <span>Microsoft Office</span>
+                </a>
+                <a href="data-analyst-course.html" class="nav-link">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Data Analyst</span>
+                </a>
+                <a href="data-scientist-course.html" class="nav-link">
+                    <i class="fas fa-database"></i>
+                    <span>Data Scientist</span>
+                </a>
+                <a href="frontend-roadmap.html" class="nav-link">
+                    <i class="fas fa-palette"></i>
+                    <span>Frontend</span>
+                </a>
+                <a href="blogs.html" class="nav-link active">
+                    <i class="fas fa-blog"></i>
+                    <span>المقالات</span>
+                </a>
+                <a href="login.html" class="nav-link login-btn">
+                    <i class="fas fa-user"></i>
+                    <span>دخول</span>
+                </a>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
-      
-    </div>
-</nav>
+    </nav>
+
     <!-- ===== الحاوية الرئيسية ===== -->
     <div class="container">
         <!-- ===== هيدر الصفحة ===== -->
@@ -111,7 +734,7 @@
                         <p>
                             كثيرًا ما نسمع أن "البيانات هي النفط الجديد"، لكن قليلون من يدركون أن هذا النفط يكون في البداية خامًا وعشوائيًا. هذه كانت بداية رحلتي في أول مشروع تحليل بيانات حقيقي لمتجر إلكتروني. اكتشفت كيف يمكن تحويل فوضى الأرقام إلى رؤى تغير من استراتيجية العمل...
                         </p>
-                        <a href="data-scientist-course.html" class="read-more" data-article="data-science">
+                        <a href="#" class="read-more" data-article="data-science">
                             اقرأ المقال كاملاً <i class="fas fa-arrow-left"></i>
                         </a>
                     </div>
@@ -136,7 +759,7 @@
                         <p>
                             كثير من الناس يعتقدون أن البرمجة تحتاج إلى شهادة جامعية أو عقلية رياضية معقدة. في هذا المقال، أشارككم رحلتي الشخصية وكيف بدأت من الصفر، مع نصائح عملية لاختيار المسار المناسب وأفضل المصادر المجانية للتعلم.
                         </p>
-                        <a href="programming-basics.html" class="read-more" data-article="programming">
+                        <a href="#" class="read-more" data-article="programming">
                             اقرأ المزيد <i class="fas fa-arrow-left"></i>
                         </a>
                     </div>
@@ -161,7 +784,7 @@
                         <p>
                             بناءً على أبحاث سوق العمل وتحليل عروض التوظيف، أقدم لكم أهم المهارات التقنية التي ستكون مطلوبة بشدة في السنوات القادمة، وكيف يمكنك تطويرها بنفسك دون الحاجة إلى دورات مكلفة.
                         </p>
-                        <a href="coming-soon.html?course=career" class="read-more" data-article="career">
+                        <a href="#" class="read-more" data-article="career">
                             اقرأ المزيد <i class="fas fa-arrow-left"></i>
                         </a>
                     </div>
@@ -186,7 +809,7 @@
                         <p>
                             مقارنة مفصلة بين أداتي تحليل البيانات الأشهر، مع إجابات عملية على أسئلة مثل: متى تستخدم Excel ومتى تنتقل إلى Python؟ وما هي مزايا وعيوب كل أداة بالنسبة للمبتدئين والمحترفين؟
                         </p>
-                        <a href="data-analyst-course.html" class="read-more" data-article="excel-python">
+                        <a href="#" class="read-more" data-article="excel-python">
                             اقرأ المزيد <i class="fas fa-arrow-left"></i>
                         </a>
                     </div>
@@ -211,7 +834,7 @@
                         <p>
                             قصة مفصلة عن رحلة بناء موقع "مسار التطور التقني"، التحديات التي واجهتها، الأخطاء التي ارتكبتها، والدروس القيمة التي تعلمتها والتي يمكن أن تفيد أي شخص يبدأ في مجال تطوير الويب.
                         </p>
-                        <a href="Computer_basics.html" class="read-more" data-article="website-project">
+                        <a href="#" class="read-more" data-article="website-project">
                             اقرأ المزيد <i class="fas fa-arrow-left"></i>
                         </a>
                     </div>
@@ -236,7 +859,7 @@
                         <p>
                             قائمة بأهم الأدوات المجانية التي استخدمها شخصيًا في عملي اليومي، من أدوات البرمجة إلى أدوات الإنتاجية والتصميم، مع شرح مبسط لكيفية استخدام كل أداة.
                         </p>
-                        <a href="coming-soon.html?course=tools" class="read-more" data-article="tools">
+                        <a href="#" class="read-more" data-article="tools">
                             اقرأ المزيد <i class="fas fa-arrow-left"></i>
                         </a>
                     </div>
@@ -286,24 +909,71 @@
         <p class="copyright">© 2025 مسار التطور التقني | مقالات محمد علاء</p>
     </footer>
 
-    <!-- ===== جافاسكريبت ===== -->
+    <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // ===== قائمة الجوال =====
+            const menuToggle = document.getElementById('mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    const icon = this.querySelector('i');
+                    if (navLinks.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 900 && navLinks) {
+                        navLinks.classList.remove('active');
+                        if (menuToggle) {
+                            const icon = menuToggle.querySelector('i');
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    }
+                });
+            });
+
+            // تأثير التمرير على الهيدر
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('.nav-container');
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+            // زر العودة للأعلى
+            const backBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                backBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+            });
+            backBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
             // ===== فلترة المقالات =====
             const filterBtns = document.querySelectorAll('.filter-btn');
             const articleCards = document.querySelectorAll('.article-card');
             
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
-                    // إزالة النشاط من جميع الأزرار
                     filterBtns.forEach(b => b.classList.remove('active'));
-                    
-                    // إضافة النشاط للزر المضغوط
                     this.classList.add('active');
                     
                     const filter = this.getAttribute('data-filter');
                     
-                    // عرض/إخفاء المقالات بناءً على الفلتر
                     articleCards.forEach(card => {
                         const categories = card.getAttribute('data-category').split(' ');
                         
@@ -331,420 +1001,54 @@
             const backToArticlesBtn = document.getElementById('back-to-articles');
             const articleContent = document.getElementById('article-content');
             
-            // محتوى المقالات
             const articlesData = {
                 'data-science': {
-                    title: 'رحلة في عالم تحليل البيانات – من الأرقام العشوائية إلى القرارات الذكية',
-                    date: '١٢ مارس ٢٠٢٥',
-                    readTime: '٥ دقائق قراءة',
-                    views: '١,٢٤٥ مشاهدة',
-                    category: 'علم البيانات',
-                    tags: ['#تحليل_البيانات', '#Python', '#قصص_نجاح', '#مشاريع_عملية'],
-                    content: `
-                        <div class="article-detail-header">
-                            <div>
-                                <h2 class="article-detail-title">رحلة في عالم تحليل البيانات – من الأرقام العشوائية إلى القرارات الذكية</h2>
-                                <div class="article-detail-meta">
-                                    <span><i class="far fa-calendar"></i> ١٢ مارس ٢٠٢٥</span>
-                                    <span><i class="far fa-clock"></i> ٥ دقائق قراءة</span>
-                                    <span><i class="far fa-eye"></i> ١,٢٤٥ مشاهدة</span>
-                                </div>
-                            </div>
-                            <span class="article-detail-category">علم البيانات</span>
-                        </div>
-                        
-                        <div class="article-detail-body">
-                            <h3>📊 من الفوضى إلى النظام: رحلتي في اكتشاف أسرار البيانات</h3>
-                            <p>
-                                كثيرًا ما نسمع أن "البيانات هي النفط الجديد"، لكن قليلون من يدركون أن هذا النفط يكون في البداية خامًا وعشوائيًا، ينتظر من يحوله إلى وقود للقرارات الذكية. هذه كانت بداية رحلتي في أول مشروع تحليل بيانات حقيقي.
-                            </p>
-                            <p>
-                                واجهت مجموعة بيانات ضخمة عن أنماط التسوق لمتجر إلكتروني - كانت تبدو كفوضى من الأرقام والتواريخ والرموز. لكنني آمنت بأن وراء كل رقم قصة، ووراء كل عمود إحصائي قرار يمكن أن يغير مسار عمل.
-                            </p>
-                            
-                            <h3>🔍 التحليل العملي: خطوة بخطوة</h3>
-                            <p>
-                                اتبعت منهجية علم البيانات المنظمة:
-                            </p>
-                            <ul>
-                                <li><strong>تنظيف البيانات:</strong> قضيت ساعات في إزالة التناقضات وتصحيح الأخطاء</li>
-                                <li><strong>الاستكشاف:</strong> باستخدام Python وJupyter Notebook، بحثت عن العلاقات المخفية</li>
-                                <li><strong>التصور:</strong> حولت الأرقام إلى رسوم بيانية تكشف الأنماط</li>
-                                <li><strong>الاستخلاص:</strong> اكتشفت رؤى قيمة مثل تأثير توقيت الشراء على قيمة السلة</li>
-                            </ul>
-                            
-                            <div style="margin: 30px 0; padding: 25px; background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(58, 12, 163, 0.1)); border-radius: 10px; border-right: 4px solid #4361ee;">
-                                <h4 style="color: #4cc9f0; margin-bottom: 15px;">💡 اكتشاف رئيسي:</h4>
-                                <p style="font-size: 1.2rem; font-style: italic;">
-                                    العملاء الذين يشترون في الصباح الباكر ينفقون 30% أكثر من أولئك الذين يشترون في أوقات أخرى!
-                                </p>
-                            </div>
-                            
-                            <h3>💡 التحول الحقيقي: من التحليل إلى التطبيق</h3>
-                            <p>
-                                لم يكن الإنجاز في التحليل التقني فقط، بل في تحويل البصائر إلى قرارات:
-                            </p>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
-                                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px;">
-                                    <h4>🕒 تحسين التوقيت</h4>
-                                    <p>تغيير ساعات العروض لتصبح في الصباح الباكر</p>
-                                </div>
-                                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px;">
-                                    <h4>🎁 تحسين العروض</h4>
-                                    <p>تجميع المنتجات التي تُشترى معًا في عروض مشتركة</p>
-                                </div>
-                                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px;">
-                                    <h4>👥 تخصيص الخدمات</h4>
-                                    <p>تصميم برامج ولاء مخصصة لفئات معينة من العملاء</p>
-                                </div>
-                            </div>
-                            
-                            <h3>🎯 الدرس المستفاد</h3>
-                            <p>
-                                هذا المشروع علمني أن مهارة تحليل البيانات ليست مجرد برمجة أو إحصاء، بل هي <strong>فن تحويل الفوضى إلى نظام، والأرقام إلى قصص، والمعلومات إلى حكمة</strong>. إنها الجسر الذي يربط بين عالم البيانات الصماء وعالم القرارات الذكية.
-                            </p>
-                        </div>
-                    `
+                    content: `<div class="article-detail-header"><div><h2 class="article-detail-title">رحلة في عالم تحليل البيانات</h2><div class="article-detail-meta"><span><i class="far fa-calendar"></i> ١٢ مارس ٢٠٢٥</span><span><i class="far fa-clock"></i> ٥ دقائق قراءة</span></div></div><span class="article-detail-category">علم البيانات</span></div><div class="article-detail-body"><h3>📊 من الفوضى إلى النظام</h3><p>كثيرًا ما نسمع أن "البيانات هي النفط الجديد"، لكن قليلون من يدركون أن هذا النفط يكون في البداية خامًا وعشوائيًا. هذه كانت بداية رحلتي في أول مشروع تحليل بيانات حقيقي.</p><p>اكتشفت أن مهارة تحليل البيانات ليست مجرد برمجة أو إحصاء، بل هي فن تحويل الفوضى إلى نظام، والأرقام إلى قصص، والمعلومات إلى حكمة.</p></div>`
                 },
-                
                 'programming': {
-                    title: 'كيف تبدأ في البرمجة بدون خلفية تقنية؟',
-                    date: '٨ مارس ٢٠٢٥',
-                    readTime: '٤ دقائق قراءة',
-                    category: 'تقنية',
-                    tags: ['#برمجة', '#للمبتدئين', '#نصائح'],
-                    content: `
-                        <div class="article-detail-header">
-                            <div>
-                                <h2 class="article-detail-title">كيف تبدأ في البرمجة بدون خلفية تقنية؟</h2>
-                                <div class="article-detail-meta">
-                                    <span><i class="far fa-calendar"></i> ٨ مارس ٢٠٢٥</span>
-                                    <span><i class="far fa-clock"></i> ٤ دقائق قراءة</span>
-                                </div>
-                            </div>
-                            <span class="article-detail-category">تقنية</span>
-                        </div>
-                        
-                        <div class="article-detail-body">
-                            <p>كنت مثلك تماماً، أظن أن البرمجة تحتاج إلى عقل رياضي معقد أو شهادة جامعية في علوم الحاسوب. لكن الحقيقة مختلفة تماماً!</p>
-                            
-                            <h3>🚀 رحلتي الشخصية</h3>
-                            <p>بدأت رحلتي في البرمجة من الصفر المطلق. لم أكن أعرف شيئاً عن الأكواد أو الخوارزميات. كل ما كان لدي هو فضول شديد ورغبة في تعلم شيء جديد.</p>
-                            
-                            <h3>📚 الخطوات العملية للبداية</h3>
-                            <ol>
-                                <li><strong>اختر لغة برمجة سهلة:</strong> أنصح دائماً بـPython كبداية، لأنها بسيطة وقريبة من اللغة الإنجليزية.</li>
-                                <li><strong>ابدأ بمشاريع صغيرة:</strong> لا تحاول بناء تطبيق كامل من اليوم الأول. ابدأ ببرنامج بسيط مثل آلة حاسبة.</li>
-                                <li><strong>استخدم المصادر المجانية:</strong> هناك كنوز مجانية على YouTube ومواقع مثل freeCodeCamp.</li>
-                                <li><strong>مارس يومياً:</strong> حتى لو لمدة 30 دقيقة فقط، الممارسة اليومية هي سر التقدم.</li>
-                                <li><strong>لا تخاف من الأخطاء:</strong> الأخطاء جزء من التعلم، كل مبرمج محترف كان يوماً ما مبتدئاً يرتكب أخطاء.</li>
-                            </ol>
-                            
-                            <h3>💡 نصائح ذهبية للمبتدئين</h3>
-                            <ul>
-                                <li>لا تقارن نفسك بالمبرمجين المحترفين</li>
-                                <li>ركز على تعلم أساسيات البرمجة قبل التعمق في التقنيات المتقدمة</li>
-                                <li>انضم لمجتمعات المبرمجين على Discord أو Reddit</li>
-                                <li>حاول أن تعيد كتابة الأكواد التي تراها بدلاً من نسخها فقط</li>
-                            </ul>
-                            
-                            <p>تذكر: كل مبرمج عظيم بدأ من حيث أنت الآن. المهم هو البداية والاستمرار.</p>
-                        </div>
-                    `
+                    content: `<div class="article-detail-header"><div><h2 class="article-detail-title">كيف تبدأ في البرمجة بدون خلفية تقنية؟</h2><div class="article-detail-meta"><span><i class="far fa-calendar"></i> ٨ مارس ٢٠٢٥</span><span><i class="far fa-clock"></i> ٤ دقائق قراءة</span></div></div><span class="article-detail-category">تقنية</span></div><div class="article-detail-body"><h3>🚀 رحلتي الشخصية</h3><p>بدأت رحلتي في البرمجة من الصفر المطلق. كنت أظن أن البرمجة تحتاج إلى عقل رياضي معقد، لكن الحقيقة مختلفة تمامًا!</p><p>كل مبرمج عظيم بدأ من حيث أنت الآن. المهم هو البداية والاستمرار.</p></div>`
                 },
-                
                 'career': {
-                    title: 'أهم ٥ مهارات تقنية مطلوبة في سوق العمل ٢٠٢٥',
-                    date: '٣ مارس ٢٠٢٥',
-                    readTime: '٦ دقائق قراءة',
-                    category: 'المسيرة المهنية',
-                    tags: ['#سوق_العمل', '#مهارات', '#مستقبل_التقنية'],
-                    content: `
-                        <div class="article-detail-header">
-                            <div>
-                                <h2 class="article-detail-title">أهم ٥ مهارات تقنية مطلوبة في سوق العمل ٢٠٢٥</h2>
-                                <div class="article-detail-meta">
-                                    <span><i class="far fa-calendar"></i> ٣ مارس ٢٠٢٥</span>
-                                    <span><i class="far fa-clock"></i> ٦ دقائق قراءة</span>
-                                </div>
-                            </div>
-                            <span class="article-detail-category">المسيرة المهنية</span>
-                        </div>
-                        
-                        <div class="article-detail-body">
-                            <p>بناءً على أبحاث سوق العمل وتحليل المئات من عروض التوظيف، إليك أهم المهارات التقنية التي ستكون مطلوبة بشدة في السنوات القادمة:</p>
-                            
-                            <h3>1. تحليل البيانات (Data Analysis)</h3>
-                            <p>لم تعد الشركات تبحث فقط عن أشخاص يجيدون جمع البيانات، بل عن من يستطيع تحويل هذه البيانات إلى رؤى قابلة للتنفيذ. المهارات المطلوبة:</p>
-                            <ul>
-                                <li>إجادة Excel المتقدم (Pivot Tables, Power Query)</li>
-                                <li>المعرفة الأساسية بـPython أو R</li>
-                                <li>أدوات التصور مثل Power BI أو Tableau</li>
-                            </ul>
-                            
-                            <h3>2. الذكاء الاصطناعي وتعلم الآلة</h3>
-                            <p>أصبح الذكاء الاصطناعي جزءاً أساسياً من كل الصناعات. حتى لو لم تكن متخصصاً، المعرفة الأساسية أصبحت ضرورية.</p>
-                            
-                            <h3>3. الأمن السيبراني</h3>
-                            <p>مع زيادة الهجمات الإلكترونية، أصبحت حماية البيانات أولوية قصوى للشركات.</p>
-                            
-                            <h3>4. تطوير تطبيقات الويب والجوال</h3>
-                            <p>لا تزال مهارات التطوير مطلوبة بشدة، خاصة مع انتشار تطبيقات SaaS.</p>
-                            
-                            <h3>5. إدارة المشاريع التقنية (Agile & Scrum)</h3>
-                            <p>القدرة على إدارة المشاريع التقنية أصبحت مهارة مطلوبة حتى للمطورين أنفسهم.</p>
-                            
-                            <h3>🎯 كيف تطور هذه المهارات مجاناً؟</h3>
-                            <p>لا تحتاج إلى دورات مكلفة، كل هذه المهارات يمكن تعلمها مجاناً من خلال:</p>
-                            <ul>
-                                <li>دورات Google المجانية على Coursera</li>
-                                <li>قنوات YouTube المتخصصة</li>
-                                <li>منصات مثل freeCodeCamp وCodecademy</li>
-                                <li>المشاريع العملية والتطوع في مشاريع مفتوحة المصدر</li>
-                            </ul>
-                        </div>
-                    `
+                    content: `<div class="article-detail-header"><div><h2 class="article-detail-title">أهم ٥ مهارات تقنية مطلوبة في سوق العمل ٢٠٢٥</h2><div class="article-detail-meta"><span><i class="far fa-calendar"></i> ٣ مارس ٢٠٢٥</span><span><i class="far fa-clock"></i> ٦ دقائق قراءة</span></div></div><span class="article-detail-category">المسيرة المهنية</span></div><div class="article-detail-body"><h3>📊 تحليل البيانات</h3><p>لم تعد الشركات تبحث فقط عن أشخاص يجيدون جمع البيانات، بل عن من يستطيع تحويل هذه البيانات إلى رؤى قابلة للتنفيذ.</p></div>`
                 },
-                
                 'excel-python': {
-                    title: 'Excel vs Python: أيهما تتعلم أولاً لتحليل البيانات؟',
-                    date: '٢٥ فبراير ٢٠٢٥',
-                    readTime: '٧ دقائق قراءة',
-                    category: 'علم البيانات',
-                    tags: ['#Excel', '#Python', '#مقارنة'],
-                    content: `
-                        <div class="article-detail-header">
-                            <div>
-                                <h2 class="article-detail-title">Excel vs Python: أيهما تتعلم أولاً لتحليل البيانات؟</h2>
-                                <div class="article-detail-meta">
-                                    <span><i class="far fa-calendar"></i> ٢٥ فبراير ٢٠٢٥</span>
-                                    <span><i class="far fa-clock"></i> ٧ دقائق قراءة</span>
-                                </div>
-                            </div>
-                            <span class="article-detail-category">علم البيانات</span>
-                        </div>
-                        
-                        <div class="article-detail-body">
-                            <p>هذا السؤال من أكثر الأسئلة التي تصلني: هل أبدأ بـExcel أم أتخطاه وأذهب مباشرة إلى Python؟</p>
-                            
-                            <h3>📊 متى تستخدم Excel؟</h3>
-                            <p>Excel مثالي عندما:</p>
-                            <ul>
-                                <li>بياناتك صغيرة إلى متوسطة الحجم (أقل من مليون صف)</li>
-                                <li>تحتاج إلى نتائج سريعة وتصورات فورية</li>
-                                <li>تعمل في بيئة عمل تستخدم Excel كأداة أساسية</li>
-                                <li>لا تحتاج إلى أتمتة مهام متكررة معقدة</li>
-                            </ul>
-                            
-                            <h3>🐍 متى تنتقل إلى Python؟</h3>
-                            <p>Python تصبح ضرورية عندما:</p>
-                            <ul>
-                                <li>بياناتك كبيرة جداً (ملايين الصفوف)</li>
-                                <li>تحتاج إلى أتمتة عمليات متكررة</li>
-                                <li>تريد بناء نماذج تعلم آلي متقدمة</li>
-                                <li>تعمل مع بيانات غير منظمة (نصوص، صور، إلخ)</li>
-                            </ul>
-                            
-                            <h3>🚀 توصيتي الشخصية</h3>
-                            <p>ابدأ بـExcel حتى تتقن:</p>
-                            <ol>
-                                <li>الصيغ الأساسية والمتقدمة</li>
-                                <li>Pivot Tables وPower Query</li>
-                                <li>تصور البيانات باستخدام Charts</li>
-                            </ol>
-                            
-                            <p>ثم انتقل إلى Python لـ:</p>
-                            <ol>
-                                <li>أتمتة التقارير اليومية</li>
-                                <li>تحليل البيانات الضخمة</li>
-                                <li>بناء نماذج تنبؤية</li>
-                            </ol>
-                            
-                            <p>تذكر: Excel وPython ليسا بديلين عن بعضهما، بل مكملين. المحلل المحترف يجيد استخدام كليهما حسب المهمة.</p>
-                        </div>
-                    `
+                    content: `<div class="article-detail-header"><div><h2 class="article-detail-title">Excel vs Python</h2><div class="article-detail-meta"><span><i class="far fa-calendar"></i> ٢٥ فبراير ٢٠٢٥</span><span><i class="far fa-clock"></i> ٧ دقائق قراءة</span></div></div><span class="article-detail-category">علم البيانات</span></div><div class="article-detail-body"><h3>📊 متى تستخدم Excel؟</h3><p>Excel مثالي للبيانات الصغيرة والنتائج السريعة. Python تصبح ضرورية للبيانات الضخمة والأتمتة.</p></div>`
                 },
-                
                 'website-project': {
-                    title: 'كيف بنيت أول موقع لي من الصفر: التحديات والدروس',
-                    date: '١٨ فبراير ٢٠٢٥',
-                    readTime: '٨ دقائق قراءة',
-                    category: 'المشاريع',
-                    tags: ['#تطوير_الويب', '#HTML_CSS', '#تجربة_شخصية'],
-                    content: `
-                        <div class="article-detail-header">
-                            <div>
-                                <h2 class="article-detail-title">كيف بنيت أول موقع لي من الصفر: التحديات والدروس</h2>
-                                <div class="article-detail-meta">
-                                    <span><i class="far fa-calendar"></i> ١٨ فبراير ٢٠٢٥</span>
-                                    <span><i class="far fa-clock"></i> ٨ دقائق قراءة</span>
-                                </div>
-                            </div>
-                            <span class="article-detail-category">المشاريع</span>
-                        </div>
-                        
-                        <div class="article-detail-body">
-                            <p>قبل عام، لم أكن أعرف شيئاً عن تطوير الويب. اليوم، لدي موقع متكامل (مسار التطور التقني) بنيته من الصفر. هذه قصة الرحلة:</p>
-                            
-                            <h3>🎯 لماذا قررت بناء موقع؟</h3>
-                            <p>كنت أريد مكاناً أشارك فيه معرفتي مع الآخرين، وأمارس ما أتعلمه بشكل عملي. لم أجد طريقة أفضل من بناء موقعي الخاص.</p>
-                            
-                            <h3>🚧 التحديات التي واجهتها</h3>
-                            <ol>
-                                <li><strong>الارتباك في البداية:</strong> كنت أعرف HTML وCSS نظرياً، لكن تطبيقها كان تحدياً مختلفاً.</li>
-                                <li><strong>التصميم المتجاوب:</strong> جعل الموقع يعمل بشكل جيد على جميع الشاشات كان أصعب مما توقعت.</li>
-                                <li><strong>التنظيم:</strong> مع زيادة صفحات الموقع، أصبح تنظيم الملفات والأكواد فوضوي.</li>
-                                <li><strong>الأداء:</strong> كيف أجعل الموقع سريعاً مع كل هذه الصور والتأثيرات؟</li>
-                            </ol>
-                            
-                            <h3>💡 الدروس المستفادة</h3>
-                            <ul>
-                                <li><strong>ابدأ بسيطاً:</strong> لا تحاول بناء موقع كامل من اليوم الأول.</li>
-                                <li><strong>تعلم أثناء العمل:</strong> أفضل طريقة للتعلم هي حل مشاكل حقيقية.</li>
-                                <li><strong>استخدم GitHub:</strong> حفظ نسخ احتياطية من المشروع أنقذني مرات عديدة.</li>
-                                <li><strong>اطلب المساعدة:</strong> مجتمعات المطورين على Discord كانت كنزاً.</li>
-                                <li><strong>اختبر باستمرار:</strong> اختبر موقعك على أجهزة مختلفة قبل النشر.</li>
-                            </ul>
-                            
-                            <h3>🎉 النتيجة</h3>
-                            <p>بعد 3 أشهر من العمل (بمعدل ساعة يومياً)، كان لدي موقع يعمل بكفاءة. الأهم من ذلك، أنني اكتسبت ثقة في قدراتي كمطور ويب.</p>
-                            
-                            <p>إذا كنت تفكر في بناء موقعك الخاص، نصيحتي: <strong>ابدأ الآن</strong>. لن يكون مثالي، لكنك ستتعلم أكثر مما تتخيل.</p>
-                        </div>
-                    `
+                    content: `<div class="article-detail-header"><div><h2 class="article-detail-title">كيف بنيت أول موقع لي من الصفر</h2><div class="article-detail-meta"><span><i class="far fa-calendar"></i> ١٨ فبراير ٢٠٢٥</span><span><i class="far fa-clock"></i> ٨ دقائق قراءة</span></div></div><span class="article-detail-category">المشاريع</span></div><div class="article-detail-body"><h3>🎯 لماذا قررت بناء موقع؟</h3><p>كنت أريد مكاناً أشارك فيه معرفتي مع الآخرين، وأمارس ما أتعلمه بشكل عملي.</p></div>`
                 },
-                
                 'tools': {
-                    title: '١٠ أدوات مجانية يحتاجها كل متعلم تقني',
-                    date: '١٠ فبراير ٢٠٢٥',
-                    readTime: '٣ دقائق قراءة',
-                    category: 'نصائح عملية',
-                    tags: ['#أدوات', '#مجانية', '#إنتاجية'],
-                    content: `
-                        <div class="article-detail-header">
-                            <div>
-                                <h2 class="article-detail-title">١٠ أدوات مجانية يحتاجها كل متعلم تقني</h2>
-                                <div class="article-detail-meta">
-                                    <span><i class="far fa-calendar"></i> ١٠ فبراير ٢٠٢٥</span>
-                                    <span><i class="far fa-clock"></i> ٣ دقائق قراءة</span>
-                                </div>
-                            </div>
-                            <span class="article-detail-category">نصائح عملية</span>
-                        </div>
-                        
-                        <div class="article-detail-body">
-                            <p>هذه الأدوات المجانية ساعدتني شخصياً في رحلتي التعليمية، وأستخدمها يومياً:</p>
-                            
-                            <h3>1. Visual Studio Code</h3>
-                            <p>محرر الأكواد الأقوى والأكثر مرونة. يحتوي على آلاف الإضافات المجانية.</p>
-                            
-                            <h3>2. GitHub</h3>
-                            <p>ليس فقط لحفظ الأكواد، بل للمشاركة والتعلم من مشاريع الآخرين.</p>
-                            
-                            <h3>3. Canva</h3>
-                            <p>لتصميم صور المنشورات والعروض التقديمية بدون خبرة في التصميم.</p>
-                            
-                            <h3>4. Notion</h3>
-                            <p>لتنظيم الملاحظات والمشاريع والمهام. بديل ممتاز للدفاتر الورقية.</p>
-                            
-                            <h3>5. OBS Studio</h3>
-                            <p>لتسجيل الشاشة وإنشاء محتوى فيديو تعليمي.</p>
-                            
-                            <h3>6. Google Colab</h3>
-                            <p>لتشغيل كود Python في السحابة بدون تثبيت أي شيء على جهازك.</p>
-                            
-                            <h3>7. Figma</h3>
-                            <p>لتصميم واجهات المواقع والتطبيقات (يحتوي على نسخة مجانية ممتازة).</p>
-                            
-                            <h3>8. Postman</h3>
-                            <p>لاختبار APIs والتعرف على كيفية عمل تطبيقات الويب.</p>
-                            
-                            <h3>9. draw.io</h3>
-                            <p>لرسم المخططات الانسيابية والهندسية.</p>
-                            
-                            <h3>10. ChatGPT</h3>
-                            <p>ليس فقط للردود النصية، بل لشرح المفاهيم التقنية وإصلاح الأخطاء.</p>
-                            
-                            <h3>💡 كيف تستفيد من هذه الأدوات؟</h3>
-                            <p>لا تحاول تعلم كل الأدوات مرة واحدة. اختر أداة واحدة، استخدمها لمدة أسبوع، ثم انتقل إلى التالية. الأهم هو كيفية دمج هذه الأدوات في سير عملك اليومي.</p>
-                        </div>
-                    `
+                    content: `<div class="article-detail-header"><div><h2 class="article-detail-title">١٠ أدوات مجانية يحتاجها كل متعلم تقني</h2><div class="article-detail-meta"><span><i class="far fa-calendar"></i> ١٠ فبراير ٢٠٢٥</span><span><i class="far fa-clock"></i> ٣ دقائق قراءة</span></div></div><span class="article-detail-category">نصائح عملية</span></div><div class="article-detail-body"><h3>🛠️ Visual Studio Code</h3><p>محرر الأكواد الأقوى والأكثر مرونة. يحتوي على آلاف الإضافات المجانية.</p></div>`
                 }
             };
             
             readMoreLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
                     const articleId = this.getAttribute('data-article');
                     
                     if (articleId && articlesData[articleId]) {
-                        // إخفاء قائمة المقالات وإظهار تفاصيل المقال
                         articlesSection.style.display = 'none';
                         articleDetailsSection.style.display = 'block';
-                        
-                        // تحميل محتوى المقال
-                        const article = articlesData[articleId];
-                        articleContent.innerHTML = article.content;
-                        
-                        // التمرير إلى أعلى الصفحة
-                        window.scrollTo({
-                            top: 0,
-                            behavior: 'smooth'
-                        });
+                        articleContent.innerHTML = articlesData[articleId].content;
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
                     } else {
-                        // إذا لم يكن هناك محتوى
                         articlesSection.style.display = 'none';
                         articleDetailsSection.style.display = 'block';
-                        articleContent.innerHTML = `
-                            <div style="text-align: center; padding: 50px;">
-                                <h2 style="color: #4cc9f0; margin-bottom: 20px;">المقال قيد الإعداد</h2>
-                                <p style="color: #e0e1dd; line-height: 1.8; margin-bottom: 20px;">
-                                    نحن نعمل على إعداد المحتوى الكامل لهذا المقال، يرجى زيارة الموقع لاحقاً.
-                                </p>
-                                <button onclick="goBackToList()" class="filter-btn" style="margin-top: 20px;">
-                                    <i class="fas fa-arrow-right"></i> العودة إلى القائمة
-                                </button>
-                            </div>
-                        `;
-                        
-                        window.scrollTo({
-                            top: 0,
-                            behavior: 'smooth'
-                        });
+                        articleContent.innerHTML = `<div style="text-align:center;padding:50px;"><h2 style="color:#4cc9f0;">المقال قيد الإعداد</h2><p>نحن نعمل على إعداد المحتوى الكامل لهذا المقال</p><button onclick="location.reload()" class="filter-btn">العودة</button></div>`;
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
                     }
                 });
             });
             
-            // العودة إلى قائمة المقالات
             backToArticlesBtn.addEventListener('click', function() {
                 articlesSection.style.display = 'block';
                 articleDetailsSection.style.display = 'none';
-                
-                // التمرير إلى قسم المقالات
-                window.scrollTo({
-                    top: articlesSection.offsetTop - 80,
-                    behavior: 'smooth'
-                });
+                window.scrollTo({ top: articlesSection.offsetTop - 80, behavior: 'smooth' });
             });
             
-            // دالة للعودة للقائمة (للمحتوى الافتراضي)
-            window.goBackToList = function() {
-                articlesSection.style.display = 'block';
-                articleDetailsSection.style.display = 'none';
-                
-                window.scrollTo({
-                    top: articlesSection.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            };
-            
-            // تأثيرات الظهور عند التمرير
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
+            // تأثيرات الظهور
+            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -754,33 +1058,8 @@
                 });
             }, observerOptions);
             
-            // تطبيق التأثيرات على البطاقات
-            articleCards.forEach(card => {
-                observer.observe(card);
-            });
+            articleCards.forEach(card => observer.observe(card));
         });
-        
-        // دالة لمشاركة المقال
-        function shareArticle(platform) {
-            const url = window.location.href;
-            const title = document.title;
-            const text = 'اقرأ هذا المقال المميز على موقع مسار التطور التقني';
-            
-            let shareUrl = '';
-            
-            switch(platform) {
-                case 'twitter':
-                    shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
-                    break;
-                case 'facebook':
-                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-                    break;
-                case 'linkedin':
-                    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
-                    break;
-                case 'whatsapp':
-                    shareUrl = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
-                    break;
-            }
+    </script>
 </body>
 </html>
