@@ -26,7 +26,6 @@ body::before {
 }
 
 /* ===== شريط التنقل الموحد ===== */
-/* ===== شريط التنقل الموحد ===== */
 .nav-container { 
     background: rgba(15, 23, 42, 0.95); 
     padding: 12px 0; 
@@ -256,6 +255,48 @@ body::before {
         font-size: 0.9rem;
     }
 }
+
+/* ===== الحاوية الرئيسية ===== */
+.container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    margin-top: 80px;
+}
+
+/* ===== هيدر الصفحة ===== */
+.page-header {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(58, 12, 163, 0.1));
+    border-radius: 20px;
+    margin-bottom: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.page-header .logo {
+    font-size: 2.8rem;
+    background: linear-gradient(45deg, #4361ee, #3a0ca3, #4cc9f0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 20px;
+}
+
+.page-header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.page-header .subtitle {
+    font-size: 1.3rem;
+    max-width: 800px;
+    margin: 0 auto 30px;
+    color: #e0e1dd;
+    line-height: 1.6;
+}
+
 /* ===== فلتر المقالات ===== */
 .articles-filter {
     display: flex;
@@ -569,16 +610,6 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .nav-content {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
     .container {
         padding: 10px;
         margin-top: 120px;
