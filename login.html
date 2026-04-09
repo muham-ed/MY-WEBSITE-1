@@ -2,20 +2,474 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول | Mohamed Alaa</title>
-      <link rel="stylesheet" href="global.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>تسجيل الدخول | محمد علاء - مسار التطور التقني</title>
+    <meta name="description" content="تسجيل الدخول أو إنشاء حساب جديد في منصة مسار التطور التقني للوصول إلى الدورات والمحتوى التعليمي">
     <link rel="icon" href="icons mohamed.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/login.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.1) 0%, transparent 20%),
+                        radial-gradient(circle at 90% 80%, rgba(247, 37, 133, 0.1) 0%, transparent 20%);
+            z-index: -1;
+        }
+
+        /* ===== شريط التنقل الموحد ===== */
+        .nav-container {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 12px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container.scrolled {
+            padding: 8px 0;
+            background: rgba(15, 23, 42, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            position: relative;
+        }
+
+        .nav-logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4cc9f0, #4361ee, #3a0ca3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.02);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-link {
+            color: #e0e1dd;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 18px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(67, 97, 238, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link i {
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            transition: width 0.3s ease;
+            z-index: -1;
+            border-radius: 12px;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== بطاقة تسجيل الدخول ===== */
+        .login-card {
+            background: rgba(27, 38, 59, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            margin: 100px auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .login-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(67, 97, 238, 0.5);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #4cc9f0, #4361ee, #3a0ca3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 30px;
+        }
+
+        .login-card h2 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        /* ===== رسالة ===== */
+        .message {
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .message.success {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border: 1px solid #10b981;
+            display: block;
+        }
+
+        .message.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid #ef4444;
+            display: block;
+        }
+
+        /* ===== حقول الإدخال ===== */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #4361ee;
+            background: rgba(67, 97, 238, 0.1);
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .name-field {
+            display: none;
+        }
+
+        .name-field.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* ===== الأزرار ===== */
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
+        }
+
+        .btn-google {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .btn-google:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* ===== الفاصل ===== */
+        .divider {
+            text-align: center;
+            position: relative;
+            margin: 25px 0;
+        }
+
+        .divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .divider span {
+            background: rgba(27, 38, 59, 0.95);
+            padding: 0 15px;
+            position: relative;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* ===== تبديل الوضع ===== */
+        .toggle-mode {
+            text-align: center;
+            color: #4cc9f0;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-mode:hover {
+            color: #fff;
+        }
+
+        /* ===== العودة للرئيسية ===== */
+        .back-home {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-home a {
+            color: #888;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-home a:hover {
+            color: #4cc9f0;
+        }
+
+        /* ===== ملاحظة النطاق ===== */
+        .domain-note {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.8rem;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* ===== أنيميشن ===== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== متجاوب ===== */
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 280px;
+                height: calc(100vh - 70px);
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 20px;
+                gap: 10px;
+                transition: right 0.3s ease;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-link {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 20px;
+            }
+            
+            .nav-content {
+                padding: 0 20px;
+            }
+            
+            .login-card {
+                margin: 100px 20px;
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .login-card {
+                margin: 80px 15px;
+                padding: 25px 15px;
+            }
+            
+            .logo {
+                font-size: 1.4rem;
+            }
+            
+            .login-card h2 {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
+
+    <!-- ===== شريط التنقل الموحد ===== -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🚀</span>
+                Mohamed Alaa
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i><span>الرئيسية</span></a>
+                <a href="Computer_basics.html" class="nav-link"><i class="fas fa-desktop"></i><span>أساسيات الحاسوب</span></a>
+                <a href="programming-basics.html" class="nav-link"><i class="fas fa-code"></i><span>أساسيات البرمجة</span></a>
+                <a href="Microsoft_Office.html" class="nav-link"><i class="fas fa-file-excel"></i><span>Microsoft Office</span></a>
+                <a href="data-analyst-course.html" class="nav-link"><i class="fas fa-chart-line"></i><span>Data Analyst</span></a>
+                <a href="data-scientist-course.html" class="nav-link"><i class="fas fa-brain"></i><span>Data Scientist</span></a>
+                <a href="frontend-roadmap.html" class="nav-link"><i class="fas fa-palette"></i><span>Frontend</span></a>
+                <a href="blogs.html" class="nav-link"><i class="fas fa-blog"></i><span>المقالات</span></a>
+                <a href="login.html" class="nav-link active"><i class="fas fa-user"></i><span>دخول</span></a>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== بطاقة تسجيل الدخول ===== -->
     <div class="login-card">
-        <div class="logo">مسار التطور التقني</div>
+        <div class="logo">📚 مسار التطور التقني</div>
         <h2 id="title">تسجيل الدخول</h2>
         
         <div id="message" class="message"></div>
@@ -33,19 +487,22 @@
             <input type="password" id="password" placeholder="كلمة المرور">
         </div>
         
-        <button class="btn btn-primary" id="mainBtn">دخول</button>
+        <button class="btn btn-primary" id="mainBtn">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>دخول</span>
+        </button>
         
         <div class="divider">
             <span>أو</span>
         </div>
         
         <button class="btn btn-google" id="googleBtn">
-            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" width="20" alt="Google">
+            <i class="fab fa-google"></i>
             الدخول بواسطة Google
         </button>
         
         <div class="toggle-mode" id="toggleMode">
-            ليس لديك حساب؟ سجل الآن
+            ليس لديك حساب؟ <strong>سجل الآن</strong>
         </div>
         
         <div class="back-home">
@@ -59,10 +516,236 @@
         </div>
     </div>
 
-    <!-- JavaScript Files -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-    <script src="js/firebase-config.js"></script>
-    <script src="js/login.js"></script>
+    <script>
+        // ===== قائمة الجوال =====
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+
+        // إغلاق القائمة عند النقر على رابط
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 900 && navLinks) {
+                    navLinks.classList.remove('active');
+                    if (menuToggle) {
+                        const icon = menuToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+
+        // تأثير التمرير على الهيدر
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav-container');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // ===== نظام تسجيل الدخول المحلي (بدون Firebase للاختبار) =====
+        let isLoginMode = true;
+        const titleEl = document.getElementById('title');
+        const mainBtn = document.getElementById('mainBtn');
+        const toggleModeBtn = document.getElementById('toggleMode');
+        const nameField = document.getElementById('nameField');
+        const messageDiv = document.getElementById('message');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const nameInput = document.getElementById('name');
+
+        // تبديل وضع تسجيل الدخول / إنشاء حساب
+        function toggleMode() {
+            isLoginMode = !isLoginMode;
+            
+            if (isLoginMode) {
+                titleEl.textContent = 'تسجيل الدخول';
+                mainBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i><span>دخول</span>';
+                toggleModeBtn.innerHTML = 'ليس لديك حساب؟ <strong>سجل الآن</strong>';
+                nameField.classList.remove('show');
+            } else {
+                titleEl.textContent = 'إنشاء حساب جديد';
+                mainBtn.innerHTML = '<i class="fas fa-user-plus"></i><span>إنشاء حساب</span>';
+                toggleModeBtn.innerHTML = 'لديك حساب بالفعل؟ <strong>تسجيل الدخول</strong>';
+                nameField.classList.add('show');
+            }
+            
+            // مسح الرسائل
+            messageDiv.className = 'message';
+            messageDiv.style.display = 'none';
+        }
+
+        // عرض رسالة
+        function showMessage(msg, type) {
+            messageDiv.textContent = msg;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 3000);
+        }
+
+        // التحقق من صحة البريد الإلكتروني
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // التحقق من صحة كلمة المرور
+        function isValidPassword(password) {
+            return password.length >= 6;
+        }
+
+        // تسجيل الدخول
+        function login(email, password) {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                localStorage.setItem('currentUser', JSON.stringify({
+                    name: user.name,
+                    email: user.email,
+                    isLoggedIn: true
+                }));
+                showMessage('✓ تم تسجيل الدخول بنجاح! جاري التحويل...', 'success');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            } else {
+                showMessage('✗ البريد الإلكتروني أو كلمة المرور غير صحيحة', 'error');
+            }
+        }
+
+        // إنشاء حساب جديد
+        function signup(name, email, password) {
+            if (!name.trim()) {
+                showMessage('✗ الرجاء إدخال الاسم الكامل', 'error');
+                return false;
+            }
+            
+            if (!isValidEmail(email)) {
+                showMessage('✗ الرجاء إدخال بريد إلكتروني صحيح', 'error');
+                return false;
+            }
+            
+            if (!isValidPassword(password)) {
+                showMessage('✗ كلمة المرور يجب أن تكون 6 أحرف على الأقل', 'error');
+                return false;
+            }
+            
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            
+            if (users.find(u => u.email === email)) {
+                showMessage('✗ هذا البريد الإلكتروني مسجل بالفعل', 'error');
+                return false;
+            }
+            
+            users.push({
+                name: name.trim(),
+                email: email,
+                password: password,
+                createdAt: new Date().toISOString()
+            });
+            
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('currentUser', JSON.stringify({
+                name: name.trim(),
+                email: email,
+                isLoggedIn: true
+            }));
+            
+            showMessage('✓ تم إنشاء الحساب بنجاح! جاري التحويل...', 'success');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+            
+            return true;
+        }
+
+        // معالج زر الدخول/إنشاء حساب
+        function handleAuth() {
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+            
+            if (!email || !password) {
+                showMessage('✗ الرجاء ملء جميع الحقول', 'error');
+                return;
+            }
+            
+            if (isLoginMode) {
+                login(email, password);
+            } else {
+                const name = nameInput.value.trim();
+                signup(name, email, password);
+            }
+        }
+
+        // الدخول بواسطة Google (محاكاة)
+        function googleLogin() {
+            showMessage('✓ جاري الاتصال بـ Google...', 'success');
+            setTimeout(() => {
+                const googleUser = {
+                    name: 'مستخدم Google',
+                    email: 'user@gmail.com',
+                    isLoggedIn: true,
+                    viaGoogle: true
+                };
+                localStorage.setItem('currentUser', JSON.stringify(googleUser));
+                showMessage('✓ تم تسجيل الدخول بنجاح عبر Google!', 'success');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            }, 1000);
+        }
+
+        // التحقق من وجود مستخدم مسجل حالياً
+        function checkCurrentUser() {
+            const currentUser = localStorage.getItem('currentUser');
+            if (currentUser) {
+                const user = JSON.parse(currentUser);
+                if (user.isLoggedIn) {
+                    showMessage(`مرحباً بعودتك ${user.name}!`, 'success');
+                }
+            }
+        }
+
+        // إضافة مستمعي الأحداث
+        mainBtn.addEventListener('click', handleAuth);
+        toggleModeBtn.addEventListener('click', toggleMode);
+        document.getElementById('googleBtn').addEventListener('click', googleLogin);
+
+        // الضغط على Enter
+        emailInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleAuth();
+        });
+        passwordInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleAuth();
+        });
+        if (nameInput) {
+            nameInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleAuth();
+            });
+        }
+
+        // التحقق من المستخدم الحالي
+        checkCurrentUser();
+    </script>
 </body>
 </html>
