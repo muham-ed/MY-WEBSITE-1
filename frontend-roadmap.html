@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     <title>مسار تعلم Frontend | محمد علاء - مطور ويب</title>
     <meta name="description" content="دورة متكاملة لتعلم Frontend Development: HTML، CSS، JavaScript، React - من الصفر إلى الاحتراف مع مشاريع عملية">
     <meta name="keywords" content="فرونت إند, تعلم Frontend, HTML, CSS, JavaScript, React, تطوير واجهات المستخدم">
@@ -12,16 +12,725 @@
     <meta property="og:title" content="مسار تعلم Frontend | محمد علاء">
     <meta property="og:description" content="دورة متكاملة لتعلم تطوير واجهات المستخدم - من الصفر إلى الاحتراف">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://muham-ed.github.io/MY-WEBSITE-1/frontend-roadmap.html">
-      <link rel="stylesheet" href="global.css">
+    
     <link rel="icon" href="icons mohamed.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Styles -->
-    <link rel="stylesheet" href="frontend-roadmap.css">
-</head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.1) 0%, transparent 20%),
+                        radial-gradient(circle at 90% 80%, rgba(247, 37, 133, 0.1) 0%, transparent 20%);
+            z-index: -1;
+        }
+
+        /* ===== شريط التنقل الموحد ===== */
+        .nav-container {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 12px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container.scrolled {
+            padding: 8px 0;
+            background: rgba(15, 23, 42, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            position: relative;
+        }
+
+        .nav-logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4cc9f0, #4361ee, #3a0ca3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.02);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-link {
+            color: #e0e1dd;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 18px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(67, 97, 238, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link i {
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            transition: width 0.3s ease;
+            z-index: -1;
+            border-radius: 12px;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== زر مستقل عائم ===== */
+        .floating-mostaql-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 1000;
+        }
+
+        .mostaql-btn {
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .mostaql-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        /* ===== الحاوية الرئيسية ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            margin-top: 80px;
+        }
+
+        /* ===== هيدر الصفحة ===== */
+        .page-header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(58, 12, 163, 0.1));
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .page-header .logo {
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3, #4cc9f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .page-header .subtitle {
+            font-size: 1.1rem;
+            color: #e0e1dd;
+            margin-bottom: 20px;
+        }
+
+        /* ===== الأقسام العامة ===== */
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #4cc9f0;
+            border-right: 4px solid #4361ee;
+            padding-right: 15px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #e0e1dd;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        /* ===== خارطة الطريق ===== */
+        .roadmap-section {
+            margin-bottom: 60px;
+        }
+
+        .roadmap-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .roadmap-module {
+            display: flex;
+            gap: 20px;
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .roadmap-module:hover {
+            transform: translateX(-5px);
+            border-color: #4361ee;
+        }
+
+        .module-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #4361ee, #4cc9f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .module-content {
+            flex: 1;
+        }
+
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .module-title {
+            font-size: 1.3rem;
+            color: #fff;
+        }
+
+        .module-lessons {
+            background: rgba(67, 97, 238, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #4cc9f0;
+        }
+
+        .module-description {
+            color: #e0e1dd;
+            margin-bottom: 15px;
+        }
+
+        .module-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .topic-tag {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #e0e1dd;
+        }
+
+        .module-projects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .project-badge {
+            background: rgba(16, 185, 129, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #10b981;
+        }
+
+        .module-footer {
+            margin-top: 10px;
+        }
+
+        .project-service-link {
+            color: #4cc9f0;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-service-link:hover {
+            gap: 12px;
+            color: #fff;
+        }
+
+        /* ===== حزم الأسعار ===== */
+        .pricing-section {
+            margin-bottom: 60px;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .package-card {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            border-color: #4361ee;
+        }
+
+        .package-card.featured {
+            border: 2px solid #f59e0b;
+            transform: scale(1.02);
+        }
+
+        .package-card.featured:hover {
+            transform: scale(1.02) translateY(-10px);
+        }
+
+        .package-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: linear-gradient(45deg, #f59e0b, #d97706);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .package-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .package-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4cc9f0;
+            margin-bottom: 20px;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .package-features li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #e0e1dd;
+        }
+
+        .package-features li i.fa-check {
+            color: #10b981;
+        }
+
+        .package-features li i.fa-times {
+            color: #ef4444;
+        }
+
+        .not-included {
+            opacity: 0.5;
+        }
+
+        .package-btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .package-btn:hover {
+            background: #4361ee;
+            transform: translateY(-2px);
+        }
+
+        .btn-featured {
+            background: linear-gradient(45deg, #f59e0b, #d97706);
+        }
+
+        .btn-featured:hover {
+            background: linear-gradient(45deg, #d97706, #f59e0b);
+        }
+
+        /* ===== مشاريع نموذجية ===== */
+        .projects-showcase {
+            margin-bottom: 60px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: #4361ee;
+        }
+
+        .project-preview {
+            width: 100px;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .project-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .project-content p {
+            color: #e0e1dd;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tech-tag {
+            background: rgba(67, 97, 238, 0.2);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            color: #4cc9f0;
+        }
+
+        /* ===== التوقيتات ===== */
+        .timeline-container {
+            margin-bottom: 40px;
+        }
+
+        .time-estimates {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .time-card {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .time-card:hover {
+            transform: translateY(-5px);
+            border-color: #4cc9f0;
+        }
+
+        .time-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .time-value {
+            color: #4cc9f0;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* ===== الفوتر ===== */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icon:hover {
+            background: #4361ee;
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            color: #e0e1dd;
+            font-size: 0.9rem;
+        }
+
+        /* ===== زر العودة للأعلى ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+        }
+
+        /* ===== متجاوب ===== */
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 280px;
+                height: calc(100vh - 70px);
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 20px;
+                gap: 10px;
+                transition: right 0.3s ease;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-link {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 20px;
+            }
+            
+            .nav-content {
+                padding: 0 20px;
+            }
+            
+            .container {
+                margin-top: 100px;
+            }
+            
+            .roadmap-module {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .module-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .project-card {
+                flex-direction: column;
+            }
+            
+            .project-preview {
+                width: 100%;
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header .logo {
+                font-size: 2rem;
+            }
+            
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+            
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .package-card.featured {
+                transform: scale(1);
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .time-estimates {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
 <body>
     <!-- ===== زر مستقل العائم ===== -->
     <div class="floating-mostaql-btn">
@@ -35,17 +744,23 @@
     <!-- ===== شريط التنقل ===== -->
     <nav class="nav-container">
         <div class="nav-content">
-            <a href="index.html" class="nav-logo">Mohamed Alaa</a>
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🚀</span>
+                Mohamed Alaa
+            </a>
             <div class="nav-links">
-                <a href="index.html" class="nav-link">الرئيسية</a>
-                <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
-                <a href="programming-basics.html" class="nav-link">أساسيات البرمجة</a>
-                <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
-                <a href="data-analyst-course.html" class="nav-link">📊 Data Analyst</a>
-                <a href="data-scientist-course.html" class="nav-link">🔬 Data Scientist</a>
-                <a href="frontend-roadmap.html" class="nav-link active">🎨 Frontend Roadmap</a>
-                <a href="blogs.html" class="nav-link">المقالات</a>
-                <a href="login.html" class="nav-link">دخول</a>
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i><span>الرئيسية</span></a>
+                <a href="Computer_basics.html" class="nav-link"><i class="fas fa-desktop"></i><span>أساسيات الحاسوب</span></a>
+                <a href="programming-basics.html" class="nav-link"><i class="fas fa-code"></i><span>أساسيات البرمجة</span></a>
+                <a href="Microsoft_Office.html" class="nav-link"><i class="fas fa-file-excel"></i><span>Microsoft Office</span></a>
+                <a href="data-analyst-course.html" class="nav-link"><i class="fas fa-chart-line"></i><span>Data Analyst</span></a>
+                <a href="data-scientist-course.html" class="nav-link"><i class="fas fa-brain"></i><span>Data Scientist</span></a>
+                <a href="frontend-roadmap.html" class="nav-link active"><i class="fas fa-palette"></i><span>Frontend</span></a>
+                <a href="blogs.html" class="nav-link"><i class="fas fa-blog"></i><span>المقالات</span></a>
+                <a href="login.html" class="nav-link"><i class="fas fa-user"></i><span>دخول</span></a>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
     </nav>
@@ -226,7 +941,6 @@
             <p class="section-subtitle">خيارات مرنة تناسب احتياجاتك وميزانيتك</p>
 
             <div class="packages-grid">
-                <!-- النسخة المختصرة -->
                 <div class="package-card">
                     <div class="package-badge">للبدء السريع</div>
                     <h4>⭐ النسخة المختصرة</h4>
@@ -242,7 +956,6 @@
                     <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="package-btn">اطلب الخدمة</a>
                 </div>
 
-                <!-- النسخة الكاملة (الأكثر مبيعاً) -->
                 <div class="package-card featured">
                     <div class="package-badge">الأكثر مبيعاً</div>
                     <h4>🔥 النسخة الكاملة</h4>
@@ -258,7 +971,6 @@
                     <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="package-btn btn-featured">اطلب الخدمة الآن</a>
                 </div>
 
-                <!-- النسخة الموسعة -->
                 <div class="package-card">
                     <div class="package-badge">للمحترفين</div>
                     <h4>🚀 النسخة الموسعة</h4>
@@ -362,7 +1074,7 @@
             <a href="https://www.instagram.com/mohmedalaaaldin/?" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://www.facebook.com/profile.php?id=61550839582471" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
             <a href="https://wa.me/201060828627" class="social-icon" target="_blank" style="background:linear-gradient(45deg,#25D366,#128C7E)"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="social-icon mostaql-footer-icon"><i class="fas fa-briefcase"></i></a>
+            <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="social-icon"><i class="fas fa-briefcase"></i></a>
             <a href="mailto:mohamedalaaaldinabotasa@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
         </div>
         <p class="copyright">© 2025 محمد علاء - مسار تعلم Frontend | متاح للعمل على مستقل</p>
@@ -370,6 +1082,61 @@
 
     <button id="backToTop" class="back-to-top"><i class="fas fa-arrow-up"></i></button>
 
-    <script src="frontend-roadmap.js"></script>
+    <script>
+        // قائمة الجوال
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 900 && navLinks) {
+                    navLinks.classList.remove('active');
+                    if (menuToggle) {
+                        const icon = menuToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+
+        // تأثير التمرير
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav-container');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // زر العودة للأعلى
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
