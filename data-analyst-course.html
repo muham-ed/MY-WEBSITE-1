@@ -3,36 +3,676 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-    <title>دورة Data Analyst - تحليل البيانات</title>
+    <title>دورة Data Analyst - تحليل البيانات | Mohamed Alaa</title>
     <link rel="icon" href="icons mohamed.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-      <link rel="stylesheet" href="global.css">
     <!-- CodeMirror -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/dracula.min.css">
-    <link rel="stylesheet" href="data-analyst-course.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
     <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
     
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.1) 0%, transparent 20%),
+                        radial-gradient(circle at 90% 80%, rgba(247, 37, 133, 0.1) 0%, transparent 20%);
+            z-index: -1;
+        }
+
+        /* ===== شريط التنقل الموحد ===== */
+        .nav-container {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 12px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container.scrolled {
+            padding: 8px 0;
+            background: rgba(15, 23, 42, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            position: relative;
+        }
+
+        .nav-logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4cc9f0, #4361ee, #3a0ca3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.02);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-link {
+            color: #e0e1dd;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 18px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(67, 97, 238, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link i {
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            transition: width 0.3s ease;
+            z-index: -1;
+            border-radius: 12px;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== الحاوية الرئيسية ===== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            margin-top: 80px;
+        }
+
+        /* ===== الهيدر ===== */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(58, 12, 163, 0.1));
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3, #4cc9f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #e0e1dd;
+        }
+
+        /* ===== شريط التقدم ===== */
+        .progress-container {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .progress-title {
+            color: #4cc9f0;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            height: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(45deg, #4361ee, #4cc9f0);
+            width: 0%;
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        /* ===== القائمة الجانبية ===== */
+        .lessons-sidebar {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lessons-sidebar h3 {
+            margin-bottom: 20px;
+            color: #4cc9f0;
+        }
+
+        .units-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .unit-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .unit-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .unit-lessons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .lesson-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .lesson-item:hover {
+            background: rgba(67, 97, 238, 0.5);
+        }
+
+        .lesson-item.active {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+        }
+
+        .lesson-item.completed {
+            border-right: 3px solid #10b981;
+            background: rgba(16, 185, 129, 0.2);
+        }
+
+        /* ===== محتوى الدرس ===== */
+        .lesson-content {
+            background: rgba(27, 38, 59, 0.85);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lesson-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lesson-title {
+            color: #4cc9f0;
+            font-size: 1.5rem;
+        }
+
+        .lesson-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ===== النقاط الرئيسية ===== */
+        .key-points {
+            background: rgba(67, 97, 238, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-right: 3px solid #4361ee;
+        }
+
+        .key-points h4 {
+            color: #4cc9f0;
+            margin-bottom: 15px;
+        }
+
+        .key-points ul {
+            padding-right: 20px;
+        }
+
+        .key-points li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        /* ===== محرر الكود ===== */
+        .code-section {
+            margin-bottom: 25px;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .code-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4cc9f0;
+        }
+
+        .code-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .code-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .code-btn:hover {
+            background: rgba(67, 97, 238, 0.8);
+        }
+
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .editor-panel, .output-panel {
+            background: #1e1e1e;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            background: #2d2d2d;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #3d3d3d;
+        }
+
+        .CodeMirror {
+            height: 300px;
+        }
+
+        .output-content {
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #4cc9f0;
+            white-space: pre-wrap;
+            min-height: 300px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        /* ===== الاختبار ===== */
+        .quiz-section {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .quiz-question {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            background: rgba(67, 97, 238, 0.3);
+        }
+
+        .quiz-option.selected {
+            background: rgba(67, 97, 238, 0.5);
+        }
+
+        .quiz-option.correct {
+            background: #10b981;
+        }
+
+        .quiz-option.wrong {
+            background: #ef4444;
+        }
+
+        .quiz-feedback {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .quiz-feedback.success {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            display: block;
+        }
+
+        .quiz-feedback.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            display: block;
+        }
+
+        .quiz-submit {
+            background: linear-gradient(45deg, #f59e0b, #d97706);
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .quiz-submit:hover {
+            transform: translateY(-2px);
+        }
+
+        .complete-btn {
+            background: linear-gradient(45deg, #10b981, #059669);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .complete-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .complete-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ===== الفوتر ===== */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icon:hover {
+            background: #4361ee;
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            color: #e0e1dd;
+            font-size: 0.9rem;
+        }
+
+        /* ===== متجاوب ===== */
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 280px;
+                height: calc(100vh - 70px);
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 20px;
+                gap: 10px;
+                transition: right 0.3s ease;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-link {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 20px;
+            }
+            
+            .nav-content {
+                padding: 0 20px;
+            }
+            
+            .container {
+                margin-top: 100px;
+            }
+            
+            .editor-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .lesson-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .lesson-title {
+                font-size: 1.2rem;
+            }
+        }
     </style>
 </head>
 <body>
+
     <!-- ===== شريط التنقل الموحد ===== -->
     <nav class="nav-container">
         <div class="nav-content">
-            <a href="index.html" class="nav-logo">Mohamed Alaa</a>
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🚀</span>
+                Mohamed Alaa
+            </a>
             <div class="nav-links">
-                <a href="index.html" class="nav-link">الرئيسية</a>
-                <a href="Computer_basics.html" class="nav-link">أساسيات الحاسوب</a>
-                 <a href="programming-basics.html" class="nav-link">أساسيات البرمجة</a>
-                <a href="Microsoft_Office.html" class="nav-link">Microsoft Office</a>
-                <a href="data-analyst-course.html" class="nav-link active">📊 Data Analyst</a>
-                <a href="data-scientist-course.html" class="nav-link">🔬 Data Scientist</a>
-                <a href="frontend-roadmap.html" class="nav-link">🎨 Frontend Roadmap</a>
-                <a href="blogs.html" class="nav-link">المقالات</a>
-                <a href="login.html" class="nav-link">دخول</a>
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i><span>الرئيسية</span></a>
+                <a href="Computer_basics.html" class="nav-link"><i class="fas fa-desktop"></i><span>أساسيات الحاسوب</span></a>
+                <a href="programming-basics.html" class="nav-link"><i class="fas fa-code"></i><span>أساسيات البرمجة</span></a>
+                <a href="Microsoft_Office.html" class="nav-link"><i class="fas fa-file-excel"></i><span>Microsoft Office</span></a>
+                <a href="data-analyst-course.html" class="nav-link active"><i class="fas fa-chart-line"></i><span>Data Analyst</span></a>
+                <a href="data-scientist-course.html" class="nav-link"><i class="fas fa-brain"></i><span>Data Scientist</span></a>
+                <a href="frontend-roadmap.html" class="nav-link"><i class="fas fa-palette"></i><span>Frontend</span></a>
+                <a href="blogs.html" class="nav-link"><i class="fas fa-blog"></i><span>المقالات</span></a>
+                <a href="login.html" class="nav-link"><i class="fas fa-user"></i><span>دخول</span></a>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
     </nav>
@@ -104,7 +744,7 @@
             </div>
 
             <div class="quiz-section">
-                <h4 style="color: var(--primary); margin-bottom: 15px;">📝 اختبر فهمك</h4>
+                <h4 style="color: #4cc9f0; margin-bottom: 15px;">📝 اختبر فهمك</h4>
                 <div class="quiz-question" id="quizQuestion"></div>
                 <div class="quiz-options" id="quizOptions"></div>
                 <div class="quiz-feedback" id="quizFeedback"></div>
@@ -116,29 +756,15 @@
     </div>
 
     <!-- ===== الفوتر ===== -->
-     <footer id="contact">
+    <footer id="contact">
         <div class="social-icons">
-            <a href="https://www.linkedin.com/in/mohamed-ala-a-2b333533a" class="social-icon" target="_blank">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://github.com/muham-ed/skills-github-pages" class="social-icon" target="_blank">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://www.youtube.com/channel/UCS5vFLuP5h1NTgvHiM2oJHQ" class="social-icon" target="_blank">
-                <i class="fab fa-youtube"></i>
-            </a>
-            <a href="https://www.instagram.com/mohmedalaaaldin/?" class="social-icon" target="_blank">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.facebook.com/profile.php?id=61550839582471&locale=ar_AR" class="social-icon" target="_blank">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://wa.me/201060828627" class="social-icon" target="_blank" style="background: linear-gradient(45deg, #25D366, #128C7E);">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="mailto:mohamedalaaaldinabotasa@gmail.com" class="social-icon">
-                <i class="fas fa-envelope"></i>
-            </a>
+            <a href="https://www.linkedin.com/in/mohamed-ala-a-2b333533a" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/muham-ed/skills-github-pages" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.youtube.com/channel/UCS5vFLuP5h1NTgvHiM2oJHQ" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/mohmedalaaaldin/?" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61550839582471&locale=ar_AR" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://wa.me/201060828627" class="social-icon" target="_blank" style="background: linear-gradient(45deg, #25D366, #128C7E);"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:mohamedalaaaldinabotasa@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
         </div>
         <p class="copyright">© 2025 مسار التطور التقني | تم التصميم بواسطة Mohamed Alaa</p>
     </footer>
@@ -183,16 +809,7 @@ print(f"أعلى مبيعات: {df['المبيعات'].max()}")
 print(f"أقل مبيعات: {df['المبيعات'].min()}")
 
 print("\\n✅ تحليل البيانات يساعد في فهم الأداء واتخاذ القرارات")`,
-                quiz: {
-                    question: "ما هو الهدف الرئيسي من تحليل البيانات؟",
-                    options: [
-                        "برمجة التطبيقات",
-                        "استخراج رؤى مفيدة لاتخاذ القرارات",
-                        "تصميم قواعد البيانات",
-                        "بناء نماذج ذكاء اصطناعي"
-                    ],
-                    correct: 1
-                }
+                quiz: { question: "ما هو الهدف الرئيسي من تحليل البيانات؟", options: ["برمجة التطبيقات", "استخراج رؤى مفيدة لاتخاذ القرارات", "تصميم قواعد البيانات", "بناء نماذج ذكاء اصطناعي"], correct: 1 }
             },
             {
                 id: 2,
@@ -246,16 +863,7 @@ max_month = sales_data.loc[sales_data['المبيعات'].idxmax(), 'الشهر'
 print(f"\\n📈 النتائج:")
 print(f"متوسط المبيعات: {avg_sales:.0f}")
 print(f"أفضل شهر: {max_month} ({max_sales})")`,
-                quiz: {
-                    question: "ما هي أول خطوة في دورة حياة تحليل البيانات؟",
-                    options: [
-                        "جمع البيانات",
-                        "تنظيف البيانات",
-                        "تحديد المشكلة",
-                        "عرض النتائج"
-                    ],
-                    correct: 2
-                }
+                quiz: { question: "ما هي أول خطوة في دورة حياة تحليل البيانات؟", options: ["جمع البيانات", "تنظيف البيانات", "تحديد المشكلة", "عرض النتائج"], correct: 2 }
             },
             {
                 id: 3,
@@ -313,16 +921,7 @@ city_sales = df.groupby('المدينة')['المبيعات'].sum()
 print(city_sales)
 
 print("\\n✅ هذه هي الأدوات التي ستتعلمها في الدورة")`,
-                quiz: {
-                    question: "ما هي الأداة الأفضل لإنشاء لوحات تحكم تفاعلية؟",
-                    options: [
-                        "Excel",
-                        "SQL",
-                        "Power BI",
-                        "Python فقط"
-                    ],
-                    correct: 2
-                }
+                quiz: { question: "ما هي الأداة الأفضل لإنشاء لوحات تحكم تفاعلية؟", options: ["Excel", "SQL", "Power BI", "Python فقط"], correct: 2 }
             },
 
             // ===== الوحدة 2: Excel لتحليل البيانات (الدروس 4-6) =====
@@ -364,16 +963,7 @@ print(f"متوسط المبيعات (AVERAGE): {df['المبيعات'].mean():.0
 print(f"أعلى مبيعات (MAX): {df['المبيعات'].max()}")
 print(f"أقل مبيعات (MIN): {df['المبيعات'].min()}")
 print(f"عدد المنتجات (COUNT): {df['المنتج'].count()}")`,
-                quiz: {
-                    question: "ما الفرق بين المرجع المطلق والنسبي في Excel؟",
-                    options: [
-                        "لا يوجد فرق",
-                        "المطلق يثبت الخلية عند النسخ ($A$1)، والنسبي يتغير",
-                        "المطلق يتغير والنسبي يثبت",
-                        "كلاهما يثبت الخلية"
-                    ],
-                    correct: 1
-                }
+                quiz: { question: "ما الفرق بين المرجع المطلق والنسبي في Excel؟", options: ["لا يوجد فرق", "المطلق يثبت الخلية عند النسخ ($A$1)، والنسبي يتغير", "المطلق يتغير والنسبي يثبت", "كلاهما يثبت الخلية"], correct: 1 }
             },
             {
                 id: 5,
@@ -418,16 +1008,7 @@ for dept in df['القسم'].unique():
     print(f"  إجمالي المبيعات: {dept_data['المبيعات'].sum():,.0f}")
 
 print("\\n✅ هذه الدوال تساعد في تحليل البيانات المشروطة")`,
-                quiz: {
-                    question: "ما هي دالة Excel التي تستخدم لجمع قيم بناءً على شرط معين؟",
-                    options: [
-                        "SUM",
-                        "SUMIF",
-                        "COUNT",
-                        "AVERAGE"
-                    ],
-                    correct: 1
-                }
+                quiz: { question: "ما هي دالة Excel التي تستخدم لجمع قيم بناءً على شرط معين؟", options: ["SUM", "SUMIF", "COUNT", "AVERAGE"], correct: 1 }
             },
             {
                 id: 6,
@@ -477,16 +1058,7 @@ print("\\nمتوسط المبيعات:")
 print(pivot2)
 
 print("\\n✅ الجداول المحورية تلخص البيانات الكبيرة بسرعة وسهولة")`,
-                quiz: {
-                    question: "ما فائدة الجداول المحورية Pivot Tables؟",
-                    options: [
-                        "إنشاء رسوم بيانية فقط",
-                        "تلخيص وتحليل البيانات متعددة الأبعاد",
-                        "إدخال البيانات",
-                        "تنسيق الخلايا"
-                    ],
-                    correct: 1
-                }
+                quiz: { question: "ما فائدة الجداول المحورية Pivot Tables؟", options: ["إنشاء رسوم بيانية فقط", "تلخيص وتحليل البيانات متعددة الأبعاد", "إدخال البيانات", "تنسيق الخلايا"], correct: 1 }
             },
 
             // ===== الوحدة 3: SQL لاستعلام البيانات (الدروس 7-9) =====
@@ -539,16 +1111,7 @@ print("\\n" + "=" * 40)
 print("🔹 محاكاة SELECT * FROM employees ORDER BY salary DESC:")
 print("=" * 40)
 print(employees.sort_values('salary', ascending=False))`,
-                quiz: {
-                    question: "ما هي جملة SQL المستخدمة لاسترجاع البيانات من قاعدة البيانات؟",
-                    options: [
-                        "INSERT",
-                        "UPDATE",
-                        "SELECT",
-                        "DELETE"
-                    ],
-                    correct: 2
-                }
+                quiz: { question: "ما هي جملة SQL المستخدمة لاسترجاع البيانات من قاعدة البيانات؟", options: ["INSERT", "UPDATE", "SELECT", "DELETE"], correct: 2 }
             },
             {
                 id: 8,
@@ -600,16 +1163,7 @@ category_stats = sales.groupby('category').agg({
     'amount': ['count', 'sum', 'mean']
 }).round(0)
 print(category_stats)`,
-                quiz: {
-                    question: "ما الفرق بين WHERE و HAVING في SQL؟",
-                    options: [
-                        "لا يوجد فرق",
-                        "WHERE لتصفية الصفوف قبل التجميع، HAVING لتصفية المجموعات بعد التجميع",
-                        "WHERE للتجميع و HAVING للترتيب",
-                        "كلاهما لنفس الغرض"
-                    ],
-                    correct: 1
-                }
+                quiz: { question: "ما الفرق بين WHERE و HAVING في SQL؟", options: ["لا يوجد فرق", "WHERE لتصفية الصفوف قبل التجميع، HAVING لتصفية المجموعات بعد التجميع", "WHERE للتجميع و HAVING للترتيب", "كلاهما لنفس الغرض"], correct: 1 }
             },
             {
                 id: 9,
@@ -668,16 +1222,7 @@ right_join = pd.merge(customers, orders, on='customer_id', how='right')
 print(right_join)
 
 print("\\n✅ JOIN يسمح بدمج البيانات من جداول متعددة")`,
-                quiz: {
-                    question: "أي نوع من JOIN يعيد كل الصفوف من الجدول الأيسر والصفوف المطابقة من الجدول الأيمن؟",
-                    options: [
-                        "INNER JOIN",
-                        "LEFT JOIN",
-                        "RIGHT JOIN",
-                        "FULL OUTER JOIN"
-                    ],
-                    correct: 1
-                }
+                quiz: { question: "أي نوع من JOIN يعيد كل الصفوف من الجدول الأيسر والصفوف المطابقة من الجدول الأيمن؟", options: ["INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "FULL OUTER JOIN"], correct: 1 }
             },
 
             // ===== الوحدة 4: Python و Pandas (الدروس 10-12) =====
@@ -727,16 +1272,7 @@ print("\\nإحصائيات وصفية:")
 print(df.describe())
 
 print("\\n✅ Pandas توفر أدوات قوية للتعامل مع البيانات")`,
-                quiz: {
-                    question: "ما الفرق بين Series و DataFrame في Pandas؟",
-                    options: [
-                        "لا يوجد فرق",
-                        "Series لعمود واحد، DataFrame لجدول كامل",
-                        "Series للبيانات النصية، DataFrame للبيانات الرقمية",
-                        "Series جزء من NumPy وليس Pandas"
-                    ],
-                    correct: 1
-                }
+                quiz: { question: "ما الفرق بين Series و DataFrame في Pandas؟", options: ["لا يوجد فرق", "Series لعمود واحد، DataFrame لجدول كامل", "Series للبيانات النصية، DataFrame للبيانات الرقمية", "Series جزء من NumPy وليس Pandas"], correct: 1 }
             },
             {
                 id: 11,
@@ -788,16 +1324,7 @@ print("بعد إزالة التكرارات:")
 print(df)
 
 print("\\n✅ تنظيف البيانات خطوة أساسية قبل التحليل")`,
-                quiz: {
-                    question: "كيف تتعامل مع القيم المفقودة في Pandas؟",
-                    options: [
-                        "لا يمكن التعامل معها",
-                        "باستخدام fillna() أو dropna()",
-                        "تتجاهلها تلقائياً",
-                        "تتحول إلى صفر"
-                    ],
-                    correct: 1
-                }
+                quiz: { question: "كيف تتعامل مع القيم المفقودة في Pandas؟", options: ["لا يمكن التعامل معها", "باستخدام fillna() أو dropna()", "تتجاهلها تلقائياً", "تتحول إلى صفر"], correct: 1 }
             },
             {
                 id: 12,
@@ -856,16 +1383,7 @@ monthly = df.groupby('الشهر')['المبيعات'].sum()
 print(monthly)
 
 print("\\n✅ Pandas تمكنك من تحليل البيانات بمرونة عالية")`,
-                quiz: {
-                    question: "ما وظيفة الدالة apply() في Pandas؟",
-                    options: [
-                        "حذف البيانات",
-                        "تطبيق دالة مخصصة على البيانات",
-                        "دمج البيانات",
-                        "عرض البيانات"
-                    ],
-                    correct: 1
-                }
+                quiz: { question: "ما وظيفة الدالة apply() في Pandas؟", options: ["حذف البيانات", "تطبيق دالة مخصصة على البيانات", "دمج البيانات", "عرض البيانات"], correct: 1 }
             },
 
             // ===== الوحدة 5: تصور البيانات (الدروس 13-15) =====
@@ -921,16 +1439,7 @@ for i, month in enumerate(months):
 print("└────────────┴────────────┴────────────┘")
 
 print("\\n✅ التصور يساعد في فهم الأنماط والاتجاهات بسرعة")`,
-                quiz: {
-                    question: "ما هو أفضل نوع رسم بياني لمقارنة قيم عبر فئات مختلفة؟",
-                    options: [
-                        "رسم بياني خطي",
-                        "رسم بياني عمودي",
-                        "رسم بياني دائري",
-                        "مخطط مبعثر"
-                    ],
-                    correct: 1
-                }
+                quiz: { question: "ما هو أفضل نوع رسم بياني لمقارنة قيم عبر فئات مختلفة؟", options: ["رسم بياني خطي", "رسم بياني عمودي", "رسم بياني دائري", "مخطط مبعثر"], correct: 1 }
             },
             {
                 id: 14,
@@ -970,7 +1479,7 @@ print("\\n📊 توزيع المبيعات حسب المنتج:")
 total = sum(sales)
 for i, product in enumerate(products):
     percentage = (sales[i] / total) * 100
-    bar_length = int(percentage / 2)  # تحويل النسبة إلى طول شريط
+    bar_length = int(percentage / 2)
     bar = "█" * bar_length
     print(f"{product:12s} | {bar:20s} {percentage:5.1f}% ({sales[i]:,})")
 
@@ -985,16 +1494,7 @@ for i, product in enumerate(products):
     print(f"{product:12s} | {arrow:10s} {growth[i]:5.1f}% ({color})")
 
 print("\\n✅ التصور المتقدم يساعد في إظهار رؤى أعمق")`,
-                quiz: {
-                    question: "ما فائدة استخدام Subplots في Matplotlib؟",
-                    options: [
-                        "تلوين الرسوم",
-                        "عرض عدة رسوم بيانية في شكل واحد",
-                        "حذف الرسوم",
-                        "تكبير الرسوم"
-                    ],
-                    correct: 1
-                }
+                quiz: { question: "ما فائدة استخدام Subplots في Matplotlib؟", options: ["تلوين الرسوم", "عرض عدة رسوم بيانية في شكل واحد", "حذف الرسوم", "تكبير الرسوم"], correct: 1 }
             },
             {
                 id: 15,
@@ -1061,16 +1561,7 @@ print("\\nبيانات المبيعات (جاهزة للتحليل في Power BI
 print(sales_data)
 
 print("\\n✅ Power BI يتيح إنشاء لوحات تحكم تفاعلية بسهولة")`,
-                quiz: {
-                    question: "ما هي لغة الصياغة المستخدمة في Power BI لإنشاء حسابات مخصصة؟",
-                    options: [
-                        "SQL",
-                        "Python",
-                        "DAX",
-                        "M"
-                    ],
-                    correct: 2
-                }
+                quiz: { question: "ما هي لغة الصياغة المستخدمة في Power BI لإنشاء حسابات مخصصة؟", options: ["SQL", "Python", "DAX", "M"], correct: 2 }
             },
 
             // ===== الوحدة 6: مشروع عملي وخاتمة (الدروس 16-18) =====
@@ -1140,16 +1631,7 @@ print("\\n3️⃣ التحقق من القيم المفقودة:")
 print(df.isnull().sum())
 
 print("\\n✅ تم تجهيز البيانات للتحليل في الجزء الثاني")`,
-                quiz: {
-                    question: "لماذا نقوم بتنظيف البيانات قبل التحليل؟",
-                    options: [
-                        "لإضاعة الوقت",
-                        "لضمان دقة النتائج وتجنب الأخطاء",
-                        "لجعل البيانات أكبر",
-                        "لا فائدة منه"
-                    ],
-                    correct: 1
-                }
+                quiz: { question: "لماذا نقوم بتنظيف البيانات قبل التحليل؟", options: ["لإضاعة الوقت", "لضمان دقة النتائج وتجنب الأخطاء", "لجعل البيانات أكبر", "لا فائدة منه"], correct: 1 }
             },
             {
                 id: 17,
@@ -1233,33 +1715,24 @@ for month, sales in monthly_sales.items():
     print(f"الشهر {month}: {sales:,.0f}")
 
 print("\\n✅ تم الانتهاء من التحليل الأساسي")`,
-                quiz: {
-                    question: "ما فائدة تحليل المبيعات حسب المنطقة؟",
-                    options: [
-                        "لا فائدة",
-                        "تحديد المناطق الأقوى والأضعف لتوجيه الجهود التسويقية",
-                        "معرفة المنتجات فقط",
-                        "زيادة التكاليف"
-                    ],
-                    correct: 1
-                }
+                quiz: { question: "ما فائدة تحليل المبيعات حسب المنطقة؟", options: ["لا فائدة", "تحديد المناطق الأقوى والأضعف لتوجيه الجهود التسويقية", "معرفة المنتجات فقط", "زيادة التكاليف"], correct: 1 }
             },
             {
                 id: 18,
                 unit: 6,
-                title: "مشروع تحليل مبيعات شامل (الجزء الثالث)",
+                title: "مشروع تحليل مبيعات شامل (الجزء الثالث) + Dashboard",
                 keyPoints: [
                     "تلخيص النتائج والرؤى الرئيسية",
-                    "إنشاء لوحة تحكم بسيطة",
+                    "إنشاء لوحة تحكم بسيطة (Dashboard)",
                     "تقديم التوصيات النهائية",
                     "الخطوات التالية للتطوير"
                 ],
-                code: `# الدرس 6.3: مشروع تحليل مبيعات شامل - الجزء الثالث
+                code: `# الدرس 6.3: مشروع تحليل مبيعات شامل - الجزء الثالث + Dashboard
 import pandas as pd
 import numpy as np
 
 print("=" * 70)
-print("🎯 مشروع تحليل مبيعات شامل - الجزء الثالث")
+print("🎯 مشروع تحليل مبيعات شامل - الجزء الثالث + Dashboard")
 print("=" * 70)
 
 # إعادة إنشاء البيانات
@@ -1308,38 +1781,53 @@ print("📊 لوحة تحكم بسيطة (Dashboard)")
 print("=" * 70)
 
 print("""
-┌─────────────────────────────────────────────────────────────┐
-│                     📊 أداء المبيعات                        │
-├──────────────┬──────────────┬──────────────┬──────────────┤
-│   المنتج    │  الإيرادات  │   الأرباح   │  نسبة الربح  │
-├──────────────┼──────────────┼──────────────┼──────────────┤""")
+┌─────────────────────────────────────────────────────────────────────────────────────┐
+│                              📊 أداء المبيعات - Dashboard                           │
+├──────────────┬──────────────┬──────────────┬──────────────┬─────────────────────────┤
+│   المنتج     │  الإيرادات   │   الأرباح    │  نسبة الربح  │        التصنيف          │
+├──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────────┤""")
 
 for product in df['المنتج'].unique():
     product_data = df[df['المنتج'] == product]
     p_revenue = product_data['الإيرادات'].sum()
     p_profit = product_data['الربح'].sum()
     p_margin = (p_profit / p_revenue) * 100
-    print(f"│ {product:12s} │ {p_revenue:10,.0f} │ {p_profit:10,.0f} │ {p_margin:8.1f}%   │")
+    rating = "🌟🌟🌟🌟🌟" if p_margin > 25 else "🌟🌟🌟🌟" if p_margin > 15 else "🌟🌟🌟"
+    print(f"│ {product:12s} │ {p_revenue:10,.0f} │ {p_profit:10,.0f} │ {p_margin:8.1f}%   │ {rating:23s} │")
 
-print("└──────────────┴──────────────┴──────────────┴──────────────┘")
+print("└──────────────┴──────────────┴──────────────┴──────────────┴─────────────────────────┘")
+
+print("\\n" + "=" * 70)
+print("📈 التحليل حسب المنطقة:")
+print("=" * 70)
+print("┌──────────────┬──────────────┬──────────────┬─────────────────────────────────────┐")
+print("│   المنطقة    │  الإيرادات   │   الأرباح    │              التصنيف                │")
+print("├──────────────┼──────────────┼──────────────┼─────────────────────────────────────┤")
+for region in df['المنطقة'].unique():
+    region_data = df[df['المنطقة'] == region]
+    r_revenue = region_data['الإيرادات'].sum()
+    r_profit = region_data['الربح'].sum()
+    rating = "🔥 ممتاز" if r_revenue > 1500000 else "👍 جيد" if r_revenue > 1000000 else "⚠️ يحتاج تحسين"
+    print(f"│ {region:12s} │ {r_revenue:10,.0f} │ {r_profit:10,.0f} │ {rating:35s} │")
+print("└──────────────┴──────────────┴──────────────┴─────────────────────────────────────┘")
 
 print("\\n" + "=" * 70)
 print("💡 التوصيات النهائية:")
 print("=" * 70)
 
 recommendations = [
-    "1. التركيز على المنتج الأكثر مبيعاً وزيادة مخزونه",
-    "2. تعزيز جهود التسويق في المناطق ذات الأداء الأقل",
-    "3. تحسين قنوات البيع الأضعف أو إعادة تقييمها",
-    "4. دراسة إمكانية خفض التكاليف لزيادة هامش الربح",
-    "5. تحليل سلوك العملاء في أفضل المناطق وتعميم التجربة"
+    "1. 🔥 التركيز على المنتج الأكثر مبيعاً وزيادة مخزونه",
+    "2. 📍 تعزيز جهود التسويق في المناطق ذات الأداء الأقل",
+    "3. 🛒 تحسين قنوات البيع الأضعف أو إعادة تقييمها",
+    "4. 💰 دراسة إمكانية خفض التكاليف لزيادة هامش الربح",
+    "5. 👥 تحليل سلوك العملاء في أفضل المناطق وتعميم التجربة"
 ]
 
 for rec in recommendations:
     print(f"  {rec}")
 
 print("\\n" + "=" * 70)
-print("🎉 تهانينا! لقد أكملت مشروع تحليل البيانات الشامل")
+print("🎉 تهانينا! لقد أكملت مشروع تحليل البيانات الشامل مع Dashboard")
 print("=" * 70)
 
 print("\\nالخطوات التالية لتطوير مهاراتك:")
@@ -1353,16 +1841,7 @@ next_steps = [
 
 for step in next_steps:
     print(f"  {step}")`,
-                quiz: {
-                    question: "ما هي أفضل طريقة لعرض نتائج تحليل البيانات؟",
-                    options: [
-                        "إرسال بريد إلكتروني فقط",
-                        "إنشاء لوحة تحكم (Dashboard) تفاعلية مع توصيات واضحة",
-                        "عدم عرض النتائج",
-                        "عرض الأرقام فقط بدون شرح"
-                    ],
-                    correct: 1
-                }
+                quiz: { question: "ما هي أفضل طريقة لعرض نتائج تحليل البيانات؟", options: ["إرسال بريد إلكتروني فقط", "إنشاء لوحة تحكم (Dashboard) تفاعلية مع توصيات واضحة", "عدم عرض النتائج", "عرض الأرقام فقط بدون شرح"], correct: 1 }
             }
         ];
 
@@ -1374,12 +1853,52 @@ for step in next_steps:
         let quizSelected = null;
         let quizAnswered = false;
 
+        // قائمة الجوال
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 900 && navLinks) {
+                    navLinks.classList.remove('active');
+                    if (menuToggle) {
+                        const icon = menuToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+
+        // تأثير التمرير
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav-container');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
         // ==================== تهيئة Pyodide ====================
         async function initPyodide() {
             document.getElementById('outputStatus').textContent = '🔄 جاري تحميل Python...';
             try {
                 pyodide = await loadPyodide();
-                // تحميل المكتبات الإضافية
                 await pyodide.loadPackage(['pandas', 'numpy', 'matplotlib']);
                 document.getElementById('outputStatus').textContent = '✅ Python جاهز (Pandas, NumPy, Matplotlib)';
             } catch (error) {
@@ -1416,7 +1935,6 @@ for step in next_steps:
             }
             
             try {
-                // إعادة توجيه الإخراج
                 pyodide.runPython(`
 import sys
 from io import StringIO
@@ -1439,32 +1957,19 @@ sys.stdout = StringIO()
             container.innerHTML = '';
             
             const units = [...new Set(lessons.map(l => l.unit))];
+            const unitNames = { 1: 'مقدمة في تحليل البيانات', 2: 'Excel لتحليل البيانات', 3: 'SQL لاستعلام البيانات', 4: 'Python و Pandas', 5: 'تصور البيانات', 6: 'مشروع عملي وخاتمة' };
             
-            const unitNames = {
-                1: 'مقدمة في تحليل البيانات',
-                2: 'Excel لتحليل البيانات',
-                3: 'SQL لاستعلام البيانات',
-                4: 'Python و Pandas',
-                5: 'تصور البيانات',
-                6: 'مشروع عملي وخاتمة'
-            };
-            
-            units.sort((a, b) => a - b); // ترتيب الوحدات تصاعدياً
+            units.sort((a, b) => a - b);
             
             units.forEach(unit => {
                 const unitLessons = lessons.filter(l => l.unit === unit);
-                
                 const unitDiv = document.createElement('div');
                 unitDiv.className = 'unit-card';
-                unitDiv.innerHTML = `
-                    <div class="unit-title">📚 الوحدة ${unit}: ${unitNames[unit]}</div>
-                    <div class="unit-lessons" id="unit-${unit}"></div>
-                `;
-                
+                unitDiv.innerHTML = `<div class="unit-title">📚 الوحدة ${unit}: ${unitNames[unit]}</div><div class="unit-lessons" id="unit-${unit}"></div>`;
                 container.appendChild(unitDiv);
                 
                 const unitContainer = document.getElementById(`unit-${unit}`);
-                unitLessons.sort((a, b) => a.id - b.id); // ترتيب الدروس حسب id
+                unitLessons.sort((a, b) => a.id - b.id);
                 unitLessons.forEach(lesson => {
                     const globalIndex = lessons.findIndex(l => l.id === lesson.id);
                     const btn = document.createElement('span');
@@ -1541,14 +2046,12 @@ sys.stdout = StringIO()
             if (isCorrect) {
                 feedback.className = 'quiz-feedback success';
                 feedback.innerHTML = '<i class="fas fa-check-circle"></i> إجابة صحيحة! أحسنت.';
-                
                 document.querySelectorAll('.quiz-option').forEach((opt, idx) => {
                     if (idx === lesson.quiz.correct) opt.classList.add('correct');
                 });
             } else {
                 feedback.className = 'quiz-feedback error';
                 feedback.innerHTML = '<i class="fas fa-times-circle"></i> إجابة خاطئة. حاول مرة أخرى.';
-                
                 document.querySelectorAll('.quiz-option').forEach((opt, idx) => {
                     if (idx === lesson.quiz.correct) opt.classList.add('correct');
                     else if (idx === quizSelected) opt.classList.add('wrong');
@@ -1614,10 +2117,10 @@ sys.stdout = StringIO()
             editor.setValue(lesson.code);
         }
 
+        // ==================== بدء التشغيل ====================
         document.addEventListener('DOMContentLoaded', function() {
             initEditor();
             initPyodide();
-            
             renderUnitList();
             changeLesson(0);
             
@@ -1631,7 +2134,7 @@ sys.stdout = StringIO()
             });
             
             document.getElementById('nextLesson').addEventListener('click', () => {
-                                if (currentLessonIndex < lessons.length - 1) changeLesson(currentLessonIndex + 1);
+                if (currentLessonIndex < lessons.length - 1) changeLesson(currentLessonIndex + 1);
             });
         });
     </script>
