@@ -37,6 +37,35 @@
         .download-buttons{grid-template-columns:1fr!important}
         .mostaql-btn span{display:none}
     }
+    /* تنسيق روابط العمل */
+    .career-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 12px 0;
+    }
+    .career-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #f0f3f8;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        color: #1a2a3a;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+    .career-link:hover {
+        background: #e0e7f0;
+        transform: translateY(-2px);
+    }
+    .career-link i {
+        font-size: 12px;
+    }
+    .career-card .project-footer {
+        margin-top: 10px;
+    }
     </style>
 </head>
 
@@ -120,7 +149,6 @@
                         </div>
                         <button class="complete-btn" onclick="completeStep(1)">تم الإكمال</button>
                         
-                        <!-- رابط الخدمة -->
                         <div class="project-footer">
                             <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                                 <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -339,6 +367,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=network+engineer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=network+engineer" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=network" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -359,6 +394,13 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=network+engineer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=network+engineer" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=network" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -381,6 +423,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=system+administrator" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=system+administrator" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=system+administrator" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -401,6 +450,13 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=system+engineer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=system+engineer" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=system+engineer" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -423,6 +479,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=cyber+security" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=cyber+security" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=cyber+security" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -431,7 +494,6 @@
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
 
-                <!-- الحوسبة السحابية المعدلة (AWS + Azure + GCP) -->
                 <div class="program-card" data-category="networking">
                     <div class="program-icon networking"><i class="fas fa-cloud"></i></div>
                     <h3 class="program-title">الحوسبة السحابية (Cloud Computing)</h3>
@@ -445,6 +507,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=cloud+engineer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=cloud+computing" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=cloud" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -453,7 +522,6 @@
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
 
-                <!-- Big Data الجديدة -->
                 <div class="program-card" data-category="networking">
                     <div class="program-icon networking"><i class="fas fa-database"></i></div>
                     <h3 class="program-title">Big Data - البيانات الضخمة</h3>
@@ -466,6 +534,13 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=big+data+engineer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=big+data" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=big+data" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -488,6 +563,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=network+administrator" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=network+administrator" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=network+administrator" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -508,6 +590,13 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=security+analyst" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=security+analyst" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=security" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -531,6 +620,13 @@
                         <a href="Microsoft_Office.html" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=office+administrator" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=microsoft+office" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=office" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -552,6 +648,13 @@
                         <a href="data-analyst-course.html" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=data+analyst" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=data+analyst" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=data+analyst" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -560,7 +663,6 @@
                     <a href="data-analyst-course.html" class="program-btn">ابدأ التعلم</a>
                 </div>
 
-                <!-- Power BI & Tableau المعدلة -->
                 <div class="program-card" data-category="professional">
                     <div class="program-icon professional"><i class="fas fa-chart-pie"></i></div>
                     <h3 class="program-title">Power BI & Tableau</h3>
@@ -574,6 +676,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=bi+analyst" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=power+bi" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=power+bi" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -582,7 +691,6 @@
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
 
-                <!-- التسويق الرقمي -->
                 <div class="program-card" data-category="professional">
                     <div class="program-icon professional"><i class="fas fa-ad"></i></div>
                     <h3 class="program-title">التسويق الرقمي</h3>
@@ -596,6 +704,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=digital+marketing" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=digital+marketing" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=digital+marketing" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -604,7 +719,6 @@
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
 
-                <!-- المحاسبة -->
                 <div class="program-card" data-category="professional">
                     <div class="program-icon professional"><i class="fas fa-calculator"></i></div>
                     <h3 class="program-title">المحاسبة</h3>
@@ -618,6 +732,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=accountant" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=accounting" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=accountant" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -626,7 +747,6 @@
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
 
-                <!-- التصميم الجرافيكي -->
                 <div class="program-card" data-category="professional">
                     <div class="program-icon professional"><i class="fas fa-paint-brush"></i></div>
                     <h3 class="program-title">التصميم الجرافيكي</h3>
@@ -640,6 +760,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=graphic+designer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=graphic+design" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=graphic+designer" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -648,7 +775,6 @@
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
 
-                <!-- Canva -->
                 <div class="program-card" data-category="professional">
                     <div class="program-icon professional"><i class="fas fa-edit"></i></div>
                     <h3 class="program-title">Canva</h3>
@@ -662,6 +788,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=graphic+designer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=canva" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=designer" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -670,7 +803,6 @@
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
 
-                <!-- التحليل المالي والمهارات المصرفية الجديدة -->
                 <div class="program-card" data-category="professional">
                     <div class="program-icon professional"><i class="fas fa-chart-line"></i></div>
                     <h3 class="program-title">التحليل المالي والمهارات المصرفية</h3>
@@ -684,6 +816,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=financial+analyst" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=financial+analysis" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=financial+analyst" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -692,7 +831,6 @@
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
 
-                <!-- مهارات التواصل وخدمة العملاء الجديدة -->
                 <div class="program-card" data-category="professional">
                     <div class="program-icon professional"><i class="fas fa-comments"></i></div>
                     <h3 class="program-title">مهارات التواصل وخدمة العملاء</h3>
@@ -705,6 +843,13 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=customer+service" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=customer+service" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=customer+service" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -728,6 +873,13 @@
                         <a href="frontend-roadmap.html" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=front+end+developer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=front+end" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=front+end" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -748,6 +900,13 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=back+end+developer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=back+end" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=back+end" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -770,6 +929,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=git" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=git" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=git" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -790,6 +956,13 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=python+developer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=python" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=python" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -812,6 +985,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=react+developer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=react" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=react" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -832,6 +1012,13 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=nodejs+developer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=nodejs" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=nodejs" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -854,6 +1041,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=api+developer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=api" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=api" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -874,6 +1068,13 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=database+developer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=sql" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=database" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -896,6 +1097,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=dotnet+developer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=.net" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=.net" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -917,6 +1125,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=java+developer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=java" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=java" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -925,7 +1140,6 @@
                     <a href="#" class="program-btn">قريباً</a>
                 </div>
 
-                <!-- Flutter & React Native المعدلة -->
                 <div class="program-card" data-category="programming">
                     <div class="program-icon programming"><i class="fas fa-mobile-alt"></i></div>
                     <h3 class="program-title">Flutter & React Native</h3>
@@ -938,6 +1152,13 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=mobile+developer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=mobile+app" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=mobile+developer" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -959,6 +1180,13 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=linux+administrator" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=linux" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=linux" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -982,6 +1210,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=project+manager" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=project+manager" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=project+manager" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -1002,6 +1237,13 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=hr+specialist" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=human+resources" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=hr" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -1024,6 +1266,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=sales+manager" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=sales" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=sales" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -1044,6 +1293,13 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=photoshop+designer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=photoshop" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=photoshop" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -1066,6 +1322,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=ecommerce+manager" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=ecommerce" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=ecommerce" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -1086,6 +1349,13 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=ai+specialist" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=artificial+intelligence" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=ai" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -1109,6 +1379,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=english+teacher" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=english+teacher" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=english" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -1129,6 +1406,13 @@
                     <div class="program-resources">
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
+                    </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=translator" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=translation" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=translator" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -1151,6 +1435,13 @@
                         <a href="#" class="resource-link">📄 المحتوى</a>
                         <a href="https://www.youtube.com/@MohamedAlaa-x7b" target="_blank" class="resource-link">🎥 فيديوهات</a>
                     </div>
+                    <div class="career-links">
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=english+instructor" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=english" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=english" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
+                    </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
                             <i class="fas fa-briefcase"></i> أحتاج مشروعًا مشابهًا
@@ -1166,6 +1457,7 @@
             <h2 class="section-title">💼 مسارات وظيفية مطلوبة عالمياً</h2>
             <p class="section-subtitle">اكتشف أحدث الوظائف التقنية المطلوبة في أسواق العمل العربية والعالمية، والمهارات اللازمة لكل منها</p>
             <div class="career-grid">
+                
                 <!-- DevOps Engineer -->
                 <div class="career-card" data-category="cloud">
                     <div class="career-icon" style="background: linear-gradient(135deg,#ff6b6b,#ee5253)"><i class="fas fa-infinity"></i></div>
@@ -1178,8 +1470,11 @@
                         <span class="skill-tag">AWS/Azure</span>
                     </div>
                     <div class="career-links">
-                        <a href="index.html#programming-path" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
-                        <a href="https://www.linkedin.com/jobs/search/?keywords=devops" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=devops+engineer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=devops+engineer" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=devops" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -1201,8 +1496,11 @@
                         <span class="skill-tag">NLP</span>
                     </div>
                     <div class="career-links">
-                        <a href="data-scientist-course.html" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
-                        <a href="https://www.linkedin.com/jobs/search/?keywords=machine+learning" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=machine+learning+engineer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=machine+learning" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=machine+learning" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -1224,8 +1522,11 @@
                         <span class="skill-tag">Smart Contracts</span>
                     </div>
                     <div class="career-links">
-                        <a href="index.html#programming-path" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
-                        <a href="https://www.linkedin.com/jobs/search/?keywords=blockchain" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=blockchain+developer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=blockchain" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=blockchain" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -1247,8 +1548,11 @@
                         <span class="skill-tag">Strategy</span>
                     </div>
                     <div class="career-links">
-                        <a href="index.html#programming-path" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
-                        <a href="https://www.linkedin.com/jobs/search/?keywords=product+manager" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=product+manager" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=product+manager" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=product+manager" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -1270,8 +1574,11 @@
                         <span class="skill-tag">3D Modeling</span>
                     </div>
                     <div class="career-links">
-                        <a href="index.html#programming-path" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
-                        <a href="https://www.linkedin.com/jobs/search/?keywords=ar+vr" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=ar+vr+developer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=ar+vr" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=virtual+reality" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -1293,8 +1600,11 @@
                         <span class="skill-tag">Git</span>
                     </div>
                     <div class="career-links">
-                        <a href="index.html#programming-path" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
-                        <a href="https://www.linkedin.com/jobs/search/?keywords=technical+writer" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=technical+writer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=technical+writer" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=technical+writer" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -1316,8 +1626,11 @@
                         <span class="skill-tag">Cloud</span>
                     </div>
                     <div class="career-links">
-                        <a href="data-analyst-course.html" class="career-link"><i class="fas fa-graduation-cap"></i> مسار التعلم</a>
-                        <a href="https://www.linkedin.com/jobs/search/?keywords=data+engineer" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> فرص العمل</a>
+                        <a href="https://www.linkedin.com/jobs/search/?keywords=data+engineer" target="_blank" class="career-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://www.upwork.com/nx/search/jobs/?q=data+engineer" target="_blank" class="career-link"><i class="fas fa-briefcase"></i> Upwork</a>
+                        <a href="https://wuzzuf.net/search/jobs?q=data+engineer" target="_blank" class="career-link"><i class="fas fa-search"></i> Wuzzuf</a>
+                        <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="career-link"><i class="fas fa-project-diagram"></i> مستقل</a>
+                        <a href="#" class="career-link" onclick="downloadCVTemplate(); return false;"><i class="fas fa-file-alt"></i> نموذج CV</a>
                     </div>
                     <div class="project-footer">
                         <a href="https://mostaql.com/u/MohamedAlaa2003/portfolio" target="_blank" class="project-service-link">
@@ -1326,6 +1639,7 @@
                     </div>
                     <span class="career-badge">مطلوب</span>
                 </div>
+
             </div>
             <div class="career-message">
                 <i class="fas fa-rocket"></i>
@@ -1449,5 +1763,102 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="index.js"></script>
+    
+    <script>
+    // دالة تحميل نموذج السيرة الذاتية
+    function downloadCVTemplate() {
+        alert("📄 يمكنك استخدام هذا النموذج لسيرتك الذاتية:\n\nhttps://docs.google.com/document/d/1example-cv-template/edit\n\nأو يمكنك البحث عن 'CV template for your field' على Google للحصول على قوالب احترافية مجانية.");
+    }
+    
+    // دوال تحميل خطة التعلم والجدول
+    function downloadPlan() {
+        alert("📋 سيتم إضافة خطة التعلم قريباً!");
+    }
+    
+    function downloadSchedule() {
+        alert("📅 سيتم إضافة الجدول الأسبوعي قريباً!");
+    }
+    
+    function resetProgress() {
+        if(confirm("هل أنت متأكد من إعادة تعيين تقدمك؟")) {
+            localStorage.removeItem('completedSteps');
+            updateProgress();
+            alert("تم إعادة تعيين التقدم بنجاح!");
+        }
+    }
+    
+    function completeStep(step) {
+        let completed = JSON.parse(localStorage.getItem('completedSteps') || '[]');
+        if(!completed.includes(step)) {
+            completed.push(step);
+            localStorage.setItem('completedSteps', JSON.stringify(completed));
+            updateProgress();
+            canvasConfetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            alert("🎉 تم إكمال المرحلة بنجاح!");
+        }
+    }
+    
+    function updateProgress() {
+        let completed = JSON.parse(localStorage.getItem('completedSteps') || '[]');
+        let totalSteps = 8;
+        let percent = Math.round((completed.length / totalSteps) * 100);
+        document.getElementById('progressFill').style.width = percent + '%';
+        document.getElementById('progressText').innerText = percent + '% مكتمل';
+    }
+    
+    // تحديث التقدم عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', function() {
+        updateProgress();
+        
+        // فلترة البرامج
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const programCards = document.querySelectorAll('.program-card');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const filter = this.dataset.filter;
+                
+                programCards.forEach(card => {
+                    if(filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // الأسئلة الشائعة
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', function() {
+                item.classList.toggle('active');
+                const answer = item.querySelector('.faq-answer');
+                if(item.classList.contains('active')) {
+                    answer.style.display = 'block';
+                } else {
+                    answer.style.display = 'none';
+                }
+            });
+        });
+        
+        // زر العودة للأعلى
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if(window.scrollY > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+        
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+    </script>
 </body>
 </html>
